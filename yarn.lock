@@ -46,7 +46,7 @@ __metadata:
   resolution: "@allons-y/agent-skills@workspace:."
   dependencies:
     "@allons-y/envoy": "npm:^1.0.0"
-    "@anthropic-ai/sdk": "npm:^0.86.1"
+    "@anthropic-ai/sdk": "npm:^0.91.1"
     "@commitlint/cli": "npm:^20.0.0"
     "@commitlint/config-conventional": "npm:^20.0.0"
     "@semantic-release/changelog": "npm:^6.0.0"
@@ -95,9 +95,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@anthropic-ai/sdk@npm:^0.86.1":
-  version: 0.86.1
-  resolution: "@anthropic-ai/sdk@npm:0.86.1"
+"@anthropic-ai/sdk@npm:^0.91.1":
+  version: 0.91.1
+  resolution: "@anthropic-ai/sdk@npm:0.91.1"
   dependencies:
     json-schema-to-ts: "npm:^3.1.1"
   peerDependencies:
@@ -107,7 +107,7 @@ __metadata:
       optional: true
   bin:
     anthropic-ai-sdk: bin/cli
-  checksum: 10c0/b528c3c1a1a37c830c0761dbbb001fd266caa433def639da26e848c1b82ff27a003137892e9cb781e78e3a7a4efb7b640dba5eb1dec89e9f26dab82b226ed462
+  checksum: 10c0/aa9fb1b3d0ae47f492ee7a94b76d341ac7c5486b222a9426b4815b07a65a0b6f502430b0250ff5bf2201a0cdae725a5d4f1f7a4aaa075e9fb32cc2ac10d70241
   languageName: node
   linkType: hard
 
