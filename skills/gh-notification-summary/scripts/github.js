@@ -325,11 +325,21 @@ export async function getNotificationContext(octokit, notification, card, opts =
 	const { owner, repo } = parseRepo(card.repo_full_name ?? "");
 	if (!owner || !repo) return null;
 
-	const issueRes = await octokit.rest.issues.get({
-		owner,
-		repo,
-		issue_number: card.issue_number,
-	});
+	const [issueRes, listRes] = await Promise.all([
+		octokit.rest.issues.get({
+			owner,
+			repo,
+			issue_number: card.issue_number,
+		}),
+		octokit.rest.issues.listComments({
+			owner,
+			repo,
+			issue_number: card.issue_number,
+			since: since.toISOString(),
+			per_page: 100,
+		}),
+	]);
+
 	const rawLabels = issueRes?.data?.labels ?? [];
 	const labels = rawLabels.map((l) => {
 		const name = typeof l === "string" ? l : l?.name ?? "";
@@ -341,13 +351,6 @@ export async function getNotificationContext(octokit, notification, card, opts =
 		return { name, color };
 	});
 
-	const listRes = await octokit.rest.issues.listComments({
-		owner,
-		repo,
-		issue_number: card.issue_number,
-		since: since.toISOString(),
-		per_page: 100,
-	});
 	let comments = Array.isArray(listRes?.data) ? listRes.data.slice() : [];
 
 	// If the notification points at a latest_comment_url not in the listing,
@@ -463,8 +466,10 @@ export async function performUnsub(octokit, repoFullName, issueNumber) {
 	if (!repoFullName || typeof repoFullName !== "string") {
 		return { ok: false, error: "Repository is required" };
 	}
-	const num = Number(issueNumber);
-	if (!Number.isFinite(num) || `${num}` !== String(issueNumber).trim()) {
+	// GitHub issue numbers are positive integers — reject fractional, negative,
+	// and non-numeric inputs.
+	const issueStr = String(issueNumber ?? "").trim();
+	if (!/^\d+$/.test(issueStr) || issueStr === "0") {
 		return { ok: false, error: "Issue number must be a number" };
 	}
 

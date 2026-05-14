@@ -105,6 +105,10 @@ export class Cache {
 		this._persistPath = persistPath ? String(persistPath) : null;
 		/** @type {Map<string, { expire: number, labels: object[], comments: object[] }>} */
 		this._store = new Map();
+		/** Pending coalesced flush timer; null when no write is queued. */
+		this._flushTimer = null;
+		/** Process-exit hook installed lazily, only when we persist. */
+		this._exitHookInstalled = false;
 
 		if (this._persistPath) {
 			const dir = path.dirname(this._persistPath);
@@ -123,7 +127,7 @@ export class Cache {
 
 		if (row.expire <= Date.now() / 1000) {
 			this._store.delete(key);
-			this.persistToDisk();
+			this.#schedulePersist();
 			return null;
 		}
 
@@ -158,6 +162,50 @@ export class Cache {
 			this._store.delete(oldest);
 		}
 
+		this.#schedulePersist();
+	}
+
+	/**
+	 * Coalesce disk writes: queue a flush on the next microtask-after-tick
+	 * rather than writing per `set()`. A batch enrichment of N notifications
+	 * triggers one write instead of N.
+	 */
+	#schedulePersist() {
+		if (!this._persistPath) return;
+		if (this._flushTimer) return;
+		if (!this._exitHookInstalled) {
+			this._exitHookInstalled = true;
+			process.once("exit", () => {
+				if (this._flushTimer) {
+					clearTimeout(this._flushTimer);
+					this._flushTimer = null;
+					this.persistToDisk();
+				}
+			});
+		}
+		this._flushTimer = setTimeout(() => {
+			this._flushTimer = null;
+			try {
+				this.persistToDisk();
+			} catch {
+				// Best-effort; persisting will retry on next set.
+			}
+		}, 0);
+		// Don't keep the event loop alive solely for the flush.
+		if (typeof this._flushTimer.unref === "function") {
+			this._flushTimer.unref();
+		}
+	}
+
+	/**
+	 * Force any pending disk write to flush immediately. Useful in tests or
+	 * when a caller knows the process is about to exit.
+	 */
+	flush() {
+		if (this._flushTimer) {
+			clearTimeout(this._flushTimer);
+			this._flushTimer = null;
+		}
 		this.persistToDisk();
 	}
 
@@ -215,14 +263,10 @@ export class Cache {
 		const dir = path.dirname(this._persistPath);
 		if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
-		const entries = {};
-		for (const [k, row] of this._store) {
-			entries[k] = {
-				expire: row.expire,
-				labels: structuredClone(row.labels),
-				comments: structuredClone(row.comments),
-			};
-		}
+		// Entries were already deep-cloned at `set()` time and aren't exposed
+		// without cloning again at `get()`, so it's safe to serialize the
+		// store object directly.
+		const entries = Object.fromEntries(this._store);
 
 		const payload = JSON.stringify({
 			v: CACHE_FORMAT_VERSION,

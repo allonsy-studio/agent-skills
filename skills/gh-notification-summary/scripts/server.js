@@ -168,6 +168,32 @@ export function startHttpServer(
 // Tests probe a simpler renderer exported from `./github.js`.
 // ──────────────────────────────────────────────────────────────────────
 
+// Static dashboard assets are read and Prettier-formatted exactly once at
+// module load — they don't change between requests
+const DASHBOARD_ASSETS = (() => {
+	const minifyOptions = {
+		proseWrap: "never",
+		tabWidth: 0,
+		useTabs: false,
+		bracketSpacing: false,
+	};
+	function load(ext, parser) {
+		const file = readFileSync(
+			path.join(TEMPLATES_DIR, `dashboard.${ext}`),
+			"utf-8"
+		);
+		try {
+			return prettier.format(file, { ...minifyOptions, parser });
+		} catch {
+			return file;
+		}
+	}
+	return {
+		styles: load("css", "css"),
+		script: load("js", "babel"),
+	};
+})();
+
 /**
  * Render the dashboard HTML via the project's Nunjucks templates.
  *
@@ -176,33 +202,15 @@ export function startHttpServer(
  * @returns {string}
  */
 export function renderDashboardHtml(instance, filters = []) {
-	const minifyOptions = {
-		proseWrap: "never",
-		tabWidth: 0,
-		useTabs: false,
-		bracketSpacing: false,
-	};
 	const cards = Array.isArray(instance?.notifications) ? instance.notifications : [];
 	const repositories = new Set(cards.map((c) => c?.repo_full_name).filter(Boolean));
 	const reasons = new Set(cards.map((c) => c?.reason).filter(Boolean));
 
 	const env = getNunjucksEnv();
 
-	function fetchAndFormat(ext) {
-		const file = readFileSync(path.join(TEMPLATES_DIR, `dashboard.${ext}`), "utf-8");
-		try {
-			return prettier.format(file, {
-				...minifyOptions,
-				parser: ext === "css" ? "css" : "babel",
-			});
-		} catch {
-			return file;
-		}
-	}
-
 	return env.render("dashboard.html", {
-		styles: fetchAndFormat("css"),
-		script: fetchAndFormat("js"),
+		styles: DASHBOARD_ASSETS.styles,
+		script: DASHBOARD_ASSETS.script,
 		filters: (filters ?? []).map((r) => String(r).trim()).filter(Boolean),
 		now: new Date().toISOString(),
 		Notifications: instance,
