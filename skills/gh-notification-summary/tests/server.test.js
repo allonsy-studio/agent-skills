@@ -153,3 +153,171 @@ test("createHandler POST /api/unsub 200 when unsub succeeds", async () => {
 	assert.equal(res.code, 200);
 	assert.deepEqual(JSON.parse(res.body), { ok: true });
 });
+
+test("createHandler POST /api/unsub 500 when performUnsub throws", async () => {
+	const performUnsub = mock.fn(async () => {
+		throw new Error("network exploded");
+	});
+	const handler = server.createHandler("<html></html>", {
+		createOctokit: () => ({}),
+		performUnsub,
+	});
+	const res = await new Promise((resolve, reject) => {
+		const req = {
+			method: "POST",
+			url: "/api/unsub",
+			async *[Symbol.asyncIterator]() {
+				yield JSON.stringify({ repo: "o/r", issue: "1" });
+			},
+		};
+		const resStub = {
+			writeHead(c, h) {
+				this._code = c;
+				this._headers = h ?? {};
+			},
+			end(b) {
+				resolve({ code: this._code, body: String(b) });
+			},
+		};
+		handler(req, resStub).catch(reject);
+	});
+	assert.equal(res.code, 500);
+	const body = JSON.parse(res.body);
+	assert.equal(body.ok, false);
+	assert.ok(body.error.includes("network exploded"));
+});
+
+test("createHandler POST /api/unsub 500 when result is ok:false without 'thread' keyword", async () => {
+	const performUnsub = mock.fn(async () => ({
+		ok: false,
+		error: "permission denied",
+	}));
+	const handler = server.createHandler("<html></html>", {
+		createOctokit: () => ({}),
+		performUnsub,
+	});
+	const res = await new Promise((resolve, reject) => {
+		const req = {
+			method: "POST",
+			url: "/api/unsub",
+			async *[Symbol.asyncIterator]() {
+				yield JSON.stringify({ repo: "o/r", issue: "1" });
+			},
+		};
+		const resStub = {
+			writeHead(c, h) {
+				this._code = c;
+				this._headers = h ?? {};
+			},
+			end(b) {
+				resolve({ code: this._code, body: String(b) });
+			},
+		};
+		handler(req, resStub).catch(reject);
+	});
+	assert.equal(res.code, 500);
+});
+
+test("createHandler POST with numeric issue field is accepted", async () => {
+	const performUnsub = mock.fn(async () => ({ ok: true }));
+	const handler = server.createHandler("<html></html>", {
+		createOctokit: () => ({}),
+		performUnsub,
+	});
+	const res = await new Promise((resolve, reject) => {
+		const req = {
+			method: "POST",
+			url: "/api/unsub",
+			async *[Symbol.asyncIterator]() {
+				// Note: issue is a number, not a string. Handler should coerce.
+				yield JSON.stringify({ repo: "o/r", issue: 42 });
+			},
+		};
+		const resStub = {
+			writeHead(c, h) {
+				this._code = c;
+				this._headers = h ?? {};
+			},
+			end(b) {
+				resolve({ code: this._code, body: String(b) });
+			},
+		};
+		handler(req, resStub).catch(reject);
+	});
+	assert.equal(res.code, 200);
+	assert.equal(performUnsub.mock.calls[0].arguments[2], "42");
+});
+
+test("createHandler accepts real Node IncomingMessage-style request (Buffer chunks)", async () => {
+	const performUnsub = mock.fn(async () => ({ ok: true }));
+	const handler = server.createHandler("<html></html>", {
+		createOctokit: () => ({}),
+		performUnsub,
+	});
+	const res = await new Promise((resolve, reject) => {
+		const payload = Buffer.from(JSON.stringify({ repo: "o/r", issue: "1" }));
+		const req = {
+			method: "POST",
+			url: "/api/unsub",
+			async *[Symbol.asyncIterator]() {
+				yield payload; // Buffer, not string — exercises the toString branch.
+			},
+		};
+		const resStub = {
+			writeHead(c, h) {
+				this._code = c;
+				this._headers = h ?? {};
+			},
+			end(b) {
+				resolve({ code: this._code, body: String(b) });
+			},
+		};
+		handler(req, resStub).catch(reject);
+	});
+	assert.equal(res.code, 200);
+});
+
+test("renderDashboardHtml (rich Nunjucks) emits content for a populated instance", () => {
+	const html = server.renderDashboardHtml(
+		{
+			notifications: [
+				{
+					thread_id: "t1",
+					notif_id: "t1",
+					repo_full_name: "o/r",
+					issue_number: "42",
+					title: "Some title",
+					subject_type: "Issue",
+					issue_url: "https://api.github.com/repos/o/r/issues/42",
+					reason: "mention",
+					updated_at: "2024-06-01T15:30:00.000Z",
+					unread: true,
+					labels: [{ name: "bug", color: "d73a4a" }],
+					comments: [],
+				},
+			],
+		},
+		["bug"],
+	);
+	assert.ok(html.includes("Some title"));
+	assert.ok(html.includes("o/r"));
+	assert.ok(html.includes("mention"));
+	// Filters should appear somewhere (the template renders them as buttons).
+	assert.ok(html.includes("bug"));
+});
+
+test("renderDashboardHtml (rich Nunjucks) handles empty notifications and ignores blank filters", () => {
+	const html = server.renderDashboardHtml(
+		{ notifications: [] },
+		["", "  ", "real-filter"],
+	);
+	// Should not throw and should emit the document shell + the dashboard script.
+	assert.ok(html.includes("<html"));
+	assert.ok(html.includes("<head"));
+	assert.ok(html.includes("</script>"));
+});
+
+test("renderDashboardHtml (rich Nunjucks) handles non-array notifications", () => {
+	const html = server.renderDashboardHtml({ notifications: null }, []);
+	assert.ok(html.includes("<html"));
+});
