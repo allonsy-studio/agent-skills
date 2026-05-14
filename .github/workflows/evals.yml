@@ -89,11 +89,6 @@ jobs:
           cache: yarn
           registry-url: https://registry.npmjs.org
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v8.1.0
-        with:
-          enable-cache: true
-
       - name: Enable Corepack
         run: corepack enable
 

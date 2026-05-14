@@ -5,7 +5,8 @@
   "version": "0.0.0",
   "components": {
     "skills": [
-      "skills/gh-notification-summary"
+      "design-system",
+      "gh-notification-summary"
     ]
   }
 }

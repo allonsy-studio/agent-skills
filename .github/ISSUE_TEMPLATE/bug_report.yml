@@ -67,14 +67,6 @@ body:
     validations:
       required: false
 
-  - type: input
-    id: python-version
-    attributes:
-      label: Python version
-      placeholder: "3.13.2"
-    validations:
-      required: false
-
   - type: textarea
     id: context
     attributes:

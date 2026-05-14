@@ -22,12 +22,10 @@ export function getSkills() {
 			const skillName = entry.name;
 			const skillPath = path.join(skillsDir, skillName);
 			const skillMdPath = path.join(skillPath, "SKILL.md");
-			const zipPath = path.join(skillsDir, `${skillName}.zip`);
 
 			let description = "";
 			if (fs.existsSync(skillMdPath)) {
 				const content = fs.readFileSync(skillMdPath, "utf-8");
-				// Simple regex to extract description from frontmatter
 				const match = content.match(/description:\s*["'](.*?)["']/);
 				if (match) {
 					description = match[1];
@@ -37,7 +35,6 @@ export function getSkills() {
 			return {
 				name: skillName,
 				path: skillPath,
-				zipPath: fs.existsSync(zipPath) ? zipPath : null,
 				description,
 				mdPath: skillMdPath,
 			};

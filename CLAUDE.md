@@ -1,6 +1,6 @@
 # @allons-y/agent-skills
 
-A Yarn workspaces monorepo of Claude agent skills. Each skill under `skills/` is a workspace member with its own `package.json` (`private: true`), `SKILL.md`, Python implementation scripts, `requirements.txt`, `pyproject.toml`, and `pytest` test suite. Only the root package publishes to npm — skills are bundled as `.zip` files during publish for drop-in installation.
+A Yarn workspaces monorepo of agent skills. Each skill under `skills/` is a workspace member with its own `package.json` (`private: true`), `SKILL.md`, implementation scripts, and test suite. All skills are **Node.js** (`node --test`, ESLint/Prettier). The package is consumable by any agent harness that supports SKILL.md directories; Claude Code installs natively via `.claude-plugin/marketplace.json`, and other agents can vendor skills via the `npx` installer.
 
 ## Repository layout
 
@@ -9,21 +9,19 @@ package.json                    # Root workspace — workspaces: ["skills/*"]
 index.js                        # Node.js entry point — exports getSkills()
 bin/install.js                  # npx installer CLI
 scripts/
-  run-tests.js                  # Discovers and runs pytest across all skills
+  run-tests.js                  # Runs each skill's `yarn workspace … test` (node --test + c8)
   run-evals.js                  # LLM eval runner (Anthropic API)
-  bundle-skills.js              # Bundles each skill into a .zip for distribution
-  generate-agent-yaml.js        # Regenerates agent.yaml from the skills directory
-  generate-plugin-manifest.js   # Regenerates .claude-plugin/ and marketplace.json
+  generate-plugin-manifest.js   # Regenerates .claude-plugin/marketplace.json + plugin.json
 skills/                         # Yarn workspace members
   <skill-name>/
-    package.json                # private: true — skill-level scripts (test, lint, etc.)
+    package.json                # private: true — skill-level scripts (test, lint, etc.); declares `skill.runtime`
     SKILL.md                    # YAML frontmatter (name, description) + usage docs
-    pyproject.toml              # mypy configuration
-    requirements.txt            # Python dependencies for this skill
-    scripts/                    # Python implementation scripts
-    tests/                      # pytest suite
+    scripts/                    # Implementation (Node.js)
+    tests/                      # `node --test` suite
     evals/                      # Eval prompts (evals.json)
-agent.yaml                      # Auto-generated skill manifest (do not edit by hand)
+.claude-plugin/
+  marketplace.json              # Auto-generated marketplace manifest (do not edit by hand)
+  plugin.json                   # Auto-generated plugin manifest (do not edit by hand)
 ```
 
 ## Common commands
@@ -32,9 +30,7 @@ agent.yaml                      # Auto-generated skill manifest (do not edit by 
 yarn test                       # Run all skill test suites (parallel)
 yarn test <skill-name>          # Run tests for a single skill
 yarn evals                      # Run LLM evals for all skills
-yarn bundle                     # Bundle skills into .zip assets (runs automatically on publish)
-yarn generate-agent-yaml        # Regenerate agent.yaml
-yarn generate-plugin-manifest   # Regenerate .claude-plugin/plugin.json and marketplace.json
+yarn generate:marketplace       # Regenerate .claude-plugin/marketplace.json and plugin.json
 yarn release                    # Cut a release via semantic-release
 ```
 
@@ -45,7 +41,6 @@ Target a single skill without `cd`-ing into it:
 ```bash
 yarn workspace @allons-y/skill-gh-notification-summary test
 yarn workspace @allons-y/skill-gh-notification-summary lint
-yarn workspace @allons-y/skill-gh-notification-summary typecheck
 ```
 
 Run across all workspaces:
@@ -58,33 +53,35 @@ yarn workspaces foreach -A run lint
 ## Adding a new skill
 
 1. Create a directory under `skills/<skill-name>/`.
-2. Add a `package.json` with `"private": true`. All Python commands use `uv run`:
-   ```json
-   {
-     "name": "@allons-y/skill-<skill-name>",
-     "version": "0.0.0",
-     "private": true,
-     "description": "One-sentence description",
-     "scripts": {
-       "test": "uv run pytest tests/ --tb=short",
-       "lint": "uv run ruff check .",
-       "format": "uv run ruff format --check .",
-       "typecheck": "uv run mypy --config-file pyproject.toml .",
-       "security": "uv run bandit -r scripts/"
-     }
-   }
-   ```
+2. Add a `package.json` with `"private": true` and a `skill.runtime` field:
+    ```json
+    {
+    	"name": "@allons-y/skill-<skill-name>",
+    	"version": "0.0.0",
+    	"private": true,
+    	"description": "One-sentence description",
+    	"type": "module",
+    	"skill": {
+    		"runtime": "node"
+    	},
+    	"scripts": {
+    		"test": "node --test \"tests/**/*.test.js\"",
+    		"coverage": "c8 yarn test",
+    		"ci:test": "yarn coverage",
+    		"lint": "eslint .",
+    		"format": "prettier --write ."
+    	}
+    }
+    ```
 3. Add a `SKILL.md` with YAML frontmatter:
-   ```yaml
-   ---
-   name: skill-name
-   description: "One-sentence description. Include trigger phrases here."
-   ---
-   ```
-4. Add implementation scripts under `scripts/`.
-   - If leveraging python, list dependencies in `requirements.txt` and add a `pyproject.toml` for mypy config.
-5. Write a full test suite under `tests/` — tests must not require live credentials.
-   - If leveraging python, use `pytest`.
+    ```yaml
+    ---
+    name: skill-name
+    description: "One-sentence description. Include trigger phrases here."
+    ---
+    ```
+4. Add implementation scripts under `scripts/` (Node.js, ESM).
+5. Write a full test suite under `tests/` using `node --test`. Tests must not require live credentials — mock all external API calls.
 6. Run `yarn install` to register the new workspace, then `yarn test` to verify.
 
 ## Skill naming
@@ -95,16 +92,12 @@ Use lowercase hyphenated names that match the directory name (e.g., `gh-notifica
 
 - **Node.js ≥ 24** (use `nvm use` — version pinned in `.nvmrc`)
 - **Yarn 4** (workspaces monorepo, version pinned in `packageManager` field)
-- **[uv](https://docs.astral.sh/uv/)** for Python package and environment management — all Python commands in `package.json` use `uv run`
-- **Python 3.13** for skill implementations (managed by `uv`)
-- **pytest + pytest-mock + pytest-cov + pytest-reportlog** for skill tests
-- **ruff** for Python linting and formatting
-- **mypy** for Python type checking (config in each skill's `pyproject.toml`)
-- **bandit** for Python security scanning
-- **ESLint + Prettier** for JavaScript linting and formatting
+- **`node --test`** for skill test suites
+- **c8** for coverage
+- **ESLint + Prettier** for linting and formatting
 - **Conventional Commits** enforced by commitlint + husky
 
-Note: not all skills have to use python for scripting. If other languages or tools are added however, they must be added to the documentation and toolchain.
+Each skill declares its runtime via `skill.runtime` in its `package.json`. Today only `"node"` is supported. Adding another runtime (e.g. `"bun"`, `"deno"`) requires extending the dispatch in `scripts/run-tests.js` and documenting the toolchain here.
 
 ## Commits
 
@@ -140,13 +133,12 @@ Pairs well with a morning routine prompt — ask Claude to open your dashboard, 
 Releases are fully automated via `semantic-release`. Merging to `main` triggers:
 
 1. Version bumps based on commit messages
-2. `prepublishOnly`: skills are zipped and dynamic assets are regenerated
+2. `prepublishOnly`: dynamic assets (`.claude-plugin/marketplace.json`, `plugin.json`) are regenerated
 3. Changelog update, npm publish, and a `chore(release):` commit back to `main`
 
 Do not manually update `package.json` version or `CHANGELOG.md`.
 
 ## What NOT to do
 
-- Do not edit `agent.yaml`, `marketplace.json`, or `.claude-plugin/plugin.json` by hand — all three are auto-generated during publish and committed by semantic-release.
-- Do not commit `.zip` files — they are Git-ignored and generated on publish.
+- Do not edit `.claude-plugin/marketplace.json` or `.claude-plugin/plugin.json` by hand — both are auto-generated during publish and committed by semantic-release.
 - Do not add secrets or real credentials to tests — mock all external API calls.

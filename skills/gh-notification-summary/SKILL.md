@@ -5,79 +5,32 @@ description: "Review, summarize, and manage GitHub notifications. Use this skill
 
 # GitHub Notification Reviewer
 
-Fetch unread GitHub notifications, present them in an interactive local dashboard, and execute follow-up actions the user requests.
+Fetch, display, and act on unread GitHub notifications via a local dashboard.
 
-> **Runtime path**: Resolve `<skill-path>` as the directory containing this `SKILL.md` file.
-> All script paths below are relative to that directory.
+## Environment
 
-## Environment requirements
+- `GITHUB_TOKEN` — required (env or `<skill-path>/.env`)
+- `GITHUB_REPO` — optional default for `--repo` (format: `owner/repo`)
 
-- `GITHUB_TOKEN` set in the environment or a `.env` file at `<skill-path>`
-- `GITHUB_REPO` (optional) — used as the default repository when the user omits one
+## Commands
 
-## CLI
+All actions invoke the `gh-notifications` bin (installed by the skill's `package.json`).
 
-All actions go through a single script with subcommands:
-
-```bash
-python <skill-path>/scripts/gh_notifications.py <command> [options]
-```
+| User intent | Command | Notes |
+|---|---|---|
+| Open the dashboard | `gh-notifications fetch [--repo owner/repo]` | Blocks until **Ctrl+C**; opens browser at `http://localhost:8000`. Without `--repo` or `GITHUB_REPO`, shows all unread notifications. |
+| Unsubscribe from an issue | `gh-notifications unsub <number> --repo owner/repo` | Deletes thread subscription + marks done. `--repo` falls back to `GITHUB_REPO`. |
+| Mark one issue done | `gh-notifications done <number> --repo owner/repo` | `--repo` falls back to `GITHUB_REPO`. |
+| Mark all done | `gh-notifications done` | No issue arg = clear inbox. |
 
 ## Workflow
 
-1. Run `gh_notifications.py fetch` to open the dashboard in the user's browser.
-2. The user reviews their notifications at `http://localhost:8000`.
-3. Ask whether they want to take any actions — unsubscribe from issues or mark notifications as done.
-4. Execute the appropriate subcommand (see Quick Actions below) and confirm the result.
+1. Run `gh-notifications fetch` and tell the user the dashboard is at `http://localhost:8000`.
+2. Wait for the user to ask for follow-up actions (unsub, mark done).
+3. Run the matching command from the table. Confirm the result.
+4. When the user is finished, remind them to **Ctrl+C** the `fetch` process to free port 8000.
 
-## Launching the dashboard
+## Reference
 
-```bash
-python <skill-path>/scripts/gh_notifications.py fetch
-```
-
-This fetches all unread notifications via the GitHub API, starts a local HTTP server on port 8000, and opens the dashboard automatically. The dashboard shows each notification as a card with labels, latest comments, and copy-paste quick-action commands.
-
-## Quick Actions
-
-### Unsubscribe from an issue
-
-When the user says `/unsub <number>` or asks to unsubscribe from an issue:
-
-```bash
-python <skill-path>/scripts/gh_notifications.py unsub <number> --repo <owner/repo>
-```
-
-Unsubscribes from the thread and marks the notification as done. If `--repo` is omitted, `GITHUB_REPO` is used as the default.
-
-### Mark notifications as done
-
-To mark **all** notifications as done:
-
-```bash
-python <skill-path>/scripts/gh_notifications.py done
-```
-
-To mark a **specific** issue as done:
-
-```bash
-python <skill-path>/scripts/gh_notifications.py done <number> --repo <owner/repo>
-```
-
-## Dashboard template
-
-The HTML dashboard is rendered from a Jinja2 template at `<skill-path>/scripts/templates/dashboard.html`. To customize the dashboard appearance, edit that template directly. The template receives:
-
-- `repo_name` — the repository name string
-- `now` — the current UTC datetime
-- `cards` — a list of notification dicts, each with `title`, `reason`, `issue_number`, `issue_url`, `labels`, `comments`, etc.
-
-Custom Jinja2 filters available in the template: `relative_time`, `summarize`, `label_text_color`.
-
-## Scheduled use
-
-This skill is well-suited for a daily morning routine. When running on a schedule:
-
-1. Launch the dashboard.
-2. Present the URL to the user.
-3. Ask whether they want to take any actions before wrapping up.
+- Dashboard template: `<skill-path>/templates/dashboard.html` (Nunjucks; edit to customize).
+- Development setup and local preview: `<skill-path>/references/development.md`.

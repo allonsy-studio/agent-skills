@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@allons-y/skill-design-system",
+  "version": "0.0.0",
+  "description": "Build, name, document, and audit UI components for design systems with expert HTML, CSS, ARIA, and accessibility guidance",
+  "type": "module",
+  "skill": {
+    "runtime": "node"
+  },
+  "scripts": {
+    "ci:test": "yarn test",
+    "test": "node --test \"tests/**/*.test.js\"",
+    "lint": "yarn package:lint",
+    "format": "yarn package:format"
+  }
+}

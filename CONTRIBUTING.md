@@ -29,9 +29,9 @@ git checkout -b feat/new-useful-skill
 Each skill lives in its own directory under `skills/`. A standard skill should include:
 
 1. **`SKILL.md`**: Documentation following the required format (including YAML frontmatter with `name` and `description`).
-2. **`scripts/`**: The implementation scripts (usually Python).
-3. **`requirements.txt`**: List of Python dependencies.
-4. **`tests/`**: A pytest suite.
+2. **`package.json`**: Workspace manifest with `"private": true` and a `skill.runtime` declaration.
+3. **`scripts/`**: The Node.js implementation (ESM).
+4. **`tests/`**: A `node --test` suite.
 5. **`evals/evals.json`**: Eval prompts validating skill triggering behavior (see [Evals](#evals) below).
 
 ### Workspace structure
@@ -42,21 +42,25 @@ This repo is a Yarn workspaces monorepo — each skill under `skills/` is a work
 yarn workspaces list
 ```
 
-Each skill needs a `package.json` with `"private": true` to prevent accidental publishing. All Python commands use `uv run` so dependency resolution is automatic:
+Each skill's `package.json`:
 
 ```json
 {
-  "name": "@allons-y/skill-<skill-name>",
-  "version": "0.0.0",
-  "private": true,
-  "description": "One-sentence description",
-  "scripts": {
-    "test": "uv run pytest tests/ --tb=short",
-    "lint": "uv run ruff check .",
-    "format": "uv run ruff format --check .",
-    "typecheck": "uv run mypy --config-file pyproject.toml .",
-    "security": "uv run bandit -r scripts/"
-  }
+	"name": "@allons-y/skill-<skill-name>",
+	"version": "0.0.0",
+	"private": true,
+	"description": "One-sentence description",
+	"type": "module",
+	"skill": {
+		"runtime": "node"
+	},
+	"scripts": {
+		"test": "node --test \"tests/**/*.test.js\"",
+		"coverage": "c8 yarn test",
+		"ci:test": "yarn coverage",
+		"lint": "eslint .",
+		"format": "prettier --write ."
+	}
 }
 ```
 
@@ -69,7 +73,6 @@ Use `yarn workspace` to run a script inside a specific skill without `cd`-ing in
 ```sh
 yarn workspace @allons-y/skill-gh-notification-summary test
 yarn workspace @allons-y/skill-gh-notification-summary lint
-yarn workspace @allons-y/skill-gh-notification-summary typecheck
 ```
 
 To run a command across all workspaces at once:
@@ -81,24 +84,6 @@ yarn workspaces foreach -A run lint
 
 The root `yarn test` and `yarn evals` scripts continue to orchestrate everything — the workspace commands are useful when you want to target a single skill quickly.
 
-### Python environment setup
-
-This project uses [**uv**](https://docs.astral.sh/uv/) to manage Python dependencies. `uv run` auto-creates and caches a virtual environment per project, so there's no manual `.venv` activation step.
-
-**Install uv** (one-time):
-
-```sh
-# macOS / Linux
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Or via Homebrew
-brew install uv
-```
-
-That's it — `uv run pytest`, `uv run ruff`, etc. will automatically resolve dependencies from each skill's `requirements.txt`.
-
-> **Fallback**: If you prefer not to install `uv`, the test runner (`scripts/run-tests.js`) also supports a repo-root `.venv` or bare `python3` on PATH. However, `uv` is the recommended and documented approach.
-
 ### Running tests
 
 ```sh
@@ -106,36 +91,27 @@ yarn test                      # all skills, in parallel
 yarn test <skill-name>         # single skill
 ```
 
-`PYTHONPATH` is set automatically. To invoke `pytest` directly (useful for passing extra flags):
-
-```sh
-PYTHONPATH=$(pwd)/skills/<skill-name> uv run pytest skills/<skill-name>/tests/
-```
+Skills are tested with the built-in `node --test` runner. Coverage is collected via [`c8`](https://github.com/bcoe/c8) when running `yarn workspace <skill> coverage`.
 
 ### Linting and formatting
 
-All linters are included in each skill's `requirements.txt`. Run them from the repo root:
-
-```sh
-uv run ruff check skills/<skill-name>           # lint
-uv run ruff format --check skills/<skill-name>  # format check (omit --check to auto-fix)
-uv run mypy --config-file skills/<skill-name>/pyproject.toml skills/<skill-name>  # type check
-uv run bandit -r skills/<skill-name>            # security scan
-```
-
-Or use the workspace scripts:
-
 ```sh
 yarn workspace @allons-y/skill-<skill-name> lint
-yarn workspace @allons-y/skill-<skill-name> typecheck
-yarn workspace @allons-y/skill-<skill-name> security
+yarn workspace @allons-y/skill-<skill-name> format
+```
+
+Or, across the entire repo:
+
+```sh
+yarn lint
+yarn format
 ```
 
 ### Evals
 
 Each skill must include an `evals/evals.json` file that validates the skill triggers (and doesn't trigger) on realistic prompts.
 
-**Running evals locally** requires an Anthropic API key. The runner sends each prompt to Claude with the skill's `SKILL.md` as a system prompt and the Python scripts registered as callable tools, then asserts that the correct tool was (or wasn't) called:
+**Running evals locally** requires an Anthropic API key. The runner sends each prompt to Claude with the skill's `SKILL.md` as a system prompt and the skill's scripts registered as callable tools, then asserts that the correct tool was (or wasn't) called:
 
 ```sh
 export ANTHROPIC_API_KEY=sk-ant-...
@@ -153,22 +129,22 @@ Evals also run on demand in CI via the [Evals workflow](../../actions/workflows/
 
 ```json
 {
-  "skill_name": "<skill-name>",
-  "evals": [
-    {
-      "id": 1,
-      "prompt": "natural-language prompt that should trigger this skill",
-      "expected_output": "description of what the agent should do",
-      "files": []
-    },
-    {
-      "id": 2,
-      "prompt": "prompt that should NOT trigger this skill",
-      "expected_output": "Does NOT trigger this skill. Reason why.",
-      "files": [],
-      "should_trigger": false
-    }
-  ]
+	"skill_name": "<skill-name>",
+	"evals": [
+		{
+			"id": 1,
+			"prompt": "natural-language prompt that should trigger this skill",
+			"expected_output": "description of what the agent should do",
+			"files": []
+		},
+		{
+			"id": 2,
+			"prompt": "prompt that should NOT trigger this skill",
+			"expected_output": "Does NOT trigger this skill. Reason why.",
+			"files": [],
+			"should_trigger": false
+		}
+	]
 }
 ```
 
@@ -207,32 +183,31 @@ Common types:
 ## Project structure
 
 ```md
-agent-skills/                         # Root workspace (publishes to npm)
-├── package.json                      # Root — workspaces: ["skills/*"]
-├── index.js                          # Exports getSkills()
-├── bin/install.js                    # npx installer CLI
-├── scripts/                          # Root orchestration scripts
-│   ├── run-tests.js                  # Parallel pytest runner
-│   ├── run-evals.js                  # LLM eval runner
-│   ├── bundle-skills.js              # Zips skills for distribution
-│   ├── generate-agent-yaml.js        # Generates agent.yaml
-│   └── generate-plugin-manifest.js   # Generates marketplace.json
-├── skills/                           # Yarn workspace members
-│   └── <skill-name>/                 # Each skill is a workspace
-│       ├── package.json              # private: true, skill-level scripts
-│       ├── pyproject.toml            # mypy config
-│       ├── requirements.txt          # Python dependencies
-│       ├── SKILL.md                  # Skill documentation and metadata
-│       ├── scripts/                  # Python implementation
-│       ├── tests/                    # pytest suite
-│       └── evals/                    # Eval prompts (evals.json)
+agent-skills/ # Root workspace (publishes to npm)
+├── package.json # Root — workspaces: ["skills/*"]
+├── index.js # Exports getSkills()
+├── bin/install.js # npx installer CLI
+├── .claude-plugin/
+│ ├── marketplace.json # Auto-generated Claude Code marketplace catalog
+│ └── plugin.json # Auto-generated plugin manifest
+├── scripts/ # Root orchestration scripts
+│ ├── run-tests.js # Parallel Node test runner
+│ ├── run-evals.js # LLM eval runner
+│ └── generate-plugin-manifest.js # Generates .claude-plugin/\*.json
+├── skills/ # Yarn workspace members
+│ └── <skill-name>/ # Each skill is a workspace
+│ ├── package.json # private: true; declares skill.runtime
+│ ├── SKILL.md # Skill documentation and metadata
+│ ├── scripts/ # Node.js implementation
+│ ├── tests/ # node --test suite
+│ └── evals/ # Eval prompts (evals.json)
 └── .github/
-    └── workflows/                    # CI automation
+└── workflows/ # CI automation
 ```
 
 ## Release process
 
-When publishing to npm, a `prepublishOnly` hook automatically zips each skill into a `<skill-name>.zip` asset within the `skills/` directory. These assets are ignored by Git but included in the npm package for distribution.
+When publishing to npm, a `prepublishOnly` hook regenerates `.claude-plugin/marketplace.json` and `.claude-plugin/plugin.json` from the current state of `skills/`. Semantic-release commits the regenerated files back to `main`.
 
 ## Code of Conduct
 

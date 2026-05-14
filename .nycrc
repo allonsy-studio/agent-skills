@@ -2,10 +2,11 @@
     "exclude": [
         ".yarn/**",
         "scripts/**",
-        "skills/**/__init__.py"
+        "skills/**/tests/**"
     ],
     "include": [
-        "skills/**/*.py"
+        "skills/**/*.js",
+        "skills/**/*.mjs"
     ],
     "reporter": [
         "text",

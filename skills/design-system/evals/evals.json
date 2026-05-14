@@ -1,0 +1,29 @@
+{
+  "skill_name": "design-system-patterns",
+  "evals": [
+    {
+      "id": 1,
+      "name": "tag-input-from-scratch",
+      "prompt": "I need a component that lets users pick multiple tags from a predefined list, with the ability to type to filter. Think of it like a tagging input in a CMS — you click into a field, start typing, and matching tags appear in a dropdown. You can select multiple, and selected ones show as dismissible chips above or inside the field. What should I call it, how should the API work, and how do I make it accessible? I need both vanilla HTML/CSS/JS and Web Component examples.",
+      "expected_output": "Should identify this as a multi-select combobox composite pattern, propose 2-3 names with trade-offs, provide full API spec (attributes, slots, events, CSS custom properties), specify the combobox + tag list ARIA pattern with keyboard interaction, and include both vanilla and Web Component code examples. Should use native input as the text field foundation, not a div with contenteditable.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 2,
+      "name": "accordion-review",
+      "prompt": "Here's my accordion component. Can you review it?\n\n```html\n<div class=\"accordion\">\n  <div class=\"accordion-header\" onclick=\"toggle(this)\">\n    <span class=\"title\">Section 1</span>\n    <i class=\"icon-chevron\" style=\"transform: rotate(0deg)\"></i>\n  </div>\n  <div class=\"accordion-body\" style=\"display: none\">\n    <p>Content for section 1 goes here.</p>\n  </div>\n</div>\n```\n\n```css\n.accordion-header {\n  padding: 12px 16px;\n  background: #f3f4f6;\n  cursor: pointer;\n  display: flex;\n  justify-content: space-between;\n}\n.accordion-body {\n  padding: 0 16px 12px;\n}\n```\n\n```javascript\nfunction toggle(el) {\n  const body = el.nextElementSibling;\n  const icon = el.querySelector('.icon-chevron');\n  if (body.style.display === 'none') {\n    body.style.display = 'block';\n    icon.style.transform = 'rotate(180deg)';\n  } else {\n    body.style.display = 'none';\n    icon.style.transform = 'rotate(0deg)';\n  }\n}\n```\n\nI want a quick checklist review.",
+      "expected_output": "Should flag: (1) no semantic heading element wrapping the trigger, (2) trigger is a div with onclick instead of a button, (3) no aria-expanded on the trigger, (4) no aria-controls linking trigger to panel, (5) body hidden via inline style instead of hidden attribute, (6) no keyboard support, (7) physical CSS properties (padding-left/right via shorthand), (8) hard-coded colors instead of tokens, (9) icon is an <i> tag with no aria-hidden, (10) should suggest native <details>/<summary> as a simpler foundation. Should format as pass/fail checklist since user asked for quick checklist.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 3,
+      "name": "command-palette-aria",
+      "prompt": "I'm building a command palette — you know, like VS Code's Ctrl+K or GitHub's. I'm not sure what ARIA pattern to use. Is it a dialog? A combobox? Both? I need to support: (1) a text input that filters available commands, (2) grouped results (recently used, navigation, actions), (3) keyboard navigation through results with arrow keys, (4) Enter to execute, Escape to close. We're building it as a Web Component for our design system, and it needs to work across all our products — some LTR, some RTL. Give me the full spec.",
+      "expected_output": "Should identify this as a composite pattern (dialog + combobox + grouped listbox), explain why both dialog and combobox roles are needed, provide the full ARIA markup pattern, specify keyboard interaction for all keys mentioned plus Home/End/typeahead, address focus management (trap in dialog, activedescendant in combobox), provide Web Component code with logical CSS properties for RTL, externalized strings for i18n, and CSS custom properties for theming. Should mention grouping options with role=group and aria-label per group.",
+      "files": [],
+      "assertions": []
+    }
+  ]
+}
