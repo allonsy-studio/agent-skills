@@ -2,20 +2,15 @@
 name: design-system-patterns
 description: >
   Build, name, document, and audit UI components for design systems with
-  expert-level HTML, CSS, ARIA, and accessibility guidance. Use this skill
-  whenever someone is designing a new component (naming it, deciding its API,
-  choosing ARIA roles, writing markup), reviewing or auditing an existing
-  component library, asking about design-system naming conventions,
-  discussing component API design (props, slots, events, CSS custom
-  properties, design tokens), or needs accessibility guidance for interactive
-  widgets. Also trigger when the user mentions "design system", "component
-  library", "pattern library", "UI kit", "ARIA pattern", "WAI-ARIA",
-  "accessible component", "component API", "design tokens", or asks
-  questions like "what should I call this component", "how should this
-  component work", "is this component accessible", or "review my component
-  library". Even partial matches — like someone sharing HTML and asking for
-  feedback — should trigger this skill if the markup is clearly a reusable
-  UI pattern.
+  expert ARIA and accessibility guidance. Trigger when the user mentions
+  "design system", "component library", "pattern library", "UI kit", "ARIA
+  pattern", "WAI-ARIA", "accessible component", "component taxonomy",
+  "component API design", "design tokens", or "design system audit". Also
+  trigger on questions like "what should I call this component", "how
+  should this component work", "is this component accessible", or "review
+  my component library". Trigger on shared markup when the user clearly
+  wants design-system feedback on a reusable UI pattern. Do not trigger on
+  general HTML/CSS questions unrelated to design-system patterns.
 ---
 
 # Design System Patterns
@@ -26,10 +21,13 @@ design systems (Material, Spectrum, Carbon, Lightning, Atlassian, Primer,
 Polaris, GOV.UK, U.S. Web Design System) and is grounded in the W3C WAI
 ARIA Authoring Practices.
 
+**Before recommending anything, read
+[`references/guiding-principles.md`](./references/guiding-principles.md).**
+Those eight principles inform every decision below.
+
 ## Two workflows
 
-This skill supports two entry points. Ask the user which applies if it's
-not obvious from their message:
+Ask the user which applies if it's not obvious from their message.
 
 ### 1. Build a new component from scratch
 
@@ -37,46 +35,39 @@ The user describes a component they want to create. Walk them through each
 layer in order:
 
 1. **Identify the pattern** — match their description to a known component
-   category (see `references/component-taxonomy.md`). If it's a composite
-   or novel pattern, identify which primitives it combines.
+   category (see [`references/component-taxonomy.md`](./references/component-taxonomy.md)).
+   If it's a composite or novel pattern, identify which primitives it combines.
 2. **Name it** — propose a name following the conventions in
-   `references/naming-conventions.md`. Offer 2–3 candidates with
-   trade-off notes.
+   [`references/naming-conventions.md`](./references/naming-conventions.md).
+   Offer 2–3 candidates with trade-off notes.
 3. **Design the API** — define the component's public interface using the
-   framework in `references/api-design.md`. Cover attributes/props, slots
-   or content areas, events, CSS custom properties for theming, and design
-   tokens.
-4. **Specify accessibility** — read `references/accessibility-patterns.md`
+   framework in [`references/api-design.md`](./references/api-design.md).
+   Cover attributes/props, slots or content areas, events, CSS custom
+   properties for theming, and design tokens.
+4. **Specify accessibility** — read
+   [`references/accessibility-patterns.md`](./references/accessibility-patterns.md)
    for the relevant ARIA pattern. Provide WCAG 2.2 AA requirements as
    baseline ("must"), AAA recommendations as stretch goals ("should
    consider"), and full keyboard interaction specs.
 5. **Consider typography, iconography, and i18n** — if the component
    contains text, icons, or will be used in multilingual contexts (assume
-   it will), consult the relevant references. Key questions: does this
-   component's type scale plug into the system's tokens? Do its icons
-   follow the system's format and naming? Does it use logical properties
-   and externalize strings? See `references/typography.md`,
-   `references/iconography.md`, and `references/i18n.md`.
+   it will), consult [`references/typography.md`](./references/typography.md),
+   [`references/iconography.md`](./references/iconography.md), and
+   [`references/i18n.md`](./references/i18n.md).
 6. **Write example code** — provide both a vanilla HTML/CSS/JS
    implementation and a Web Component implementation showing the API in
-   action. Code should be production-quality, not pseudocode. Lean on
-   native HTML elements and browser features wherever possible — if
-   `<details>`, `<dialog>`, or a native input type does the job, use it
-   as the foundation rather than building from scratch with `<div>`s and
-   ARIA.
+   action. Code should be production-quality, not pseudocode.
 
-At each step, explain *why* the recommendation matters — not just what to
-do, but the reasoning behind it. This helps the author internalize the
-principles and apply them to future components.
+At each step, explain *why* the recommendation matters. This helps the
+author internalize the principles and apply them to future components.
 
 **Optional: deep-dive into token architecture.** If the user is a designer
-or design systems engineer responsible for defining and maintaining tokens
-(not just consuming them in components), ask whether they'd like guidance
-on token naming, tier structure, theming, governance, and lifecycle. If
-yes, read `references/design-tokens.md`. This reference covers the full
-scope of managing tokens at organizational scale — it's deliberately
-separate from the component API guidance because it's a different audience
-and a different set of decisions.
+or design-systems engineer responsible for defining and maintaining tokens
+(not just consuming them), ask whether they'd like guidance on token
+naming, tier structure, theming, governance, and lifecycle. If yes, read
+[`references/design-tokens.md`](./references/design-tokens.md). That
+reference covers the full scope of managing tokens at organizational scale
+— a different audience and decision set than component API design.
 
 ### 2. Review an existing component or library
 
@@ -94,7 +85,7 @@ description of their library). Before diving in, ask:
 > - **Quick checklist** — pass/fail against best practices, easy to scan.
 
 For a **full audit**, create a memory document at
-`{workspace}/component-library-audit.md` that tracks:
+`{workspace}/component-library-audit.md` tracking:
 - Library name and version
 - Components reviewed so far
 - Key naming conventions observed (and whether they're consistent)
@@ -146,77 +137,22 @@ For any review depth, structure feedback per component as:
 - [Prioritized list: critical → nice-to-have]
 ```
 
-## Guiding principles
-
-These principles inform every recommendation. When you're deciding between
-two approaches, lean toward whichever one better satisfies these:
-
-1. **Lean on the browser.** Before adding JS behavior or ARIA attributes,
-   check whether a native HTML element or built-in browser feature already
-   does the job. A `<details>` element is a disclosure widget. A `<dialog>`
-   element handles modal focus trapping. A `<button>` doesn't need
-   `role="button"`. Native elements give you keyboard handling, form
-   participation, and assistive technology semantics for free — and they
-   keep working when your JavaScript fails. ARIA is a repair tool for when
-   HTML falls short, not a first resort.
-
-2. **Never shadow global HTML attributes.** Component attribute names must
-   not collide with HTML's global attributes (`style`, `class`, `title`,
-   `id`, `hidden`, `tabindex`, `lang`, `dir`, `draggable`, etc.). If a
-   native attribute already does what you need, use it directly — don't
-   reinvent it under a prefixed name. If you need a different behavior,
-   pick a name that doesn't collide: use `severity` instead of `type` for
-   alert variants (since `type` is a native attribute on `<button>`,
-   `<input>`, etc.), use `variant` instead of `style` for visual
-   variations. See `references/api-design.md` for the full collision
-   checklist.
-
-3. **Name for recognition, not description.** Component names should map to
-   what users already know. "Accordion" beats "CollapsibleSectionGroup"
-   because the industry has converged on that term. Check the taxonomy in
-   `references/component-taxonomy.md` for established names.
-
-4. **Minimal, complete API.** Expose what consumers need; hide what they
-   don't. A component should be useful with zero configuration but
-   extensible for complex cases. Aim for a small required-prop surface and
-   a larger optional surface.
-
-5. **Accessibility is structural, not decorative.** It's not something
-   bolted on after the visual design — it's the skeleton the component is
-   built around. Start with the ARIA pattern, then layer visuals on top.
-
-6. **Design tokens over hard-coded values.** Components should consume
-   tokens, not define raw colors or spacing. This makes theming possible
-   and keeps the system coherent.
-
-7. **Keyboard interaction is not optional.** If it's interactive, it has a
-   keyboard contract. This isn't just "add tabindex" — it's focus
-   management, arrow key navigation, roving tabindex vs. active
-   descendant, and escape-to-close behaviors.
-
-8. **Internationalization from day one.** Use CSS logical properties for
-   content-flow values (text spacing, content containers, borders that
-   frame content) and physical properties for viewport/device-anchored
-   values (fixed positioning, shadow offsets, decorative chrome). The
-   heuristic: logical when the value should follow the reader, physical
-   when it should follow the screen. Externalize all user-facing strings,
-   handle text expansion, and test in RTL. See `references/i18n.md`.
-
 ## When to read reference files
 
 Don't read all references up front. Read them as you need them:
 
 | You're doing this                          | Read this                                                |
 | ------------------------------------------ | -------------------------------------------------------- |
-| Identifying what kind of component it is   | `references/component-taxonomy.md` (index), then the relevant section file in `references/taxonomy/` |
+| Decision-making (any task)                 | [`references/guiding-principles.md`](./references/guiding-principles.md) |
+| Identifying what kind of component it is   | [`references/component-taxonomy.md`](./references/component-taxonomy.md) (index), then the relevant section under `references/taxonomy/` |
 | Looking up common mistakes for a component | The relevant `references/taxonomy/NN-*.md` section file  |
-| Naming a component                         | `references/naming-conventions.md`                       |
-| Designing props, slots, events, tokens     | `references/api-design.md`                               |
-| Specifying ARIA, keyboard, screen reader   | `references/accessibility-patterns.md`                   |
-| Typography, font stacks, type scale        | `references/typography.md`                               |
-| Icons: format, sizing, color, a11y         | `references/iconography.md`                              |
-| RTL, logical properties, text expansion    | `references/i18n.md`                                     |
-| Token architecture, naming, governance     | `references/design-tokens.md`                            |
+| Naming a component                         | [`references/naming-conventions.md`](./references/naming-conventions.md) |
+| Designing props, slots, events, tokens     | [`references/api-design.md`](./references/api-design.md) |
+| Specifying ARIA, keyboard, screen reader   | [`references/accessibility-patterns.md`](./references/accessibility-patterns.md) |
+| Typography, font stacks, type scale        | [`references/typography.md`](./references/typography.md) |
+| Icons: format, sizing, color, a11y         | [`references/iconography.md`](./references/iconography.md) |
+| RTL, logical properties, text expansion    | [`references/i18n.md`](./references/i18n.md)             |
+| Token architecture, naming, governance     | [`references/design-tokens.md`](./references/design-tokens.md) |
 | Reviewing an existing component            | All of the above, as needed                              |
 
 **Component taxonomy structure:** The taxonomy is split into 12 section files

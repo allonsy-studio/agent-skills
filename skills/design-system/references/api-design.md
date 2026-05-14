@@ -25,10 +25,11 @@ properties).
 
 ## Native-First Philosophy
 
-Before designing a custom attribute, event, or behavior, ask: does the
-browser already handle this?
+> The general principle ("lean on the browser") lives in
+> [`guiding-principles.md`](./guiding-principles.md). This section
+> translates it into concrete API-design tables and decisions.
 
-### Use native elements as your foundation
+### Native element substitutions
 
 | Instead of this                         | Use this                               |
 | --------------------------------------- | -------------------------------------- |
@@ -37,14 +38,8 @@ browser already handle this?
 | `<div class="ds-disclosure">`           | `<details><summary>`                   |
 | `<div role="dialog" class="ds-modal">`  | `<dialog>`                             |
 | `<div role="link">`                     | `<a href="...">`                       |
-| `<div contenteditable>`                 | `<textarea>` or `<input>`             |
+| `<div contenteditable>`                 | `<textarea>` or `<input>`              |
 | Custom toggle component                 | `<input type="checkbox">` styled as switch, or `role="switch"` on a `<button>` |
-
-Native elements give you for free: keyboard behavior, form participation,
-assistive technology semantics, validation, and default styling that
-degrades gracefully when CSS fails. A custom implementation has to
-reimplement all of this, and will always have edge cases the native
-implementation handles that you forgot about.
 
 ### Lean on native attributes when they exist
 

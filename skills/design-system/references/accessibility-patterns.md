@@ -24,6 +24,11 @@ and represent stretch goals that meaningfully improve the experience.
 
 ## Foundational ARIA Rules
 
+> Rule 1 is the spec-grade version of the "lean on the browser" principle
+> in [`guiding-principles.md`](./guiding-principles.md). This file is
+> authoritative for ARIA-specific reasoning; the guiding-principles file
+> states the broader heuristic.
+
 ### The five rules of ARIA use
 
 1. **Don't use ARIA if native HTML does the job.** A `<button>` is always
