@@ -52,9 +52,10 @@ For Node-runtime skills with dependencies, run `npm install` in the installed di
 
 ## Available Skills
 
-| Skill                                                                | Description                                                                           | Trigger                                                             |
-| -------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [`gh-notification-summary`](skills/gh-notification-summary/SKILL.md) | Review, summarize, and manage GitHub notifications via an interactive local dashboard | "check my GitHub notifications", `/unsub <number>`, "mark all done" |
+| Skill                                                                | Description                                                                                                                  | Trigger                                                                                  |
+| -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| [`gh-notification-summary`](skills/gh-notification-summary/SKILL.md) | Review, summarize, and manage GitHub notifications via an interactive local dashboard                                        | "check my GitHub notifications", `/unsub <number>`, "mark all done"                      |
+| [`design-system`](skills/design-system/SKILL.md)                     | Build, name, document, and audit UI components with expert ARIA, accessibility, design token, typography, and i18n guidance  | "design system", "component library", "ARIA pattern", "what should I call this component", "review my component library" |
 
 ---
 
@@ -72,6 +73,12 @@ const skills = getSkills();
 //     path: '/path/to/skills/gh-notification-summary',
 //     description: 'Review, summarize, and manage GitHub notifications...',
 //     mdPath: '/path/to/skills/gh-notification-summary/SKILL.md'
+//   },
+//   {
+//     name: 'design-system',
+//     path: '/path/to/skills/design-system',
+//     description: 'Build, name, document, and audit UI components...',
+//     mdPath: '/path/to/skills/design-system/SKILL.md'
 //   }
 // ]
 ```
@@ -182,6 +189,7 @@ Contributions are welcome — new skills, improvements to existing ones, bug fix
 - Linear / Jira issue triage
 - Slack digest summarizer
 - Daily standup generator from git log
+- Accessibility audit runner (paired with `design-system`)
 
 ---
 
@@ -195,5 +203,5 @@ Contributions are welcome — new skills, improvements to existing ones, bug fix
 [npm-url]: https://www.npmjs.com/package/@allons-y/agent-skills
 [conventional-commits-image]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
 [conventional-commits-url]: https://conventionalcommits.org/
-[coverage-image]: https://img.shields.io/nycrc/castastrophe/envoy
-[coverage-url]: https://github.com/castastrophe/envoy/blob/main/.nycrc
+[coverage-image]: https://img.shields.io/nycrc/castastrophe/agent-skills
+[coverage-url]: https://github.com/castastrophe/agent-skills/blob/main/.nycrc

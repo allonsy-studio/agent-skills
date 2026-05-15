@@ -28,11 +28,16 @@ git checkout -b feat/new-useful-skill
 
 Each skill lives in its own directory under `skills/`. A standard skill should include:
 
-1. **`SKILL.md`**: Documentation following the required format (including YAML frontmatter with `name` and `description`).
+1. **`SKILL.md`**: Documentation following the required format (including YAML frontmatter with `name` and `description`). The `name` field must match the directory name exactly.
 2. **`package.json`**: Workspace manifest with `"private": true` and a `skill.runtime` declaration.
-3. **`scripts/`**: The Node.js implementation (ESM).
+3. **`scripts/`**: The Node.js implementation (ESM). _Optional for reference-only skills — see below._
 4. **`tests/`**: A `node --test` suite.
 5. **`evals/evals.json`**: Eval prompts validating skill triggering behavior (see [Evals](#evals) below).
+
+#### Skill flavors
+
+- **Implementation skills** ship runnable Node.js code under `scripts/` (and optionally `bin/`, `templates/`). Example: `gh-notification-summary`.
+- **Reference-only skills** are pure prompt + reference material — the SKILL.md guides the agent through reading curated `references/*.md` files. No `scripts/` directory is required. Tests should still validate that SKILL.md frontmatter is well-formed and that every linked reference file resolves. Example: `design-system`.
 
 ### Workspace structure
 

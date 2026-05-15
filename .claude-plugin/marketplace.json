@@ -4,7 +4,7 @@
   "plugins": [
     {
       "id": "design-system",
-      "name": "design-system-patterns",
+      "name": "design-system",
       "description": "Build, name, document, and audit UI components for design systems with expert ARIA and accessibility guidance. Trigger when the user mentions \"design system\", \"component library\", \"pattern library\", \"UI kit\", \"ARIA pattern\", \"WAI-ARIA\", \"accessible component\", \"component taxonomy\", \"component API design\", \"design tokens\", or \"design system audit\". Also trigger on questions like \"what should I call this component\", \"how should this component work\", \"is this component accessible\", or \"review my component library\". Trigger on shared markup when the user clearly wants design-system feedback on a reusable UI pattern. Do not trigger on general HTML/CSS questions unrelated to design-system patterns.",
       "components": {
         "skills": [
