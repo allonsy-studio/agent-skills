@@ -399,7 +399,7 @@ Exceptions: truly universal metaphors where the icon IS the action — `play`,
 
 ### Naming structure
 
-```
+```text
 {object}[-{modifier}][-{variant}]
 
 Examples:

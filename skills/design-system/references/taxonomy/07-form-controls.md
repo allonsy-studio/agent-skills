@@ -1,6 +1,6 @@
 # Form Controls
 
-### Text Input / Text Field
+## Text Input / Text Field
 **What it is:** A single-line text entry field.
 **Variants:** With prefix/suffix, with clear button, with character count, masked (password).
 **ARIA pattern:** Native `<input>` with `<label>`. Error messages linked via `aria-describedby`. Required state via `aria-required` or `required`.

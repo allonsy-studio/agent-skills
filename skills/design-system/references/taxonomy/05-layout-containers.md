@@ -1,6 +1,6 @@
 # Layout & Containers
 
-### Card
+## Card
 **What it is:** A bounded container representing a single entity — an article, product, person, etc.
 **Variants:** Basic, interactive (clickable), with media, horizontal.
 **Key concern:** If the entire card is clickable, the click target must be clear and the card needs an accessible name (typically from its heading). Don't wrap the entire card in an `<a>` — use a heading link with a pseudo-element stretch technique or explicit link text.

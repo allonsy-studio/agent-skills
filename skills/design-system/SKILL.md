@@ -99,7 +99,7 @@ across a long session.
 
 For any review depth, structure feedback per component as:
 
-```
+```markdown
 ## [Component Name]
 
 ### Naming

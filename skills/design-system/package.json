@@ -9,8 +9,8 @@
   },
   "scripts": {
     "ci:test": "yarn test",
-    "test": "node --test \"tests/**/*.test.js\"",
+    "format": "yarn package:format",
     "lint": "yarn package:lint",
-    "format": "yarn package:format"
+    "test": "node --test \"tests/**/*.test.js\""
   }
 }

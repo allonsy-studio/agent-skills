@@ -421,7 +421,7 @@ customize appearance without overriding internal selectors.
 
 Design systems typically use a three-tier token structure:
 
-```
+```text
 Global tokens       →  Alias tokens         →  Component tokens
 --ds-blue-500          --ds-color-primary       --ds-button-bg
 --ds-space-4           --ds-spacing-md          --ds-button-padding
@@ -439,7 +439,7 @@ where they're used.
 
 ### Component token naming convention
 
-```
+```text
 --{prefix}-{component}-{element}-{property}-{variant}-{state}
 ```
 

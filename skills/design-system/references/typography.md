@@ -39,7 +39,7 @@ Common ratios:
 - 1.250 (Major Third) — pronounced hierarchy, good for editorial
 - 1.333 (Perfect Fourth) — dramatic, marketing/hero-heavy
 
-```
+```text
 Base: 16px, Ratio: 1.25
 → 10.24, 12.80, 16.00, 20.00, 25.00, 31.25, 39.06
 ```
@@ -47,7 +47,7 @@ Base: 16px, Ratio: 1.25
 **Hand-tuned scale** — pick sizes that look right at each step, often
 snapped to pixel grid or 4px baseline. More pragmatic, harder to extend.
 
-```
+```text
 → 11, 12, 14, 16, 20, 24, 32, 40, 48
 ```
 
@@ -429,17 +429,17 @@ Document that consuming teams should preload the primary font weight:
 
 ### WCAG requirements for text
 
-**[AA] 1.4.4 Resize Text:** Text must be resizable up to 200% without loss
+**`[AA]` 1.4.4 Resize Text:** Text must be resizable up to 200% without loss
 of content or functionality. This means: use `rem` or `em` for font sizes,
 never `px` on body text. (`px` on headings is tolerable if the base size
 is `rem`-based, but `rem` everywhere is safer.)
 
-**[AA] 1.4.10 Reflow:** At 320px equivalent width (400% zoom on a 1280px
+**`[AA]` 1.4.10 Reflow:** At 320px equivalent width (400% zoom on a 1280px
 viewport), content must reflow to a single column with no horizontal
 scrolling. This is a layout concern, but typography contributes — long
 words in narrow containers need `overflow-wrap: break-word`.
 
-**[AA] 1.4.12 Text Spacing:** Users must be able to override:
+**`[AA]` 1.4.12 Text Spacing:** Users must be able to override:
 - Line height to 1.5× font size
 - Paragraph spacing to 2× font size
 - Letter spacing to 0.12em
@@ -449,7 +449,7 @@ words in narrow containers need `overflow-wrap: break-word`.
 heights on text containers. If your component has `height: 48px` and the
 user increases line-height, text overflows or clips.
 
-**[AAA] 1.4.8 Visual Presentation:** Line length should not exceed 80
+**`[AAA]` 1.4.8 Visual Presentation:** Line length should not exceed 80
 characters (40 for CJK). Most design systems enforce this with a
 `max-width` on prose containers:
 
