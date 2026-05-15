@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/castastrophe/agent-skills/compare/v1.0.1...v1.0.2) (2026-05-15)
+
+### 🐛 Bug Fixes
+
+* **deps:**update dependency dotenv to v17 ([#15](https://github.com/castastrophe/agent-skills/issues/15)) ([1c648bb]())
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+
+### 📚 Documentation
+
+* **design-system:**add skill to README, rename to match directory, document reference-only flavor ([#17](https://github.com/castastrophe/agent-skills/issues/17)) ([4e67e49]())
+
+- Add design-system to the Available Skills table and getSkills() example
+- Rename the skill's frontmatter `name` from `design-system-patterns` to `design-system` so it matches the directory and package name (required by the loader)
+- Update the stale `skill_name` in evals.json after the rename
+- Regenerate .claude-plugin/marketplace.json and plugin.json
+- Document the "reference-only skill" flavor (no `scripts/` required) in CLAUDE.md and CONTRIBUTING.md so contributors know it's a supported pattern
+- Fix the broken coverage badge in the README (envoy -> agent-skills)
+
 ## [1.0.1](https://github.com/castastrophe/agent-skills/compare/v1.0.0...v1.0.1) (2026-05-15)
 
 ### 🐛 Bug Fixes

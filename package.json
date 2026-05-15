@@ -4,7 +4,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "name": "@allons-y/agent-skills",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A collection of skills designed for Claude to streamline processes and reduce token-use",
   "license": "Apache-2.0",
   "author": "Cassondra Roberts <castastrophe@users.noreply.github.com> (https://allons-y.llc)",
