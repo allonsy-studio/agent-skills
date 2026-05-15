@@ -80,9 +80,14 @@ yarn workspaces foreach -A run lint
     description: "One-sentence description. Include trigger phrases here."
     ---
     ```
-4. Add implementation scripts under `scripts/` (Node.js, ESM).
+4. Add implementation scripts under `scripts/` (Node.js, ESM). _Skip for reference-only skills (see below)._
 5. Write a full test suite under `tests/` using `node --test`. Tests must not require live credentials — mock all external API calls.
 6. Run `yarn install` to register the new workspace, then `yarn test` to verify.
+
+### Skill flavors
+
+- **Implementation skills** ship runnable Node.js under `scripts/` (optionally with `bin/`, `templates/`). Example: `gh-notification-summary`.
+- **Reference-only skills** are pure prompt + reference material — `SKILL.md` walks the agent through curated `references/*.md` files. No `scripts/` directory is required. Tests validate that SKILL.md frontmatter is well-formed and that linked references resolve. Example: `design-system`.
 
 ## Skill naming
 

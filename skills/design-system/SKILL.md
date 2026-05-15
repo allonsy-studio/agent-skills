@@ -1,5 +1,5 @@
 ---
-name: design-system-patterns
+name: design-system
 description: >
   Build, name, document, and audit UI components for design systems with
   expert ARIA and accessibility guidance. Trigger when the user mentions
