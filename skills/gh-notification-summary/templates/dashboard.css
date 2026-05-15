@@ -9,6 +9,9 @@
 	--green: light-dark(#1a7f37, #3fb950);
 	--red: light-dark(#cf222e, #f85149);
 	--overlay: light-dark(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.15));
+	--badge-background: initial;
+	--badge-color: initial;
+	--badge-accent: initial;
 }
 
 * {
@@ -30,6 +33,7 @@ body {
 }
 
 [hidden] {
+	/* eslint-disable-next-line css/no-important */
 	display: none !important;
 }
 

@@ -4,7 +4,7 @@ These patterns form the structural shell of single-page applications, dashboards
 and tool UIs. They're assembled from primitives in the sections above but have
 their own distinct keyboard contracts, resize behaviors, and landmark requirements.
 
-### App Shell
+## App Shell
 **What it is:** The outermost layout frame of a single-page application — typically a fixed header, a collapsible sidebar, and a main content area.
 **Variants:** Sidebar + header, top-nav only, rail (icon-only sidebar) + header, stacked (header + sub-header).
 **Key concerns:** The shell defines the landmark structure of the entire app. `<header>`, `<nav>`, `<main>`, and `<aside>` must be used correctly so screen reader users can jump between regions. The sidebar toggle must announce its state (`aria-expanded`). When the sidebar collapses to a rail, icon-only items need accessible labels.
@@ -107,7 +107,7 @@ their own distinct keyboard contracts, resize behaviors, and landmark requiremen
 ### Notification Center
 **What it is:** A panel (popover or drawer) containing a list of notifications, typically opened from a bell icon in the header.
 **Variants:** Popover dropdown, side drawer, full-page view.
-**Key concerns:** The trigger button must announce the unread count (e.g., `aria-label="Notifications, 3 unread"`). The panel is either a popover (non-modal, `aria-expanded` on trigger) or a dialog (modal, with focus trap). Each notification item should be a discrete unit — if dismissible, the dismiss button needs a label like "Dismiss notification: [title]". Mark-all-as-read is a destructive-ish action, so consider confirmation.
+**Key concerns:** The trigger button must announce the unread count (e.g., `aria-label="Notifications, 3 unread"`). The panel is either a popover (non-modal, `aria-expanded` on trigger) or a dialog (modal, with focus trap). Each notification item should be a discrete unit — if dismissible, the dismiss button needs a label like "Dismiss notification: `[title]`". Mark-all-as-read is a destructive-ish action, so consider confirmation.
 **ARIA pattern:** Trigger is a button with `aria-expanded` and `aria-haspopup`. Notification list is `role="list"` or `role="feed"` (if infinite-scrolling). The `role="feed"` pattern supports `aria-setsize`/`aria-posinset` for virtualized lists.
 **Common mistakes:**
 ```html

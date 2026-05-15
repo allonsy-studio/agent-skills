@@ -4,7 +4,7 @@ Specialized controls found in SPA tool UIs — design tools, code editors, admin
 dashboards, and similar applications. These tend to be complex widgets with
 non-trivial keyboard contracts.
 
-### Panel
+## Panel
 **What it is:** A generic secondary content area within an application — properties panel, inspector, detail view, info pane.
 **Variants:** Static, collapsible, floating/detachable, tabbed (multiple sub-panels in tabs).
 **Not to be confused with:** Drawer (slides in from edge, often modal). Sidebar (typically navigation, not content). Dialog (overlays and traps focus).

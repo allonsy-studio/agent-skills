@@ -1,6 +1,6 @@
 # Disclosure & Layering
 
-### Accordion
+## Accordion
 **What it is:** Vertically stacked sections that expand/collapse to show content.
 **Variants:** Single-expand (only one open at a time), multi-expand, nested.
 **Native foundation:** Each section is a disclosure widget — the native `<details>`/`<summary>` element pair does this out of the box with zero JavaScript. Use `<details>` as the starting point; layer ARIA and JS only when you need coordinated behavior (single-expand) or animation that `<details>` can't provide. Building an accordion from `<div>`s and click handlers when `<details>` exists is unnecessary work and a common source of accessibility bugs.

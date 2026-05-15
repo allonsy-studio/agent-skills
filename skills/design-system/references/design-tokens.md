@@ -216,7 +216,7 @@ all three, plus discipline about when to create new ones.
 
 A good token name reads like a path from broad to narrow:
 
-```
+```text
 {category}-{concept}-{property}-{variant}-{state}
 ```
 
@@ -314,7 +314,7 @@ This pairing is how you guarantee contrast.
 
 A constrained scale based on a base unit (typically 4px or 8px):
 
-```
+```text
 spacing-0:  0
 spacing-1:  4px
 spacing-2:  8px
@@ -338,7 +338,7 @@ Alias layer maps these to usage:
 Type tokens usually span multiple CSS properties. Organize as individual
 tokens that can be composed:
 
-```
+```text
 font-family-sans, font-family-serif, font-family-mono
 font-size-{scale}
 font-weight-regular, font-weight-medium, font-weight-semibold, font-weight-bold
@@ -354,7 +354,7 @@ not tokens themselves — they're recipes that reference tokens.
 
 Shadows encode depth. Define as a scale:
 
-```
+```text
 shadow-none:  none
 shadow-xs:    0 1px 2px rgba(0,0,0,0.05)
 shadow-sm:    0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06)
@@ -365,13 +365,13 @@ shadow-xl:    0 20px 25px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.04)
 
 Shadow colors should reference color tokens so they adapt in dark mode:
 
-```
+```text
 shadow-color: {color.neutral.1000}  (with alpha applied per step)
 ```
 
 ### Border radius
 
-```
+```text
 radius-none: 0
 radius-sm:   2px
 radius-md:   4px (or 0.25rem)
@@ -384,7 +384,7 @@ radius-full: 9999px  (pill shape)
 
 Duration and easing tokens control animation:
 
-```
+```text
 duration-instant:  0ms
 duration-fast:     100ms
 duration-normal:   200ms
@@ -406,7 +406,7 @@ use it or set it to `0ms` under reduced motion.
 
 Z-index tokens prevent the "z-index: 99999" arms race:
 
-```
+```text
 z-index-base:     0
 z-index-dropdown: 1000
 z-index-sticky:   1100
@@ -422,7 +422,7 @@ didn't anticipate.
 
 ### Opacity
 
-```
+```text
 opacity-0:    0
 opacity-25:   0.25
 opacity-50:   0.5
@@ -441,7 +441,7 @@ Often used for disabled states, overlays, and skeleton loading.
 A theme is a set of alias-tier value overrides applied to the same token
 names. The names don't change — the values behind them do.
 
-```
+```text
 Light mode:
   color-surface-default  → #ffffff
   color-text-default     → #111827
@@ -480,7 +480,7 @@ Dark mode is an alias-tier override, not a global-tier change. The same
 blue-600 might be used in both light and dark mode — what changes is which
 alias points to it.
 
-```
+```text
 Light:
   color-action-default → {color.blue.600}
   color-surface-default → {color.neutral.0}
@@ -512,7 +512,7 @@ Beyond OS-level forced colors (which override your tokens entirely —
 see `references/accessibility-patterns.md`), your system can offer a
 high-contrast theme that's designed:
 
-```
+```text
 High contrast:
   color-action-default → {color.blue.800}     ← darker for stronger contrast
   color-text-default → {color.neutral.1000}   ← pure black
@@ -525,7 +525,7 @@ High contrast:
 
 For data-heavy applications, a compact density mode reduces spacing:
 
-```
+```text
 Comfortable:
   spacing-component-sm → {spacing.2}    (8px)
   spacing-component-md → {spacing.4}    (16px)
@@ -734,7 +734,7 @@ authoritative and platform-neutral.
 Different platforms have different naming conventions. Your build step
 should handle this automatically:
 
-```
+```text
 Source:          color-action-default
 CSS:             --ds-color-action-default
 Sass:            $ds-color-action-default

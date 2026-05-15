@@ -1,6 +1,6 @@
 # Feedback & Status
 
-### Alert / Notification
+## Alert / Notification
 **What it is:** A prominent message informing the user of something important.
 **Variants:** Inline (in the page flow), banner (full-width at top), toast (floating, auto-dismissing).
 **ARIA pattern:** `role="alert"` for urgent messages (assertive), `role="status"` for polite updates.

@@ -2,8 +2,8 @@
 
 Accessibility is the structural skeleton of a well-built component.
 Every recommendation here is tied to a specific WCAG 2.2 criterion or
-WAI-ARIA Authoring Practice. AA requirements are labeled **[AA]** and
-are non-negotiable baselines. AAA recommendations are labeled **[AAA]**
+WAI-ARIA Authoring Practice. AA requirements are labeled `[AA]` and
+are non-negotiable baselines. AAA recommendations are labeled `[AAA]`
 and represent stretch goals that meaningfully improve the experience.
 
 ---
@@ -180,20 +180,20 @@ screen reader which child to announce.
 
 ## Focus Management
 
-### Focus visibility **[AA — WCAG 2.4.7, enhanced in 2.4.11/2.4.12]**
+### Focus visibility **`[AA — WCAG 2.4.7, enhanced in 2.4.11/2.4.12]`**
 
-**[AA] 2.4.7 Focus Visible:** Keyboard focus indicator must be visible.
+**`[AA]` 2.4.7 Focus Visible:** Keyboard focus indicator must be visible.
 Use `:focus-visible` (not `:focus`) to show focus rings only for keyboard
 users.
 
-**[AA] 2.4.11 Focus Not Obscured (Minimum):** The focused element is not
+**`[AA]` 2.4.11 Focus Not Obscured (Minimum):** The focused element is not
 entirely hidden by author-created content (sticky headers, cookie banners,
 chat widgets). At least part of the focus indicator must be visible.
 
-**[AAA] 2.4.12 Focus Not Obscured (Enhanced):** No part of the focused
+**`[AAA]` 2.4.12 Focus Not Obscured (Enhanced):** No part of the focused
 element is hidden by author-created content.
 
-**[AAA] 2.4.13 Focus Appearance:** The focus indicator must:
+**`[AAA]` 2.4.13 Focus Appearance:** The focus indicator must:
 - Have an area at least as large as a 2px perimeter around the component
 - Have at least 3:1 contrast between focused and unfocused states
 - Have at least 3:1 contrast against adjacent colors
@@ -354,7 +354,7 @@ operation, many screen readers won't announce it.
 </script>
 ```
 
-### Status messages **[AA — WCAG 4.1.3]**
+### Status messages **`[AA — WCAG 4.1.3]`**
 
 Status messages that don't receive focus must be programmatically
 determinable through role or properties. This means:
@@ -369,19 +369,19 @@ determinable through role or properties. This means:
 
 ### Contrast requirements
 
-**[AA] 1.4.3 Contrast (Minimum):**
+**`[AA]` 1.4.3 Contrast (Minimum):**
 - Normal text: 4.5:1 against background
 - Large text (18pt / 14pt bold): 3:1 against background
 
-**[AAA] 1.4.6 Contrast (Enhanced):**
+**`[AAA]` 1.4.6 Contrast (Enhanced):**
 - Normal text: 7:1 against background
 - Large text: 4.5:1 against background
 
-**[AA] 1.4.11 Non-text Contrast:**
+**`[AA]` 1.4.11 Non-text Contrast:**
 - UI components (buttons, inputs, focus rings): 3:1 against adjacent colors
 - Graphical objects needed for understanding: 3:1
 
-### Color not as sole indicator **[AA — WCAG 1.4.1]**
+### Color not as sole indicator **`[AA — WCAG 1.4.1]`**
 
 Never use color alone to convey information. Always pair with text, icons,
 or patterns:
@@ -430,20 +430,20 @@ your component's structure is still clear:
 
 ## Motion & Animation
 
-### Pause, stop, hide **[AA — WCAG 2.2.1, 2.2.2, 2.3.1]**
+### Pause, stop, hide **`[AA — WCAG 2.2.1, 2.2.2, 2.3.1]`**
 
-**[AA] 2.2.1 Timing Adjustable:** If content auto-advances (carousel,
+**`[AA]` 2.2.1 Timing Adjustable:** If content auto-advances (carousel,
 toast), the user must be able to pause, extend, or dismiss it. Auto-
 dismissing toasts must give at least 20 seconds OR provide a way to
 extend.
 
-**[AA] 2.2.2 Pause, Stop, Hide:** Moving, blinking, or scrolling content
+**`[AA]` 2.2.2 Pause, Stop, Hide:** Moving, blinking, or scrolling content
 that starts automatically must be pausable if it lasts more than 5 seconds.
 
-**[AA] 2.3.1 Three Flashes or Below Threshold:** No content flashes more
+**`[AA]` 2.3.1 Three Flashes or Below Threshold:** No content flashes more
 than 3 times per second.
 
-### Reduced motion **[should implement — aligns with AAA 2.3.3]**
+### Reduced motion **`[should implement — aligns with AAA 2.3.3]`**
 
 Respect `prefers-reduced-motion`. This isn't just about preference — it
 prevents vestibular disorders from being triggered:
@@ -472,13 +472,13 @@ prevents vestibular disorders from being triggered:
 
 ## Touch & Pointer
 
-### Target size **[AA — WCAG 2.5.8, AAA — 2.5.5]**
+### Target size **`[AA — WCAG 2.5.8, AAA — 2.5.5]`**
 
-**[AA] 2.5.8 Target Size (Minimum):** Interactive targets must be at least
+**`[AA]` 2.5.8 Target Size (Minimum):** Interactive targets must be at least
 24×24 CSS pixels, OR have sufficient spacing from other targets. Inline
 links within text blocks are exempt.
 
-**[AAA] 2.5.5 Target Size (Enhanced):** At least 44×44 CSS pixels.
+**`[AAA]` 2.5.5 Target Size (Enhanced):** At least 44×44 CSS pixels.
 
 ```css
 /* Ensure minimum touch target even for icon buttons */
@@ -501,9 +501,9 @@ links within text blocks are exempt.
 }
 ```
 
-### Dragging alternatives **[AA — WCAG 2.5.7]**
+### Dragging alternatives **`[AA — WCAG 2.5.7]`**
 
-**[AA] 2.5.7 Dragging Movements:** Any action performed by dragging must
+**`[AA]` 2.5.7 Dragging Movements:** Any action performed by dragging must
 also be achievable through a simple pointer action (click, tap). This
 means:
 - Sortable lists: drag AND up/down buttons

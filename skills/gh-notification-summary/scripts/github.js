@@ -6,8 +6,6 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { Cache, getCache } from "./caching.js";
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // ──────────────────────────────────────────────────────────────────────
@@ -551,23 +549,19 @@ export class Notifications {
 	user = "";
 	/** @type {object[]} */
 	notifications = [];
-	/** @type {Cache | null} */
-	#cache = null;
 	/** @type {Promise<void>} */
 	#ready;
 
 	/**
 	 * @param {string} token
-	 * @param {{ testMode?: boolean, cache?: boolean, skipAI?: boolean, fixturePath?: string }} [opts]
+	 * @param {{ testMode?: boolean, skipAI?: boolean, fixturePath?: string }} [opts]
 	 */
 	constructor(token, opts = {}) {
-		const { testMode = false, cache = true, fixturePath } = opts;
+		const { testMode = false, fixturePath } = opts;
 
 		if (!token && !testMode) {
 			throw new Error("GitHub token is required (or set testMode: true).");
 		}
-
-		if (cache) this.#cache = getCache();
 
 		this.#ready = testMode
 			? this.#loadFixtures(fixturePath)

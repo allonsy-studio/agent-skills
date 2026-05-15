@@ -1,6 +1,6 @@
 # Utilities
 
-### Visually Hidden
+## Visually Hidden
 **What it is:** Not a visible component — a CSS utility that hides content visually but keeps it accessible to screen readers.
 **Implementation:** `.visually-hidden { clip: rect(0,0,0,0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }`
 **Common mistakes:**

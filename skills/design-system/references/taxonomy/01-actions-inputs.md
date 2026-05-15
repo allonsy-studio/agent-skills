@@ -1,6 +1,6 @@
 # Actions & Inputs
 
-### Button
+## Button
 **What it is:** Triggers an action (submit, toggle, navigate).
 **Variants:** Primary, secondary, tertiary/ghost, destructive, icon-only, split button, toggle button.
 **Content model:** A button's content is text, an icon, or both. Icons are content — not a separate component. An icon-only button is a variant, not a different pattern. When a button contains only an icon, it requires an accessible label (`aria-label` or visually hidden text) because there's no visible text to serve as the name.

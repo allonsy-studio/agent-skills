@@ -1,6 +1,6 @@
 # Navigation & Wayfinding
 
-### Navigation / Nav
+## Navigation / Nav
 **What it is:** A container for navigation links — site-wide, local, or in-page.
 **Variants:** Top bar, sidebar, hamburger/mobile, mega menu.
 **ARIA pattern:** `<nav>` landmark with `aria-label` distinguishing multiple navs.

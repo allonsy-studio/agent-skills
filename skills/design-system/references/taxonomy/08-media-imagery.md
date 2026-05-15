@@ -1,6 +1,6 @@
 # Media & Imagery
 
-### Carousel / Slideshow
+## Carousel / Slideshow
 **What it is:** Cycles through multiple slides of content.
 **Key concerns:** Auto-advancing carousels must be pausable (WCAG 2.2.1). Each slide should be a live region or manage focus appropriately. Keyboard and touch support for navigation.
 **ARIA pattern:** Region with `aria-roledescription="carousel"`, slides as `role="group"` with `aria-roledescription="slide"`, `aria-label="N of M"`.

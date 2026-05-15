@@ -1,6 +1,6 @@
 # Data Display
 
-### Table
+## Table
 **What it is:** Rows and columns of structured data.
 **Variants:** Basic, sortable, filterable, with row selection, with expandable rows.
 **ARIA pattern:** Native `<table>`, `<thead>`, `<tbody>`, `<th scope>`. For sortable columns, use `aria-sort`. For interactive grids with cell-level focus, use `role="grid"`.
@@ -56,7 +56,7 @@
 ### Tag / Chip
 **What it is:** A compact label representing a category, filter, or attribute.
 **Variants:** Read-only, dismissible, selectable, input (for tokenized inputs).
-**ARIA pattern:** If dismissible, include a button with an accessible label like "Remove [tag name]".
+**ARIA pattern:** If dismissible, include a button with an accessible label like "Remove `[tag name]`".
 **Common mistakes:**
 ```html
 <!-- ❌ Dismiss button with no context — AT reads just "X" or "Close" -->
