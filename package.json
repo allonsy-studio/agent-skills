@@ -8,7 +8,7 @@
   "description": "A collection of skills designed for Claude to streamline processes and reduce token-use",
   "license": "MPL-2.0",
   "author": "Cassondra Roberts <castastrophe@users.noreply.github.com> (https://allons-y.studio)",
-  "homepage": "https://github.com/castastrophe/agent-skills#readme",
+  "homepage": "https://github.com/Allons-y-Studio/agent-skills#readme",
   "funding": [
     {
       "type": "github",
@@ -21,10 +21,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/castastrophe/agent-skills.git"
+    "url": "git+https://github.com/Allons-y-Studio/agent-skills.git"
   },
   "bugs": {
-    "url": "https://github.com/castastrophe/agent-skills/issues"
+    "url": "https://github.com/Allons-y-Studio/agent-skills/issues"
   },
   "type": "module",
   "main": "index.js",
