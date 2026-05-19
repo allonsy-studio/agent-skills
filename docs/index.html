@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>@allons-y/agent-skills — specialized skills for AI coding agents</title>
+		<meta
+			name="description"
+			content="A collection of self-contained agent skills that streamline common developer workflows and reduce token usage. Install in Claude Code via the plugin marketplace, or vendor into any agent harness with npx."
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=PT+Mono&family=Roboto:wght@300;400;500;600;700&display=swap"
+		/>
+		<link rel="stylesheet" href="styles.css" />
+		<meta property="og:title" content="@allons-y/agent-skills" />
+		<meta
+			property="og:description"
+			content="Specialized agent skills that streamline common developer workflows and reduce token usage."
+		/>
+		<meta property="og:type" content="website" />
+	</head>
+	<body>
+		<a class="skip-link" href="#main">Skip to content</a>
+
+		<header>
+			<h1>@allons-y/agent-skills</h1>
+			<p class="tagline">
+				Specialized agent skills that streamline common developer workflows and
+				reduce token usage.
+			</p>
+			<p class="badges" aria-label="Project badges">
+				<a
+					href="https://github.com/Allons-y-Studio/agent-skills/actions/workflows/test.yml"
+					><img
+						alt="CI status"
+						src="https://github.com/Allons-y-Studio/agent-skills/actions/workflows/test.yml/badge.svg?branch=main"
+				/></a>
+				<a href="https://www.npmjs.com/package/@allons-y/agent-skills"
+					><img
+						alt="npm version"
+						src="https://img.shields.io/npm/v/@allons-y/agent-skills?logo=npm"
+				/></a>
+				<a href="https://www.npmjs.com/package/@allons-y/agent-skills"
+					><img
+						alt="npm downloads"
+						src="https://img.shields.io/npm/dw/@allons-y/agent-skills?logo=npm"
+				/></a>
+				<img
+					alt="Node 24+"
+					src="https://img.shields.io/badge/node-%3E%3D24-brightgreen?logo=node.js"
+				/>
+				<img
+					alt="License: MPL-2.0"
+					src="https://img.shields.io/badge/license-MPL--2.0-blue.svg"
+				/>
+			</p>
+			<p class="cta">
+				<a class="btn btn-primary" href="#install">Get started</a>
+				<a class="btn" href="https://github.com/Allons-y-Studio/agent-skills"
+					>View on GitHub</a
+				>
+			</p>
+		</header>
+
+		<main id="main">
+			<section id="what" aria-labelledby="what-heading">
+				<h2 id="what-heading">
+					What is this?
+					<a class="anchor" href="#what" aria-label="Permalink to What is this?"
+						>#</a
+					>
+				</h2>
+				<p>
+					<strong>Agent skills</strong> are bite-sized, self-contained capability
+					packs you can drop into an AI coding agent. Each skill bundles a
+					<code>SKILL.md</code> (the prompt and trigger description), a
+					Node.js implementation, and a test suite — all under one directory.
+				</p>
+				<p>
+					Claude Code installs them natively via the plugin marketplace. Other
+					agent harnesses — Cursor, OpenCode, Aider, or anything built on the
+					Claude Agent SDK — can vendor any skill directory with one
+					<code>npx</code> command. No Claude-specific wiring.
+				</p>
+			</section>
+
+			<section id="skills" aria-labelledby="skills-heading">
+				<h2 id="skills-heading">
+					Available skills
+					<a class="anchor" href="#skills" aria-label="Permalink to Available skills"
+						>#</a
+					>
+				</h2>
+				<div class="skill-grid">
+					<article class="skill-card">
+						<h3>
+							<a
+								href="https://github.com/Allons-y-Studio/agent-skills/blob/main/skills/gh-notification-summary/SKILL.md"
+								>gh-notification-summary</a
+							>
+						</h3>
+						<p>
+							Review, summarize, and manage GitHub notifications via an
+							interactive local dashboard. Unsubscribe from noisy threads, mark
+							individual notifications or your whole inbox as done, all from a
+							single prompt.
+						</p>
+						<p class="triggers">
+							<strong>Triggers:</strong> <code>"check my GitHub notifications"</code>,
+							<code>/unsub &lt;number&gt;</code>, <code>"mark all done"</code>
+						</p>
+					</article>
+					<article class="skill-card">
+						<h3>
+							<a
+								href="https://github.com/Allons-y-Studio/agent-skills/blob/main/skills/design-system/SKILL.md"
+								>design-system</a
+							>
+						</h3>
+						<p>
+							Build, name, document, and audit UI components with expert ARIA,
+							accessibility, design token, typography, and i18n guidance drawn
+							from major design systems (Material, Spectrum, Carbon, Primer, and more).
+						</p>
+						<p class="triggers">
+							<strong>Triggers:</strong> <code>"design system"</code>,
+							<code>"component library"</code>, <code>"ARIA pattern"</code>,
+							<code>"what should I call this component"</code>
+						</p>
+					</article>
+				</div>
+			</section>
+
+			<section id="install" aria-labelledby="install-heading">
+				<h2 id="install-heading">
+					Install
+					<a class="anchor" href="#install" aria-label="Permalink to Install">#</a>
+				</h2>
+
+				<div class="install-variant">
+					<h3>Claude Code (recommended)</h3>
+					<p>
+						Register this repo as a marketplace, then install skills through the
+						<code>/plugin</code> UI.
+					</p>
+					<pre><code>/plugin marketplace add Allons-y-Studio/agent-skills
+/plugin install gh-notification-summary@agent-skills</code></pre>
+				</div>
+
+				<div class="install-variant">
+					<h3>Other agent harnesses</h3>
+					<p>
+						Use the <code>npx</code> installer to vendor any skill directory into
+						your agent's skill folder. The installed payload is plain — just
+						<code>SKILL.md</code> + scripts.
+					</p>
+					<pre><code># List available skills
+npx @allons-y/agent-skills
+
+# Install a skill to the default location (~/.claude/skills/)
+npx @allons-y/agent-skills gh-notification-summary
+
+# Install to your agent's skill directory
+npx @allons-y/agent-skills gh-notification-summary --dir ~/.config/cursor/skills
+
+# Install everything
+npx @allons-y/agent-skills --all</code></pre>
+					<p>
+						For Node-runtime skills with dependencies, run
+						<code>npm install</code> in the installed directory once vendored.
+					</p>
+				</div>
+			</section>
+
+			<section id="programmatic" aria-labelledby="programmatic-heading">
+				<h2 id="programmatic-heading">
+					Programmatic usage
+					<a
+						class="anchor"
+						href="#programmatic"
+						aria-label="Permalink to Programmatic usage"
+						>#</a
+					>
+				</h2>
+				<p>
+					Tool builders can enumerate skills dynamically via the exported
+					<code>getSkills()</code> helper:
+				</p>
+				<pre><code>import { getSkills } from "@allons-y/agent-skills";
+
+const skills = getSkills();
+// =>
+// [
+//   {
+//     name: "gh-notification-summary",
+//     path: "/path/to/skills/gh-notification-summary",
+//     description: "Review, summarize, and manage GitHub notifications...",
+//     mdPath: "/path/to/skills/gh-notification-summary/SKILL.md",
+//   },
+//   ...
+// ]</code></pre>
+			</section>
+
+			<section id="contributing" aria-labelledby="contributing-heading">
+				<h2 id="contributing-heading">
+					Contributing
+					<a
+						class="anchor"
+						href="#contributing"
+						aria-label="Permalink to Contributing"
+						>#</a
+					>
+				</h2>
+				<p>
+					New skills, improvements, bug fixes, and documentation are all welcome.
+					See
+					<a
+						href="https://github.com/Allons-y-Studio/agent-skills/blob/main/.github/CONTRIBUTING.md"
+						>CONTRIBUTING.md</a
+					>
+					for environment setup, the test/lint/eval workflow, and the PR
+					checklist.
+				</p>
+				<p>Some ideas if you're looking for a starting point:</p>
+				<ul>
+					<li>GitHub PR review summarizer</li>
+					<li>Linear / Jira issue triage</li>
+					<li>Slack digest summarizer</li>
+					<li>Daily standup generator from git log</li>
+					<li>
+						Accessibility audit runner (pairs nicely with
+						<code>design-system</code>)
+					</li>
+				</ul>
+			</section>
+		</main>
+
+		<footer>
+			<p>
+				Licensed under
+				<a
+					href="https://github.com/Allons-y-Studio/agent-skills/blob/main/LICENSE"
+					>MPL-2.0</a
+				>
+				·
+				<a href="https://github.com/Allons-y-Studio/agent-skills">GitHub</a> ·
+				<a href="https://www.npmjs.com/package/@allons-y/agent-skills">npm</a>
+			</p>
+			<p>
+				Built and maintained by
+				<a href="https://allons-y.studio">Allons-y Studio</a> · Cassondra
+				Roberts.
+			</p>
+		</footer>
+	</body>
+</html>

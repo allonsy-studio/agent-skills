@@ -139,7 +139,7 @@ function listSkills() {
 		`${"Install all:".dim}      npx @allons-y/agent-skills --all\n`
 	);
 	console.log(
-		`${"Using Claude Code? Prefer:".dim}  /plugin marketplace add castastrophe/agent-skills\n`
+		`${"Using Claude Code? Prefer:".dim}  /plugin marketplace add Allons-y-Studio/agent-skills\n`
 	);
 }
 

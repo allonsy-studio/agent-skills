@@ -11,8 +11,6 @@
 
 Each skill is a self-contained directory with a `SKILL.md`, Node.js implementation scripts, and a test suite. Claude Code installs natively via the plugin marketplace; other agent harnesses can vendor any skill directory via `npx`.
 
----
-
 ## Quick Start
 
 ### Claude Code (recommended)
@@ -20,7 +18,7 @@ Each skill is a self-contained directory with a `SKILL.md`, Node.js implementati
 Register this repository as a marketplace, then install individual skills through the `/plugin` UI:
 
 ```sh
-/plugin marketplace add castastrophe/agent-skills
+/plugin marketplace add Allons-y-Studio/agent-skills
 /plugin install gh-notification-summary@agent-skills
 ```
 
@@ -48,16 +46,12 @@ For Node-runtime skills with dependencies, run `npm install` in the installed di
 
 > **Note:** `.zip`-based distribution is deprecated and will be removed in the next major version. The installer now copies the skill directory directly.
 
----
-
 ## Available Skills
 
 | Skill                                                                | Description                                                                                                                  | Trigger                                                                                  |
 | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | [`gh-notification-summary`](skills/gh-notification-summary/SKILL.md) | Review, summarize, and manage GitHub notifications via an interactive local dashboard                                        | "check my GitHub notifications", `/unsub <number>`, "mark all done"                      |
 | [`design-system`](skills/design-system/SKILL.md)                     | Build, name, document, and audit UI components with expert ARIA, accessibility, design token, typography, and i18n guidance  | "design system", "component library", "ARIA pattern", "what should I call this component", "review my component library" |
-
----
 
 ## Programmatic Usage
 
@@ -67,6 +61,7 @@ The package exposes a `getSkills()` helper for tool builders who want to list or
 import { getSkills } from "@allons-y/agent-skills";
 
 const skills = getSkills();
+// returns =>
 // [
 //   {
 //     name: 'gh-notification-summary',
@@ -82,8 +77,6 @@ const skills = getSkills();
 //   }
 // ]
 ```
-
----
 
 ## Development
 
@@ -113,9 +106,7 @@ Or run across all skills at once:
 yarn workspaces foreach -A run test
 ```
 
-For full setup instructions — running tests, linting, evals, and publishing — see [CONTRIBUTING.md](CONTRIBUTING.md).
-
----
+For full setup instructions — running tests, linting, evals, and publishing — see [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
 ## Project Structure
 
@@ -141,15 +132,13 @@ agent-skills/                         # Root workspace (publishes to npm)
     └── workflows/                    # CI and release automation
 ```
 
----
-
 ## FAQ
 
 <details>
 <summary><b>How do I install a skill for use with Claude Code?</b></summary>
 
 ```sh
-/plugin marketplace add castastrophe/agent-skills
+/plugin marketplace add Allons-y-Studio/agent-skills
 /plugin install gh-notification-summary@agent-skills
 ```
 
@@ -173,15 +162,13 @@ Or call `getSkills()` from the package to enumerate skills programmatically.
 <details>
 <summary><b>How do I add a new skill or run tests?</b></summary>
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide: environment setup, running tests, linting, evals format, and PR checklist.
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for the full guide: environment setup, running tests, linting, evals format, and PR checklist.
 
 </details>
 
----
-
 ## Contributing
 
-Contributions are welcome — new skills, improvements to existing ones, bug fixes, and documentation. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Contributions are welcome — new skills, improvements to existing ones, bug fixes, and documentation. See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for guidelines.
 
 **Ideas for new skills:**
 
@@ -191,17 +178,19 @@ Contributions are welcome — new skills, improvements to existing ones, bug fix
 - Daily standup generator from git log
 - Accessibility audit runner (paired with `design-system`)
 
----
-
 ## License
 
-[Apache 2.0](LICENSE) — use freely, modify as needed, contribute back if you can.
+[MPL-2.0](LICENSE) — use freely, modify as needed; changes to MPL-licensed files should be shared back under the same license.
 
-[workflow-image]: https://github.com/castastrophe/agent-skills/actions/workflows/test.yml/badge.svg?branch=main
-[workflow-url]: https://github.com/castastrophe/agent-skills/actions/workflows/test.yml/badge.svg
+---
+
+Built and maintained by [Allons-y Studio](https://allons-y.studio) · Cassondra Roberts.
+
+[workflow-image]: https://github.com/Allons-y-Studio/agent-skills/actions/workflows/test.yml/badge.svg?branch=main
+[workflow-url]: https://github.com/Allons-y-Studio/agent-skills/actions/workflows/test.yml/badge.svg
 [npm-image]: https://img.shields.io/npm/v/@allons-y/agent-skills?logo=npm
 [npm-url]: https://www.npmjs.com/package/@allons-y/agent-skills
 [conventional-commits-image]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
 [conventional-commits-url]: https://conventionalcommits.org/
-[coverage-image]: https://img.shields.io/nycrc/castastrophe/agent-skills
-[coverage-url]: https://github.com/castastrophe/agent-skills/blob/main/.nycrc
+[coverage-image]: https://img.shields.io/nycrc/Allons-y-Studio/agent-skills
+[coverage-url]: https://github.com/Allons-y-Studio/agent-skills/blob/main/.nycrc
