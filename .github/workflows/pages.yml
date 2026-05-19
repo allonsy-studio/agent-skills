@@ -1,0 +1,48 @@
+name: Deploy docs site
+
+on:
+  push:
+    branches: [main]
+    paths: ["docs/**", ".github/workflows/pages.yml"]
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+    paths: ["docs/**", ".github/workflows/pages.yml"]
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  deploy:
+    name: Deploy to gh-pages
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Publish docs/ to gh-pages root
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: docs
+          clean: true
+          clean-exclude: pr-preview/
+
+  preview:
+    name: Deploy PR preview
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: docs
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: auto
