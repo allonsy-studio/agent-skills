@@ -1,0 +1,398 @@
+/* ============================================================
+   Allons-y Studio — brand-aligned theme for agent-skills docs
+   Mirrors tokens from @allons-y/website/pages/css/theme.css
+   ============================================================ */
+
+:root {
+	color-scheme: light dark;
+
+	/* ---- Brand palette ---- */
+	--accent--red: hsl(336, 65%, 50%);
+	--accent--orange: hsl(24, 100%, 65%);
+	--accent--blue: hsl(192, 70%, 50%);
+	--accent--yellow: light-dark(hsl(42, 100%, 71%), hsla(42, 100%, 60%, 1));
+
+	--base: var(--accent--red);
+
+	/* ---- Font weights ---- */
+	--theme--FontWeight--light: 300;
+	--theme--FontWeight: 400;
+	--theme--FontWeight--medium: 500;
+	--theme--FontWeight--semi-bold: 600;
+	--theme--FontWeight--bold: 700;
+
+	/* ---- Line heights ---- */
+	--theme--LineHeight--dense: 1.1;
+	--theme--LineHeight: 1.4;
+	--theme--LineHeight--spacious: 1.8;
+
+	/* ---- Typography ---- */
+	--theme--text--FontFamily:
+		"Roboto", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	--theme--text--FontFamily--signature: "Dancing Script", cursive;
+	--theme--text--FontFamily--dense: "EB Garamond", "Georgia", serif;
+	--theme--code--FontFamily: "PT Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+	--theme--text--Color: light-dark(hsl(40, 12%, 20%), hsl(0, 0%, 100%));
+	--theme--text--Color--subtle: light-dark(hsl(40, 10%, 30%), hsl(0, 0%, 70%));
+	--theme--text--Color--invert: light-dark(hsl(0, 0%, 100%), hsl(40, 12%, 20%));
+
+	--theme--heading--FontFamily: var(--theme--text--FontFamily);
+	--theme--heading--LineHeight: var(--theme--LineHeight--dense);
+	--theme--heading--Color: var(--theme--text--Color);
+
+	--theme--code--FontSize: 0.875em;
+	--theme--code--LineHeight: var(--theme--LineHeight);
+
+	/* ---- Shape ---- */
+	--theme--BorderRadius: 0.2em;
+	--theme--BorderWidth--thin: 1px;
+	--theme--BorderWidth: 2px;
+	--theme--OutlineOffset: 2px;
+	--theme--Outline: 1px;
+
+	/* ---- Spacing ---- */
+	--theme--container--space: 16px;
+	--theme--content--space: 10px;
+
+	/* ---- Sizing ---- */
+	--theme--container--MaxWidth: 1200px;
+	--theme--content--MaxWidth: 80ch;
+
+	/* ---- Surfaces ---- */
+	--theme--surface--color: light-dark(hsl(0, 0%, 98%), hsl(0, 0%, 10%));
+	--theme--surface--color--emphasis: light-dark(hsl(40, 12%, 93%), hsl(0, 1%, 18%));
+	--theme--ui--color--subtle: light-dark(hsl(0, 0%, 90%), hsl(0, 0%, 40%));
+
+	/* ---- Shadows ---- */
+	--theme--container--shadow: 0 10px 15px -10px;
+	--theme--container--shadow-color: light-dark(hsl(0, 0%, 60%), hsl(0, 0%, 30%));
+
+	@media screen and (width <= 768px) {
+		--theme--container--space: 10px;
+		--theme--container--MaxWidth: 100%;
+	}
+}
+
+/* Derived accent tokens (re-compute when --base changes) */
+:root {
+	--theme--ui--color: var(--base);
+	--theme--surface--color--accent: light-dark(
+		color-mix(in oklch, var(--base) 20%, var(--theme--surface--color) 70%),
+		color-mix(in hsl, var(--base) 60%, transparent)
+	);
+	--theme--text--Color--accent: light-dark(
+		var(--base),
+		color-mix(in hsl, var(--base) 90%, white)
+	);
+	--theme--link--Color: var(--theme--text--Color--accent);
+	--theme--link--Color--hover: color-mix(
+		in oklch,
+		var(--theme--link--Color) 90%,
+		var(--theme--text--Color)
+	);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+* {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding-block-start: var(--theme--container--space);
+}
+
+body {
+	margin: 0;
+	background: var(--theme--surface--color);
+	color: var(--theme--text--Color);
+	font-family: var(--theme--text--FontFamily);
+	font-weight: var(--theme--FontWeight);
+	line-height: var(--theme--LineHeight);
+	font-optical-sizing: auto;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+
+[id] {
+	scroll-margin-block-start: 1.5rlh;
+}
+
+::selection {
+	background: color-mix(in hsl, var(--theme--surface--color--accent) 80%, transparent);
+	color: var(--theme--text--Color);
+}
+
+a {
+	color: var(--theme--link--Color);
+	text-decoration: none;
+	text-underline-offset: 0.2ex;
+}
+
+a:hover,
+a:focus-visible {
+	text-decoration: underline;
+	color: var(--theme--link--Color--hover);
+}
+
+:focus-visible {
+	outline: var(--theme--Outline) solid var(--base);
+	outline-offset: var(--theme--OutlineOffset);
+	border-radius: var(--theme--BorderRadius);
+}
+
+main,
+header,
+footer {
+	max-width: var(--theme--container--MaxWidth);
+	margin-inline: auto;
+	padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+/* Skip link */
+.skip-link {
+	position: absolute;
+	left: -9999px;
+	top: 0;
+	background: var(--base);
+	color: var(--theme--text--Color--invert);
+	padding: 0.5rem 1rem;
+	border-radius: 0 0 var(--theme--BorderRadius) 0;
+	font-weight: var(--theme--FontWeight--medium);
+}
+
+.skip-link:focus {
+	left: 0;
+	z-index: 10;
+}
+
+/* ============================================================
+   HEADER / HERO
+   ============================================================ */
+header {
+	padding-block: 4rem 2.5rem;
+	text-align: center;
+}
+
+header h1 {
+	margin: 0 0 0.75rem;
+	font-family: var(--theme--text--FontFamily--signature);
+	font-weight: var(--theme--FontWeight--bold);
+	font-size: clamp(2.75rem, 7vw, 4.5rem);
+	line-height: var(--theme--LineHeight--dense);
+	color: var(--theme--text--Color--accent);
+	letter-spacing: 0;
+}
+
+header .tagline {
+	font-family: var(--theme--text--FontFamily--dense);
+	font-size: clamp(1.1rem, 2vw, 1.35rem);
+	color: var(--theme--text--Color--subtle);
+	margin: 0 auto 1.75rem;
+	max-width: 38rem;
+	line-height: var(--theme--LineHeight);
+}
+
+.badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	justify-content: center;
+	margin: 0 0 1.75rem;
+}
+
+.badges img {
+	height: 20px;
+}
+
+.cta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	justify-content: center;
+	margin: 0;
+}
+
+.btn {
+	display: inline-block;
+	padding: 0.65rem 1.4rem;
+	border-radius: var(--theme--BorderRadius);
+	border: var(--theme--BorderWidth--thin) solid var(--theme--ui--color--subtle);
+	background: var(--theme--surface--color--emphasis);
+	color: var(--theme--text--Color);
+	font-weight: var(--theme--FontWeight--medium);
+	font-family: inherit;
+	transition:
+		transform 0.08s ease,
+		box-shadow 0.15s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+	text-decoration: none;
+	transform: translateY(-1px);
+	box-shadow: var(--theme--container--shadow) var(--theme--container--shadow-color);
+}
+
+.btn-primary {
+	background: var(--base);
+	color: var(--theme--text--Color--invert);
+	border-color: var(--base);
+}
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+main {
+	max-width: min(var(--theme--container--MaxWidth), 72rem);
+}
+
+section {
+	padding-block: 3rem;
+	border-top: var(--theme--BorderWidth--thin) solid var(--theme--ui--color--subtle);
+}
+
+section > * {
+	max-width: var(--theme--content--MaxWidth);
+}
+
+section .skill-grid {
+	max-width: none;
+}
+
+h2 {
+	margin: 0 0 1rem;
+	font-family: var(--theme--heading--FontFamily);
+	font-weight: var(--theme--FontWeight--bold);
+	font-size: 1.65rem;
+	line-height: var(--theme--heading--LineHeight);
+	letter-spacing: -0.01em;
+}
+
+h2 .anchor {
+	color: var(--theme--text--Color--subtle);
+	margin-left: 0.4rem;
+	opacity: 0;
+	transition: opacity 0.15s ease;
+	font-weight: var(--theme--FontWeight);
+}
+
+h2:hover .anchor,
+h2 .anchor:focus-visible {
+	opacity: 1;
+}
+
+p {
+	margin: 0 0 1rem;
+}
+
+ul {
+	padding-inline-start: 1.25rem;
+}
+
+li {
+	margin-block: 0.25rem;
+}
+
+/* ============================================================
+   SKILL CARDS
+   ============================================================ */
+.skill-grid {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.skill-card {
+	background: var(--theme--surface--color--emphasis);
+	border: var(--theme--BorderWidth--thin) solid var(--theme--ui--color--subtle);
+	border-radius: var(--theme--BorderRadius);
+	padding: 1.4rem;
+}
+
+.skill-card h3 {
+	margin: 0 0 0.5rem;
+	font-family: var(--theme--code--FontFamily);
+	font-size: 1rem;
+	font-weight: var(--theme--FontWeight--bold);
+}
+
+.skill-card p {
+	color: var(--theme--text--Color--subtle);
+	font-size: 0.95rem;
+	margin-bottom: 0.75rem;
+}
+
+.skill-card .triggers {
+	font-size: 0.85rem;
+	color: var(--theme--text--Color--subtle);
+	margin-bottom: 0;
+}
+
+/* ============================================================
+   CODE
+   ============================================================ */
+pre {
+	background: var(--theme--surface--color--emphasis);
+	border: var(--theme--BorderWidth--thin) solid var(--theme--ui--color--subtle);
+	border-radius: var(--theme--BorderRadius);
+	border-inline-start: var(--theme--BorderWidth) solid var(--base);
+	padding: 1rem 1.1rem;
+	overflow-x: auto;
+	margin: 0 0 1rem;
+}
+
+pre,
+code {
+	font-family: var(--theme--code--FontFamily);
+	font-size: var(--theme--code--FontSize);
+	line-height: var(--theme--code--LineHeight);
+}
+
+pre code {
+	font-size: inherit;
+}
+
+p code,
+li code,
+.triggers code {
+	background: var(--theme--surface--color--emphasis);
+	padding: 0.1rem 0.4rem;
+	border-radius: var(--theme--BorderRadius);
+}
+
+/* ============================================================
+   INSTALL VARIANTS
+   ============================================================ */
+.install-variant {
+	margin-bottom: 1.75rem;
+	max-width: var(--theme--content--MaxWidth);
+}
+
+.install-variant h3 {
+	margin: 0 0 0.5rem;
+	font-size: 1.1rem;
+	font-weight: var(--theme--FontWeight--semi-bold);
+}
+
+.install-variant > p {
+	color: var(--theme--text--Color--subtle);
+	margin-bottom: 0.5rem;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+	padding-block: 2rem 3rem;
+	color: var(--theme--text--Color--subtle);
+	font-size: 0.9rem;
+	border-top: var(--theme--BorderWidth--thin) solid var(--theme--ui--color--subtle);
+	text-align: center;
+}
+
+footer p {
+	margin: 0 0 0.3rem;
+}
