@@ -1,16 +1,29 @@
 {
-  "private": true,
   "name": "@allons-y/skill-design-system",
   "version": "0.0.0",
-  "description": "Build, name, document, and audit UI components for design systems with expert HTML, CSS, ARIA, and accessibility guidance",
+  "description": "Build, name, document, and audit UI components with expert ARIA, accessibility, design token, typography, and i18n guidance drawn from major design systems (Material, Spectrum, Carbon, Primer, and more).",
   "type": "module",
   "skill": {
-    "runtime": "node"
+    "runtime": "node",
+    "triggers": [
+      "design system",
+      "component library",
+      "ARIA pattern",
+      "what should I call this component",
+      "review my component library"
+    ]
   },
   "scripts": {
     "ci:test": "yarn test",
     "format": "yarn package:format",
     "lint": "yarn package:lint",
     "test": "node --test \"tests/**/*.test.js\""
-  }
+  },
+  "keywords": [
+    "design system",
+    "accessibility",
+    "design tokens",
+    "typography",
+    "i18n"
+  ]
 }

@@ -1,11 +1,17 @@
 {
-  "private": true,
   "name": "@allons-y/skill-gh-notification-summary",
   "version": "0.0.0",
-  "description": "Review, summarize, and manage GitHub notifications",
+  "description": "Review, summarize, and manage GitHub notifications via an interactive local dashboard. Unsubscribe from noisy threads, mark individual notifications or your whole inbox as done, all from a single prompt.",
   "type": "module",
   "skill": {
-    "runtime": "node"
+    "runtime": "node",
+    "triggers": [
+      "check my GitHub notifications",
+      "/unsub <number>",
+      "mark all done",
+      "clear my GitHub inbox",
+      "any request to triage, dismiss, or act on GitHub notifications"
+    ]
   },
   "bin": {
     "gh-notifications": "bin/cli.js"

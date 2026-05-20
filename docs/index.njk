@@ -1,36 +1,58 @@
+---
+themeColor: "#DD18B3"
+tagline_short: "specialized skills for AI coding agents"
+tagline: "Specialized agent skills that streamline common developer workflows and reduce token usage."
+---
+{% set example = skills[0] -%}
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
 	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>@allons-y/agent-skills — specialized skills for AI coding agents</title>
-		<meta
-			name="description"
-			content="A collection of self-contained agent skills that streamline common developer workflows and reduce token usage. Install in Claude Code via the plugin marketplace, or vendor into any agent harness with npx."
-		/>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+		<meta name="theme-color" content="{{ themeColor }}">
+		<meta name="color-scheme" content="light dark">
+
+		<title>{{ title }} | {{ tagline_short }}</title>
+		<meta name="description" content="{{ description }}"/>
+		<meta name="keywords" content="{{ keywords }}"/>
+		<meta name="author" content="{{ author }}"/>
+
+		<meta name="robots" content="index, follow">
+		<meta name="googlebot" content="index, follow">
+		<meta name="bingbot" content="index, follow">
+		<meta name="yandexbot" content="index, follow">
+
+		<!-- Open Graph data -->
+		<meta property="og:locale" content="en-US" />
+		<meta property="og:title" content="{{ title }}">
+		<meta property="og:url" content="{{ url }}">
+		<meta property="og:description" content="{{ description }}">
+		{# <meta property="og:image" content="{{ site.banner | imgSrc('png') | htmlBaseUrl(site.url) }}" /> #}
+		<meta property="og:site_name" content="{{ title }}">
+		<meta name="fediverse:creator" content="@castastrophe@front-end.social" />
+
+		<link rel="icon" href="/favicon.ico" sizes="32×32">
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+		<link rel="apple-touch-icon" href="/favicon.svg">
+
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=PT+Mono&family=Roboto:wght@300;400;500;600;700&display=swap"
-		/>
-		<link rel="stylesheet" href="styles.css" />
-		<meta property="og:title" content="@allons-y/agent-skills" />
-		<meta
-			property="og:description"
-			content="Specialized agent skills that streamline common developer workflows and reduce token usage."
-		/>
-		<meta property="og:type" content="website" />
+		<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=PT+Mono&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+		<style>{% include "styles.css" %}</style>
+
+		{# Load Font Awesome #}
+		<script src="https://kit.fontawesome.com/42e99b4632.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<a class="skip-link" href="#main">Skip to content</a>
 
 		<header>
-			<h1>@allons-y/agent-skills</h1>
-			<p class="tagline">
-				Specialized agent skills that streamline common developer workflows and
-				reduce token usage.
-			</p>
+			<h1>{{ title }}</h1>
+			<p class="tagline">{{ tagline }}</p>
 			<p class="badges" aria-label="Project badges">
 				<a
 					href="https://github.com/Allons-y-Studio/agent-skills/actions/workflows/test.yml"
@@ -95,42 +117,23 @@
 					>
 				</h2>
 				<div class="skill-grid">
+					{% for skill in skills -%}
 					<article class="skill-card">
-						<h3>
-							<a
-								href="https://github.com/Allons-y-Studio/agent-skills/blob/main/skills/gh-notification-summary/SKILL.md"
-								>gh-notification-summary</a
-							>
-						</h3>
-						<p>
-							Review, summarize, and manage GitHub notifications via an
-							interactive local dashboard. Unsubscribe from noisy threads, mark
-							individual notifications or your whole inbox as done, all from a
-							single prompt.
+						<h3><a href="{{ skill.url }}">{{ skill.name }}</a></h3>
+						<p>{{ skill.description }}
 						</p>
+						{% if skill.triggers.length > 0 -%}
 						<p class="triggers">
-							<strong>Triggers:</strong> <code>"check my GitHub notifications"</code>,
-							<code>/unsub &lt;number&gt;</code>, <code>"mark all done"</code>
+							<strong>Triggers:</strong> {% for trigger in skill.triggers %}<code>"{{ trigger }}"</code>{% if not loop.last %}, {% endif %}{% endfor %}
 						</p>
+						{%- endif %}
+						{% if skill.commands.length > 0 -%}
+						<p class="commands">
+							<strong>Commands:</strong> {% for command in skill.commands %}<code>"{{ command }}"</code>{% if not loop.last %}, {% endif %}{% endfor %}
+						</p>
+						{%- endif %}
 					</article>
-					<article class="skill-card">
-						<h3>
-							<a
-								href="https://github.com/Allons-y-Studio/agent-skills/blob/main/skills/design-system/SKILL.md"
-								>design-system</a
-							>
-						</h3>
-						<p>
-							Build, name, document, and audit UI components with expert ARIA,
-							accessibility, design token, typography, and i18n guidance drawn
-							from major design systems (Material, Spectrum, Carbon, Primer, and more).
-						</p>
-						<p class="triggers">
-							<strong>Triggers:</strong> <code>"design system"</code>,
-							<code>"component library"</code>, <code>"ARIA pattern"</code>,
-							<code>"what should I call this component"</code>
-						</p>
-					</article>
+					{%- endfor %}
 				</div>
 			</section>
 
@@ -146,8 +149,8 @@
 						Register this repo as a marketplace, then install skills through the
 						<code>/plugin</code> UI.
 					</p>
-					<pre><code>/plugin marketplace add Allons-y-Studio/agent-skills
-/plugin install gh-notification-summary@agent-skills</code></pre>
+					<pre><code>/plugin marketplace add {{ repo.name }}
+/plugin install {{ example.name }}@{{ pkg_name | last }}</code></pre>
 				</div>
 
 				<div class="install-variant">
@@ -157,17 +160,24 @@
 						your agent's skill folder. The installed payload is plain — just
 						<code>SKILL.md</code> + scripts.
 					</p>
-					<pre><code># List available skills
-npx @allons-y/agent-skills
-
-# Install a skill to the default location (~/.claude/skills/)
-npx @allons-y/agent-skills gh-notification-summary
-
-# Install to your agent's skill directory
-npx @allons-y/agent-skills gh-notification-summary --dir ~/.config/cursor/skills
-
-# Install everything
-npx @allons-y/agent-skills --all</code></pre>
+					<ul>
+						<li>
+							<h4>List available skills</h4>
+							<pre><code>npx {{ pkg_name }}</code></pre>
+						</li>
+						<li>
+							<h4>Install a skill to the default location (~/.claude/skills/)</h4>
+							<pre><code>npx {{ pkg_name }} {{ example.name }}</code></pre>
+						</li>
+						<li>
+							<h4>Install to your agent's skill directory</h4>
+							<pre><code>npx {{ pkg_name }} {{ example.name }} --dir ~/.config/cursor/skills</code></pre>
+						</li>
+						<li>
+							<h4>Install everything</h4>
+							<pre><code>npx {{ pkg_name }} --all</code></pre>
+						</li>
+					</ul>
 					<p>
 						For Node-runtime skills with dependencies, run
 						<code>npm install</code> in the installed directory once vendored.
@@ -189,16 +199,16 @@ npx @allons-y/agent-skills --all</code></pre>
 					Tool builders can enumerate skills dynamically via the exported
 					<code>getSkills()</code> helper:
 				</p>
-				<pre><code>import { getSkills } from "@allons-y/agent-skills";
+				<pre><code>import { getSkills } from "{{ title }}";
 
 const skills = getSkills();
 // =>
 // [
 //   {
-//     name: "gh-notification-summary",
-//     path: "/path/to/skills/gh-notification-summary",
-//     description: "Review, summarize, and manage GitHub notifications...",
-//     mdPath: "/path/to/skills/gh-notification-summary/SKILL.md",
+//     name: "{{ example.name }}",
+//     path: "/path/to/skills/{{ example.name }}",
+//     description: "{{ example.description | truncate(50) }}",
+//     mdPath: "/path/to/skills/{{ example.name }}/SKILL.md",
 //   },
 //   ...
 // ]</code></pre>
@@ -206,19 +216,19 @@ const skills = getSkills();
 
 			<section id="contributing" aria-labelledby="contributing-heading">
 				<h2 id="contributing-heading">
-					Contributing
 					<a
 						class="anchor"
 						href="#contributing"
 						aria-label="Permalink to Contributing"
 						>#</a
 					>
+					Contributing
 				</h2>
 				<p>
 					New skills, improvements, bug fixes, and documentation are all welcome.
 					See
 					<a
-						href="https://github.com/Allons-y-Studio/agent-skills/blob/main/.github/CONTRIBUTING.md"
+						href="{{ repo.url }}/blob/main/.github/CONTRIBUTING.md"
 						>CONTRIBUTING.md</a
 					>
 					for environment setup, the test/lint/eval workflow, and the PR
@@ -238,21 +248,18 @@ const skills = getSkills();
 			</section>
 		</main>
 
-		<footer>
-			<p>
-				Licensed under
-				<a
-					href="https://github.com/Allons-y-Studio/agent-skills/blob/main/LICENSE"
-					>MPL-2.0</a
-				>
-				·
-				<a href="https://github.com/Allons-y-Studio/agent-skills">GitHub</a> ·
-				<a href="https://www.npmjs.com/package/@allons-y/agent-skills">npm</a>
-			</p>
+		<footer style="display: flex; flex-direction: column; gap: .8rem; align-items: center; justify-content: center;">
+			<div style="display: flex; flex-direction: row; gap: 1rem; align-items: start; justify-content: space-evenly;">
+				<p>Licensed under <a href="{{ license.url }}">{{ license.name }}</a></p>
+				<div style="display: inline-flex; flex-direction: row; gap: 2rem; align-items: start; justify-content: end;">
+					<a href="{{ repo.url }}"><span class="fa-brands fa-github"></span> GitHub</a>
+					<a href="{{ npm_url }}"><span class="fa-brands fa-npm"></span> npm</a>
+				</div>
+			</div>
 			<p>
 				Built and maintained by
-				<a href="https://allons-y.studio">Allons-y Studio</a> · Cassondra
-				Roberts.
+				<a href="https://allons-y.studio"><span class="fa-solid fa-mug-hot"></span> Allons-y Studio</a> {{ divider | safe }} <a href="https://github.com/castastrophe"><span class="fa-solid fa-user"></span> Cassondra
+				Roberts</a>.
 			</p>
 		</footer>
 	</body>
