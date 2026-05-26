@@ -18,7 +18,6 @@ import fs from "fs";
 import os from "os";
 import path from "path";
 import { fileURLToPath } from "url";
-import AdmZip from "adm-zip";
 import "colors";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -150,22 +149,9 @@ function listSkills() {
  */
 function installSkill(skillName, installDir) {
 	const srcPath = path.join(skillsDir, skillName);
-	const zipPath = path.join(skillsDir, `${skillName}.zip`);
 	const destPath = path.join(installDir, skillName);
 
-	if (fs.existsSync(zipPath)) {
-		console.log(
-			"⚠".yellow +
-				"  Zip-based distribution is deprecated and will be removed in the next major version."
-		);
-		console.log(
-			"   ".dim +
-				"Skills are now copied directly from the package source."
-		);
-		fs.mkdirSync(destPath, { recursive: true });
-		const zip = new AdmZip(zipPath);
-		zip.extractAllTo(destPath, true);
-	} else if (fs.existsSync(srcPath)) {
+	if (fs.existsSync(srcPath)) {
 		copyDir(srcPath, destPath);
 	} else {
 		console.log(

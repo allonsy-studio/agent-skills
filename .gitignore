@@ -9,7 +9,7 @@ env.bak/
 venv.bak/
 
 # documentation
-docs/_site/
+_site/
 
 # Cursor
 #  Cursor is an AI-powered code editor. `.cursorignore` specifies files/directories to
@@ -75,6 +75,7 @@ node_modules/
 # Generated assets for publishing only
 skills/*.zip
 agent.yaml
+skills/dreamlight-valley/references/images
 
 # Test results
 junit

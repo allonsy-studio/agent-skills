@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+		<meta name="theme-color" content="{{ themeColor }}">
+		<meta name="color-scheme" content="light dark">
+
+        {% set title_parts = [title | default(site.package.name), tagline_short] %}
+		<title>{{ title_parts | join(' | ') }}</title>
+		<meta name="description" content="{{ description | default(site.description) }}" />
+		<meta name="keywords" content="{{ keywords | default(site.keywords) }}" />
+		<meta name="author" content="{{ author | default(site.author) }}" />
+
+		<meta name="robots" content="index, follow">
+		<meta name="googlebot" content="index, follow">
+		<meta name="bingbot" content="index, follow">
+		<meta name="yandexbot" content="index, follow">
+
+		<meta property="og:locale" content="en-US" />
+		<meta property="og:title" content="{{ title | default(site.package.name) }}">
+		<meta property="og:url" content="{{ url | default(site.package.homepage) }}">
+		<meta property="og:description" content="{{ description | default(site.package.description) }}">
+		<meta property="og:site_name" content="{{ title | default(site.package.name) }}">
+		<meta name="fediverse:creator" content="@castastrophe@front-end.social" />
+
+		<link rel="icon" href="/favicon.ico" sizes="32×32">
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+		<link rel="apple-touch-icon" href="/favicon.svg">
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=PT+Mono&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+		<script src="https://kit.fontawesome.com/42e99b4632.js" crossorigin="anonymous"></script>
+
+        <style>{% getBundle "css" %}</style>
+	</head>
+	<body>
+        {{ content | safe }}
+
+        <script type="module">{% getBundle "js" %}</script>
+	</body>
+</html>

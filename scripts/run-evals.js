@@ -10,52 +10,76 @@ const root = process.cwd();
 const MODEL = process.env.ANTHROPIC_MODEL || "claude-haiku-4-5";
 
 /**
- * Build a minimal tool definition for runnable entrypoints in the skill's
- * `scripts/` directory. Python skills get one tool per `.py` file. Node skills
- * that ship `gh-notifications.js` / `gh-notifications.js` get tools named
- * `fetch`, `done`, and `unsub` (yargs subcommands). Schemas stay empty —
- * SKILL.md carries the behavioral detail.
+ * Build a minimal tool definition for runnable entrypoints in the skill.
+ * Sources, in order:
+ *   - Python scripts in `scripts/` → one tool per `.py` file.
+ *   - The gh-notifications.js CLI → `fetch` / `done` / `unsub` subcommands.
+ *   - Slash commands in `commands/*.md` → one tool per command, named after
+ *     the filename and described by the file's frontmatter `description`.
+ * Tool input schemas stay empty — SKILL.md carries the behavioral detail.
  */
-function buildTools(scriptsPath) {
-	if (!fs.existsSync(scriptsPath)) return [];
-
-	const files = fs.readdirSync(scriptsPath);
+function buildTools(skillPath) {
+	const scriptsPath = path.join(skillPath, "scripts");
+	const commandsPath = path.join(skillPath, "commands");
 	const tools = [];
 
-	for (const f of files) {
-		if (f.endsWith(".py") && f !== "__init__.py") {
-			tools.push({
-				name: f.replace(".py", ""),
-				description: `Run the ${f} script`,
-				input_schema: { type: "object", properties: {} },
-			});
+	if (fs.existsSync(scriptsPath)) {
+		const files = fs.readdirSync(scriptsPath);
+
+		for (const f of files) {
+			if (f.endsWith(".py") && f !== "__init__.py") {
+				tools.push({
+					name: f.replace(".py", ""),
+					description: `Run the ${f} script`,
+					input_schema: { type: "object", properties: {} },
+				});
+			}
+		}
+
+		const hasGhNotificationsCli = files.some((f) =>
+			/^gh-notifications\.(mjs|js)$/.test(f)
+		);
+		if (hasGhNotificationsCli) {
+			tools.push(
+				{
+					name: "fetch",
+					description:
+						"Run gh-notifications fetch — open the local notification dashboard (http://localhost:8000)",
+					input_schema: { type: "object", properties: {} },
+				},
+				{
+					name: "done",
+					description:
+						"Run gh-notifications done — mark one or all GitHub notifications as read/done",
+					input_schema: { type: "object", properties: {} },
+				},
+				{
+					name: "unsub",
+					description:
+						"Run gh-notifications unsub — unsubscribe from an issue thread and mark the notification done",
+					input_schema: { type: "object", properties: {} },
+				}
+			);
 		}
 	}
 
-	const hasGhNotificationsCli = files.some((f) =>
-		/^gh-notifications\.(mjs|js)$/.test(f)
-	);
-	if (hasGhNotificationsCli) {
-		tools.push(
-			{
-				name: "fetch",
-				description:
-					"Run gh-notifications fetch — open the local notification dashboard (http://localhost:8000)",
-				input_schema: { type: "object", properties: {} },
-			},
-			{
-				name: "done",
-				description:
-					"Run gh-notifications done — mark one or all GitHub notifications as read/done",
-				input_schema: { type: "object", properties: {} },
-			},
-			{
-				name: "unsub",
-				description:
-					"Run gh-notifications unsub — unsubscribe from an issue thread and mark the notification done",
-				input_schema: { type: "object", properties: {} },
+	if (fs.existsSync(commandsPath)) {
+		for (const f of fs.readdirSync(commandsPath)) {
+			if (!f.endsWith(".md")) continue;
+			const name = f.replace(/\.md$/, "");
+			const body = fs.readFileSync(path.join(commandsPath, f), "utf8");
+			const fmMatch = body.match(/^---\s*([\s\S]*?)\s*---/);
+			let description = `Invoke the /${name} command`;
+			if (fmMatch) {
+				const descLine = fmMatch[1].match(/^description:\s*"?([^"\n]+)"?/m);
+				if (descLine) description = descLine[1].trim();
 			}
-		);
+			tools.push({
+				name,
+				description,
+				input_schema: { type: "object", properties: {} },
+			});
+		}
 	}
 
 	return tools;
@@ -105,7 +129,7 @@ async function runSkillEvals(skillName, client) {
 
 	const { evals } = JSON.parse(fs.readFileSync(evalsPath, "utf8"));
 	const skillMd = fs.readFileSync(path.join(skillPath, "SKILL.md"), "utf8");
-	const tools = buildTools(path.join(skillPath, "scripts"));
+	const tools = buildTools(skillPath);
 
 	console.log(`\nRunning evals for ${skillName} (${evals.length} cases)...`);
 

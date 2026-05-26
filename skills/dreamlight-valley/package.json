@@ -1,0 +1,33 @@
+{
+  "name": "@allons-y/skill-dreamlight-valley",
+  "version": "0.0.0",
+  "description": "Cooking, gathering, and inventory management for Dreamlight Valley.",
+  "type": "module",
+  "skill": {
+    "runtime": "node",
+    "triggers": [
+      "/cook <flags> <ingredients>",
+      "/restock <flags>",
+      "/recipe <dish name>",
+      "any request related to the video game Dreamlight Valley"
+    ]
+  },
+  "scripts": {
+    "build": "node scripts/build-sprites.js",
+    "ci:test": "yarn coverage",
+    "coverage": "c8 yarn test",
+    "format": "yarn package:format",
+    "lint": "yarn package:lint",
+    "test": "node --test \"tests/**/*.test.js\""
+  },
+  "devDependencies": {
+    "c8": "^11.0.0",
+    "sharp": "^0.34.0"
+  },
+  "keywords": [
+    "dreamlight valley",
+    "cooking",
+    "gathering",
+    "inventory management"
+  ]
+}

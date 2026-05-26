@@ -1,0 +1,3734 @@
+{
+  "note": "Master list of stackable gatherable storage items, grouped by category.",
+  "schema_version": 1,
+  "source": "Dreamlight Valley Wiki: Cooking, Foraging, Fishing, Mining (current to Wishblossom Mountains)",
+  "categories": {
+    "collectables": [
+      {
+        "name": "Amber",
+        "method": [
+          "digging",
+          "purchase"
+        ],
+        "slot_max": 99,
+        "sale_price": 30,
+        "locations": [
+          "Kristoff's Stall",
+          "Wild Tangle"
+        ]
+      },
+      {
+        "name": "Antique Clothes Iron",
+        "method": "foraging",
+        "slot_max": 99,
+        "sale_price": 20,
+        "locations": [
+          "Glamour Gulch"
+        ]
+      },
+      {
+        "name": "Beady Soil",
+        "method": "digging",
+        "slot_max": 99,
+        "sale_price": 30,
+        "locations": [
+          "Glamour Gulch"
+        ]
+      },
+      {
+        "event": "Dreamlight Parks Fest",
+        "name": "Blue Button",
+        "method": "fishing",
+        "slot_max": 50,
+        "sale_price": 50,
+        "locations": [
+          "Peaceful Meadow",
+          "Dazzle Beach"
+        ]
+      },
+      {
+        "name": "Bones",
+        "slot_max": 99,
+        "method": [
+          "digging",
+          "fishing"
+        ],
+        "sale_price": 20,
+        "locations": [
+          "Glittering Dunes",
+          "Glittering Dunes (The Plains)",
+          "Glittering Dunes (The Wastes)",
+          "Glittering Dunes (The Borderlands)"
+        ]
+      },
+      {
+        "name": "Broken Weapon",
+        "method": [
+          "digging",
+          "purchase"
+        ],
+        "slot_max": 99,
+        "sale_price": 25,
+        "locations": [
+          "Kristoff's Stall",
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Clay",
+        "slot_max": 99,
+        "method": [
+          "digging",
+          "purchase"
+        ],
+        "sale_price": 20,
+        "locations": [
+          "Kristoff's Stall",
+          "Glade of Trust",
+          "Sunlit Plateau",
+          "Forgotten Lands",
+          "Pixie Acres"
+        ]
+      },
+      {
+        "name": "Coal Ore",
+        "slot_max": 99,
+        "method": "mining",
+        "locations": [
+          "All Biomes"
+        ]
+      },
+      {
+        "name": "Common Club Rush",
+        "method": "foraging",
+        "slot_max": 99,
+        "sale_price": 45,
+        "locations": [
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Copper",
+        "method": "foraging",
+        "slot_max": 99,
+        "sale_price": 15,
+        "locations": [
+          "Ancient's Landing",
+          "Glittering Dunes",
+          "Wild Tangle"
+        ]
+      },
+      {
+        "name": "Copter Seeds",
+        "method": "foraging",
+        "slot_max": 99,
+        "sale_price": 70,
+        "locations": [
+          "Pixie Acres"
+        ]
+      },
+      {
+        "name": "Cotton",
+        "method": "gardening",
+        "slot_max": 50,
+        "sale_price": 37,
+        "locations": [
+          "Sunlit Plateau"
+        ]
+      },
+      {
+        "name": "Crystal",
+        "method": "foraging",
+        "slot_max": 50,
+        "sale_price": 30,
+        "locations": [
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Dark Wood",
+        "slot_max": 99,
+        "method": "foraging",
+        "sale_price": 50,
+        "locations": [
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Dream Shard",
+        "method": "digging",
+        "slot_max": 99,
+        "locations": []
+      },
+      {
+        "name": "Dry Wood",
+        "slot_max": 99,
+        "method": [
+          "foraging",
+          "purchase"
+        ],
+        "sale_price": 25,
+        "locations": [
+          "Kristoff's Stall",
+          "Sunlit Plateau",
+          "Frosted Heights",
+          "Forgotten Lands",
+          "Wishing Alps"
+        ]
+      },
+      {
+        "name": "Fairy Bubbles",
+        "method": [
+          "digging",
+          "purchase"
+        ],
+        "slot_max": 99,
+        "sale_price": 15,
+        "locations": [
+          "Kristoff's Stall",
+          "Everafter"
+        ]
+      },
+      {
+        "event": "Gift of Giving",
+        "name": "Festive Wrapping Paper",
+        "method": "foraging",
+        "slot_max": 50,
+        "sale_price": 50,
+        "locations": [
+          "Plaza"
+        ]
+      },
+      {
+        "name": "Giant Acorns",
+        "method": "digging",
+        "slot_max": 99,
+        "sale_price": 35,
+        "locations": [
+          "Pixie Acres"
+        ]
+      },
+      {
+        "name": "Gold Nugget",
+        "slot_max": 99,
+        "method": "mining",
+        "locations": [
+          "Frosted Heights",
+          "Sunlit Plateau",
+          "Forgotten Lands",
+          "Vitalys Mine",
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Goose Feathers",
+        "method": [
+          "fishing",
+          "purchase"
+        ],
+        "slot_max": 99,
+        "locations": [
+          "Kristoff's Stall",
+          "Pixie Acres"
+        ]
+      },
+      {
+        "name": "Grassy Ore",
+        "method": [
+          "mining",
+          "purchase"
+        ],
+        "slot_max": 99,
+        "sale_price": 25,
+        "locations": [
+          "Kristoff's Stall",
+          "Pixie Acres"
+        ]
+      },
+      {
+        "name": "Gravel",
+        "method": [
+          "digging",
+          "purchase"
+        ],
+        "slot_max": 99,
+        "sale_price": 20,
+        "locations": [
+          "Kristoff's Stall",
+          "Mythopia"
+        ]
+      },
+      {
+        "event": "Dreamlight Parks Fest",
+        "name": "Green Button",
+        "method": "questing",
+        "slot_max": 50,
+        "sale_price": 50,
+        "locations": []
+      },
+      {
+        "name": "Hardwood",
+        "method": "foraging",
+        "slot_max": 99,
+        "sale_price": 10,
+        "locations": [
+          "Forest of Valor",
+          "Glade of Trust",
+          "Sunlit Plateau",
+          "Frosted Heights",
+          "Pixie Acres"
+        ]
+      },
+      {
+        "name": "Iron Ore",
+        "method": "mining",
+        "slot_max": 99,
+        "sale_price": 10,
+        "locations": [
+          "Forest of Valor",
+          "Glade of Trust",
+          "Sunlit Plateau",
+          "Frosted Heights",
+          "Forgotten Lands",
+          "Vitalys Mine",
+          "The Bind",
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Marble",
+        "method": [
+          "mining",
+          "purchase"
+        ],
+        "slot_max": 50,
+        "sale_price": 30,
+        "locations": [
+          "Mythopia",
+          "Kristoff's Stall"
+        ]
+      },
+      {
+        "name": "Moss",
+        "method": [
+          "foraging",
+          "purchase"
+        ],
+        "slot_max": 99,
+        "sale_price": 70,
+        "locations": [
+          "Kristoff's Stall",
+          "The Bind",
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Mud",
+        "method": [
+          "digging",
+          "purchase"
+        ],
+        "slot_max": 50,
+        "sale_price": 10,
+        "locations": [
+          "Kristoff's Stall",
+          "The Bind",
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Night Shard",
+        "method": "digging",
+        "slot_max": 50,
+        "locations": []
+      },
+      {
+        "name": "Oasis Glass",
+        "method": [
+          "digging",
+          "purchase"
+        ],
+        "slot_max": 50,
+        "sale_price": 20,
+        "locations": [
+          "Kristoff's Stall",
+          "Glittering Dunes"
+        ]
+      },
+      {
+        "name": "Pearl",
+        "method": "digging",
+        "slot_max": 50,
+        "sale_price": 10,
+        "locations": [
+          "Ancient's Landing"
+        ]
+      },
+      {
+        "name": "Pebbles",
+        "method": "digging",
+        "slot_max": 50,
+        "sale_price": 10,
+        "locations": [
+          "Dazzle Beach",
+          "Forest of Valor",
+          "Sunlit Plateau",
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Petrified Wood",
+        "method": [
+          "foraging",
+          "purchase"
+        ],
+        "slot_max": 50,
+        "sale_price": 20,
+        "locations": [
+          "The Bind",
+          "Everafter",
+          "Kristoff's Stall",
+          "Dazzle Beach",
+          "Forest of Valor",
+          "Sunlit Plateau",
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Pine Cone",
+        "method": [
+          "foraging",
+          "purchase"
+        ],
+        "slot_max": 50,
+        "sale_price": 80,
+        "locations": [
+          "Kristoff's Stall",
+          "The Bind"
+        ]
+      },
+      {
+        "event": "Multiplayer",
+        "name": "Pixel Shard",
+        "method": "questing",
+        "slot_max": 50,
+        "locations": []
+      },
+      {
+        "name": "Pixie Dust",
+        "method": "foraging",
+        "slot_max": 50,
+        "sale_price": 15,
+        "locations": [
+          "Wishing Alps",
+          "Glamour Gulch",
+          "Pixie Acres"
+        ]
+      },
+      {
+        "name": "Posidonia",
+        "method": "fishing",
+        "slot_max": 50,
+        "sale_price": 20,
+        "locations": [
+          "Mythopia"
+        ]
+      },
+      {
+        "event": "Dreamlight Parks Fest",
+        "name": "Purple Button",
+        "method": "crafting",
+        "slot_max": 50,
+        "sale_price": 50,
+        "locations": []
+      },
+      {
+        "name": "Quartz",
+        "method": "foraging",
+        "slot_max": 50,
+        "sale_price": 20,
+        "locations": [
+          "Ancient's Landing"
+        ]
+      },
+      {
+        "name": "Rainbow Rose Bouquet",
+        "slot_max": 50,
+        "method": "purchase",
+        "sale_price": 40,
+        "locations": [
+          "Beast's Greenhouse"
+        ]
+      },
+      {
+        "name": "Reclaimed Barn Wood",
+        "method": "foraging",
+        "slot_max": 50,
+        "sale_price": 30,
+        "locations": [
+          "Wishing Alps"
+        ]
+      },
+      {
+        "name": "Red Algae",
+        "method": "fishing",
+        "slot_max": 50,
+        "sale_price": 150,
+        "locations": [
+          "All Biomes"
+        ]
+      },
+      {
+        "event": "Dreamlight Parks Fest",
+        "name": "Red Button",
+        "method": "foraging",
+        "slot_max": 50,
+        "sale_price": 50,
+        "locations": []
+      },
+      {
+        "name": "Rich Soil",
+        "method": "gardening",
+        "slot_max": 50,
+        "sale_price": 25,
+        "locations": []
+      },
+      {
+        "name": "Rusty Hinge",
+        "slot_max": 50,
+        "method": "digging",
+        "sale_price": 25,
+        "locations": [
+          "Wishing Alps"
+        ]
+      },
+      {
+        "name": "Sand",
+        "method": [
+          "digging",
+          "purchase"
+        ],
+        "slot_max": 50,
+        "sale_price": 8,
+        "locations": [
+          "Kristoff's Stall",
+          "Dazzle Beach",
+          "Glittering Dunes"
+        ]
+      },
+      {
+        "name": "Scales",
+        "slot_max": 50,
+        "method": "crafting",
+        "locations": []
+      },
+      {
+        "name": "Sea Monster Tooth",
+        "method": "fishing",
+        "slot_max": 50,
+        "sale_price": 550,
+        "locations": [
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Sequin Strands",
+        "method": "foraging",
+        "slot_max": 50,
+        "sale_price": 50,
+        "locations": [
+          "Glamour Gulch"
+        ]
+      },
+      {
+        "name": "Silver Ore",
+        "method": "foraging",
+        "slot_max": 50,
+        "sale_price": 2,
+        "locations": [
+          "Wishing Alps"
+        ]
+      },
+      {
+        "name": "Snowball",
+        "method": [
+          "digging",
+          "purchase"
+        ],
+        "slot_max": 50,
+        "sale_price": 25,
+        "locations": [
+          "Kristoff's Stall",
+          "Frosted Heights",
+          "Wishing Alps"
+        ]
+      },
+      {
+        "name": "Softwood",
+        "method": [
+          "foraging",
+          "purchase"
+        ],
+        "slot_max": 50,
+        "sale_price": 5,
+        "locations": [
+          "Kristoff's Stall",
+          "Plaza",
+          "Peaceful Meadow",
+          "Forest of Valor",
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "Soil",
+        "method": "digging",
+        "slot_max": 50,
+        "sale_price": 3,
+        "locations": [
+          "Plaza",
+          "Peaceful Meadow",
+          "Forest of Valor",
+          "Glade of Trust",
+          "Sunlit Plateau",
+          "Frosted Heights",
+          "Forgotten Lands",
+          "Ancient's Landing",
+          "The Bind",
+          "Everafter",
+          "Pixie Acres"
+        ]
+      },
+      {
+        "event": "Springtime Floating Festival",
+        "name": "Springy Bamboo",
+        "method": "foraging",
+        "slot_max": 50,
+        "locations": []
+      },
+      {
+        "name": "Stone",
+        "method": [
+          "foraging",
+          "purchase"
+        ],
+        "slot_max": 50,
+        "sale_price": 2,
+        "locations": [
+          "Glamour Gulch",
+          "Kristoff's Stall",
+          "All Biomes"
+        ]
+      },
+      {
+        "event": "Lucky You!",
+        "name": "Three-Leaf Clover",
+        "method": "foraging",
+        "slot_max": 50,
+        "sale_price": 25,
+        "locations": [
+          "Plaza",
+          "Peaceful Meadow",
+          "Forest of Valor",
+          "Glade of Trust",
+          "Sunlit Plateau",
+          "Frosted Heights",
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Tin",
+        "method": "foraging",
+        "slot_max": 50,
+        "sale_price": 25,
+        "locations": [
+          "Glittering Dunes"
+        ]
+      },
+      {
+        "name": "Tropical Wood",
+        "method": "foraging",
+        "slot_max": 50,
+        "sale_price": 40,
+        "locations": [
+          "Wild Tangle"
+        ]
+      },
+      {
+        "name": "Volcanic Rock",
+        "method": [
+          "digging",
+          "purchase"
+        ],
+        "slot_max": 50,
+        "sale_price": 30,
+        "locations": [
+          "Kristoff's Stall",
+          "Everafter",
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Wrought Iron",
+        "method": "questing",
+        "slot_max": 50,
+        "sale_price": 200,
+        "locations": []
+      },
+      {
+        "name": "Zinc",
+        "method": "foraging",
+        "slot_max": 50,
+        "sale_price": 30,
+        "locations": [
+          "Wild Tangle"
+        ]
+      }
+    ],
+    "flowers": [
+      {
+        "name": "Beige Tale Cone Flower",
+        "availability": "ultra-rare",
+        "sale_price": 57,
+        "slot_max": 50,
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Black Glass-Like Flowers",
+        "availability": "ultra-rare",
+        "sale_price": 57,
+        "slot_max": 50,
+        "locations": [
+          "Glittering Dunes (The Plains)",
+          "Glittering Dunes (The Wastes)"
+        ]
+      },
+      {
+        "name": "Black Passion Lily",
+        "availability": "ultra-rare",
+        "sale_price": 79,
+        "slot_max": 50,
+        "locations": [
+          "Frosted Heights"
+        ]
+      },
+      {
+        "name": "Black Silk Flower",
+        "sale_price": 27,
+        "slot_max": 50,
+        "locations": [
+          "Glamour Gulch"
+        ]
+      },
+      {
+        "name": "Blue Falling Penstemon",
+        "availability": "average",
+        "sale_price": 23,
+        "slot_max": 50,
+        "locations": [
+          "Plaza"
+        ]
+      },
+      {
+        "name": "Blue Glass-Like Flowers",
+        "availability": "abundant",
+        "sale_price": 23,
+        "slot_max": 50,
+        "locations": [
+          "Glittering Dunes (The Plains)",
+          "Glittering Dunes (The Wastes)"
+        ]
+      },
+      {
+        "name": "Blue Hydrangea",
+        "availability": "average",
+        "sale_price": 28,
+        "slot_max": 50,
+        "locations": [
+          "Dazzle Beach"
+        ]
+      },
+      {
+        "name": "Blue Lily of the Valley",
+        "sale_price": 31,
+        "slot_max": 50,
+        "locations": [
+          "Pixie Acres"
+        ]
+      },
+      {
+        "name": "Blue Luminescent Flower",
+        "availability": "average",
+        "sale_price": 26,
+        "slot_max": 50,
+        "locations": [
+          "Ancient's Landing (The Overlook)",
+          "Ancient's Landing (The Ruins)"
+        ]
+      },
+      {
+        "name": "Blue Marsh Milkweed",
+        "availability": "rare",
+        "sale_price": 48,
+        "slot_max": 50,
+        "locations": [
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "Blue Passion Lily",
+        "availability": "rare",
+        "sale_price": 56,
+        "slot_max": 50,
+        "locations": [
+          "Frosted Heights"
+        ]
+      },
+      {
+        "name": "Blue Star Lily",
+        "availability": "average",
+        "sale_price": 30,
+        "slot_max": 50,
+        "locations": [
+          "Forest of Valor"
+        ]
+      },
+      {
+        "name": "Blue Tale Cone Flower",
+        "availability": "average",
+        "sale_price": 29,
+        "slot_max": 50,
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Crimson Eternal Poppies",
+        "availability": "abundant",
+        "sale_price": 27,
+        "slot_max": 50,
+        "locations": [
+          "Mythopia (The Elysian Fields)",
+          "Mythopia (Mount Olympus)"
+        ]
+      },
+      {
+        "name": "Dandelion",
+        "availability": "average",
+        "sale_price": 23,
+        "slot_max": 50,
+        "locations": [
+          "Plaza"
+        ]
+      },
+      {
+        "name": "Dusty Violet Rose",
+        "availability": "abundant",
+        "sale_price": 27,
+        "slot_max": 50,
+        "locations": [
+          "Everafter (The Wild Woods)",
+          "Everafter (The Beanstalk Marshes)"
+        ]
+      },
+      {
+        "event": "Dreamlight Parks Fest",
+        "name": "Flower Button",
+        "sale_price": 50,
+        "slot_max": 50,
+        "locations": [
+          "Peaceful Meadow",
+          "Plaza"
+        ]
+      },
+      {
+        "name": "Fuchsia Eternal Poppies",
+        "availability": "ultra-rare",
+        "sale_price": 73,
+        "slot_max": 50,
+        "locations": [
+          "Mythopia (The Fiery Plains)",
+          "Mythopia (Mount Olympus)"
+        ]
+      },
+      {
+        "name": "Goldenrod Eternal Poppies",
+        "availability": "average",
+        "sale_price": 35,
+        "slot_max": 50,
+        "locations": [
+          "Mythopia (The Fiery Plains)",
+          "Mythopia (The Statue's Shadow)"
+        ]
+      },
+      {
+        "name": "Green Fly Trap",
+        "availability": "ultra-rare",
+        "sale_price": 73,
+        "slot_max": 50,
+        "locations": [
+          "Wild Tangle (The Grasslands)",
+          "Wild Tangle (The Promenade)"
+        ]
+      },
+      {
+        "name": "Green Glass-Like Flowers",
+        "availability": "average",
+        "sale_price": 29,
+        "slot_max": 50,
+        "locations": [
+          "Glittering Dunes (The Plains)",
+          "Glittering Dunes (The Wastes)"
+        ]
+      },
+      {
+        "name": "Green Luminescent Flower",
+        "availability": "ultra-rare",
+        "sale_price": 49,
+        "slot_max": 50,
+        "locations": [
+          "Ancient's Landing (The Overlook)",
+          "Ancient's Landing (The Ruins)"
+        ]
+      },
+      {
+        "name": "Green Passion Lily",
+        "availability": "abundant",
+        "sale_price": 28,
+        "slot_max": 50,
+        "locations": [
+          "Frosted Heights"
+        ]
+      },
+      {
+        "name": "Green Rising Penstemon",
+        "availability": "rare",
+        "sale_price": 35,
+        "slot_max": 50,
+        "locations": [
+          "Peaceful Meadow"
+        ]
+      },
+      {
+        "name": "Green Silk Flower",
+        "sale_price": 73,
+        "slot_max": 50,
+        "locations": [
+          "Glamour Gulch"
+        ]
+      },
+      {
+        "name": "Olive Green Tale Cone Flower",
+        "availability": "rare",
+        "sale_price": 41,
+        "slot_max": 50,
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Orange & Red Marsh Milkweed",
+        "availability": "ultra-rare",
+        "sale_price": 66,
+        "slot_max": 50,
+        "locations": [
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "Orange Bird of Paradise",
+        "availability": "abundant",
+        "sale_price": 18,
+        "slot_max": 50,
+        "locations": [
+          "Ancient's Landing (The Docks)",
+          "Ancient's Landing (The Courtyard)"
+        ]
+      },
+      {
+        "name": "Orange Glass-Like Flowers",
+        "availability": "rare",
+        "sale_price": 41,
+        "slot_max": 50,
+        "locations": [
+          "Glittering Dunes (The Plains)",
+          "Glittering Dunes (The Wastes)"
+        ]
+      },
+      {
+        "name": "Orange Houseleek",
+        "availability": "rare",
+        "sale_price": 52,
+        "slot_max": 50,
+        "locations": [
+          "Sunlit Plateau"
+        ]
+      },
+      {
+        "name": "Orange Marsh Milkweed",
+        "availability": "average",
+        "sale_price": 33,
+        "slot_max": 50,
+        "locations": [
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "Orange Nasturtium",
+        "availability": "rare",
+        "sale_price": 60,
+        "slot_max": 50,
+        "locations": [
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Orange Pitcher Plant",
+        "availability": "average",
+        "sale_price": 39,
+        "slot_max": 50,
+        "locations": [
+          "Wild Tangle (The Grove)",
+          "Wild Tangle (The Lagoon)"
+        ]
+      },
+      {
+        "name": "Orange Star Lily",
+        "availability": "rare",
+        "sale_price": 43,
+        "slot_max": 50,
+        "locations": [
+          "Forest of Valor"
+        ]
+      },
+      {
+        "name": "Pink Bromeliad",
+        "availability": "abundant",
+        "sale_price": 27,
+        "slot_max": 50,
+        "locations": [
+          "Sunlit Plateau"
+        ]
+      },
+      {
+        "name": "Pink Cactus Flower",
+        "availability": "abundant",
+        "sale_price": 25,
+        "slot_max": 50,
+        "locations": [
+          "Glittering Dunes (The Oasis)",
+          "Glittering Dunes (The Borderlands)"
+        ]
+      },
+      {
+        "name": "Pink Crocus",
+        "sale_price": 23,
+        "slot_max": 50,
+        "locations": [
+          "Wishing Alps"
+        ]
+      },
+      {
+        "name": "Pink Houseleek",
+        "availability": "average",
+        "sale_price": 35,
+        "slot_max": 50,
+        "locations": [
+          "Sunlit Plateau"
+        ]
+      },
+      {
+        "name": "Pink Hydrangea",
+        "availability": "abundant",
+        "sale_price": 22,
+        "slot_max": 50,
+        "locations": [
+          "Dazzle Beach"
+        ]
+      },
+      {
+        "name": "Pink Lily of the Valley",
+        "sale_price": 41,
+        "slot_max": 50,
+        "locations": [
+          "Pixie Acres"
+        ]
+      },
+      {
+        "name": "Pink Luminescent Flower",
+        "availability": "rare",
+        "sale_price": 36,
+        "slot_max": 50,
+        "locations": [
+          "Ancient's Landing (The Overlook)",
+          "Ancient's Landing (The Ruins)"
+        ]
+      },
+      {
+        "name": "Pink Rose",
+        "availability": "ultra-rare",
+        "sale_price": 73,
+        "slot_max": 50,
+        "locations": [
+          "Everafter (Teapot Falls)",
+          "Everafter (The Beanstalk Marshes)"
+        ]
+      },
+      {
+        "name": "Purple Bell Flower",
+        "availability": "average",
+        "sale_price": 30,
+        "slot_max": 50,
+        "locations": [
+          "Forest of Valor"
+        ]
+      },
+      {
+        "name": "Purple Cactus Flower",
+        "availability": "ultra-rare",
+        "sale_price": 65,
+        "slot_max": 50,
+        "locations": [
+          "Glittering Dunes (The Oasis)",
+          "Glittering Dunes (The Borderlands)"
+        ]
+      },
+      {
+        "name": "Purple Crocus",
+        "sale_price": 29,
+        "slot_max": 50,
+        "locations": [
+          "Wishing Alps"
+        ]
+      },
+      {
+        "name": "Purple Falling Penstemon",
+        "availability": "average",
+        "sale_price": 23,
+        "slot_max": 50,
+        "locations": [
+          "Plaza"
+        ]
+      },
+      {
+        "name": "Purple Fly Trap",
+        "availability": "average",
+        "slot_max": 50,
+        "locations": [
+          "Wild Tangle (The Grasslands)",
+          "Wild Tangle (The Promenade)"
+        ]
+      },
+      {
+        "name": "Purple Hydrangea",
+        "availability": "rare",
+        "sale_price": 39,
+        "slot_max": 50,
+        "locations": [
+          "Dazzle Beach"
+        ]
+      },
+      {
+        "name": "Purple Impatiens",
+        "availability": "average",
+        "sale_price": 40,
+        "slot_max": 50,
+        "locations": [
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Purple Lily of the Valley",
+        "sale_price": 62,
+        "slot_max": 50,
+        "locations": [
+          "Pixie Acres"
+        ]
+      },
+      {
+        "name": "Purple Marsh Milkweed",
+        "availability": "abundant",
+        "sale_price": 25,
+        "slot_max": 50,
+        "locations": [
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "Purple Rising Penstemon",
+        "availability": "average",
+        "sale_price": 25,
+        "slot_max": 50,
+        "locations": [
+          "Peaceful Meadow"
+        ]
+      },
+      {
+        "name": "Red Bell Flower",
+        "availability": "abundant",
+        "sale_price": 23,
+        "slot_max": 50,
+        "locations": [
+          "Forest of Valor"
+        ]
+      },
+      {
+        "name": "Red Bromeliad",
+        "availability": "abundant",
+        "sale_price": 27,
+        "slot_max": 50,
+        "locations": [
+          "Sunlit Plateau"
+        ]
+      },
+      {
+        "name": "Red Daisy",
+        "availability": "ultra-rare",
+        "sale_price": 48,
+        "slot_max": 50,
+        "locations": [
+          "Peaceful Meadow"
+        ]
+      },
+      {
+        "name": "Red Falling Penstemon",
+        "availability": "abundant",
+        "sale_price": 18,
+        "slot_max": 50,
+        "locations": [
+          "Plaza"
+        ]
+      },
+      {
+        "name": "Red Luminescent Flower",
+        "availability": "abundant",
+        "sale_price": 20,
+        "slot_max": 50,
+        "locations": [
+          "Ancient's Landing (The Overlook)",
+          "Ancient's Landing (The Ruins)"
+        ]
+      },
+      {
+        "name": "Red Nasturtium",
+        "availability": "average",
+        "sale_price": 40,
+        "slot_max": 50,
+        "locations": [
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Red Passion Lily",
+        "availability": "average",
+        "sale_price": 38,
+        "slot_max": 50,
+        "locations": [
+          "Frosted Heights"
+        ]
+      },
+      {
+        "name": "Red Pitcher Plant",
+        "availability": "ultra-rare",
+        "sale_price": 82,
+        "slot_max": 50,
+        "locations": [
+          "Wild Tangle (The Grove)",
+          "Wild Tangle (The Lagoon)"
+        ]
+      },
+      {
+        "name": "Red Rose",
+        "sale_price": 35,
+        "slot_max": 50,
+        "locations": [
+          "Beast's Greenhouse"
+        ]
+      },
+      {
+        "name": "Red Silk Flower",
+        "sale_price": 35,
+        "slot_max": 50,
+        "locations": [
+          "Glamour Gulch"
+        ]
+      },
+      {
+        "name": "Silver Silk Flower",
+        "sale_price": 52,
+        "slot_max": 50,
+        "locations": [
+          "Glamour Gulch"
+        ]
+      },
+      {
+        "name": "Slate Gray Rose",
+        "availability": "average",
+        "sale_price": 35,
+        "slot_max": 50,
+        "locations": [
+          "Everafter (Teapot Falls)",
+          "Everafter (The Fallen Fortress)"
+        ]
+      },
+      {
+        "name": "Sunflower",
+        "availability": "average",
+        "sale_price": 28,
+        "slot_max": 50,
+        "locations": [
+          "Dazzle Beach"
+        ]
+      },
+      {
+        "name": "Teal Eternal Poppies",
+        "availability": "rare",
+        "sale_price": 52,
+        "slot_max": 50,
+        "locations": [
+          "Mythopia (The Elysian Fields)",
+          "Mythopia (The Statue's Shadow)"
+        ]
+      },
+      {
+        "name": "White & Pink Falling Penstemon",
+        "availability": "ultra-rare",
+        "sale_price": 41,
+        "slot_max": 50,
+        "locations": [
+          "Plaza"
+        ]
+      },
+      {
+        "name": "White & Red Hydrangea",
+        "availability": "ultra-rare",
+        "sale_price": 54,
+        "slot_max": 50,
+        "locations": [
+          "Dazzle Beach"
+        ]
+      },
+      {
+        "name": "White Bell Flower",
+        "availability": "ultra-rare",
+        "sale_price": 60,
+        "slot_max": 50,
+        "locations": [
+          "Forest of Valor"
+        ]
+      },
+      {
+        "name": "White Bird of Paradise",
+        "availability": "average",
+        "sale_price": 23,
+        "slot_max": 50,
+        "locations": [
+          "Ancient's Landing (The Docks)",
+          "Ancient's Landing (The Courtyard)"
+        ]
+      },
+      {
+        "name": "White Cactus Flower",
+        "availability": "rare",
+        "sale_price": 32,
+        "slot_max": 50,
+        "locations": [
+          "Glittering Dunes (The Oasis)",
+          "Glittering Dunes (The Borderlands)"
+        ]
+      },
+      {
+        "name": "White Crocus",
+        "sale_price": 41,
+        "slot_max": 50,
+        "locations": [
+          "Wishing Alps"
+        ]
+      },
+      {
+        "name": "White Daisy",
+        "availability": "rare",
+        "sale_price": 25,
+        "slot_max": 50,
+        "locations": [
+          "Peaceful Meadow"
+        ]
+      },
+      {
+        "name": "White Impatiens",
+        "availability": "abundant",
+        "sale_price": 30,
+        "slot_max": 50,
+        "locations": [
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "White Marsh Milkweed",
+        "availability": "average",
+        "sale_price": 33,
+        "slot_max": 50,
+        "locations": [
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "White Passion Lily",
+        "availability": "average",
+        "sale_price": 38,
+        "slot_max": 50,
+        "locations": [
+          "Frosted Heights"
+        ]
+      },
+      {
+        "name": "White Rose",
+        "availability": "rare",
+        "sale_price": 52,
+        "slot_max": 50,
+        "locations": [
+          "Everafter (The Wild Woods)",
+          "Everafter (The Fallen Fortress)"
+        ]
+      },
+      {
+        "name": "Yellow Bird of Paradise",
+        "availability": "ultra-rare",
+        "sale_price": 41,
+        "slot_max": 50,
+        "locations": [
+          "Ancient's Landing (The Docks)",
+          "Ancient's Landing (The Courtyard)"
+        ]
+      },
+      {
+        "name": "Yellow Bromeliad",
+        "availability": "ultra-rare",
+        "sale_price": 73,
+        "slot_max": 50,
+        "locations": [
+          "Sunlit Plateau"
+        ]
+      },
+      {
+        "name": "Yellow Cactus Flower",
+        "sale_price": 46,
+        "slot_max": 50,
+        "locations": [
+          "Glittering Dunes (The Oasis)",
+          "Glittering Dunes (The Borderlands)"
+        ]
+      },
+      {
+        "name": "Yellow Crocus",
+        "sale_price": 57,
+        "slot_max": 50,
+        "locations": [
+          "Wishing Alps"
+        ]
+      },
+      {
+        "name": "Yellow Daisy",
+        "availability": "abundant",
+        "sale_price": 20,
+        "slot_max": 50,
+        "locations": [
+          "Peaceful Meadow"
+        ]
+      },
+      {
+        "name": "Yellow Lily of the Valley",
+        "sale_price": 88,
+        "slot_max": 50,
+        "locations": [
+          "Pixie Acres"
+        ]
+      },
+      {
+        "name": "Yellow Nasturtium",
+        "availability": "ultra-rare",
+        "sale_price": 85,
+        "slot_max": 50,
+        "locations": [
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Yellow Pitcher Plant",
+        "availability": "abundant",
+        "sale_price": 29,
+        "slot_max": 50,
+        "locations": [
+          "Wild Tangle (The Grove)",
+          "Wild Tangle (The Lagoon)"
+        ]
+      },
+      {
+        "name": "Yellow Tale Cone Flowers",
+        "availability": "abundant",
+        "sale_price": 23,
+        "slot_max": 50,
+        "locations": [
+          "The Bind"
+        ]
+      }
+    ],
+    "gems": [
+      {
+        "name": "Alexandrite",
+        "method": "mining",
+        "locations": [
+          "Glittering Dunes (The Wastes)",
+          "Glittering Dunes (The Oasis)"
+        ]
+      },
+      {
+        "name": "Amethyst",
+        "method": "mining",
+        "locations": [
+          "Frosted Heights",
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Aquamarine",
+        "method": "mining",
+        "locations": [
+          "Dazzle Beach",
+          "Forest of Valor"
+        ]
+      },
+      {
+        "name": "Blue Zircon",
+        "method": "mining",
+        "locations": [
+          "Wild Tangle (The Lagoon)"
+        ]
+      },
+      {
+        "name": "Bumblestone",
+        "method": "mining",
+        "locations": [
+          "Glittering Dunes (The Borderlands)"
+        ]
+      },
+      {
+        "name": "Citrine",
+        "method": "mining",
+        "locations": [
+          "Glade of Trust",
+          "Sunlit Plateau"
+        ]
+      },
+      {
+        "name": "Diamond",
+        "method": "mining",
+        "locations": [
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Emerald",
+        "method": "mining",
+        "locations": [
+          "Forest of Valor",
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "Evergem",
+        "method": "mining",
+        "locations": [
+          "Ancient's Landing (The Ruins)"
+        ]
+      },
+      {
+        "name": "Garnet",
+        "method": "mining",
+        "locations": [
+          "Plaza",
+          "Peaceful Meadow",
+          "Glittering Dunes (The Plains)",
+          "Glittering Dunes (The Wastes)"
+        ]
+      },
+      {
+        "name": "Honeycomb Stone",
+        "method": "mining",
+        "locations": [
+          "Pixie Acres"
+        ]
+      },
+      {
+        "name": "Jade",
+        "method": "mining",
+        "locations": [
+          "Ancient's Landing (The Courtyard)",
+          "Ancient's Landing (The Overlook)"
+        ]
+      },
+      {
+        "name": "Jasper",
+        "method": "mining",
+        "locations": [
+          "Glamour Gulch"
+        ]
+      },
+      {
+        "name": "Magma",
+        "method": "mining",
+        "locations": [
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Onyx",
+        "method": "mining",
+        "locations": []
+      },
+      {
+        "name": "Opal",
+        "method": "mining",
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Peridot",
+        "method": "mining",
+        "locations": [
+          "Peaceful Meadow",
+          "Dazzle Beach",
+          "Wild Tangle (The Grasslands)",
+          "Wild Tangle (The Promenade)"
+        ]
+      },
+      {
+        "name": "Pure Ice",
+        "method": "mining",
+        "locations": [
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Pyrite",
+        "method": "mining",
+        "locations": [
+          "Wishing Alps"
+        ]
+      },
+      {
+        "name": "Ruby",
+        "method": "mining",
+        "locations": [
+          "Vitalys Mine",
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Sapphire",
+        "method": "mining",
+        "locations": [
+          "Vitalys Mine"
+        ]
+      },
+      {
+        "name": "Shiny Alexandrite",
+        "method": "mining",
+        "locations": [
+          "Glittering Dunes (The Wastes)",
+          "Glittering Dunes (The Oasis)"
+        ]
+      },
+      {
+        "name": "Shiny Amethyst",
+        "method": "mining",
+        "locations": [
+          "Frosted Heights",
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Shiny Aquamarine",
+        "method": "mining",
+        "locations": [
+          "Dazzle Beach",
+          "Forest of Valor"
+        ]
+      },
+      {
+        "name": "Shiny Blue Zircon",
+        "method": "mining",
+        "locations": [
+          "Wild Tangle (The Lagoon)"
+        ]
+      },
+      {
+        "name": "Shiny Bumblestone",
+        "method": "mining",
+        "locations": [
+          "Glittering Dunes (The Borderlands)"
+        ]
+      },
+      {
+        "name": "Shiny Citrine",
+        "method": "mining",
+        "locations": [
+          "Glade of Trust",
+          "Sunlit Plateau"
+        ]
+      },
+      {
+        "name": "Shiny Diamond",
+        "method": "mining",
+        "locations": [
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Shiny Emerald",
+        "method": "mining",
+        "locations": [
+          "Forest of Valor",
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "Shiny Evergem",
+        "method": "mining",
+        "locations": [
+          "Ancient's Landing (The Ruins)"
+        ]
+      },
+      {
+        "name": "Shiny Garnet",
+        "method": "mining",
+        "locations": [
+          "Plaza",
+          "Peaceful Meadow",
+          "Glittering Dunes (The Plains)",
+          "Glittering Dunes (The Wastes)"
+        ]
+      },
+      {
+        "name": "Shiny Honeycomb Stone",
+        "method": "mining",
+        "locations": [
+          "Pixie Acres"
+        ]
+      },
+      {
+        "name": "Shiny Jade",
+        "method": "mining",
+        "locations": [
+          "Ancient's Landing (The Courtyard)",
+          "Ancient's Landing (The Overlook)"
+        ]
+      },
+      {
+        "name": "Shiny Jasper",
+        "method": "mining",
+        "locations": [
+          "Glamour Gulch"
+        ]
+      },
+      {
+        "name": "Shiny Magma",
+        "method": "mining",
+        "locations": [
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Shiny Opal",
+        "method": "mining",
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Shiny Peridot",
+        "method": "mining",
+        "locations": [
+          "Peaceful Meadow",
+          "Dazzle Beach",
+          "Wild Tangle (The Grasslands)",
+          "Wild Tangle (The Promenade)"
+        ]
+      },
+      {
+        "name": "Shiny Pure Ice",
+        "method": "mining",
+        "locations": [
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Shiny Pyrite",
+        "method": "mining",
+        "locations": [
+          "Wishing Alps"
+        ]
+      },
+      {
+        "name": "Shiny Ruby",
+        "method": "mining",
+        "locations": [
+          "Vitalys Mine",
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Shiny Sapphire",
+        "method": "mining",
+        "locations": [
+          "Vitalys Mine"
+        ]
+      },
+      {
+        "name": "Shiny Spinel",
+        "method": "mining",
+        "locations": [
+          "Wild Tangle (The Promenade)",
+          "Wild Tangle (The Grove)"
+        ]
+      },
+      {
+        "name": "Shiny Star Sapphire",
+        "method": "mining",
+        "locations": [
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Shiny Topaz",
+        "method": "mining",
+        "locations": [
+          "Plaza",
+          "Ancient's Landing (The Docks)",
+          "Ancient's Landing (The Courtyard)",
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Shiny Tourmaline",
+        "method": "mining",
+        "locations": [
+          "Sunlit Plateau",
+          "Frosted Heights"
+        ]
+      },
+      {
+        "name": "Spinel",
+        "method": "mining",
+        "locations": [
+          "Wild Tangle (The Promenade)",
+          "Wild Tangle (The Grove)"
+        ]
+      },
+      {
+        "name": "Star Sapphire",
+        "method": "mining",
+        "locations": [
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Topaz",
+        "method": "mining",
+        "locations": [
+          "Plaza",
+          "Ancient's Landing (The Docks)",
+          "Ancient's Landing (The Courtyard)",
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Tourmaline",
+        "method": "mining",
+        "locations": [
+          "Sunlit Plateau",
+          "Frosted Heights"
+        ]
+      },
+      {
+        "name": "Vitalys Crystal",
+        "method": "mining",
+        "locations": [
+          "Vitalys Mine"
+        ]
+      }
+    ],
+    "ingredients": [
+      {
+        "name": "Agave",
+        "category": "sweet",
+        "method": "foraging",
+        "energy": 100,
+        "sale_price": 25,
+        "locations": [
+          "Glittering Dunes"
+        ]
+      },
+      {
+        "name": "Almonds",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 500,
+        "sale_price": 42,
+        "locations": [
+          "Wild Tangle"
+        ]
+      },
+      {
+        "name": "Ambrosia",
+        "category": "spice",
+        "method": "purchase",
+        "energy": 350,
+        "sale_price": 70,
+        "locations": [
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Anglerfish",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Forgotten Lands"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Apple",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 300,
+        "sale_price": 25,
+        "locations": [
+          "Plaza",
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Asparagus",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 42,
+        "sale_price": 133,
+        "locations": [
+          "Frosted Heights"
+        ]
+      },
+      {
+        "name": "Balloon Fish",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [],
+        "slot_max": 50
+      },
+      {
+        "name": "Bamboo",
+        "category": "vegetable",
+        "method": "foraging",
+        "energy": 155,
+        "sale_price": 80,
+        "locations": [
+          "Wild Tangle"
+        ]
+      },
+      {
+        "name": "Banana",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 350,
+        "sale_price": 29,
+        "locations": [
+          "Peaceful Meadow",
+          "Dazzle Beach",
+          "Realm: Moana"
+        ]
+      },
+      {
+        "name": "Barley",
+        "category": "grain",
+        "method": "gardening",
+        "energy": 19,
+        "sale_price": 15,
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Basil",
+        "category": "spice",
+        "method": "foraging",
+        "energy": 100,
+        "sale_price": 50,
+        "locations": [
+          "Peaceful Meadow"
+        ]
+      },
+      {
+        "name": "Bass",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Peaceful Meadow",
+          "Forest of Valor",
+          "Sunlit Plateau",
+          "Frosted Heights",
+          "Glittering Dunes (Oasis)",
+          "Wild Tangle"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Beans",
+        "category": "dairy",
+        "method": "gardening",
+        "energy": 41,
+        "sale_price": 49,
+        "locations": [
+          "Glittering Dunes"
+        ]
+      },
+      {
+        "name": "Beetroot",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 56,
+        "sale_price": 21,
+        "locations": [
+          "Wishblossom Mountains"
+        ]
+      },
+      {
+        "name": "Bell Pepper",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 79,
+        "sale_price": 33,
+        "locations": [
+          "Forest of Valor"
+        ]
+      },
+      {
+        "name": "Black Pepper",
+        "category": "spice",
+        "method": "gardening",
+        "energy": 33,
+        "sale_price": 83,
+        "locations": [
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Blue Marshmallow",
+        "category": "sweet",
+        "method": "foraging",
+        "event": "Summer Sizzle",
+        "energy": 450,
+        "sale_price": 50,
+        "locations": [
+          "Plaza",
+          "Peaceful Meadow",
+          "Dazzle Beach"
+        ]
+      },
+      {
+        "name": "Blueberry",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 350,
+        "sale_price": 29,
+        "locations": [
+          "Forest of Valor",
+          "Dazzle Beach"
+        ]
+      },
+      {
+        "name": "Bonsai Star Fruit",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 450,
+        "sale_price": 40,
+        "locations": [
+          "Pixie Acres"
+        ]
+      },
+      {
+        "name": "Bream",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Peaceful Meadow"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Brilliant Blue Starfish",
+        "category": "seafood",
+        "locations": [
+          "Glittering Dunes (The Oasis)"
+        ]
+      },
+      {
+        "name": "Broccoli",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 73,
+        "sale_price": 152,
+        "locations": [
+          "Glittering Dunes"
+        ]
+      },
+      {
+        "name": "Brussels Sprout",
+        "category": "vegetable",
+        "method": "foraging",
+        "energy": 400,
+        "sale_price": 30,
+        "locations": [
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Butter",
+        "category": "dairy",
+        "method": "purchase",
+        "energy": 285,
+        "sale_price": 190,
+        "locations": [
+          "Chez Remy",
+          "Tiana's Palace"
+        ]
+      },
+      {
+        "name": "Button Mushroom",
+        "category": "spice",
+        "method": "foraging",
+        "energy": 135,
+        "sale_price": 60,
+        "locations": [
+          "Glamour Gulch"
+        ]
+      },
+      {
+        "name": "Cabbage",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 142,
+        "sale_price": 256,
+        "locations": [
+          "Wild Tangle"
+        ]
+      },
+      {
+        "name": "Cactoberries",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 400,
+        "sale_price": 34,
+        "locations": [
+          "Glittering Dunes"
+        ]
+      },
+      {
+        "name": "Canola",
+        "category": "dairy",
+        "method": "gardening",
+        "energy": 59,
+        "sale_price": 109,
+        "locations": [
+          "Forest of Valor"
+        ]
+      },
+      {
+        "name": "Cape Gooseberry",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 130,
+        "sale_price": 55,
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Carp",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Forest of Valor",
+          "Sunlit Plateau"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Carrot",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 57,
+        "sale_price": 44,
+        "locations": [
+          "Peaceful Meadow"
+        ]
+      },
+      {
+        "name": "Catfish",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Peaceful Meadow"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Cauliflower",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 72,
+        "sale_price": 25,
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Celery",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 60,
+        "sale_price": 65,
+        "locations": [
+          "Ancient's Landing"
+        ]
+      },
+      {
+        "name": "Cheese",
+        "category": "dairy",
+        "method": "purchase",
+        "energy": 270,
+        "sale_price": 180,
+        "locations": [
+          "Chez Remy",
+          "Tiana's Palace"
+        ]
+      },
+      {
+        "name": "Cherry",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 500,
+        "sale_price": 42,
+        "locations": [
+          "Frosted Heights",
+          "Sunlit Plateau"
+        ]
+      },
+      {
+        "name": "Chia Seeds",
+        "category": "dairy",
+        "method": "gardening",
+        "energy": 19,
+        "sale_price": 6,
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Chili Pepper",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 140,
+        "sale_price": 78,
+        "locations": [
+          "Sunlit Plateau"
+        ]
+      },
+      {
+        "name": "Chrysanthemum Tea Leaves",
+        "category": "spice",
+        "method": "purchase",
+        "energy": 25,
+        "sale_price": 25,
+        "locations": [
+          "Mulan's Tea Stall"
+        ]
+      },
+      {
+        "name": "Cinnamon",
+        "category": "spice",
+        "method": "foraging",
+        "energy": 155,
+        "sale_price": 30,
+        "locations": [
+          "Wild Tangle",
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Clam",
+        "category": "seafood",
+        "method": "foraging",
+        "energy": 120,
+        "sale_price": 50,
+        "locations": [
+          "Dazzle Beach"
+        ]
+      },
+      {
+        "name": "Cocoa Bean",
+        "category": "sweet",
+        "method": "foraging",
+        "energy": 450,
+        "sale_price": 38,
+        "locations": [
+          "Sunlit Plateau",
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "Coconut",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 500,
+        "sale_price": 42,
+        "locations": [
+          "Dazzle Beach",
+          "Realm: Moana"
+        ]
+      },
+      {
+        "name": "Cod",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Dazzle Beach",
+          "Forgotten Lands",
+          "Glade of Trust",
+          "Ancient's Landing (The Docks)",
+          "Ancient's Landing (The Overlook)",
+          "Everafter",
+          "Glamour Gulch"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Coffee Bean",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 425,
+        "sale_price": 36,
+        "locations": [
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "Corn",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 30,
+        "sale_price": 16,
+        "locations": [
+          "Dazzle Beach"
+        ]
+      },
+      {
+        "name": "Cosmic Figs",
+        "category": "fruit",
+        "method": "gardening",
+        "energy": 52,
+        "sale_price": 22,
+        "locations": [
+          "Ancient's Landing"
+        ]
+      },
+      {
+        "name": "Crab",
+        "category": "seafood",
+        "locations": [
+          "Frosted Heights",
+          "Wishing Alps"
+        ]
+      },
+      {
+        "name": "Cucumber",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 145,
+        "sale_price": 159,
+        "locations": [
+          "Frosted Heights"
+        ]
+      },
+      {
+        "name": "Cumin",
+        "category": "spice",
+        "method": "foraging",
+        "energy": 90,
+        "sale_price": 15,
+        "locations": [
+          "Ancient's Landing"
+        ]
+      },
+      {
+        "name": "Dark Chocolate Coffee Beans",
+        "category": "fruit",
+        "method": "gardening",
+        "energy": 33,
+        "sale_price": 66,
+        "locations": [
+          "Wishblossom Mountains"
+        ]
+      },
+      {
+        "name": "Dates",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 350,
+        "sale_price": 29,
+        "locations": [
+          "Glittering Dunes"
+        ]
+      },
+      {
+        "name": "Dill",
+        "category": "spice",
+        "method": "foraging",
+        "energy": 115,
+        "sale_price": 40,
+        "locations": [
+          "Wishing Alps"
+        ]
+      },
+      {
+        "name": "Dreamango",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 600,
+        "sale_price": 50,
+        "locations": [
+          "Wild Tangle"
+        ]
+      },
+      {
+        "name": "Dreamlight Fruit",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 500,
+        "sale_price": 40,
+        "locations": [
+          "Sunlit Plateau"
+        ]
+      },
+      {
+        "name": "Dunebopper",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Glittering Dunes (The Oasis)"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Egg",
+        "category": "dairy",
+        "method": "purchase",
+        "energy": 330,
+        "sale_price": 220,
+        "locations": [
+          "Chez Remy",
+          "Tiana's Palace"
+        ]
+      },
+      {
+        "name": "Egg-cellent Fruit",
+        "category": "dairy",
+        "method": "foraging",
+        "energy": 100,
+        "sale_price": 25,
+        "locations": [
+          "Plaza"
+        ]
+      },
+      {
+        "name": "Eggplant",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 451,
+        "sale_price": 308,
+        "locations": [
+          "Frosted Heights"
+        ]
+      },
+      {
+        "name": "Electric Eel",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Wild Tangle (The Grasslands)",
+          "Wild Tangle (The Promenade)"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Elysian Grain",
+        "category": "grain",
+        "method": "purchase",
+        "energy": 50,
+        "sale_price": 130,
+        "locations": [
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Faerie Rye",
+        "category": "grain",
+        "method": "gardening",
+        "energy": 48,
+        "sale_price": 62,
+        "locations": [
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Fairy Kamut",
+        "category": "grain",
+        "method": "gardening",
+        "energy": 28,
+        "sale_price": 107,
+        "locations": [
+          "Wishblossom Mountains"
+        ]
+      },
+      {
+        "name": "Fairy Sprinkles",
+        "category": "spice",
+        "method": "foraging",
+        "energy": 155,
+        "sale_price": 80,
+        "locations": [
+          "Pixie Acres"
+        ]
+      },
+      {
+        "name": "Festive Anglerfish",
+        "category": "fish",
+        "method": "fishing",
+        "event": "Gift of Giving",
+        "energy": 2000,
+        "locations": [
+          "Forgotten Lands"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Festive Bass",
+        "category": "fish",
+        "method": "fishing",
+        "event": "Gift of Giving",
+        "energy": 150,
+        "locations": [
+          "Peaceful Meadow"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Festive Cocoa Bean",
+        "category": "sweet",
+        "method": "foraging",
+        "event": "Winter Floating Festival",
+        "energy": 100,
+        "sale_price": 50,
+        "locations": [
+          "Dreamlight Valley"
+        ]
+      },
+      {
+        "name": "Festive Fugu",
+        "category": "fish",
+        "method": "fishing",
+        "event": "Gift of Giving",
+        "energy": 1700,
+        "locations": [
+          "Dazzle Beach"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Festive Salmon",
+        "category": "fish",
+        "method": "fishing",
+        "event": "Gift of Giving",
+        "energy": 500,
+        "locations": [
+          "Sunlit Plateau"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Festive Squid",
+        "category": "seafood",
+        "event": "Gift of Giving",
+        "method": "fishing",
+        "energy": 1000,
+        "locations": [
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "Flute Root",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 46,
+        "sale_price": 112,
+        "locations": [
+          "Glittering Dunes"
+        ]
+      },
+      {
+        "name": "Flying Fish",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Mythopia"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Flyleaf Feta",
+        "category": "dairy",
+        "method": "purchase",
+        "energy": 100,
+        "sale_price": 75,
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Fugu",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Dazzle Beach"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Garlic",
+        "category": "spice",
+        "method": "foraging",
+        "energy": 135,
+        "sale_price": 50,
+        "locations": [
+          "Forest of Valor",
+          "Realm: Frozen"
+        ]
+      },
+      {
+        "name": "Ginger",
+        "category": "spice",
+        "method": "foraging",
+        "energy": 175,
+        "sale_price": 50,
+        "locations": [
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Golden Apple",
+        "category": "fruit",
+        "method": "purchase",
+        "energy": 250,
+        "sale_price": 110,
+        "locations": [
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Gooseberry",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 600,
+        "sale_price": 50,
+        "locations": [
+          "Frosted Heights",
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Grapes",
+        "category": "fruit",
+        "method": "gardening",
+        "energy": 21,
+        "sale_price": 9,
+        "locations": [
+          "Ancient's Landing"
+        ]
+      },
+      {
+        "name": "Green Beans",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 59,
+        "sale_price": 209,
+        "locations": [
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Here and There Fish",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Peaceful Meadow",
+          "Dazzle Beach",
+          "Glade of Trust",
+          "Forest of Valor",
+          "Sunlit Plateau",
+          "Frosted Heights",
+          "Forgotten Lands"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Herring",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Dazzle Beach",
+          "Glade of Trust"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Hippocampus",
+        "category": "seafood",
+        "locations": [
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Honey Coral",
+        "category": "sweet",
+        "locations": []
+      },
+      {
+        "name": "Honeydew Melon",
+        "category": "fruit",
+        "method": "gardening",
+        "energy": 123,
+        "sale_price": 125,
+        "locations": [
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Jasmine Tea Leaves",
+        "category": "spice",
+        "method": "purchase",
+        "energy": 25,
+        "sale_price": 25,
+        "locations": [
+          "Mulan's Tea Stall"
+        ]
+      },
+      {
+        "name": "Jellied Fish",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Glamour Gulch"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Kingfish",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Dazzle Beach"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Koi",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "The Bind"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Lamprey",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Everafter"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Lancetfish",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Forgotten Lands"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Leek",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 228,
+        "sale_price": 309,
+        "locations": [
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Lemon",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 400,
+        "sale_price": 33,
+        "locations": [
+          "Forest of Valor",
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "Lettuce",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 56,
+        "sale_price": 8,
+        "locations": [
+          "Peaceful Meadow"
+        ]
+      },
+      {
+        "name": "Lightning Spice",
+        "category": "spice",
+        "method": "foraging",
+        "energy": 140,
+        "sale_price": 65,
+        "locations": [
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Lobster",
+        "category": "seafood",
+        "locations": [
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "Lollipop Fruit",
+        "category": "fruit",
+        "method": "gardening",
+        "energy": 73,
+        "sale_price": 115,
+        "locations": [
+          "Wishblossom Mountains"
+        ]
+      },
+      {
+        "name": "Majestea",
+        "category": "spice",
+        "method": "foraging",
+        "energy": 105,
+        "sale_price": 30,
+        "locations": [
+          "Ancient's Landing"
+        ]
+      },
+      {
+        "name": "Measuring-Tape Snail",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Glamour Gulch"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Melon",
+        "category": "fruit",
+        "method": "gardening",
+        "energy": 88,
+        "sale_price": 93,
+        "locations": [
+          "Glittering Dunes"
+        ]
+      },
+      {
+        "name": "Milk",
+        "category": "dairy",
+        "method": "purchase",
+        "energy": 345,
+        "sale_price": 230,
+        "locations": [
+          "Chez Remy",
+          "Tiana's Palace"
+        ]
+      },
+      {
+        "name": "Mint",
+        "category": "spice",
+        "method": "foraging",
+        "energy": 155,
+        "sale_price": 50,
+        "locations": [
+          "Frosted Heights"
+        ]
+      },
+      {
+        "name": "Mountain Whitefish",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Wishing Alps"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Mushroom",
+        "category": "vegetable",
+        "method": "foraging",
+        "energy": 105,
+        "sale_price": 30,
+        "locations": [
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "Mussel",
+        "category": "seafood",
+        "method": "foraging",
+        "energy": 150,
+        "sale_price": 75,
+        "locations": [
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Nestling Pear",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 300,
+        "sale_price": 25,
+        "locations": [
+          "Ancient's Landing"
+        ]
+      },
+      {
+        "name": "Nutmeg",
+        "category": "spice",
+        "method": "foraging",
+        "energy": 450,
+        "sale_price": 45,
+        "locations": [
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Oats",
+        "category": "grain",
+        "method": "gardening",
+        "energy": 100,
+        "sale_price": 99,
+        "locations": [
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Octopus",
+        "category": "seafood",
+        "locations": [
+          "Ancient's Landing (The Docks)",
+          "Ancient's Landing (The Overlook)"
+        ]
+      },
+      {
+        "name": "Okra",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 31,
+        "sale_price": 114,
+        "locations": [
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "Olives",
+        "category": "dairy",
+        "method": "foraging",
+        "energy": 350,
+        "sale_price": 35,
+        "locations": [
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Onion",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 146,
+        "sale_price": 170,
+        "locations": [
+          "Forest of Valor"
+        ]
+      },
+      {
+        "name": "Oolong Tea Leaves",
+        "category": "spice",
+        "method": "purchase",
+        "energy": 25,
+        "sale_price": 25,
+        "locations": [
+          "Mulan's Tea Stall"
+        ]
+      },
+      {
+        "name": "Oregano",
+        "category": "spice",
+        "method": "foraging",
+        "energy": 95,
+        "sale_price": 50,
+        "locations": [
+          "Plaza"
+        ]
+      },
+      {
+        "name": "Oyster",
+        "category": "seafood",
+        "method": "foraging",
+        "energy": 250,
+        "sale_price": 50,
+        "locations": [
+          "Dazzle Beach"
+        ]
+      },
+      {
+        "name": "Paprika",
+        "category": "spice",
+        "method": "foraging",
+        "energy": 125,
+        "sale_price": 50,
+        "locations": [
+          "Glittering Dunes"
+        ]
+      },
+      {
+        "name": "Peanut",
+        "category": "dairy",
+        "method": "purchase",
+        "energy": 300,
+        "sale_price": 200,
+        "locations": [
+          "Chez Remy",
+          "Tiana's Palace"
+        ]
+      },
+      {
+        "name": "Pearly Barley",
+        "category": "grain",
+        "method": "gardening",
+        "energy": 39,
+        "sale_price": 45,
+        "locations": [
+          "Wishblossom Mountains"
+        ]
+      },
+      {
+        "name": "Perch",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Forest of Valor",
+          "Sunlit Plateau",
+          "Wild Tangle (The Grove)",
+          "Wild Tangle (The Lagoon)"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Persimmon",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 300,
+        "sale_price": 25,
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Pike",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Forest of Valor"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Pincushion Peach",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 400,
+        "sale_price": 38,
+        "locations": [
+          "Glamour Gulch"
+        ]
+      },
+      {
+        "name": "Pineapple",
+        "category": "fruit",
+        "method": "gardening",
+        "energy": 168,
+        "sale_price": 532,
+        "locations": [
+          "Wild Tangle"
+        ]
+      },
+      {
+        "name": "Pink Marshmallow",
+        "category": "sweet",
+        "method": "foraging",
+        "event": "Summer Sizzle",
+        "energy": 450,
+        "sale_price": 50,
+        "locations": [
+          "Plaza"
+        ]
+      },
+      {
+        "name": "Piranha",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Wild Tangle (The Lagoon)"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Pirarucu",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Wild Tangle (The Grasslands)",
+          "Wild Tangle (The Promenade)",
+          "Wild Tangle (The Grove)",
+          "Wild Tangle (The Lagoon)"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Plain Yogurt",
+        "category": "dairy",
+        "method": "purchase",
+        "energy": 300,
+        "sale_price": 120,
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Porcini Mushrooms",
+        "category": "vegetable",
+        "method": "foraging",
+        "energy": 130,
+        "sale_price": 55,
+        "locations": [
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Pork",
+        "category": "meat",
+        "method": "purchase",
+        "energy": 250,
+        "sale_price": 250,
+        "locations": [
+          "Glittering Dunes"
+        ]
+      },
+      {
+        "name": "Potato",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 113,
+        "sale_price": 126,
+        "locations": [
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Poultry",
+        "category": "meat",
+        "method": "purchase",
+        "energy": 250,
+        "sale_price": 500,
+        "locations": [
+          "Glittering Dunes"
+        ]
+      },
+      {
+        "name": "Pretty Pink Starfish",
+        "category": "seafood",
+        "locations": [
+          "Glittering Dunes (The Oasis)"
+        ]
+      },
+      {
+        "name": "Prisma Shrimp",
+        "category": "seafood",
+        "locations": [
+          "Wild Tangle (The Grove)"
+        ]
+      },
+      {
+        "name": "Pumpkin",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 187,
+        "sale_price": 664,
+        "locations": [
+          "Forgotten Lands"
+        ]
+      },
+      {
+        "name": "Radicchio",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 186,
+        "sale_price": 127,
+        "locations": [
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Radish",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 97,
+        "sale_price": 133,
+        "locations": [
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Rainbow Trout",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Peaceful Meadow",
+          "Forest of Valor",
+          "Everafter"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Raspberry",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 275,
+        "sale_price": 21,
+        "locations": [
+          "Plaza",
+          "Peaceful Meadow"
+        ]
+      },
+      {
+        "name": "Red Alpine Bass",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Wishing Alps"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Red Currants",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 350,
+        "sale_price": 33,
+        "locations": [
+          "Wishing Alps"
+        ]
+      },
+      {
+        "name": "Rhubarb",
+        "category": "fruit",
+        "method": "gardening",
+        "energy": 145,
+        "sale_price": 229,
+        "locations": [
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Rice",
+        "category": "grain",
+        "method": "gardening",
+        "energy": 59,
+        "sale_price": 61,
+        "locations": [
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "Ring Squash",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 32,
+        "sale_price": 41,
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Robot Fish",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Ancient's Landing (The Docks)",
+          "Ancient's Landing (The Overlook)"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Ruby Lentils",
+        "category": "dairy",
+        "method": "gardening",
+        "energy": 37,
+        "sale_price": 156,
+        "locations": [
+          "Wild Tangle"
+        ]
+      },
+      {
+        "name": "Salmon",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Frosted Heights",
+          "Sunlit Plateau",
+          "Wild Tangle (The Grasslands)",
+          "Wild Tangle (The Promenade)"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Salt Crystal",
+        "category": "spice",
+        "method": "fishing",
+        "energy": 25,
+        "sale_price": 20,
+        "locations": [
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Sand Fish",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Glittering Dunes (The Plains)",
+          "Glittering Dunes (The Wastes)",
+          "Glittering Dunes (The Borderlands)"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Sand Worm",
+        "category": "dairy",
+        "locations": [
+          "Glittering Dunes (The Plains)",
+          "Glittering Dunes (The Wastes)",
+          "Glittering Dunes (The Borderlands)"
+        ]
+      },
+      {
+        "name": "Satin-Finned Betta",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Glamour Gulch"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Scallop",
+        "category": "seafood",
+        "method": "foraging",
+        "energy": 125,
+        "sale_price": 50,
+        "locations": [
+          "Dazzle Beach"
+        ]
+      },
+      {
+        "name": "Scarlet Kale",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 69,
+        "sale_price": 29,
+        "locations": [
+          "Wishblossom Mountains"
+        ]
+      },
+      {
+        "name": "Scorpion",
+        "category": "dairy",
+        "locations": [
+          "Glittering Dunes (The Plains)",
+          "Glittering Dunes (The Wastes)",
+          "Glittering Dunes (The Borderlands)"
+        ]
+      },
+      {
+        "name": "Sea Grapes",
+        "category": "fruit",
+        "method": "fishing",
+        "energy": 25,
+        "sale_price": 20,
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Sea Snail",
+        "category": "seafood",
+        "locations": [
+          "Ancient's Landing (The Docks)",
+          "Ancient's Landing (The Overlook)"
+        ]
+      },
+      {
+        "name": "Sea Wolf",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "The Bind"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Seaweed",
+        "category": "vegetable",
+        "locations": []
+      },
+      {
+        "name": "Shad",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Ancient's Landing (The Docks)",
+          "Ancient's Landing (The Overlook)"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Shovel Bird Eggs",
+        "category": "dairy",
+        "method": "purchase",
+        "energy": 200,
+        "sale_price": 80,
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Shrimp",
+        "category": "seafood",
+        "locations": [
+          "Dazzle Beach"
+        ]
+      },
+      {
+        "name": "Skeleton Fish",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Glittering Dunes (The Plains)",
+          "Glittering Dunes (The Wastes)",
+          "Glittering Dunes (The Borderlands)"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Slush Ice",
+        "category": "ice",
+        "method": "purchase",
+        "energy": 225,
+        "sale_price": 150,
+        "locations": [
+          "Chez Remy",
+          "Tiana's Palace"
+        ]
+      },
+      {
+        "name": "Sole",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Forgotten Lands",
+          "Ancient's Landing (The Docks)",
+          "Ancient's Landing (The Overlook)"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Sorcerer Hat Hermit Crab",
+        "category": "seafood",
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Sour Berries",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 400,
+        "sale_price": 40,
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Soya",
+        "category": "dairy",
+        "method": "gardening",
+        "energy": 58,
+        "sale_price": 69,
+        "locations": [
+          "Sunlit Plateau"
+        ]
+      },
+      {
+        "name": "Spinach",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 60,
+        "sale_price": 41,
+        "locations": [
+          "Glade of Trust"
+        ]
+      },
+      {
+        "name": "Spiral Strawberries",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 500,
+        "sale_price": 50,
+        "locations": [
+          "Everafter"
+        ]
+      },
+      {
+        "name": "Spring V-EGG-etable",
+        "category": "dairy",
+        "method": "gardening",
+        "energy": 250,
+        "sale_price": 125,
+        "locations": [
+          "Dreamlight Valley"
+        ]
+      },
+      {
+        "name": "Squid",
+        "category": "seafood",
+        "locations": [
+          "Glade of Trust",
+          "Forgotten Lands",
+          "Mythopia"
+        ]
+      },
+      {
+        "name": "Strawberry",
+        "category": "fruit",
+        "method": "foraging",
+        "energy": 275,
+        "sale_price": 23,
+        "locations": [
+          "Ancient's Landing"
+        ]
+      },
+      {
+        "name": "Stygian Mudskipper",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Mythopia"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Sugarcane",
+        "category": "sweet",
+        "method": "gardening",
+        "energy": 46,
+        "sale_price": 19,
+        "locations": [
+          "Dazzle Beach"
+        ]
+      },
+      {
+        "name": "Swordfish",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Dazzle Beach"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Tigger Fish",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Pixie Acres"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Tilapia",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Sunlit Plateau",
+          "Frosted Heights",
+          "Pixie Acres"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Tomato",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 21,
+        "sale_price": 22,
+        "locations": [
+          "Dazzle Beach"
+        ]
+      },
+      {
+        "name": "Trumpet Snail",
+        "category": "seafood",
+        "method": "foraging",
+        "energy": 135,
+        "sale_price": 60,
+        "locations": [
+          "The Bind"
+        ]
+      },
+      {
+        "name": "Tuna",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Forgotten Lands",
+          "Glade of Trust",
+          "The Bind",
+          "Wishing Alps"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Turnip",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 263,
+        "sale_price": 187,
+        "locations": [
+          "Wild Tangle"
+        ]
+      },
+      {
+        "name": "Vanilla",
+        "category": "sweet",
+        "method": "foraging",
+        "energy": 135,
+        "sale_price": 50,
+        "locations": [
+          "Sunlit Plateau"
+        ]
+      },
+      {
+        "name": "Venison",
+        "category": "meat",
+        "method": "purchase",
+        "energy": 250,
+        "sale_price": 500,
+        "locations": [
+          "Glittering Dunes"
+        ]
+      },
+      {
+        "name": "Walleye",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Sunlit Plateau"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Wheat",
+        "category": "grain",
+        "method": "gardening",
+        "energy": 19,
+        "sale_price": 2,
+        "locations": [
+          "Peaceful Meadow"
+        ]
+      },
+      {
+        "name": "White Sturgeon",
+        "category": "fish",
+        "method": "fishing",
+        "locations": [
+          "Frosted Heights"
+        ],
+        "slot_max": 50
+      },
+      {
+        "name": "Wild Spring Egg",
+        "category": "dairy",
+        "method": "foraging",
+        "energy": 100,
+        "sale_price": 25,
+        "locations": [
+          "Dreamlight Valley"
+        ]
+      },
+      {
+        "name": "Yam",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 83,
+        "sale_price": 36,
+        "locations": [
+          "Ancient's Landing"
+        ]
+      },
+      {
+        "name": "Zucchini",
+        "category": "vegetable",
+        "method": "gardening",
+        "energy": 48,
+        "sale_price": 52,
+        "locations": [
+          "Sunlit Plateau"
+        ]
+      }
+    ]
+  }
+}

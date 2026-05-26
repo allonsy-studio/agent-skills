@@ -6,5 +6,5 @@
 		"moduleResolution": "NodeNext",
 		"target": "ESNext"
 	},
-	"include": ["*.js"]
+	"include": ["*.js", "_data/index.11tydata.js"]
 }

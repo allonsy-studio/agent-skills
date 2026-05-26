@@ -33,7 +33,7 @@ body {
 }
 
 [hidden] {
-	/* eslint-disable-next-line css/no-important */
+	 
 	display: none !important;
 }
 

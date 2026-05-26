@@ -1,0 +1,8976 @@
+{
+  "note": "star_rating equals base ingredient count (DDV convention). category=true means the ingredient slot accepts any ingredient of that category (e.g., any spice). energy and sale_price are for the BASE recipe; adding extra ingredients to open/category slots raises both. Use these for energy/profit optimization.",
+  "schema_version": 2,
+  "source": "VGC recipe list + Dreamlight Valley Wiki (Cooking/Meals), current to Wishblossom Mountains update",
+  "recipes": [
+    {
+      "name": "Arendellian Pickled Herring",
+      "course": "appetizer",
+      "star_rating": 5,
+      "energy": 1962,
+      "sale_price": 532,
+      "ingredients": [
+        {
+          "name": "herring"
+        },
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Bell Pepper Puffs",
+      "course": "appetizer",
+      "star_rating": 3,
+      "energy": 1272,
+      "sale_price": 606,
+      "ingredients": [
+        {
+          "name": "bell pepper"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Bunuelos",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 1881,
+      "sale_price": 948,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "egg"
+        }
+      ]
+    },
+    {
+      "name": "Cheese Platter",
+      "course": "appetizer",
+      "star_rating": 1,
+      "energy": 482,
+      "sale_price": 216,
+      "ingredients": [
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Chili Pepper Puffs",
+      "course": "appetizer",
+      "star_rating": 3,
+      "energy": 1382,
+      "sale_price": 669,
+      "ingredients": [
+        {
+          "name": "chili pepper"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Coffee",
+      "course": "appetizer",
+      "star_rating": 1,
+      "energy": 730,
+      "sale_price": 43,
+      "ingredients": [
+        {
+          "name": "coffee bean"
+        }
+      ]
+    },
+    {
+      "name": "Crackers",
+      "course": "appetizer",
+      "star_rating": 1,
+      "energy": 80,
+      "sale_price": 2,
+      "ingredients": [
+        {
+          "name": "grain",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Creamy Soup",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 1005,
+      "sale_price": 568,
+      "ingredients": [
+        {
+          "name": "spice",
+          "category": true
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "potato"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Crudites",
+      "course": "appetizer",
+      "star_rating": 1,
+      "energy": 83,
+      "sale_price": 26,
+      "ingredients": [
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Dream Fizz",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 1550,
+      "sale_price": 316,
+      "ingredients": [
+        {
+          "name": "dreamlight fruit"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "slush ice"
+        },
+        {
+          "name": "wheat"
+        }
+      ]
+    },
+    {
+      "name": "Eggplant Puffs",
+      "course": "appetizer",
+      "star_rating": 3,
+      "energy": 1941,
+      "sale_price": 991,
+      "ingredients": [
+        {
+          "name": "eggplant"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "French Fries",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 342,
+      "sale_price": 304,
+      "ingredients": [
+        {
+          "name": "canola"
+        },
+        {
+          "name": "potato"
+        }
+      ]
+    },
+    {
+      "name": "Gazpacho",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 688,
+      "sale_price": 548,
+      "ingredients": [
+        {
+          "name": "cucumber"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Green Salad",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 180,
+      "sale_price": 20,
+      "ingredients": [
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "lettuce"
+        }
+      ]
+    },
+    {
+      "name": "Grilled Vegetables",
+      "course": "appetizer",
+      "star_rating": 1,
+      "energy": 83,
+      "sale_price": 9,
+      "ingredients": [
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Grilled Veggie Platter",
+      "course": "appetizer",
+      "star_rating": 3,
+      "energy": 161,
+      "sale_price": 33,
+      "ingredients": [
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Hard-Boiled Eggs",
+      "course": "appetizer",
+      "star_rating": 1,
+      "energy": 578,
+      "sale_price": 264,
+      "ingredients": [
+        {
+          "name": "egg"
+        }
+      ]
+    },
+    {
+      "name": "Large Seafood Platter",
+      "course": "appetizer",
+      "star_rating": 5,
+      "energy": 1810,
+      "sale_price": 56,
+      "ingredients": [
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "seafood",
+          "category": true
+        },
+        {
+          "name": "seafood",
+          "category": true
+        },
+        {
+          "name": "seafood",
+          "category": true
+        },
+        {
+          "name": "seafood",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Latte",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 1358,
+      "sale_price": 345,
+      "ingredients": [
+        {
+          "name": "coffee bean"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Mocha",
+      "course": "appetizer",
+      "star_rating": 3,
+      "energy": 2246,
+      "sale_price": 425,
+      "ingredients": [
+        {
+          "name": "coffee bean"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "cocoa bean"
+        }
+      ]
+    },
+    {
+      "name": "Okra Soup",
+      "course": "appetizer",
+      "star_rating": 1,
+      "energy": 99,
+      "sale_price": 136,
+      "ingredients": [
+        {
+          "name": "okra"
+        }
+      ]
+    },
+    {
+      "name": "Onion Puffs",
+      "course": "appetizer",
+      "star_rating": 3,
+      "energy": 1392,
+      "sale_price": 798,
+      "ingredients": [
+        {
+          "name": "onion"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Oyster Platter",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 1155,
+      "sale_price": 107,
+      "ingredients": [
+        {
+          "name": "oyster"
+        },
+        {
+          "name": "lemon"
+        }
+      ]
+    },
+    {
+      "name": "Peppermint Tea",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 993,
+      "sale_price": 107,
+      "ingredients": [
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "mint"
+        }
+      ]
+    },
+    {
+      "name": "Pickled Herring",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 1609,
+      "sale_price": 423,
+      "ingredients": [
+        {
+          "name": "herring"
+        },
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Potato Leek Soup",
+      "course": "appetizer",
+      "star_rating": 5,
+      "energy": 1984,
+      "sale_price": 1415,
+      "ingredients": [
+        {
+          "name": "leek"
+        },
+        {
+          "name": "potato"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "garlic"
+        }
+      ]
+    },
+    {
+      "name": "Potato Puffs",
+      "course": "appetizer",
+      "star_rating": 3,
+      "energy": 1333,
+      "sale_price": 736,
+      "ingredients": [
+        {
+          "name": "potato"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Pottage",
+      "course": "appetizer",
+      "star_rating": 3,
+      "energy": 335,
+      "sale_price": 208,
+      "ingredients": [
+        {
+          "name": "potato"
+        },
+        {
+          "name": "spice",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Pumpkin Puffs",
+      "course": "appetizer",
+      "star_rating": 3,
+      "energy": 1466,
+      "sale_price": 1489,
+      "ingredients": [
+        {
+          "name": "pumpkin"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Pumpkin Soup",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 1431,
+      "sale_price": 1428,
+      "ingredients": [
+        {
+          "name": "pumpkin"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "ginger"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Puree",
+      "course": "appetizer",
+      "star_rating": 1,
+      "energy": 230,
+      "sale_price": 151,
+      "ingredients": [
+        {
+          "name": "potato"
+        }
+      ]
+    },
+    {
+      "name": "Roasted Asparagus",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 221,
+      "sale_price": 313,
+      "ingredients": [
+        {
+          "name": "asparagus"
+        },
+        {
+          "name": "canola"
+        }
+      ]
+    },
+    {
+      "name": "Salad",
+      "course": "appetizer",
+      "star_rating": 1,
+      "energy": 139,
+      "sale_price": 9,
+      "ingredients": [
+        {
+          "name": "lettuce"
+        }
+      ]
+    },
+    {
+      "name": "Sauteed Mushrooms",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 712,
+      "sale_price": 286,
+      "ingredients": [
+        {
+          "name": "mushroom"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Seafood Appetizer",
+      "course": "appetizer",
+      "star_rating": 1,
+      "energy": 242,
+      "sale_price": 1,
+      "ingredients": [
+        {
+          "name": "seafood",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Seafood Platter",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 458,
+      "sale_price": 2,
+      "ingredients": [
+        {
+          "name": "seafood",
+          "category": true
+        },
+        {
+          "name": "seafood",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Souffle",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 2386,
+      "sale_price": 1230,
+      "ingredients": [
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Sweet Herring",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 723,
+      "sale_price": 305,
+      "ingredients": [
+        {
+          "name": "herring"
+        },
+        {
+          "name": "onion"
+        }
+      ]
+    },
+    {
+      "name": "Tea Sandwiches",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 1378,
+      "sale_price": 91,
+      "ingredients": [
+        {
+          "name": "cherry"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "corn"
+        },
+        {
+          "name": "fish",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Tomato Soup",
+      "course": "appetizer",
+      "star_rating": 1,
+      "energy": 83,
+      "sale_price": 26,
+      "ingredients": [
+        {
+          "name": "tomato"
+        }
+      ]
+    },
+    {
+      "name": "Vegetable Soup",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 120,
+      "sale_price": 20,
+      "ingredients": [
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Zucchini Puffs",
+      "course": "appetizer",
+      "star_rating": 3,
+      "energy": 1216,
+      "sale_price": 632,
+      "ingredients": [
+        {
+          "name": "zucchini"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Arepas Con Queso",
+      "course": "appetizer",
+      "star_rating": 3,
+      "energy": 770,
+      "sale_price": 309,
+      "ingredients": [
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "agave"
+        },
+        {
+          "name": "corn"
+        }
+      ]
+    },
+    {
+      "name": "Baozi",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 718,
+      "sale_price": 503,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "soya"
+        },
+        {
+          "name": "pork"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Barbecued Brilliant Blue Starfish",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 3118,
+      "sale_price": 1202,
+      "ingredients": [
+        {
+          "name": "brilliant blue starfish"
+        },
+        {
+          "name": "mint"
+        }
+      ]
+    },
+    {
+      "name": "Barbecued Pretty Pink Starfish",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 2812,
+      "sale_price": 1202,
+      "ingredients": [
+        {
+          "name": "pretty pink starfish"
+        },
+        {
+          "name": "paprika"
+        }
+      ]
+    },
+    {
+      "name": "Bulgur Salad",
+      "course": "appetizer",
+      "star_rating": 5,
+      "energy": 780,
+      "sale_price": 396,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "spice",
+          "category": true
+        },
+        {
+          "name": "cucumber"
+        }
+      ]
+    },
+    {
+      "name": "Clam Juice",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 289,
+      "sale_price": 93,
+      "ingredients": [
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "clam"
+        }
+      ]
+    },
+    {
+      "name": "Coleslaw",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 387,
+      "sale_price": 389,
+      "ingredients": [
+        {
+          "name": "carrot"
+        },
+        {
+          "name": "cabbage"
+        }
+      ]
+    },
+    {
+      "name": "Conch Ceviche",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 2646,
+      "sale_price": 712,
+      "ingredients": [
+        {
+          "name": "onion"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "sea snail"
+        }
+      ]
+    },
+    {
+      "name": "Crab Melts",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 2549,
+      "sale_price": 1014,
+      "ingredients": [
+        {
+          "name": "crab"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Dumplings",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 710,
+      "sale_price": 493,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "meat",
+          "category": true
+        },
+        {
+          "name": "soya"
+        }
+      ]
+    },
+    {
+      "name": "Falafel",
+      "course": "appetizer",
+      "star_rating": 3,
+      "energy": 528,
+      "sale_price": 159,
+      "ingredients": [
+        {
+          "name": "beans"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "cumin"
+        }
+      ]
+    },
+    {
+      "name": "Nuts & Bolts",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 3195,
+      "sale_price": 866,
+      "ingredients": [
+        {
+          "name": "almonds"
+        },
+        {
+          "name": "robot fish"
+        }
+      ]
+    },
+    {
+      "name": "Roasted Almonds",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 1070,
+      "sale_price": 86,
+      "ingredients": [
+        {
+          "name": "agave"
+        },
+        {
+          "name": "almonds"
+        }
+      ]
+    },
+    {
+      "name": "Royal Ice Tea",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 610,
+      "sale_price": 234,
+      "ingredients": [
+        {
+          "name": "majestea"
+        },
+        {
+          "name": "slush ice"
+        }
+      ]
+    },
+    {
+      "name": "Royal Latte",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 814,
+      "sale_price": 338,
+      "ingredients": [
+        {
+          "name": "majestea"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Royal Tea",
+      "course": "appetizer",
+      "star_rating": 1,
+      "energy": 218,
+      "sale_price": 36,
+      "ingredients": [
+        {
+          "name": "majestea"
+        }
+      ]
+    },
+    {
+      "name": "Sand Worm Carpaccio Plate",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 3004,
+      "sale_price": 1160,
+      "ingredients": [
+        {
+          "name": "melon"
+        },
+        {
+          "name": "sand worm"
+        }
+      ]
+    },
+    {
+      "name": "Shad Ceviche",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 1696,
+      "sale_price": 427,
+      "ingredients": [
+        {
+          "name": "shad"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "lemon"
+        }
+      ]
+    },
+    {
+      "name": "Spicy Scorpion Skewer",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 1792,
+      "sale_price": 617,
+      "ingredients": [
+        {
+          "name": "scorpion"
+        },
+        {
+          "name": "paprika"
+        }
+      ]
+    },
+    {
+      "name": "Takoyaki Stick",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 2164,
+      "sale_price": 898,
+      "ingredients": [
+        {
+          "name": "seaweed"
+        },
+        {
+          "name": "octopus"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "soya"
+        }
+      ]
+    },
+    {
+      "name": "Thousand Needles",
+      "course": "appetizer",
+      "star_rating": 3,
+      "energy": 5000,
+      "sale_price": 2497,
+      "ingredients": [
+        {
+          "name": "brilliant blue starfish"
+        },
+        {
+          "name": "pretty pink starfish"
+        },
+        {
+          "name": "cactoberries"
+        }
+      ]
+    },
+    {
+      "name": "Tomato Basil Soup",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 255,
+      "sale_price": 93,
+      "ingredients": [
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "basil"
+        }
+      ]
+    },
+    {
+      "name": "Vegetarian Dumplings",
+      "course": "appetizer",
+      "star_rating": 3,
+      "energy": 225,
+      "sale_price": 109,
+      "ingredients": [
+        {
+          "name": "soya"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Ambrosia Smoothie",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 1155,
+      "sale_price": 247,
+      "ingredients": [
+        {
+          "name": "ambrosia"
+        },
+        {
+          "name": "plain yogurt"
+        }
+      ]
+    },
+    {
+      "name": "Baked Feta & Olives",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 815,
+      "sale_price": 142,
+      "ingredients": [
+        {
+          "name": "flyleaf feta"
+        },
+        {
+          "name": "olives"
+        }
+      ]
+    },
+    {
+      "name": "Cape Gooseberry Smoothie",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 781,
+      "sale_price": 227,
+      "ingredients": [
+        {
+          "name": "cape gooseberry"
+        },
+        {
+          "name": "plain yogurt"
+        }
+      ]
+    },
+    {
+      "name": "Faerie Rye Crackers",
+      "course": "appetizer",
+      "star_rating": 1,
+      "energy": 126,
+      "sale_price": 74,
+      "ingredients": [
+        {
+          "name": "faerie rye"
+        }
+      ]
+    },
+    {
+      "name": "Golden Apple Smoothie",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 985,
+      "sale_price": 299,
+      "ingredients": [
+        {
+          "name": "golden apple"
+        },
+        {
+          "name": "plain yogurt"
+        }
+      ]
+    },
+    {
+      "name": "Greek Potatoes",
+      "course": "appetizer",
+      "star_rating": 5,
+      "energy": 688,
+      "sale_price": 351,
+      "ingredients": [
+        {
+          "name": "potato"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "salt crystal"
+        },
+        {
+          "name": "fruit",
+          "category": true
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Honeydew Smoothie",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 769,
+      "sale_price": 318,
+      "ingredients": [
+        {
+          "name": "honeydew melon"
+        },
+        {
+          "name": "plain yogurt"
+        }
+      ]
+    },
+    {
+      "name": "Lightning Bolt",
+      "course": "appetizer",
+      "star_rating": 5,
+      "energy": 5000,
+      "sale_price": 5038,
+      "ingredients": [
+        {
+          "name": "lightning spice"
+        },
+        {
+          "name": "lightning spice"
+        },
+        {
+          "name": "lamprey"
+        },
+        {
+          "name": "stygian mudskipper"
+        },
+        {
+          "name": "sweet",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Olympian Tapenade",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 1090,
+      "sale_price": 456,
+      "ingredients": [
+        {
+          "name": "elysian grain"
+        },
+        {
+          "name": "honeydew melon"
+        },
+        {
+          "name": "olives"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Persimmon Smoothie",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 1070,
+      "sale_price": 188,
+      "ingredients": [
+        {
+          "name": "persimmon"
+        },
+        {
+          "name": "plain yogurt"
+        }
+      ]
+    },
+    {
+      "name": "Radicchio Slaw",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 835,
+      "sale_price": 739,
+      "ingredients": [
+        {
+          "name": "radicchio"
+        },
+        {
+          "name": "cauliflower"
+        },
+        {
+          "name": "radish"
+        },
+        {
+          "name": "green beans"
+        }
+      ]
+    },
+    {
+      "name": "Sauteed Porcini",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 500,
+      "sale_price": 136,
+      "ingredients": [
+        {
+          "name": "porcini mushrooms"
+        },
+        {
+          "name": "garlic"
+        }
+      ]
+    },
+    {
+      "name": "Simple Chia Pudding",
+      "course": "appetizer",
+      "star_rating": 1,
+      "energy": 80,
+      "sale_price": 7,
+      "ingredients": [
+        {
+          "name": "chia seeds"
+        }
+      ]
+    },
+    {
+      "name": "Sparkling Ambrosia",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 883,
+      "sale_price": 175,
+      "ingredients": [
+        {
+          "name": "ambrosia"
+        },
+        {
+          "name": "lightning spice"
+        }
+      ]
+    },
+    {
+      "name": "Spiral Strawberry Smoothie",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 1410,
+      "sale_price": 221,
+      "ingredients": [
+        {
+          "name": "spiral strawberries"
+        },
+        {
+          "name": "plain yogurt"
+        }
+      ]
+    },
+    {
+      "name": "Tzatziki",
+      "course": "appetizer",
+      "star_rating": 3,
+      "energy": 1094,
+      "sale_price": 460,
+      "ingredients": [
+        {
+          "name": "cucumber"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "plain yogurt"
+        }
+      ]
+    },
+    {
+      "name": "Apple Cider Glazed Salmon",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 1572,
+      "sale_price": 271,
+      "ingredients": [
+        {
+          "name": "apple"
+        },
+        {
+          "name": "salmon"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Baked Carp",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 1894,
+      "sale_price": 767,
+      "ingredients": [
+        {
+          "name": "carp"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Basil Omelet",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 2035,
+      "sale_price": 1020,
+      "ingredients": [
+        {
+          "name": "basil"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Bouillabaisse",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 2114,
+      "sale_price": 529,
+      "ingredients": [
+        {
+          "name": "seafood",
+          "category": true
+        },
+        {
+          "name": "seafood",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "shrimp"
+        },
+        {
+          "name": "tomato"
+        }
+      ]
+    },
+    {
+      "name": "Carp Salad",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 2310,
+      "sale_price": 617,
+      "ingredients": [
+        {
+          "name": "carp"
+        },
+        {
+          "name": "lettuce"
+        },
+        {
+          "name": "lemon"
+        }
+      ]
+    },
+    {
+      "name": "Cheesy Crispy Baked Cod",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 840,
+      "sale_price": 303,
+      "ingredients": [
+        {
+          "name": "cod"
+        },
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "wheat"
+        }
+      ]
+    },
+    {
+      "name": "Chowder",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1186,
+      "sale_price": 547,
+      "ingredients": [
+        {
+          "name": "potato"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "seafood",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Creamy Garlic Scallops",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1844,
+      "sale_price": 484,
+      "ingredients": [
+        {
+          "name": "scallop"
+        },
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "garlic"
+        }
+      ]
+    },
+    {
+      "name": "Crispy Baked Cod",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 337,
+      "sale_price": 47,
+      "ingredients": [
+        {
+          "name": "cod"
+        },
+        {
+          "name": "wheat"
+        }
+      ]
+    },
+    {
+      "name": "Fish Creole",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 822,
+      "sale_price": 225,
+      "ingredients": [
+        {
+          "name": "fish",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "rice"
+        },
+        {
+          "name": "garlic"
+        }
+      ]
+    },
+    {
+      "name": "Fish 'n' Chips",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 697,
+      "sale_price": 356,
+      "ingredients": [
+        {
+          "name": "fish",
+          "category": true
+        },
+        {
+          "name": "potato"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "canola"
+        }
+      ]
+    },
+    {
+      "name": "Fish Pasta",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1282,
+      "sale_price": 424,
+      "ingredients": [
+        {
+          "name": "fish",
+          "category": true
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "garlic"
+        }
+      ]
+    },
+    {
+      "name": "Fish Pie",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 867,
+      "sale_price": 269,
+      "ingredients": [
+        {
+          "name": "fish",
+          "category": true
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Fish Risotto",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 939,
+      "sale_price": 352,
+      "ingredients": [
+        {
+          "name": "fish",
+          "category": true
+        },
+        {
+          "name": "rice"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Fish Salad",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 1140,
+      "sale_price": 58,
+      "ingredients": [
+        {
+          "name": "fish",
+          "category": true
+        },
+        {
+          "name": "lettuce"
+        },
+        {
+          "name": "lemon"
+        }
+      ]
+    },
+    {
+      "name": "Fish Sandwiches",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 337,
+      "sale_price": 3,
+      "ingredients": [
+        {
+          "name": "fish",
+          "category": true
+        },
+        {
+          "name": "wheat"
+        }
+      ]
+    },
+    {
+      "name": "Fish Soup",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 978,
+      "sale_price": 334,
+      "ingredients": [
+        {
+          "name": "fish",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Fish Steak",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 537,
+      "sale_price": 101,
+      "ingredients": [
+        {
+          "name": "fish",
+          "category": true
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "basil"
+        }
+      ]
+    },
+    {
+      "name": "Fish Tacos",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1171,
+      "sale_price": 412,
+      "ingredients": [
+        {
+          "name": "fish",
+          "category": true
+        },
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "corn"
+        },
+        {
+          "name": "chili pepper"
+        }
+      ]
+    },
+    {
+      "name": "Fugu Sushi",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 3261,
+      "sale_price": 1373,
+      "ingredients": [
+        {
+          "name": "fugu"
+        },
+        {
+          "name": "rice"
+        },
+        {
+          "name": "seaweed"
+        }
+      ]
+    },
+    {
+      "name": "Ghostly Fish Steak",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 3282,
+      "sale_price": 3548,
+      "ingredients": [
+        {
+          "name": "asparagus"
+        },
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "oregano"
+        },
+        {
+          "name": "bell pepper"
+        },
+        {
+          "name": "here and there fish"
+        }
+      ]
+    },
+    {
+      "name": "Greek Pizza",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1012,
+      "sale_price": 622,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Grilled Fish",
+      "course": "entree",
+      "star_rating": 1,
+      "energy": 290,
+      "sale_price": 1,
+      "ingredients": [
+        {
+          "name": "fish",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Grilled Fish Entree",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 340,
+      "sale_price": 11,
+      "ingredients": [
+        {
+          "name": "fish",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Gumbo",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 2226,
+      "sale_price": 1093,
+      "ingredients": [
+        {
+          "name": "shrimp"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "chili pepper"
+        },
+        {
+          "name": "okra"
+        }
+      ]
+    },
+    {
+      "name": "Hearty Salad",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 224,
+      "sale_price": 33,
+      "ingredients": [
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "lettuce"
+        }
+      ]
+    },
+    {
+      "name": "Hors d'Oeuvres",
+      "course": "entree",
+      "star_rating": 1,
+      "energy": 90,
+      "sale_price": 18,
+      "ingredients": [
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Kappa Maki",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 462,
+      "sale_price": 335,
+      "ingredients": [
+        {
+          "name": "rice"
+        },
+        {
+          "name": "cucumber"
+        },
+        {
+          "name": "seaweed"
+        }
+      ]
+    },
+    {
+      "name": "Kronk's Spinach Puffs",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 750,
+      "sale_price": 461,
+      "ingredients": [
+        {
+          "name": "spinach"
+        },
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "canola"
+        }
+      ]
+    },
+    {
+      "name": "Lancetfish Paella",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 4550,
+      "sale_price": 1653,
+      "ingredients": [
+        {
+          "name": "lancetfish"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "rice"
+        },
+        {
+          "name": "shrimp"
+        },
+        {
+          "name": "seafood",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Leek Soup",
+      "course": "entree",
+      "star_rating": 1,
+      "energy": 414,
+      "sale_price": 370,
+      "ingredients": [
+        {
+          "name": "leek"
+        }
+      ]
+    },
+    {
+      "name": "Lemon Garlic Swordfish",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 3713,
+      "sale_price": 1096,
+      "ingredients": [
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "swordfish"
+        }
+      ]
+    },
+    {
+      "name": "Lioness Feast",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 2368,
+      "sale_price": 3108,
+      "ingredients": [
+        {
+          "name": "mushroom"
+        },
+        {
+          "name": "oregano"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "here and there fish"
+        }
+      ]
+    },
+    {
+      "name": "Lobster Roll",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 4928,
+      "sale_price": 1959,
+      "ingredients": [
+        {
+          "name": "lobster"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "garlic"
+        }
+      ]
+    },
+    {
+      "name": "Maguro Sushi",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1206,
+      "sale_price": 338,
+      "ingredients": [
+        {
+          "name": "tuna"
+        },
+        {
+          "name": "seaweed"
+        },
+        {
+          "name": "rice"
+        },
+        {
+          "name": "ginger"
+        }
+      ]
+    },
+    {
+      "name": "Maki",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 471,
+      "sale_price": 114,
+      "ingredients": [
+        {
+          "name": "fish",
+          "category": true
+        },
+        {
+          "name": "seaweed"
+        },
+        {
+          "name": "rice"
+        }
+      ]
+    },
+    {
+      "name": "Margherita Pizza",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 685,
+      "sale_price": 328,
+      "ingredients": [
+        {
+          "name": "spice",
+          "category": true
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Marvelous Jam",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 932,
+      "sale_price": 54,
+      "ingredients": [
+        {
+          "name": "dreamlight fruit"
+        },
+        {
+          "name": "wheat"
+        }
+      ]
+    },
+    {
+      "name": "Mediterranean Salad",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 836,
+      "sale_price": 597,
+      "ingredients": [
+        {
+          "name": "cucumber"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "lettuce"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Mushroom Pizza",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 837,
+      "sale_price": 351,
+      "ingredients": [
+        {
+          "name": "mushroom"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Mushu's Congee",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1658,
+      "sale_price": 657,
+      "ingredients": [
+        {
+          "name": "rice"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "mushroom"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "ginger"
+        }
+      ]
+    },
+    {
+      "name": "Omelet",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 1751,
+      "sale_price": 882,
+      "ingredients": [
+        {
+          "name": "egg"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Pan-Fried Angler Fish",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 4194,
+      "sale_price": 2550,
+      "ingredients": [
+        {
+          "name": "anglerfish"
+        },
+        {
+          "name": "zucchini"
+        },
+        {
+          "name": "potato"
+        },
+        {
+          "name": "tomato"
+        }
+      ]
+    },
+    {
+      "name": "Pan-Seared Bass & Vegetables",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 394,
+      "sale_price": 57,
+      "ingredients": [
+        {
+          "name": "bass"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Pan-Seared Tilapia & Vegetables",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 2194,
+      "sale_price": 862,
+      "ingredients": [
+        {
+          "name": "tilapia"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Pasta",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 117,
+      "sale_price": 30,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "tomato"
+        }
+      ]
+    },
+    {
+      "name": "Peanut Butter Sandwich",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 592,
+      "sale_price": 262,
+      "ingredients": [
+        {
+          "name": "peanut"
+        },
+        {
+          "name": "wheat"
+        }
+      ]
+    },
+    {
+      "name": "Pizza",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 607,
+      "sale_price": 284,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Poached Basil-Butter Sturgeon",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 4961,
+      "sale_price": 2284,
+      "ingredients": [
+        {
+          "name": "white sturgeon"
+        },
+        {
+          "name": "basil"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "lemon"
+        }
+      ]
+    },
+    {
+      "name": "Ranch Salad",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 714,
+      "sale_price": 396,
+      "ingredients": [
+        {
+          "name": "lettuce"
+        },
+        {
+          "name": "corn"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "bell pepper"
+        },
+        {
+          "name": "onion"
+        }
+      ]
+    },
+    {
+      "name": "Ratatouille",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1432,
+      "sale_price": 906,
+      "ingredients": [
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "eggplant"
+        },
+        {
+          "name": "zucchini"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Sake Maki",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 1101,
+      "sale_price": 323,
+      "ingredients": [
+        {
+          "name": "salmon"
+        },
+        {
+          "name": "seaweed"
+        },
+        {
+          "name": "rice"
+        }
+      ]
+    },
+    {
+      "name": "Sake Sushi",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 1000,
+      "sale_price": 274,
+      "ingredients": [
+        {
+          "name": "salmon"
+        },
+        {
+          "name": "rice"
+        }
+      ]
+    },
+    {
+      "name": "Savory Fish",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 985,
+      "sale_price": 43,
+      "ingredients": [
+        {
+          "name": "fish",
+          "category": true
+        },
+        {
+          "name": "lemon"
+        }
+      ]
+    },
+    {
+      "name": "Scrambled Egg",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 1070,
+      "sale_price": 520,
+      "ingredients": [
+        {
+          "name": "egg"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Seafood Pasta",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 921,
+      "sale_price": 325,
+      "ingredients": [
+        {
+          "name": "seafood",
+          "category": true
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Seafood Pie",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 813,
+      "sale_price": 269,
+      "ingredients": [
+        {
+          "name": "seafood",
+          "category": true
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Seafood Salad",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 349,
+      "sale_price": 11,
+      "ingredients": [
+        {
+          "name": "seafood",
+          "category": true
+        },
+        {
+          "name": "lettuce"
+        }
+      ]
+    },
+    {
+      "name": "Seafood Soup",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 340,
+      "sale_price": 23,
+      "ingredients": [
+        {
+          "name": "seafood",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Seared Rainbow Trout",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 889,
+      "sale_price": 338,
+      "ingredients": [
+        {
+          "name": "rainbow trout"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "tomato"
+        }
+      ]
+    },
+    {
+      "name": "Simple Fried Perch",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 1317,
+      "sale_price": 380,
+      "ingredients": [
+        {
+          "name": "perch"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "wheat"
+        }
+      ]
+    },
+    {
+      "name": "Smoked Peanuts and Anglerfish",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 3960,
+      "sale_price": 2210,
+      "ingredients": [
+        {
+          "name": "peanut"
+        },
+        {
+          "name": "anglerfish"
+        }
+      ]
+    },
+    {
+      "name": "Sole Meuniere",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 2337,
+      "sale_price": 637,
+      "ingredients": [
+        {
+          "name": "sole"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "lemon"
+        }
+      ]
+    },
+    {
+      "name": "Spaghetti Arrabbiata",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 373,
+      "sale_price": 141,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "chili pepper"
+        }
+      ]
+    },
+    {
+      "name": "Spicy Baked Bream",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 2075,
+      "sale_price": 767,
+      "ingredients": [
+        {
+          "name": "bream"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "chili pepper"
+        }
+      ]
+    },
+    {
+      "name": "Steamed Fugu",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 3668,
+      "sale_price": 1400,
+      "ingredients": [
+        {
+          "name": "fugu"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "ginger"
+        }
+      ]
+    },
+    {
+      "name": "Sushi",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 405,
+      "sale_price": 80,
+      "ingredients": [
+        {
+          "name": "fish",
+          "category": true
+        },
+        {
+          "name": "rice"
+        }
+      ]
+    },
+    {
+      "name": "Sweet & Sour Kingfish Steak",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 2292,
+      "sale_price": 702,
+      "ingredients": [
+        {
+          "name": "kingfish"
+        },
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Sweet Udon",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1427,
+      "sale_price": 180,
+      "ingredients": [
+        {
+          "name": "dreamlight fruit"
+        },
+        {
+          "name": "rice"
+        },
+        {
+          "name": "seafood",
+          "category": true
+        },
+        {
+          "name": "sweet",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Tamagoyaki",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 689,
+      "sale_price": 310,
+      "ingredients": [
+        {
+          "name": "egg"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Tasty Salad",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 517,
+      "sale_price": 284,
+      "ingredients": [
+        {
+          "name": "lettuce"
+        },
+        {
+          "name": "cucumber"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Tasty Veggies",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 127,
+      "sale_price": 29,
+      "ingredients": [
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Tekka Maki",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 984,
+      "sale_price": 366,
+      "ingredients": [
+        {
+          "name": "tuna"
+        },
+        {
+          "name": "seaweed"
+        },
+        {
+          "name": "rice"
+        },
+        {
+          "name": "soya"
+        }
+      ]
+    },
+    {
+      "name": "Teriyaki Salmon",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1726,
+      "sale_price": 557,
+      "ingredients": [
+        {
+          "name": "salmon"
+        },
+        {
+          "name": "rice"
+        },
+        {
+          "name": "ginger"
+        },
+        {
+          "name": "soya"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Tuna Burger",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1922,
+      "sale_price": 491,
+      "ingredients": [
+        {
+          "name": "tuna"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Vegetarian Pizza",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 754,
+      "sale_price": 350,
+      "ingredients": [
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "tomato"
+        }
+      ]
+    },
+    {
+      "name": "Vegetarian Stew",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 617,
+      "sale_price": 475,
+      "ingredients": [
+        {
+          "name": "potato"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "carrot"
+        }
+      ]
+    },
+    {
+      "name": "Vegetarian Taco",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 925,
+      "sale_price": 423,
+      "ingredients": [
+        {
+          "name": "corn"
+        },
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "chili pepper"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Veggie Casserole",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 688,
+      "sale_price": 316,
+      "ingredients": [
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "spice",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Veggie Pasta",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 158,
+      "sale_price": 43,
+      "ingredients": [
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "tomato"
+        }
+      ]
+    },
+    {
+      "name": "Veggie Pie",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 634,
+      "sale_price": 279,
+      "ingredients": [
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Veggie Skewers",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 767,
+      "sale_price": 427,
+      "ingredients": [
+        {
+          "name": "mushroom"
+        },
+        {
+          "name": "bell pepper"
+        },
+        {
+          "name": "zucchini"
+        },
+        {
+          "name": "onion"
+        }
+      ]
+    },
+    {
+      "name": "Walleye en Papillote",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 3689,
+      "sale_price": 1812,
+      "ingredients": [
+        {
+          "name": "walleye"
+        },
+        {
+          "name": "basil"
+        },
+        {
+          "name": "oregano"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Ajiaco",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 757,
+      "sale_price": 898,
+      "ingredients": [
+        {
+          "name": "potato"
+        },
+        {
+          "name": "corn"
+        },
+        {
+          "name": "meat",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Baked Beans",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 544,
+      "sale_price": 388,
+      "ingredients": [
+        {
+          "name": "beans"
+        },
+        {
+          "name": "meat",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Best Fish Forever",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 4420,
+      "sale_price": 1431,
+      "ingredients": [
+        {
+          "name": "robot fish"
+        },
+        {
+          "name": "celery"
+        },
+        {
+          "name": "cumin"
+        },
+        {
+          "name": "sea snail"
+        }
+      ]
+    },
+    {
+      "name": "Biryani",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1468,
+      "sale_price": 1049,
+      "ingredients": [
+        {
+          "name": "meat",
+          "category": true
+        },
+        {
+          "name": "rice"
+        },
+        {
+          "name": "cumin"
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "cinnamon"
+        }
+      ]
+    },
+    {
+      "name": "Blend of the Bayou",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 4108,
+      "sale_price": 2409,
+      "ingredients": [
+        {
+          "name": "rice"
+        },
+        {
+          "name": "celery"
+        },
+        {
+          "name": "prisma shrimp"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Bony Osso Buco",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1192,
+      "sale_price": 272,
+      "ingredients": [
+        {
+          "name": "skeleton fish"
+        },
+        {
+          "name": "celery"
+        },
+        {
+          "name": "grapes"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Braised Abalone",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 2500,
+      "sale_price": 570,
+      "ingredients": [
+        {
+          "name": "oyster"
+        },
+        {
+          "name": "sea snail"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "mushroom"
+        }
+      ]
+    },
+    {
+      "name": "Braised Bamboo Shoots",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 898,
+      "sale_price": 461,
+      "ingredients": [
+        {
+          "name": "bamboo"
+        },
+        {
+          "name": "soya"
+        },
+        {
+          "name": "ginger"
+        },
+        {
+          "name": "canola"
+        }
+      ]
+    },
+    {
+      "name": "Brandade de Morue",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 2336,
+      "sale_price": 757,
+      "ingredients": [
+        {
+          "name": "milk"
+        },
+        {
+          "name": "potato"
+        },
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "cod"
+        }
+      ]
+    },
+    {
+      "name": "Burrito",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 809,
+      "sale_price": 473,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "beans"
+        },
+        {
+          "name": "cumin"
+        },
+        {
+          "name": "meat",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Butter Chicken",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 2142,
+      "sale_price": 1200,
+      "ingredients": [
+        {
+          "name": "meat",
+          "category": true
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "cumin"
+        }
+      ]
+    },
+    {
+      "name": "Cheeseburger",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1113,
+      "sale_price": 1785,
+      "ingredients": [
+        {
+          "name": "venison"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Chicken Souvlaki",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1816,
+      "sale_price": 949,
+      "ingredients": [
+        {
+          "name": "meat",
+          "category": true
+        },
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "paprika"
+        },
+        {
+          "name": "mint"
+        }
+      ]
+    },
+    {
+      "name": "Classic Mac & Cheese",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 541,
+      "sale_price": 236,
+      "ingredients": [
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "wheat"
+        }
+      ]
+    },
+    {
+      "name": "Club Sandwich",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1075,
+      "sale_price": 1161,
+      "ingredients": [
+        {
+          "name": "pork"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "meat",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Coq en Barbouille",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 880,
+      "sale_price": 1030,
+      "ingredients": [
+        {
+          "name": "meat",
+          "category": true
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "grapes"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Cream Cheese Bagel",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 652,
+      "sale_price": 280,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "sweet",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Crimson Burger",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 187,
+      "sale_price": 231,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "ruby lentils"
+        }
+      ]
+    },
+    {
+      "name": "Dragon Roll Maki",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 3193,
+      "sale_price": 1670,
+      "ingredients": [
+        {
+          "name": "electric eel"
+        },
+        {
+          "name": "rice"
+        },
+        {
+          "name": "seaweed"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Fabulous Fajitas",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 852,
+      "sale_price": 851,
+      "ingredients": [
+        {
+          "name": "meat",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "cumin"
+        }
+      ]
+    },
+    {
+      "name": "Good Ol' Fashioned Burger",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 634,
+      "sale_price": 1413,
+      "ingredients": [
+        {
+          "name": "venison"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "lettuce"
+        }
+      ]
+    },
+    {
+      "name": "Hamburger Steak",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 855,
+      "sale_price": 1774,
+      "ingredients": [
+        {
+          "name": "venison"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "potato"
+        },
+        {
+          "name": "beans"
+        }
+      ]
+    },
+    {
+      "name": "Hawaiian Pizza",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1506,
+      "sale_price": 1577,
+      "ingredients": [
+        {
+          "name": "pork"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "pineapple"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Jerk Chicken",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1105,
+      "sale_price": 1102,
+      "ingredients": [
+        {
+          "name": "meat",
+          "category": true
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "spice",
+          "category": true
+        },
+        {
+          "name": "garlic"
+        }
+      ]
+    },
+    {
+      "name": "Latkes",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1280,
+      "sale_price": 937,
+      "ingredients": [
+        {
+          "name": "onion"
+        },
+        {
+          "name": "potato"
+        },
+        {
+          "name": "canola"
+        },
+        {
+          "name": "egg"
+        }
+      ]
+    },
+    {
+      "name": "Lo-Fries",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 387,
+      "sale_price": 358,
+      "ingredients": [
+        {
+          "name": "flute root"
+        },
+        {
+          "name": "canola"
+        },
+        {
+          "name": "yam"
+        }
+      ]
+    },
+    {
+      "name": "Meat Pie",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 1047,
+      "sale_price": 618,
+      "ingredients": [
+        {
+          "name": "meat",
+          "category": true
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "wheat"
+        }
+      ]
+    },
+    {
+      "name": "Meaty Taco",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1112,
+      "sale_price": 1785,
+      "ingredients": [
+        {
+          "name": "venison"
+        },
+        {
+          "name": "corn"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "cumin"
+        },
+        {
+          "name": "chili pepper"
+        }
+      ]
+    },
+    {
+      "name": "Milky Way Stew",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1872,
+      "sale_price": 733,
+      "ingredients": [
+        {
+          "name": "rainbow trout"
+        },
+        {
+          "name": "turnip"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "cosmic figs"
+        }
+      ]
+    },
+    {
+      "name": "Moqueca de Pirarucu",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 3453,
+      "sale_price": 1024,
+      "ingredients": [
+        {
+          "name": "pirarucu"
+        },
+        {
+          "name": "coconut"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Nachos",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 842,
+      "sale_price": 383,
+      "ingredients": [
+        {
+          "name": "chili pepper"
+        },
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "corn"
+        }
+      ]
+    },
+    {
+      "name": "Pasta with Herbs",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 642,
+      "sale_price": 289,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Pesto with Linguine",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1063,
+      "sale_price": 438,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "oregano"
+        },
+        {
+          "name": "garlic"
+        }
+      ]
+    },
+    {
+      "name": "Piquant Piranha Soup",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 4001,
+      "sale_price": 2041,
+      "ingredients": [
+        {
+          "name": "piranha"
+        },
+        {
+          "name": "chili pepper"
+        },
+        {
+          "name": "bamboo"
+        }
+      ]
+    },
+    {
+      "name": "Poutine",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 845,
+      "sale_price": 580,
+      "ingredients": [
+        {
+          "name": "potato"
+        },
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "canola"
+        }
+      ]
+    },
+    {
+      "name": "Pulled Pork",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1021,
+      "sale_price": 738,
+      "ingredients": [
+        {
+          "name": "pork"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "oregano"
+        },
+        {
+          "name": "tomato"
+        }
+      ]
+    },
+    {
+      "name": "Pupusas Revueltas",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 627,
+      "sale_price": 790,
+      "ingredients": [
+        {
+          "name": "meat",
+          "category": true
+        },
+        {
+          "name": "corn"
+        },
+        {
+          "name": "beans"
+        }
+      ]
+    },
+    {
+      "name": "Rainbouillabaisse",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 4174,
+      "sale_price": 2087,
+      "ingredients": [
+        {
+          "name": "prisma shrimp"
+        },
+        {
+          "name": "rainbow trout"
+        },
+        {
+          "name": "seafood",
+          "category": true
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "tomato"
+        }
+      ]
+    },
+    {
+      "name": "Ramen",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 1128,
+      "sale_price": 660,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "pork"
+        },
+        {
+          "name": "egg"
+        }
+      ]
+    },
+    {
+      "name": "Rhapsody Roll",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 335,
+      "sale_price": 301,
+      "ingredients": [
+        {
+          "name": "rice"
+        },
+        {
+          "name": "flute root"
+        },
+        {
+          "name": "seaweed"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Roast",
+      "course": "entree",
+      "star_rating": 1,
+      "energy": 450,
+      "sale_price": 300,
+      "ingredients": [
+        {
+          "name": "meat",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Royal Burger",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1670,
+      "sale_price": 2303,
+      "ingredients": [
+        {
+          "name": "pork"
+        },
+        {
+          "name": "venison"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Ruby Masoor Dal",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 405,
+      "sale_price": 357,
+      "ingredients": [
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "chili pepper"
+        },
+        {
+          "name": "ruby lentils"
+        }
+      ]
+    },
+    {
+      "name": "Sand Stew",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 5000,
+      "sale_price": 2244,
+      "ingredients": [
+        {
+          "name": "dunebopper"
+        },
+        {
+          "name": "sand fish"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "sand worm"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Sausage and Sauerkraut Platter",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 958,
+      "sale_price": 884,
+      "ingredients": [
+        {
+          "name": "pork"
+        },
+        {
+          "name": "cabbage"
+        },
+        {
+          "name": "potato"
+        }
+      ]
+    },
+    {
+      "name": "Schnitzel",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 640,
+      "sale_price": 854,
+      "ingredients": [
+        {
+          "name": "meat",
+          "category": true
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "canola"
+        }
+      ]
+    },
+    {
+      "name": "Sesame Seed Bagel",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 160,
+      "sale_price": 26,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "sweet",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Shawarma",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 2048,
+      "sale_price": 1877,
+      "ingredients": [
+        {
+          "name": "venison"
+        },
+        {
+          "name": "cinnamon"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "rice"
+        },
+        {
+          "name": "lemon"
+        }
+      ]
+    },
+    {
+      "name": "Shish Taouk",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1928,
+      "sale_price": 1109,
+      "ingredients": [
+        {
+          "name": "meat",
+          "category": true
+        },
+        {
+          "name": "rice"
+        },
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "oregano"
+        },
+        {
+          "name": "garlic"
+        }
+      ]
+    },
+    {
+      "name": "Sweet and Sour Stir-Fry",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 2350,
+      "sale_price": 2148,
+      "ingredients": [
+        {
+          "name": "meat",
+          "category": true
+        },
+        {
+          "name": "dreamango"
+        },
+        {
+          "name": "pineapple"
+        },
+        {
+          "name": "canola"
+        },
+        {
+          "name": "broccoli"
+        }
+      ]
+    },
+    {
+      "name": "Tandoori Chicken",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1199,
+      "sale_price": 964,
+      "ingredients": [
+        {
+          "name": "meat",
+          "category": true
+        },
+        {
+          "name": "chili pepper"
+        },
+        {
+          "name": "cumin"
+        },
+        {
+          "name": "paprika"
+        }
+      ]
+    },
+    {
+      "name": "Tofu",
+      "course": "entree",
+      "star_rating": 1,
+      "energy": 142,
+      "sale_price": 82,
+      "ingredients": [
+        {
+          "name": "soya"
+        }
+      ]
+    },
+    {
+      "name": "Tourtiere",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 814,
+      "sale_price": 1704,
+      "ingredients": [
+        {
+          "name": "venison"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "potato"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Turkey Leg",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1123,
+      "sale_price": 884,
+      "ingredients": [
+        {
+          "name": "meat",
+          "category": true
+        },
+        {
+          "name": "cumin"
+        },
+        {
+          "name": "agave"
+        },
+        {
+          "name": "paprika"
+        }
+      ]
+    },
+    {
+      "name": "Turnip Tartiflette",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 1459,
+      "sale_price": 863,
+      "ingredients": [
+        {
+          "name": "pork"
+        },
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "turnip"
+        }
+      ]
+    },
+    {
+      "name": "Vegetarian Turnip Tartiflette",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 816,
+      "sale_price": 399,
+      "ingredients": [
+        {
+          "name": "mushroom"
+        },
+        {
+          "name": "turnip"
+        },
+        {
+          "name": "soya"
+        }
+      ]
+    },
+    {
+      "name": "Yakisoba",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 789,
+      "sale_price": 710,
+      "ingredients": [
+        {
+          "name": "pork"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "cabbage"
+        }
+      ]
+    },
+    {
+      "name": "A Very Unusual Tea Time",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 2377,
+      "sale_price": 345,
+      "ingredients": [
+        {
+          "name": "spiral strawberries"
+        },
+        {
+          "name": "sour berries"
+        },
+        {
+          "name": "plain yogurt"
+        },
+        {
+          "name": "salt crystal"
+        }
+      ]
+    },
+    {
+      "name": "Aquatic Escargot",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 581,
+      "sale_price": 182,
+      "ingredients": [
+        {
+          "name": "trumpet snail"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "salt crystal"
+        }
+      ]
+    },
+    {
+      "name": "Arcane Garlic Crab",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 3250,
+      "sale_price": 1335,
+      "ingredients": [
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "sorcerer hat hermit crab"
+        },
+        {
+          "name": "salt crystal"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Argossian Pizza",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1384,
+      "sale_price": 668,
+      "ingredients": [
+        {
+          "name": "flyleaf feta"
+        },
+        {
+          "name": "elysian grain"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "olives"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Barley Salad",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 453,
+      "sale_price": 280,
+      "ingredients": [
+        {
+          "name": "barley"
+        },
+        {
+          "name": "cauliflower"
+        },
+        {
+          "name": "radish"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Cacio e Pepe",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 379,
+      "sale_price": 403,
+      "ingredients": [
+        {
+          "name": "flyleaf feta"
+        },
+        {
+          "name": "elysian grain"
+        },
+        {
+          "name": "black pepper"
+        }
+      ]
+    },
+    {
+      "name": "Cape Gooseberry Chia Pancakes",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 749,
+      "sale_price": 214,
+      "ingredients": [
+        {
+          "name": "cape gooseberry"
+        },
+        {
+          "name": "chia seeds"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "shovel bird eggs"
+        }
+      ]
+    },
+    {
+      "name": "Caprese Salad",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1092,
+      "sale_price": 244,
+      "ingredients": [
+        {
+          "name": "flyleaf feta"
+        },
+        {
+          "name": "olives"
+        },
+        {
+          "name": "salt crystal"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Cauliflower Steak",
+      "course": "entree",
+      "star_rating": 1,
+      "energy": 165,
+      "sale_price": 30,
+      "ingredients": [
+        {
+          "name": "cauliflower"
+        }
+      ]
+    },
+    {
+      "name": "Chia Pudding",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 742,
+      "sale_price": 425,
+      "ingredients": [
+        {
+          "name": "chia seeds"
+        },
+        {
+          "name": "cinnamon"
+        },
+        {
+          "name": "rhubarb"
+        },
+        {
+          "name": "sweet",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Chia Seed Bread",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 478,
+      "sale_price": 122,
+      "ingredients": [
+        {
+          "name": "chia seeds"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "shovel bird eggs"
+        }
+      ]
+    },
+    {
+      "name": "Chimera Skewer",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 2720,
+      "sale_price": 1560,
+      "ingredients": [
+        {
+          "name": "trumpet snail"
+        },
+        {
+          "name": "hippocampus"
+        },
+        {
+          "name": "flying fish"
+        },
+        {
+          "name": "brussels sprout"
+        },
+        {
+          "name": "fish",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Electric Radicchio & Persimmon Salad",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 1176,
+      "sale_price": 303,
+      "ingredients": [
+        {
+          "name": "lightning spice"
+        },
+        {
+          "name": "radicchio"
+        },
+        {
+          "name": "persimmon"
+        }
+      ]
+    },
+    {
+      "name": "Flying Fish Quenelles",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 890,
+      "sale_price": 325,
+      "ingredients": [
+        {
+          "name": "flying fish"
+        },
+        {
+          "name": "flyleaf feta"
+        },
+        {
+          "name": "porcini mushrooms"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "dairy",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Garlic Steam Mussels",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 825,
+      "sale_price": 413,
+      "ingredients": [
+        {
+          "name": "mussel"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "onion"
+        }
+      ]
+    },
+    {
+      "name": "Grecian Baked Fish",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 5000,
+      "sale_price": 2808,
+      "ingredients": [
+        {
+          "name": "stygian mudskipper"
+        },
+        {
+          "name": "olives"
+        },
+        {
+          "name": "ambrosia"
+        },
+        {
+          "name": "salt crystal"
+        },
+        {
+          "name": "elysian grain"
+        }
+      ]
+    },
+    {
+      "name": "Greek Salad",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1476,
+      "sale_price": 654,
+      "ingredients": [
+        {
+          "name": "flyleaf feta"
+        },
+        {
+          "name": "olives"
+        },
+        {
+          "name": "radish"
+        },
+        {
+          "name": "cucumber"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Green Bean Casserole",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 652,
+      "sale_price": 607,
+      "ingredients": [
+        {
+          "name": "green beans"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "porcini mushrooms"
+        }
+      ]
+    },
+    {
+      "name": "Grilled Koi Gyro",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1428,
+      "sale_price": 417,
+      "ingredients": [
+        {
+          "name": "koi"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "olives"
+        },
+        {
+          "name": "cucumber"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Hermit Crab Pasta",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 2829,
+      "sale_price": 1150,
+      "ingredients": [
+        {
+          "name": "sorcerer hat hermit crab"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Hippocampus Cepelinai Dumplings",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 2634,
+      "sale_price": 1965,
+      "ingredients": [
+        {
+          "name": "hippocampus"
+        },
+        {
+          "name": "potato"
+        },
+        {
+          "name": "spiral strawberries"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "black pepper"
+        }
+      ]
+    },
+    {
+      "name": "Koi Sashimi",
+      "course": "entree",
+      "star_rating": 1,
+      "energy": 290,
+      "sale_price": 60,
+      "ingredients": [
+        {
+          "name": "koi"
+        }
+      ]
+    },
+    {
+      "name": "Lamprey Sashimi",
+      "course": "entree",
+      "star_rating": 1,
+      "energy": 2930,
+      "sale_price": 1800,
+      "ingredients": [
+        {
+          "name": "lamprey"
+        }
+      ]
+    },
+    {
+      "name": "Loaded Breakfast Yogurt",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 2425,
+      "sale_price": 508,
+      "ingredients": [
+        {
+          "name": "plain yogurt"
+        },
+        {
+          "name": "spiral strawberries"
+        },
+        {
+          "name": "ambrosia"
+        },
+        {
+          "name": "oats"
+        }
+      ]
+    },
+    {
+      "name": "Loaded Golden Apple Porridge",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1570,
+      "sale_price": 566,
+      "ingredients": [
+        {
+          "name": "oats"
+        },
+        {
+          "name": "oats"
+        },
+        {
+          "name": "ambrosia"
+        },
+        {
+          "name": "golden apple"
+        }
+      ]
+    },
+    {
+      "name": "Loaded Honeydew Porridge",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1328,
+      "sale_price": 588,
+      "ingredients": [
+        {
+          "name": "oats"
+        },
+        {
+          "name": "oats"
+        },
+        {
+          "name": "ambrosia"
+        },
+        {
+          "name": "honeydew melon"
+        }
+      ]
+    },
+    {
+      "name": "Loaded Persimmon Porridge",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1665,
+      "sale_price": 438,
+      "ingredients": [
+        {
+          "name": "oats"
+        },
+        {
+          "name": "oats"
+        },
+        {
+          "name": "ambrosia"
+        },
+        {
+          "name": "persimmon"
+        }
+      ]
+    },
+    {
+      "name": "Loaded Rhubarb Porridge",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1370,
+      "sale_price": 744,
+      "ingredients": [
+        {
+          "name": "oats"
+        },
+        {
+          "name": "oats"
+        },
+        {
+          "name": "ambrosia"
+        },
+        {
+          "name": "rhubarb"
+        }
+      ]
+    },
+    {
+      "name": "Loaded Sea Grape Porridge",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1142,
+      "sale_price": 431,
+      "ingredients": [
+        {
+          "name": "oats"
+        },
+        {
+          "name": "oats"
+        },
+        {
+          "name": "ambrosia"
+        },
+        {
+          "name": "sea grapes"
+        }
+      ]
+    },
+    {
+      "name": "Lupine Cullen Skink",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1681,
+      "sale_price": 736,
+      "ingredients": [
+        {
+          "name": "sea wolf"
+        },
+        {
+          "name": "potato"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "plain yogurt"
+        }
+      ]
+    },
+    {
+      "name": "Mussel Risotto",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1488,
+      "sale_price": 377,
+      "ingredients": [
+        {
+          "name": "mussel"
+        },
+        {
+          "name": "rice"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "olives"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Oatmeal",
+      "course": "entree",
+      "star_rating": 1,
+      "energy": 210,
+      "sale_price": 118,
+      "ingredients": [
+        {
+          "name": "oats"
+        }
+      ]
+    },
+    {
+      "name": "Olive Plate",
+      "course": "entree",
+      "star_rating": 1,
+      "energy": 610,
+      "sale_price": 42,
+      "ingredients": [
+        {
+          "name": "olives"
+        }
+      ]
+    },
+    {
+      "name": "Persimmon Chia Pancakes",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1072,
+      "sale_price": 169,
+      "ingredients": [
+        {
+          "name": "persimmon"
+        },
+        {
+          "name": "chia seeds"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "shovel bird eggs"
+        }
+      ]
+    },
+    {
+      "name": "Radicchio-Stuffed Porcini",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 677,
+      "sale_price": 370,
+      "ingredients": [
+        {
+          "name": "radicchio"
+        },
+        {
+          "name": "porcini mushrooms"
+        },
+        {
+          "name": "black pepper"
+        }
+      ]
+    },
+    {
+      "name": "Roasted Barley & Veggies",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1422,
+      "sale_price": 476,
+      "ingredients": [
+        {
+          "name": "barley"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "flyleaf feta"
+        },
+        {
+          "name": "brussels sprout"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Roasted Brussels Sprouts",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 959,
+      "sale_price": 104,
+      "ingredients": [
+        {
+          "name": "brussels sprout"
+        },
+        {
+          "name": "garlic"
+        }
+      ]
+    },
+    {
+      "name": "Roasted Green Beans",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 379,
+      "sale_price": 336,
+      "ingredients": [
+        {
+          "name": "green beans"
+        },
+        {
+          "name": "garlic"
+        }
+      ]
+    },
+    {
+      "name": "Salt-Baked Sea Wolf",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 602,
+      "sale_price": 123,
+      "ingredients": [
+        {
+          "name": "salt crystal"
+        },
+        {
+          "name": "sea wolf"
+        }
+      ]
+    },
+    {
+      "name": "Salt-Pickled Cauliflower",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 269,
+      "sale_price": 84,
+      "ingredients": [
+        {
+          "name": "salt crystal"
+        },
+        {
+          "name": "cauliflower"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Salt-Pickled Garlic",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 383,
+      "sale_price": 119,
+      "ingredients": [
+        {
+          "name": "salt crystal"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Salt-Pickled Green Beans",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 246,
+      "sale_price": 341,
+      "ingredients": [
+        {
+          "name": "salt crystal"
+        },
+        {
+          "name": "green beans"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Salt-Pickled Radicchio",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 474,
+      "sale_price": 226,
+      "ingredients": [
+        {
+          "name": "salt crystal"
+        },
+        {
+          "name": "radicchio"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Salt-Pickled Radish",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 314,
+      "sale_price": 235,
+      "ingredients": [
+        {
+          "name": "salt crystal"
+        },
+        {
+          "name": "radish"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Salt-Pickled Sea Grapes",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 185,
+      "sale_price": 77,
+      "ingredients": [
+        {
+          "name": "salt crystal"
+        },
+        {
+          "name": "sea grapes"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Scottish Porridge",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 255,
+      "sale_price": 139,
+      "ingredients": [
+        {
+          "name": "oats"
+        },
+        {
+          "name": "fruit",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Sea Grape Chia Pancakes",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 549,
+      "sale_price": 162,
+      "ingredients": [
+        {
+          "name": "sea grapes"
+        },
+        {
+          "name": "chia seeds"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "shovel bird eggs"
+        }
+      ]
+    },
+    {
+      "name": "Seaweed Salad",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 382,
+      "sale_price": 365,
+      "ingredients": [
+        {
+          "name": "sea grapes"
+        },
+        {
+          "name": "radish"
+        },
+        {
+          "name": "black pepper"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Shovel Bird Eggs Benedict",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1522,
+      "sale_price": 420,
+      "ingredients": [
+        {
+          "name": "shovel bird eggs"
+        },
+        {
+          "name": "spiral strawberries"
+        },
+        {
+          "name": "elysian grain"
+        },
+        {
+          "name": "salt crystal"
+        }
+      ]
+    },
+    {
+      "name": "Soda Bread & Feta",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 309,
+      "sale_price": 135,
+      "ingredients": [
+        {
+          "name": "flyleaf feta"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "salt crystal"
+        }
+      ]
+    },
+    {
+      "name": "Spanakopita",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 982,
+      "sale_price": 561,
+      "ingredients": [
+        {
+          "name": "spinach"
+        },
+        {
+          "name": "flyleaf feta"
+        },
+        {
+          "name": "onion"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Spiral Strawberry Chia Pancakes",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1452,
+      "sale_price": 207,
+      "ingredients": [
+        {
+          "name": "spiral strawberries"
+        },
+        {
+          "name": "chia seeds"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "shovel bird eggs"
+        }
+      ]
+    },
+    {
+      "name": "Sprout-Stuffed Porcini",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 1063,
+      "sale_price": 235,
+      "ingredients": [
+        {
+          "name": "porcini mushrooms"
+        },
+        {
+          "name": "brussels sprout"
+        },
+        {
+          "name": "black pepper"
+        }
+      ]
+    },
+    {
+      "name": "Squash Stuffed Porcini",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 400,
+      "sale_price": 250,
+      "ingredients": [
+        {
+          "name": "porcini mushrooms"
+        },
+        {
+          "name": "ring squash"
+        },
+        {
+          "name": "black pepper"
+        }
+      ]
+    },
+    {
+      "name": "Squid Sashimi",
+      "course": "entree",
+      "star_rating": 1,
+      "energy": 1650,
+      "sale_price": 600,
+      "ingredients": [
+        {
+          "name": "squid"
+        }
+      ]
+    },
+    {
+      "name": "Steamed Mussels",
+      "course": "entree",
+      "star_rating": 1,
+      "energy": 290,
+      "sale_price": 90,
+      "ingredients": [
+        {
+          "name": "mussel"
+        }
+      ]
+    },
+    {
+      "name": "Stuffed Ring Squash",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 980,
+      "sale_price": 225,
+      "ingredients": [
+        {
+          "name": "ring squash"
+        },
+        {
+          "name": "ambrosia"
+        },
+        {
+          "name": "garlic"
+        }
+      ]
+    },
+    {
+      "name": "Tuna Sashimi",
+      "course": "entree",
+      "star_rating": 1,
+      "energy": 610,
+      "sale_price": 114,
+      "ingredients": [
+        {
+          "name": "tuna"
+        }
+      ]
+    },
+    {
+      "name": "Apple Pie",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1137,
+      "sale_price": 303,
+      "ingredients": [
+        {
+          "name": "apple"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Apple Sorbet",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1077,
+      "sale_price": 271,
+      "ingredients": [
+        {
+          "name": "apple"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "slush ice"
+        }
+      ]
+    },
+    {
+      "name": "Aurora's Cake",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 1572,
+      "sale_price": 767,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "raspberry"
+        }
+      ]
+    },
+    {
+      "name": "Banana Ice Cream",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1884,
+      "sale_price": 641,
+      "ingredients": [
+        {
+          "name": "banana"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "slush ice"
+        }
+      ]
+    },
+    {
+      "name": "Banana Pie",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1227,
+      "sale_price": 308,
+      "ingredients": [
+        {
+          "name": "banana"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Banana Split",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 2074,
+      "sale_price": 714,
+      "ingredients": [
+        {
+          "name": "banana"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "slush ice"
+        },
+        {
+          "name": "sweet",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Beignets",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 912,
+      "sale_price": 524,
+      "ingredients": [
+        {
+          "name": "egg"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "canola"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Berry Salad",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 2255,
+      "sale_price": 139,
+      "ingredients": [
+        {
+          "name": "raspberry"
+        },
+        {
+          "name": "gooseberry"
+        },
+        {
+          "name": "blueberry"
+        }
+      ]
+    },
+    {
+      "name": "Birthday Cake",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 2310,
+      "sale_price": 749,
+      "ingredients": [
+        {
+          "name": "egg"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "cocoa bean"
+        }
+      ]
+    },
+    {
+      "name": "Biscuits",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 679,
+      "sale_price": 294,
+      "ingredients": [
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Blueberry Pie",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1227,
+      "sale_price": 308,
+      "ingredients": [
+        {
+          "name": "blueberry"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Boba Tea",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 714,
+      "sale_price": 323,
+      "ingredients": [
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Candy",
+      "course": "dessert",
+      "star_rating": 1,
+      "energy": 123,
+      "sale_price": 22,
+      "ingredients": [
+        {
+          "name": "sweet",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Cannoli",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1482,
+      "sale_price": 678,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "vanilla"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Caramel Apples",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 638,
+      "sale_price": 56,
+      "ingredients": [
+        {
+          "name": "apple"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Carrot Cake",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 908,
+      "sale_price": 427,
+      "ingredients": [
+        {
+          "name": "carrot"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        }
+      ]
+    },
+    {
+      "name": "Cheesecake",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 725,
+      "sale_price": 314,
+      "ingredients": [
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "fruit",
+          "category": true
+        },
+        {
+          "name": "fruit",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Cherry Pie",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1497,
+      "sale_price": 326,
+      "ingredients": [
+        {
+          "name": "cherry"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Cheshire Cat Tail",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1655,
+      "sale_price": 418,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "cocoa bean"
+        }
+      ]
+    },
+    {
+      "name": "Chocolate Chip Cookies",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1569,
+      "sale_price": 373,
+      "ingredients": [
+        {
+          "name": "cocoa bean"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Chocolate Ice Cream",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 2074,
+      "sale_price": 655,
+      "ingredients": [
+        {
+          "name": "milk"
+        },
+        {
+          "name": "slush ice"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "cocoa bean"
+        }
+      ]
+    },
+    {
+      "name": "Chocolate Waffles",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 2223,
+      "sale_price": 735,
+      "ingredients": [
+        {
+          "name": "cocoa bean"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        }
+      ]
+    },
+    {
+      "name": "Coconut Boba Tea",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1653,
+      "sale_price": 406,
+      "ingredients": [
+        {
+          "name": "coconut"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Coconut Cake",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1750,
+      "sale_price": 424,
+      "ingredients": [
+        {
+          "name": "coconut"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        }
+      ]
+    },
+    {
+      "name": "Coconut Ice Cream",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 2169,
+      "sale_price": 661,
+      "ingredients": [
+        {
+          "name": "coconut"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "slush ice"
+        }
+      ]
+    },
+    {
+      "name": "Crepe",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1624,
+      "sale_price": 753,
+      "ingredients": [
+        {
+          "name": "milk"
+        },
+        {
+          "name": "vanilla"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        }
+      ]
+    },
+    {
+      "name": "Dream Ice Cream",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1976,
+      "sale_price": 588,
+      "ingredients": [
+        {
+          "name": "dreamlight fruit"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "slush ice"
+        }
+      ]
+    },
+    {
+      "name": "Fruit Salad",
+      "course": "dessert",
+      "star_rating": 1,
+      "energy": 83,
+      "sale_price": 10,
+      "ingredients": [
+        {
+          "name": "fruit",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Fruit Sorbet",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 467,
+      "sale_price": 206,
+      "ingredients": [
+        {
+          "name": "fruit",
+          "category": true
+        },
+        {
+          "name": "slush ice"
+        }
+      ]
+    },
+    {
+      "name": "Fruitcake",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 203,
+      "sale_price": 42,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "fruit",
+          "category": true
+        },
+        {
+          "name": "fruit",
+          "category": true
+        },
+        {
+          "name": "fruit",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Garlic Chocolate Tart",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 2458,
+      "sale_price": 783,
+      "ingredients": [
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "cocoa bean"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Gingerbread House",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 1460,
+      "sale_price": 545,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "ginger"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "vanilla"
+        },
+        {
+          "name": "egg"
+        }
+      ]
+    },
+    {
+      "name": "Gooseberry Boba Tea",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1833,
+      "sale_price": 418,
+      "ingredients": [
+        {
+          "name": "gooseberry"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Gray Stuff",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 976,
+      "sale_price": 87,
+      "ingredients": [
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "cocoa bean"
+        },
+        {
+          "name": "dairy",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Hot Cocoa",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1563,
+      "sale_price": 401,
+      "ingredients": [
+        {
+          "name": "cocoa bean"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Ice Cream",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1158,
+      "sale_price": 558,
+      "ingredients": [
+        {
+          "name": "milk"
+        },
+        {
+          "name": "slush ice"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Jam Waffles",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1407,
+      "sale_price": 691,
+      "ingredients": [
+        {
+          "name": "fruit",
+          "category": true
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Lemon Sorbet",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 1112,
+      "sale_price": 237,
+      "ingredients": [
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "slush ice"
+        }
+      ]
+    },
+    {
+      "name": "Meringue Pie",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 2014,
+      "sale_price": 667,
+      "ingredients": [
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Minnie's Gingerbread Cookies",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 379,
+      "sale_price": 67,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "ginger"
+        }
+      ]
+    },
+    {
+      "name": "Mint Boba Tea",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1032,
+      "sale_price": 418,
+      "ingredients": [
+        {
+          "name": "mint"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Mint Candy",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 391,
+      "sale_price": 89,
+      "ingredients": [
+        {
+          "name": "mint"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Mint Chocolate",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1827,
+      "sale_price": 445,
+      "ingredients": [
+        {
+          "name": "mint"
+        },
+        {
+          "name": "cocoa bean"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Mint Sorbet",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 695,
+      "sale_price": 260,
+      "ingredients": [
+        {
+          "name": "mint"
+        },
+        {
+          "name": "slush ice"
+        }
+      ]
+    },
+    {
+      "name": "'My Hero' Cookie",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 679,
+      "sale_price": 294,
+      "ingredients": [
+        {
+          "name": "sweet",
+          "category": true
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Pasteis de Nata",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1645,
+      "sale_price": 774,
+      "ingredients": [
+        {
+          "name": "corn"
+        },
+        {
+          "name": "vanilla"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Pastry Cream and Fruits",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 958,
+      "sale_price": 440,
+      "ingredients": [
+        {
+          "name": "fruit",
+          "category": true
+        },
+        {
+          "name": "fruit",
+          "category": true
+        },
+        {
+          "name": "fruit",
+          "category": true
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Pawpsicle",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 574,
+      "sale_price": 248,
+      "ingredients": [
+        {
+          "name": "fruit",
+          "category": true
+        },
+        {
+          "name": "slush ice"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Peanut Butter Waffles",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1938,
+      "sale_price": 978,
+      "ingredients": [
+        {
+          "name": "peanut"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Plain Snow Cones",
+      "course": "dessert",
+      "star_rating": 1,
+      "energy": 410,
+      "sale_price": 180,
+      "ingredients": [
+        {
+          "name": "slush ice"
+        }
+      ]
+    },
+    {
+      "name": "Raspberry Boba Tea",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1248,
+      "sale_price": 377,
+      "ingredients": [
+        {
+          "name": "raspberry"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Red Fruit Sorbet",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 2226,
+      "sale_price": 359,
+      "ingredients": [
+        {
+          "name": "raspberry"
+        },
+        {
+          "name": "gooseberry"
+        },
+        {
+          "name": "slush ice"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Red Velvet",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 2458,
+      "sale_price": 783,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "vanilla"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "cocoa bean"
+        }
+      ]
+    },
+    {
+      "name": "Root Beer",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 690,
+      "sale_price": 166,
+      "ingredients": [
+        {
+          "name": "ginger"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "vanilla"
+        }
+      ]
+    },
+    {
+      "name": "Shake",
+      "course": "dessert",
+      "star_rating": 1,
+      "energy": 80,
+      "sale_price": 7,
+      "ingredients": [
+        {
+          "name": "dairy",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Snow White's Gooseberry Pie",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1677,
+      "sale_price": 338,
+      "ingredients": [
+        {
+          "name": "gooseberry"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Sour Snow Cones",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1257,
+      "sale_price": 282,
+      "ingredients": [
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "slush ice"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Spring Chocolate",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1392,
+      "sale_price": 254,
+      "ingredients": [
+        {
+          "name": "spring v-egg-etable"
+        },
+        {
+          "name": "cocoa bean"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Spring Egg Bowl",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 1942,
+      "sale_price": 370,
+      "ingredients": [
+        {
+          "name": "egg-cellent fruit"
+        },
+        {
+          "name": "wild spring egg"
+        },
+        {
+          "name": "spring v-egg-etable"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "cocoa bean"
+        }
+      ]
+    },
+    {
+      "name": "Spring Mimosa Eggs",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1095,
+      "sale_price": 336,
+      "ingredients": [
+        {
+          "name": "egg-cellent fruit"
+        },
+        {
+          "name": "wild spring egg"
+        },
+        {
+          "name": "spring v-egg-etable"
+        },
+        {
+          "name": "basil"
+        }
+      ]
+    },
+    {
+      "name": "Sweet Slush",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 510,
+      "sale_price": 219,
+      "ingredients": [
+        {
+          "name": "sweet",
+          "category": true
+        },
+        {
+          "name": "slush ice"
+        }
+      ]
+    },
+    {
+      "name": "Tropical Pop",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1553,
+      "sale_price": 329,
+      "ingredients": [
+        {
+          "name": "fruit",
+          "category": true
+        },
+        {
+          "name": "coconut"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "slush ice"
+        }
+      ]
+    },
+    {
+      "name": "Vanilla Ice Cream",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1475,
+      "sale_price": 673,
+      "ingredients": [
+        {
+          "name": "vanilla"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "slush ice"
+        }
+      ]
+    },
+    {
+      "name": "Waffles",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1455,
+      "sale_price": 706,
+      "ingredients": [
+        {
+          "name": "sweet",
+          "category": true
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Wedding Cake",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 1680,
+      "sale_price": 769,
+      "ingredients": [
+        {
+          "name": "vanilla"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        }
+      ]
+    },
+    {
+      "name": "Whimsical Pie",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1497,
+      "sale_price": 324,
+      "ingredients": [
+        {
+          "name": "dreamlight fruit"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Wonderland Cookies",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 970,
+      "sale_price": 391,
+      "ingredients": [
+        {
+          "name": "vanilla"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "wheat"
+        }
+      ]
+    },
+    {
+      "name": "Yule Log",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 2147,
+      "sale_price": 198,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "cocoa bean"
+        },
+        {
+          "name": "vanilla"
+        },
+        {
+          "name": "cherry"
+        }
+      ]
+    },
+    {
+      "name": "Apple Sauce",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 823,
+      "sale_price": 71,
+      "ingredients": [
+        {
+          "name": "apple"
+        },
+        {
+          "name": "cinnamon"
+        }
+      ]
+    },
+    {
+      "name": "Basil Berry Salad",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1355,
+      "sale_price": 142,
+      "ingredients": [
+        {
+          "name": "blueberry"
+        },
+        {
+          "name": "strawberry"
+        },
+        {
+          "name": "basil"
+        }
+      ]
+    },
+    {
+      "name": "Caramel Macarons",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1724,
+      "sale_price": 401,
+      "ingredients": [
+        {
+          "name": "almonds"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "agave"
+        }
+      ]
+    },
+    {
+      "name": "Charlotte Cake",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 759,
+      "sale_price": 69,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "agave"
+        },
+        {
+          "name": "strawberry"
+        }
+      ]
+    },
+    {
+      "name": "Chocolate Macarons",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 2354,
+      "sale_price": 419,
+      "ingredients": [
+        {
+          "name": "almonds"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "cocoa bean"
+        }
+      ]
+    },
+    {
+      "name": "Cinnamon Donut",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1094,
+      "sale_price": 406,
+      "ingredients": [
+        {
+          "name": "cinnamon"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "sweet",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Cotton Candy",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 298,
+      "sale_price": 56,
+      "ingredients": [
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "agave"
+        }
+      ]
+    },
+    {
+      "name": "Croissant",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 566,
+      "sale_price": 249,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Cupcakes",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1853,
+      "sale_price": 433,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "cherry"
+        },
+        {
+          "name": "agave"
+        }
+      ]
+    },
+    {
+      "name": "Danish",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 705,
+      "sale_price": 314,
+      "ingredients": [
+        {
+          "name": "butter"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "fruit",
+          "category": true
+        },
+        {
+          "name": "fruit",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Dreamango Boba Tea",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1833,
+      "sale_price": 418,
+      "ingredients": [
+        {
+          "name": "milk"
+        },
+        {
+          "name": "dreamango"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "French Macarons",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 1461,
+      "sale_price": 340,
+      "ingredients": [
+        {
+          "name": "almonds"
+        },
+        {
+          "name": "egg"
+        }
+      ]
+    },
+    {
+      "name": "Fruit Milkshake",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1113,
+      "sale_price": 544,
+      "ingredients": [
+        {
+          "name": "slush ice"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "fruit",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Glazed Donut",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 760,
+      "sale_price": 336,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "sweet",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Gourmet Grubs",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 5000,
+      "sale_price": 2065,
+      "ingredients": [
+        {
+          "name": "sea snail"
+        },
+        {
+          "name": "sand worm"
+        },
+        {
+          "name": "scorpion"
+        }
+      ]
+    },
+    {
+      "name": "Jam Macarons",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1581,
+      "sale_price": 378,
+      "ingredients": [
+        {
+          "name": "almonds"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "fruit",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Kanelbulle",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1548,
+      "sale_price": 663,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "cinnamon"
+        }
+      ]
+    },
+    {
+      "name": "Kouign-Amann",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1358,
+      "sale_price": 610,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "agave"
+        }
+      ]
+    },
+    {
+      "name": "Maamouls",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1614,
+      "sale_price": 100,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "almonds"
+        },
+        {
+          "name": "dates"
+        }
+      ]
+    },
+    {
+      "name": "Makrout",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1157,
+      "sale_price": 254,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "canola"
+        },
+        {
+          "name": "cinnamon"
+        },
+        {
+          "name": "dates"
+        }
+      ]
+    },
+    {
+      "name": "Melon Boba Tea",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 911,
+      "sale_price": 478,
+      "ingredients": [
+        {
+          "name": "milk"
+        },
+        {
+          "name": "melon"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Mooncake",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 465,
+      "sale_price": 276,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "beans"
+        },
+        {
+          "name": "canola"
+        },
+        {
+          "name": "agave"
+        }
+      ]
+    },
+    {
+      "name": "Nestling Crepe",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1938,
+      "sale_price": 715,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "nestling pear"
+        }
+      ]
+    },
+    {
+      "name": "Pear Upside-Down Cake",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1218,
+      "sale_price": 345,
+      "ingredients": [
+        {
+          "name": "nestling pear"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "wheat"
+        }
+      ]
+    },
+    {
+      "name": "Pineapple Soft Serve",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 717,
+      "sale_price": 886,
+      "ingredients": [
+        {
+          "name": "slush ice"
+        },
+        {
+          "name": "pineapple"
+        }
+      ]
+    },
+    {
+      "name": "Popcorn",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 201,
+      "sale_price": 161,
+      "ingredients": [
+        {
+          "name": "corn"
+        },
+        {
+          "name": "canola"
+        }
+      ]
+    },
+    {
+      "name": "Raspberry Jam Sandwich",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 549,
+      "sale_price": 29,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "raspberry"
+        }
+      ]
+    },
+    {
+      "name": "Spicy Macarons",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1796,
+      "sale_price": 475,
+      "ingredients": [
+        {
+          "name": "almonds"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "chili pepper"
+        }
+      ]
+    },
+    {
+      "name": "Spiky Berry Pie",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 2058,
+      "sale_price": 421,
+      "ingredients": [
+        {
+          "name": "cactoberries"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "strawberry"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Stellar Milkshake",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1169,
+      "sale_price": 562,
+      "ingredients": [
+        {
+          "name": "slush ice"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "cosmic figs"
+        }
+      ]
+    },
+    {
+      "name": "Strawberry Pie",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1092,
+      "sale_price": 300,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "strawberry"
+        }
+      ]
+    },
+    {
+      "name": "Strawberry Shortcake",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1173,
+      "sale_price": 342,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "strawberry"
+        }
+      ]
+    },
+    {
+      "name": "Stuffed Dates",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 1495,
+      "sale_price": 91,
+      "ingredients": [
+        {
+          "name": "almonds"
+        },
+        {
+          "name": "dates"
+        }
+      ]
+    },
+    {
+      "name": "Sugar-Free Banana Muffin",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 677,
+      "sale_price": 39,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "banana"
+        }
+      ]
+    },
+    {
+      "name": "Sugar-Free Blueberry Muffin",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 677,
+      "sale_price": 39,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "blueberry"
+        }
+      ]
+    },
+    {
+      "name": "Sugar-Free Fruit Explosion Muffin",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 354,
+      "sale_price": 66,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "fruit",
+          "category": true
+        },
+        {
+          "name": "fruit",
+          "category": true
+        },
+        {
+          "name": "agave"
+        }
+      ]
+    },
+    {
+      "name": "Sugar-Free Fruit Muffin",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 117,
+      "sale_price": 13,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "fruit",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Sweet Popcorn",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 390,
+      "sale_price": 209,
+      "ingredients": [
+        {
+          "name": "corn"
+        },
+        {
+          "name": "canola"
+        },
+        {
+          "name": "agave"
+        }
+      ]
+    },
+    {
+      "name": "Sweet Tofu",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 183,
+      "sale_price": 100,
+      "ingredients": [
+        {
+          "name": "soya"
+        },
+        {
+          "name": "fruit",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Taiyaki",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 374,
+      "sale_price": 102,
+      "ingredients": [
+        {
+          "name": "sand fish"
+        },
+        {
+          "name": "beans"
+        }
+      ]
+    },
+    {
+      "name": "Vanilla Macarons",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1787,
+      "sale_price": 436,
+      "ingredients": [
+        {
+          "name": "almonds"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "vanilla"
+        }
+      ]
+    },
+    {
+      "name": "Aphrodite's Delight",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 1070,
+      "sale_price": 234,
+      "ingredients": [
+        {
+          "name": "ambrosia"
+        },
+        {
+          "name": "golden apple"
+        }
+      ]
+    },
+    {
+      "name": "Cape Gooseberry Sour Fondue",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 951,
+      "sale_price": 123,
+      "ingredients": [
+        {
+          "name": "cape gooseberry"
+        },
+        {
+          "name": "sour berries"
+        }
+      ]
+    },
+    {
+      "name": "Cinnamon Cake",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1330,
+      "sale_price": 348,
+      "ingredients": [
+        {
+          "name": "cinnamon"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "shovel bird eggs"
+        },
+        {
+          "name": "plain yogurt"
+        }
+      ]
+    },
+    {
+      "name": "Cinnamon Cookies",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1037,
+      "sale_price": 256,
+      "ingredients": [
+        {
+          "name": "cinnamon"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "plain yogurt"
+        },
+        {
+          "name": "sweet",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Golden Apple Pie",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 894,
+      "sale_price": 268,
+      "ingredients": [
+        {
+          "name": "golden apple"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "shovel bird eggs"
+        }
+      ]
+    },
+    {
+      "name": "Honeydew Sour Fondue",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 939,
+      "sale_price": 214,
+      "ingredients": [
+        {
+          "name": "honeydew melon"
+        },
+        {
+          "name": "sour berries"
+        }
+      ]
+    },
+    {
+      "name": "Lightning Cake",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1302,
+      "sale_price": 400,
+      "ingredients": [
+        {
+          "name": "lightning spice"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "shovel bird eggs"
+        },
+        {
+          "name": "plain yogurt"
+        }
+      ]
+    },
+    {
+      "name": "Lightning Cookies",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1009,
+      "sale_price": 308,
+      "ingredients": [
+        {
+          "name": "lightning spice"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "plain yogurt"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Merryweather's Gingersnaps",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 2596,
+      "sale_price": 443,
+      "ingredients": [
+        {
+          "name": "ginger"
+        },
+        {
+          "name": "nutmeg"
+        },
+        {
+          "name": "sour berries"
+        },
+        {
+          "name": "faerie rye"
+        },
+        {
+          "name": "shovel bird eggs"
+        }
+      ]
+    },
+    {
+      "name": "Nutmeg Cake",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1891,
+      "sale_price": 370,
+      "ingredients": [
+        {
+          "name": "nutmeg"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "shovel bird eggs"
+        },
+        {
+          "name": "plain yogurt"
+        }
+      ]
+    },
+    {
+      "name": "Nutmeg Cookies",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1598,
+      "sale_price": 278,
+      "ingredients": [
+        {
+          "name": "nutmeg"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "plain yogurt"
+        },
+        {
+          "name": "sweet",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Persimmon Pie",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 984,
+      "sale_price": 149,
+      "ingredients": [
+        {
+          "name": "persimmon"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "shovel bird eggs"
+        }
+      ]
+    },
+    {
+      "name": "Persimmon Sour Fondue",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 1240,
+      "sale_price": 84,
+      "ingredients": [
+        {
+          "name": "persimmon"
+        },
+        {
+          "name": "sour berries"
+        }
+      ]
+    },
+    {
+      "name": "Rice Pudding",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 579,
+      "sale_price": 293,
+      "ingredients": [
+        {
+          "name": "rice"
+        },
+        {
+          "name": "oats"
+        },
+        {
+          "name": "vanilla"
+        }
+      ]
+    },
+    {
+      "name": "Sour Berry Dessert",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 1325,
+      "sale_price": 143,
+      "ingredients": [
+        {
+          "name": "sour berries"
+        },
+        {
+          "name": "ambrosia"
+        }
+      ]
+    },
+    {
+      "name": "Sour Berry Pie",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1164,
+      "sale_price": 170,
+      "ingredients": [
+        {
+          "name": "sour berries"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "shovel bird eggs"
+        }
+      ]
+    },
+    {
+      "name": "Spicy Yogurt",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 602,
+      "sale_price": 175,
+      "ingredients": [
+        {
+          "name": "plain yogurt"
+        },
+        {
+          "name": "spice",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Spiral Strawberry Pie",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1344,
+      "sale_price": 184,
+      "ingredients": [
+        {
+          "name": "spiral strawberries"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "shovel bird eggs"
+        }
+      ]
+    },
+    {
+      "name": "Spiral Strawberry Sour Fondue",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 1580,
+      "sale_price": 117,
+      "ingredients": [
+        {
+          "name": "spiral strawberries"
+        },
+        {
+          "name": "sour berries"
+        }
+      ]
+    },
+    {
+      "name": "Strawberry Rhubarb Pie",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1881,
+      "sale_price": 601,
+      "ingredients": [
+        {
+          "name": "spiral strawberries"
+        },
+        {
+          "name": "rhubarb"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "plain yogurt"
+        }
+      ]
+    },
+    {
+      "name": "Underworld Cake",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 2746,
+      "sale_price": 603,
+      "ingredients": [
+        {
+          "name": "nutmeg"
+        },
+        {
+          "name": "faerie rye"
+        },
+        {
+          "name": "ambrosia"
+        },
+        {
+          "name": "shovel bird eggs"
+        },
+        {
+          "name": "plain yogurt"
+        }
+      ]
+    },
+    {
+      "name": "Vanilla Yogurt",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 789,
+      "sale_price": 221,
+      "ingredients": [
+        {
+          "name": "vanilla"
+        },
+        {
+          "name": "plain yogurt"
+        }
+      ]
+    },
+    {
+      "name": "Chrysanthemum Tea",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 687,
+      "sale_price": 69,
+      "ingredients": [
+        {
+          "name": "chrysanthemum tea leaves"
+        },
+        {
+          "name": "blueberry"
+        }
+      ]
+    },
+    {
+      "name": "Jasmine Tea",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 170,
+      "sale_price": 56,
+      "ingredients": [
+        {
+          "name": "jasmine tea leaves"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Oolong Tea",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 559,
+      "sale_price": 59,
+      "ingredients": [
+        {
+          "name": "oolong tea leaves"
+        },
+        {
+          "name": "raspberry"
+        }
+      ]
+    },
+    {
+      "name": "Sesame Balls",
+      "course": "appetizer",
+      "star_rating": 5,
+      "energy": 722,
+      "sale_price": 322,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "ginger"
+        },
+        {
+          "name": "rice"
+        },
+        {
+          "name": "soya"
+        },
+        {
+          "name": "seaweed"
+        }
+      ]
+    },
+    {
+      "name": "Fish Sandwich",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 337,
+      "sale_price": 3,
+      "ingredients": [
+        {
+          "name": "fish",
+          "category": true
+        },
+        {
+          "name": "wheat"
+        }
+      ]
+    },
+    {
+      "name": "Seafood Boil",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 596,
+      "sale_price": 236,
+      "ingredients": [
+        {
+          "name": "seafood",
+          "category": true
+        },
+        {
+          "name": "spice",
+          "category": true
+        },
+        {
+          "name": "potato"
+        },
+        {
+          "name": "corn"
+        }
+      ]
+    },
+    {
+      "name": "Wonton Soup",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 2415,
+      "sale_price": 1038,
+      "ingredients": [
+        {
+          "name": "egg"
+        },
+        {
+          "name": "shrimp"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "onion"
+        }
+      ]
+    },
+    {
+      "name": "Festive Blueberry Hot Cocoa",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1647,
+      "sale_price": 491,
+      "ingredients": [
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "festive cocoa bean"
+        },
+        {
+          "name": "blueberry"
+        }
+      ]
+    },
+    {
+      "name": "Festive Cherry Hot Cocoa",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1932,
+      "sale_price": 511,
+      "ingredients": [
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "festive cocoa bean"
+        },
+        {
+          "name": "cherry"
+        }
+      ]
+    },
+    {
+      "name": "Festive Mint Hot Cocoa",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1276,
+      "sale_price": 523,
+      "ingredients": [
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "festive cocoa bean"
+        },
+        {
+          "name": "mint"
+        }
+      ]
+    },
+    {
+      "name": "Fruit Pie",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 634,
+      "sale_price": 280,
+      "ingredients": [
+        {
+          "name": "fruit",
+          "category": true
+        },
+        {
+          "name": "coconut"
+        },
+        {
+          "name": "coffee bean"
+        },
+        {
+          "name": "lemon"
+        },
+        {
+          "name": "raspberry"
+        },
+        {
+          "name": "grapes"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        }
+      ]
+    },
+    {
+      "name": "Halloween Gingerbread Cookies",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 735,
+      "sale_price": 1001,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "pumpkin"
+        },
+        {
+          "name": "ginger"
+        }
+      ]
+    },
+    {
+      "name": "Joyful Meal",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1938,
+      "sale_price": 120,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "blueberry"
+        },
+        {
+          "name": "raspberry"
+        },
+        {
+          "name": "banana"
+        }
+      ]
+    },
+    {
+      "name": "Mermaid Cupcake",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 1690,
+      "sale_price": 785,
+      "ingredients": [
+        {
+          "name": "butter"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "scallop"
+        }
+      ]
+    },
+    {
+      "name": "Minnie Cupcake",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 2040,
+      "sale_price": 745,
+      "ingredients": [
+        {
+          "name": "butter"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "apple"
+        }
+      ]
+    },
+    {
+      "name": "Princess Aurora Raspberry Cupcake",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 1990,
+      "sale_price": 738,
+      "ingredients": [
+        {
+          "name": "butter"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "raspberry"
+        }
+      ]
+    },
+    {
+      "name": "Roasted Marshmallows",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 3470,
+      "sale_price": 300,
+      "ingredients": [
+        {
+          "name": "pink marshmallow"
+        },
+        {
+          "name": "pink marshmallow"
+        },
+        {
+          "name": "blue marshmallow"
+        },
+        {
+          "name": "blue marshmallow"
+        }
+      ]
+    },
+    {
+      "name": "S'mores",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1832,
+      "sale_price": 156,
+      "ingredients": [
+        {
+          "name": "pink marshmallow"
+        },
+        {
+          "name": "blue marshmallow"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "wheat"
+        }
+      ]
+    },
+    {
+      "name": "Spaceship Earth Cupcake",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 2440,
+      "sale_price": 772,
+      "ingredients": [
+        {
+          "name": "butter"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "coconut"
+        }
+      ]
+    },
+    {
+      "name": "Stitch Cupcake",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 2140,
+      "sale_price": 751,
+      "ingredients": [
+        {
+          "name": "butter"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "blueberry"
+        }
+      ]
+    },
+    {
+      "name": "Classic Frankfurter",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 1511,
+      "sale_price": 2628,
+      "ingredients": [
+        {
+          "name": "pork"
+        },
+        {
+          "name": "meat"
+        },
+        {
+          "name": "venison"
+        },
+        {
+          "name": "wheat"
+        }
+      ]
+    },
+    {
+      "name": "Alpine Fishcakes",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 2370,
+      "sale_price": 1027,
+      "ingredients": [
+        {
+          "name": "red alpine bass"
+        },
+        {
+          "name": "dill"
+        }
+      ]
+    },
+    {
+      "name": "Buttermilk Borscht",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 1656,
+      "sale_price": 766,
+      "ingredients": [
+        {
+          "name": "beetroot"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "dill"
+        }
+      ]
+    },
+    {
+      "name": "Fizzy Nectar Soda",
+      "course": "appetizer",
+      "star_rating": 2,
+      "energy": 1197,
+      "sale_price": 247,
+      "ingredients": [
+        {
+          "name": "bonsai star fruit"
+        },
+        {
+          "name": "slush ice"
+        }
+      ]
+    },
+    {
+      "name": "Rosehip Honey Tea",
+      "course": "appetizer",
+      "star_rating": 1,
+      "energy": 570,
+      "sale_price": 210,
+      "ingredients": [
+        {
+          "name": "honey coral"
+        }
+      ]
+    },
+    {
+      "name": "Scarlet Bouquet Salad",
+      "course": "appetizer",
+      "star_rating": 1,
+      "energy": 160,
+      "sale_price": 34,
+      "ingredients": [
+        {
+          "name": "scarlet kale"
+        }
+      ]
+    },
+    {
+      "name": "Smoked Fish Charcuterie Spread",
+      "course": "appetizer",
+      "star_rating": 4,
+      "energy": 1321,
+      "sale_price": 191,
+      "ingredients": [
+        {
+          "name": "mountain whitefish"
+        },
+        {
+          "name": "tuna"
+        },
+        {
+          "name": "fish",
+          "category": true
+        },
+        {
+          "name": "wheat"
+        }
+      ]
+    },
+    {
+      "name": "101 Teeny Tiny Dalmatian Cupcakes",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 862,
+      "sale_price": 460,
+      "ingredients": [
+        {
+          "name": "dark chocolate coffee beans"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Afternoon Tea Set",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 985,
+      "sale_price": 235,
+      "ingredients": [
+        {
+          "name": "dark chocolate coffee beans"
+        },
+        {
+          "name": "pearly barley"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        },
+        {
+          "name": "pincushion peach"
+        }
+      ]
+    },
+    {
+      "name": "Baked Whitefish and Roasted Beets",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 400,
+      "sale_price": 66,
+      "ingredients": [
+        {
+          "name": "mountain whitefish"
+        },
+        {
+          "name": "beetroot"
+        }
+      ]
+    },
+    {
+      "name": "Beet-iful Spaetzle",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 778,
+      "sale_price": 339,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "beetroot"
+        },
+        {
+          "name": "egg"
+        }
+      ]
+    },
+    {
+      "name": "Bread Bowl Pumpkin Soup",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 4153,
+      "sale_price": 3901,
+      "ingredients": [
+        {
+          "name": "tigger fish"
+        },
+        {
+          "name": "fairy kamut"
+        },
+        {
+          "name": "pumpkin"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Button Stew",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 375,
+      "sale_price": 135,
+      "ingredients": [
+        {
+          "name": "button mushroom"
+        },
+        {
+          "name": "carrot"
+        }
+      ]
+    },
+    {
+      "name": "Eton Mess",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 1994,
+      "sale_price": 407,
+      "ingredients": [
+        {
+          "name": "red currants"
+        },
+        {
+          "name": "pincushion peach"
+        },
+        {
+          "name": "egg"
+        }
+      ]
+    },
+    {
+      "name": "Felted Breakfast Spread",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 2597,
+      "sale_price": 1022,
+      "ingredients": [
+        {
+          "name": "button mushroom"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "satin-finned betta"
+        }
+      ]
+    },
+    {
+      "name": "Fishy Pineapple Jelly",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 5000,
+      "sale_price": 2767,
+      "ingredients": [
+        {
+          "name": "measuring-tape snail"
+        },
+        {
+          "name": "jellied fish"
+        },
+        {
+          "name": "crab"
+        },
+        {
+          "name": "scarlet kale"
+        },
+        {
+          "name": "fish",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Friendly Bento",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 3877,
+      "sale_price": 2717,
+      "ingredients": [
+        {
+          "name": "tigger fish"
+        },
+        {
+          "name": "scarlet kale"
+        },
+        {
+          "name": "honey coral"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Honey-Glazed Carrots",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 944,
+      "sale_price": 362,
+      "ingredients": [
+        {
+          "name": "honey coral"
+        },
+        {
+          "name": "carrot"
+        },
+        {
+          "name": "dill"
+        }
+      ]
+    },
+    {
+      "name": "Honey Pancakes",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 1263,
+      "sale_price": 555,
+      "ingredients": [
+        {
+          "name": "honey coral"
+        },
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "egg"
+        }
+      ]
+    },
+    {
+      "name": "Horace's Ham Sandwich",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 643,
+      "sale_price": 326,
+      "ingredients": [
+        {
+          "name": "pearly barley"
+        },
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "vegetable",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Jellied Fish Terrine",
+      "course": "entree",
+      "star_rating": 1,
+      "energy": 2450,
+      "sale_price": 1200,
+      "ingredients": [
+        {
+          "name": "jellied fish"
+        }
+      ]
+    },
+    {
+      "name": "Jellied Salad",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 2717,
+      "sale_price": 1357,
+      "ingredients": [
+        {
+          "name": "jellied fish"
+        },
+        {
+          "name": "scarlet kale"
+        }
+      ]
+    },
+    {
+      "name": "Kanine Krunchies Cereal",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 796,
+      "sale_price": 107,
+      "ingredients": [
+        {
+          "name": "pearly barley"
+        },
+        {
+          "name": "pincushion peach"
+        }
+      ]
+    },
+    {
+      "name": "Pixie Pizza",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1268,
+      "sale_price": 718,
+      "ingredients": [
+        {
+          "name": "fairy kamut"
+        },
+        {
+          "name": "cheese"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "fairy sprinkles"
+        },
+        {
+          "name": "button mushroom"
+        }
+      ]
+    },
+    {
+      "name": "Scarlet Kale and Cheese Pinwheels",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 694,
+      "sale_price": 294,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "scarlet kale"
+        },
+        {
+          "name": "cheese"
+        }
+      ]
+    },
+    {
+      "name": "Stargazy Pie",
+      "course": "entree",
+      "star_rating": 4,
+      "energy": 5000,
+      "sale_price": 1953,
+      "ingredients": [
+        {
+          "name": "measuring-tape snail"
+        },
+        {
+          "name": "satin-finned betta"
+        },
+        {
+          "name": "red alpine bass"
+        },
+        {
+          "name": "wheat"
+        }
+      ]
+    },
+    {
+      "name": "Vintage Peach Trifle",
+      "course": "entree",
+      "star_rating": 5,
+      "energy": 1752,
+      "sale_price": 544,
+      "ingredients": [
+        {
+          "name": "pincushion peach"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "pearly barley"
+        },
+        {
+          "name": "sugarcane"
+        },
+        {
+          "name": "fruit",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Beauty and the Beets Napoleon",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 2782,
+      "sale_price": 1109,
+      "ingredients": [
+        {
+          "name": "beetroot"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "red currants"
+        }
+      ]
+    },
+    {
+      "name": "Beet Brownie Stack",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 826,
+      "sale_price": 363,
+      "ingredients": [
+        {
+          "name": "beetroot"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "sweet",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Beet Sugar Sculpture",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 223,
+      "sale_price": 51,
+      "ingredients": [
+        {
+          "name": "beetroot"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Fairy Boot Cake",
+      "course": "dessert",
+      "star_rating": 5,
+      "energy": 2052,
+      "sale_price": 1212,
+      "ingredients": [
+        {
+          "name": "fairy kamut"
+        },
+        {
+          "name": "honey coral"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "dark chocolate coffee beans"
+        }
+      ]
+    },
+    {
+      "name": "Fairy Bread",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 360,
+      "sale_price": 243,
+      "ingredients": [
+        {
+          "name": "fairy kamut"
+        },
+        {
+          "name": "fairy sprinkles"
+        }
+      ]
+    },
+    {
+      "name": "Fairy Wands",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1028,
+      "sale_price": 229,
+      "ingredients": [
+        {
+          "name": "bonsai star fruit"
+        },
+        {
+          "name": "lollipop fruit"
+        },
+        {
+          "name": "fruit",
+          "category": true
+        }
+      ]
+    },
+    {
+      "name": "Pixie Ice Cream Dome Cake",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1489,
+      "sale_price": 554,
+      "ingredients": [
+        {
+          "name": "fairy kamut"
+        },
+        {
+          "name": "fairy sprinkles"
+        },
+        {
+          "name": "slush ice"
+        },
+        {
+          "name": "red currants"
+        }
+      ]
+    },
+    {
+      "name": "Red Currant Linzer Cookies",
+      "course": "dessert",
+      "star_rating": 4,
+      "energy": 1379,
+      "sale_price": 365,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "red currants"
+        },
+        {
+          "name": "sugarcane"
+        }
+      ]
+    },
+    {
+      "name": "Red Currant Valley Cakes",
+      "course": "dessert",
+      "star_rating": 3,
+      "energy": 1895,
+      "sale_price": 676,
+      "ingredients": [
+        {
+          "name": "egg"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "red currants"
+        }
+      ]
+    },
+    {
+      "name": "Tigger Tails",
+      "course": "dessert",
+      "star_rating": 2,
+      "energy": 437,
+      "sale_price": 253,
+      "ingredients": [
+        {
+          "name": "lollipop fruit"
+        },
+        {
+          "name": "fairy sprinkles"
+        }
+      ]
+    },
+    {
+      "name": "Wheat Porridge",
+      "course": "entree",
+      "star_rating": 2,
+      "energy": 668,
+      "sale_price": 301,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "milk"
+        }
+      ]
+    },
+    {
+      "name": "Wheat Porridge with Fruit",
+      "course": "entree",
+      "star_rating": 3,
+      "energy": 742,
+      "sale_price": 336,
+      "ingredients": [
+        {
+          "name": "wheat"
+        },
+        {
+          "name": "milk"
+        },
+        {
+          "name": "fruit",
+          "category": true
+        }
+      ]
+    }
+  ]
+}

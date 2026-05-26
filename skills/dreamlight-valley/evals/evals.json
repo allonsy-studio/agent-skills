@@ -1,0 +1,124 @@
+{
+  "skill_name": "dreamlight-valley",
+  "evals": [
+    {
+      "id": 1,
+      "name": "identify-by-name",
+      "prompt": "What's in Ratatouille?",
+      "expected_tool_call": "recipe",
+      "expected_output": "Routes to Identify mode; opens references/identify.md and looks up Ratatouille in references/recipes.json. Returns the ingredient list, marking the spice slot as a category slot."
+    },
+    {
+      "id": 2,
+      "name": "identify-fuzzy",
+      "prompt": "what are the ingredients for Sauteed Mushroom (might be spelled different)",
+      "expected_tool_call": "recipe",
+      "expected_output": "Identify mode with fuzzy matching. Normalizes 'Sauteed Mushroom' to 'Sautéed Mushrooms' and returns ingredients."
+    },
+    {
+      "id": 3,
+      "name": "identify-not-in-dataset",
+      "prompt": "what's in the brand new Wonderland-themed Tea Cake recipe?",
+      "expected_tool_call": "recipe",
+      "expected_output": "Identify mode triggers. Searches references/recipes.json, finds no match, says so plainly and offers to look up on the wiki. Does NOT invent ingredients."
+    },
+    {
+      "id": 4,
+      "name": "identify-slash",
+      "prompt": "/recipe Bell Pepper Puffs",
+      "expected_tool_call": "recipe",
+      "expected_output": "Slash command directly routes to Identify mode for Bell Pepper Puffs."
+    },
+    {
+      "id": 5,
+      "name": "recommend-natural",
+      "prompt": "what should I cook? I've got a ton of tomatoes, onions, eggplant, zucchini, and some spice",
+      "expected_tool_call": "cook",
+      "expected_output": "Recommend mode triggers. With those ingredients, Ratatouille is satisfiable; rank by efficiency."
+    },
+    {
+      "id": 6,
+      "name": "recommend-profit",
+      "prompt": "what's the most profitable thing I can cook right now?",
+      "expected_tool_call": "cook",
+      "expected_output": "Recommend mode with objective=profit. Asks for ingredients on hand if not provided."
+    },
+    {
+      "id": 7,
+      "name": "recommend-energy",
+      "prompt": "best recipe for energy?",
+      "expected_tool_call": "cook",
+      "expected_output": "Recommend mode with objective=energy."
+    },
+    {
+      "id": 8,
+      "name": "recommend-flags",
+      "prompt": "/cook --profit --floor 99 lemon, garlic, herring, onion",
+      "expected_tool_call": "cook",
+      "expected_output": "Recommend mode, profit objective, floor 99. With these ingredients Arendellian Pickled Herring is cookable (4 fixed slots satisfied; spice is a category slot)."
+    },
+    {
+      "id": 9,
+      "name": "recommend-course-filter",
+      "prompt": "I want a dessert recipe to cook, what's most profitable? I have plenty of every ingredient.",
+      "expected_tool_call": "cook",
+      "expected_output": "Recommend mode, filters by course=dessert before ranking on profit."
+    },
+    {
+      "id": 10,
+      "name": "restock-natural",
+      "prompt": "here's a screenshot of my storage, what do I need to gather to top up?",
+      "expected_tool_call": "restock",
+      "expected_output": "Stock-check mode. Reads storage screenshot per icon-cues.md, compares to gatherables.json, produces a categorized gather checklist."
+    },
+    {
+      "id": 11,
+      "name": "restock-slash-floor",
+      "prompt": "/restock --floor 99",
+      "expected_tool_call": "restock",
+      "expected_output": "Stock-check mode with floor override of 99. Asks for storage screenshot if absent."
+    },
+    {
+      "id": 12,
+      "name": "restock-category",
+      "prompt": "/restock --category gems just tell me which gems i'm low on",
+      "expected_tool_call": "restock",
+      "expected_output": "Stock-check mode restricted to gems category."
+    },
+    {
+      "id": 13,
+      "name": "screenshot-cookbook",
+      "prompt": "I uploaded a screenshot of my open cookbook with several recipe names visible — can you tell me what's in each?",
+      "expected_tool_call": "recipe",
+      "expected_output": "Identify mode handles multi-dish screenshot. Returns one ingredient block per dish in the order they appear."
+    },
+    {
+      "id": 14,
+      "name": "negative-unrelated-game",
+      "prompt": "what's the best build for crossbow in Elden Ring?",
+      "should_trigger": false,
+      "expected_output": "Skill does NOT activate. Unrelated game."
+    },
+    {
+      "id": 15,
+      "name": "negative-ddv-non-cooking",
+      "prompt": "how do I unlock Wishblossom Mountains in Dreamlight Valley?",
+      "should_trigger": false,
+      "expected_output": "DDV-related but not about cooking, gathering, or inventory. Skill should not activate; the prompt is about story/progression."
+    },
+    {
+      "id": 16,
+      "name": "negative-recipe-creation",
+      "prompt": "can you invent a new Dreamlight Valley recipe that uses cherries and cocoa beans?",
+      "should_trigger": false,
+      "expected_output": "Skill does NOT activate for inventing recipes. Bundled data is authoritative and we don't fabricate."
+    },
+    {
+      "id": 17,
+      "name": "negative-real-cooking",
+      "prompt": "what can I make for dinner tonight with onion, cheese, and eggplant?",
+      "should_trigger": false,
+      "expected_output": "Real-world cooking question, no DDV context. Skill should not activate."
+    }
+  ]
+}

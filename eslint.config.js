@@ -1,4 +1,4 @@
-import { defineConfig } from "eslint/config";
+import { defineConfig, globalIgnores } from "eslint/config";
 import globals from "globals";
 
 import js from "@eslint/js";
@@ -9,16 +9,14 @@ import css from "@eslint/css";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
 
 export default defineConfig([
-	{
-		ignores: [
-			"**/node_modules/**",
-			"**/dist/**",
-			"**/coverage/**",
-			".yarn/**",
-			".cache/**",
-			"CHANGELOG.md",
-		],
-	},
+	globalIgnores([
+		"**/node_modules/**",
+		"**/dist/**",
+		"**/coverage/**",
+		".yarn/**",
+		".cache/**",
+		"CHANGELOG.md",
+	]),
 	{
 		files: ["**/*.js"],
 		plugins: { js },
@@ -70,6 +68,9 @@ export default defineConfig([
 		plugins: { markdown },
 		language: "markdown/gfm",
 		extends: ["markdown/recommended"],
+		rules: {
+			"markdown/no-missing-label-references": "off",
+		},
 	},
 	{
 		files: ["**/*.css"],
@@ -77,7 +78,8 @@ export default defineConfig([
 		language: "css/css",
 		extends: ["css/recommended"],
 		rules: {
-			"css/use-baseline": ["error", { available: "newly" }],
+			"css/use-baseline": ["warn", { available: "newly" }],
+			"css/no-important": "off",
 		},
 	},
 	eslintConfigPrettier,

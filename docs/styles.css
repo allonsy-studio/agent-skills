@@ -676,22 +676,20 @@ li code,
 	padding-block: 3rem 3rem;
 	border-top: var(--theme--BorderWidth--thin) solid var(--theme--ui--color--border);
 	margin-top: 2rem;
-}
 
-.footer-grid {
 	display: grid;
 	gap: 2rem;
 	grid-template-columns: 1.5fr repeat(3, 1fr);
 }
 
 @media (width <= 720px) {
-	.footer-grid {
+	.site-footer {
 		grid-template-columns: 1fr 1fr;
 	}
 }
 
 @media (width <= 480px) {
-	.footer-grid {
+	.site-footer {
 		grid-template-columns: 1fr;
 	}
 }

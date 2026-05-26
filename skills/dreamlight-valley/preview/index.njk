@@ -1,0 +1,787 @@
+---
+layout: foundation.njk
+permalink: 'dreamlight-valley/index.html'
+title: Dreamlight Valley Catalog
+tagline_short: "Browse the data that @allons-y/skill-dreamlight-valley skill uses."
+tagline: "For the most customized experience, install the skill in Claude Code via the plugin marketplace, or vendor into any agent harness with npx."
+---
+
+{% css %}{% include "./styles.css" %}{% endcss %}
+
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<img class="background" src="/assets/thorn.svg" alt="Thorn" width="100" height="100">
+<header class="container">
+	<h1>Dreamlight Valley Catalog</h1>
+	<p>Browse the data that <a href="https://github.com/Allons-y-Studio/agent-skills/tree/main/skills/dreamlight-valley"><code>@allons-y/skill-dreamlight-valley</code></a> skill uses. For the most customized experience, install the skill in Claude Code via the plugin marketplace, or vendor into any agent harness with npx.</p>
+</header>
+
+<div class="container">
+	<div class="tabs" id="tabs" role="tablist" aria-label="Catalog category"></div>
+	<div class="controls">
+		<input id="search" class="search" type="search" placeholder="Search by name…" aria-label="Search by name" list="name-suggestions" autocomplete="off" />
+		<input id="search-ingredient" class="search" type="search" placeholder="Search by ingredient(s), comma-separated…" aria-label="Search by ingredient" list="ingredient-suggestions" autocomplete="off" style="display:none" />
+	</div>
+	<datalist id="name-suggestions"></datalist>
+	<datalist id="ingredient-suggestions"></datalist>
+	<div class="controls">
+		<div id="filters" class="filter-group" role="group" aria-label="Filters"></div>
+		<div id="star-filters" class="filter-group" role="group" aria-label="Star rating filter" style="display:none"></div>
+		<label class="sort-control">Sort:
+			<select id="sort" class="sort-select" aria-label="Sort"></select>
+		</label>
+	</div>
+	<div class="controls events-row" id="event-filters-row" style="display:none">
+		<h2 class="events-label">Events</h2>
+		<div id="event-filters" class="filter-group" role="group" aria-label="Event filter"></div>
+		<label class="hide-events" id="hide-events-control" style="display:none">
+			<input id="hide-events" type="checkbox" />
+			Hide seasonal items
+		</label>
+	</div>
+	<div class="summary" id="summary"></div>
+	<main id="results" class="grid" role="tabpanel" aria-labelledby="tab-recipes" tabindex="0"></main>
+</div>
+
+<footer class="container">
+	<div class="footer-col footer-brand">
+		<p class="footer-title"><a href="https://github.com/Allons-y-Studio/agent-skills">@allons-y/agent-skills</a></p>
+		<p class="footer-tagline">A collection of self-contained agent skills that streamline common developer workflows and reduce token usage. Install in Claude Code via the plugin marketplace, or vendor into any agent harness with npx.</p>
+		<p class="footer-meta"><a href="https://github.com/Allons-y-Studio/agent-skills/blob/main/LICENSE">Licensed under MPL-2.0</a></p>
+	</div>
+	<div class="footer-col">
+		<p class="footer-title">brought to you by</p>
+		<a href="https://allons-y.studio"><img src="/assets/allons-y_studio.svg" alt="Allons-y Studio logo" width="200" height="100"></a>
+	</div>
+</footer>
+
+<button id="scroll-top" class="scroll-top" type="button" aria-label="Scroll to top" title="Scroll to top">↑</button>
+
+{% js %}
+const state = {
+	activeTab: "recipes",
+	search: "",
+	searchIngredient: "",
+	filter: null,
+	starFilter: null, // 1..5 or null (recipes only)
+	eventFilter: null, // specific event name or null
+	hideEvents: false, // when true, hide every event/seasonal item
+	sort: "name-asc",
+	data: null,
+};
+
+const SORT_OPTIONS = {
+	recipes: [
+		{ id: "name-asc", label: "Name (A→Z)" },
+		{ id: "stars-desc", label: "Stars (high→low)" },
+		{ id: "stars-asc", label: "Stars (low→high)" },
+		{ id: "energy-desc", label: "Energy (high→low)" },
+		{ id: "price-desc", label: "Profit (high→low)" },
+		{ id: "price-per-desc", label: "Profit per ingredient" },
+	],
+	ingredients: [
+		{ id: "name-asc", label: "Name (A→Z)" },
+		{ id: "price-desc", label: "Sale price (high→low)" },
+		{ id: "energy-desc", label: "Energy (high→low)" },
+	],
+	collectables: [
+		{ id: "name-asc", label: "Name (A→Z)" },
+		{ id: "price-desc", label: "Sale price (high→low)" },
+	],
+	flowers: [
+		{ id: "name-asc", label: "Name (A→Z)" },
+		{ id: "price-desc", label: "Sale price (high→low)" },
+	],
+	gems: [{ id: "name-asc", label: "Name (A→Z)" }],
+};
+
+// @todo: build from data instead of hardcoding
+const TABS = [
+	{ id: "recipes", label: "Recipes" },
+	{ id: "ingredients", label: "Ingredients" },
+	{ id: "collectables", label: "Collectables" },
+	{ id: "flowers", label: "Flowers" },
+	{ id: "gems", label: "Gems" },
+];
+
+function spriteStyle(item, tabId) {
+	const sheetId = tabId !== "ingredients" ? tabId : `ingredients-${item.category}`;
+	const sheet = state.data.coords[sheetId];
+	if (!sheet) return null;
+	const c = sheet.items[item.name];
+	if (!c) return null;
+	return `background-image: url('/sprites/${sheet.file}'); background-position: -${c.x}px -${c.y}px;`;
+}
+
+function itemsForTab() {
+	if (state.activeTab === "recipes") return state.data.recipes;
+	return state.data.gatherables[state.activeTab] || [];
+}
+
+// A gatherable item is an "event" item if it has an explicit `event`
+// field OR if it's a flower with no `availability` tier (those are
+// intentionally unmarked seasonal/event flowers).
+function isEventGatherable(item) {
+	if (item.event) return true;
+	// Flowers without availability are event/seasonal.
+	return state.data.gatherables.flowers.includes(item) && !item.availability;
+}
+
+// A recipe counts as an event recipe if any of its (fixed) ingredients
+// resolve to an event gatherable.
+function isEventRecipe(recipe) {
+	for (const slot of recipe.ingredients) {
+		if (slot.category) continue; // category slots don't pin to a specific item
+		const target = ingredientLookup?.get(slot.name.toLowerCase());
+		if (!target) continue;
+		const items = state.data.gatherables[target.tab] || [];
+		const item = items.find((i) => i.name === target.search);
+		if (item && isEventGatherable(item)) return true;
+	}
+	return false;
+}
+
+function itemEvent(item) {
+	// Returns the event name (or `"Seasonal"` for unnamed seasonal
+	// flowers, or null if not an event item).
+	if (item.event) return item.event;
+	if (state.data.gatherables.flowers.includes(item) && !item.availability) {
+		return "Seasonal";
+	}
+	return null;
+}
+
+function recipeEvents(recipe) {
+	const set = new Set();
+	for (const slot of recipe.ingredients) {
+		if (slot.category) continue;
+		const target = ingredientLookup?.get(slot.name.toLowerCase());
+		if (!target) continue;
+		const items = state.data.gatherables[target.tab] || [];
+		const item = items.find((i) => i.name === target.search);
+		if (item) {
+			const ev = itemEvent(item);
+			if (ev) set.add(ev);
+		}
+	}
+	return set;
+}
+
+function passes(item) {
+	const q = state.search.trim().toLowerCase();
+	if (q && !item.name.toLowerCase().includes(q)) return false;
+	if (state.filter) {
+		if (state.activeTab === "recipes" && item.course !== state.filter) return false;
+		if (state.activeTab === "ingredients" && item.category !== state.filter) return false;
+		if (state.activeTab === "flowers" && item.availability !== state.filter) return false;
+		if (state.activeTab === "collectables") {
+			const m = Array.isArray(item.method) ? item.method : [item.method];
+			if (!m.includes(state.filter)) return false;
+		}
+	}
+	// Event-based filters (apply to every tab except gems, which has none)
+	if (state.activeTab !== "gems") {
+		const isEvent =
+			state.activeTab === "recipes"
+				? isEventRecipe(item)
+				: isEventGatherable(item);
+		if (state.eventFilter) {
+			// Show only items matching this event.
+			const events =
+				state.activeTab === "recipes"
+					? recipeEvents(item)
+					: new Set(itemEvent(item) ? [itemEvent(item)] : []);
+			if (!events.has(state.eventFilter)) return false;
+		} else if (state.hideEvents && isEvent) {
+			return false;
+		}
+	}
+	// Recipe-only filters
+	if (state.activeTab === "recipes") {
+		if (state.starFilter != null && item.star_rating !== state.starFilter) return false;
+		const ingQ = state.searchIngredient.trim().toLowerCase();
+		if (ingQ) {
+			// AND over comma-separated terms; each term must substring-match
+			// at least one ingredient slot's `name` (fixed OR category slot).
+			const terms = ingQ.split(",").map((t) => t.trim()).filter(Boolean);
+			const slotNames = item.ingredients.map((i) => i.name.toLowerCase());
+			for (const t of terms) {
+				if (!slotNames.some((n) => n.includes(t))) return false;
+			}
+		}
+	}
+	return true;
+}
+
+function sortItems(items) {
+	const id = state.sort;
+	const tab = state.activeTab;
+	const byName = (a, b) => a.name.localeCompare(b.name);
+	const numDesc = (key) => (a, b) => (b[key] ?? 0) - (a[key] ?? 0);
+	const numAsc = (key) => (a, b) => (a[key] ?? 0) - (b[key] ?? 0);
+	const perIngredient = (key) => (a, b) => {
+		const ai = a.ingredients?.length || 1;
+		const bi = b.ingredients?.length || 1;
+		return (b[key] ?? 0) / bi - (a[key] ?? 0) / ai;
+	};
+	const sorted = [...items];
+	switch (id) {
+		case "name-asc":
+			sorted.sort(byName);
+			break;
+		case "stars-desc":
+			sorted.sort((a, b) => b.star_rating - a.star_rating || byName(a, b));
+			break;
+		case "stars-asc":
+			sorted.sort((a, b) => a.star_rating - b.star_rating || byName(a, b));
+			break;
+		case "energy-desc":
+			sorted.sort(numDesc("energy"));
+			break;
+		case "energy-asc":
+			sorted.sort(numAsc("energy"));
+			break;
+		case "price-desc":
+			sorted.sort(numDesc("sale_price"));
+			break;
+		case "price-per-desc":
+			sorted.sort(perIngredient("sale_price"));
+			break;
+		default:
+			sorted.sort(byName);
+	}
+	return sorted;
+}
+
+function renderTabs() {
+	const el = document.getElementById("tabs");
+	el.innerHTML = TABS.map((t) => {
+		const count =
+			t.id === "recipes"
+				? state.data.recipes.length
+				: state.data.gatherables[t.id]?.length ?? 0;
+		const selected = state.activeTab === t.id;
+		return `<button
+			class="tab"
+			role="tab"
+			id="tab-${t.id}"
+			data-tab="${t.id}"
+			aria-selected="${selected}"
+			aria-controls="results"
+			tabindex="${selected ? 0 : -1}"
+			type="button"
+		>${t.label}<span class="count">${count}</span></button>`;
+	}).join("");
+	// Point the panel's labelledby at the active tab so screen readers
+	// know which tab governs the current content.
+	document
+		.getElementById("results")
+		.setAttribute("aria-labelledby", `tab-${state.activeTab}`);
+}
+
+// Move focus + activation across the tablist via Arrow / Home / End.
+// Auto-activation: focus change immediately swaps content (cheap for us).
+function handleTabKeyboard(e) {
+	const tabs = Array.from(document.querySelectorAll("#tabs [role='tab']"));
+	const i = tabs.findIndex((t) => t === document.activeElement);
+	if (i < 0) return;
+	let next = i;
+	switch (e.key) {
+		case "ArrowRight":
+			next = (i + 1) % tabs.length;
+			break;
+		case "ArrowLeft":
+			next = (i - 1 + tabs.length) % tabs.length;
+			break;
+		case "Home":
+			next = 0;
+			break;
+		case "End":
+			next = tabs.length - 1;
+			break;
+		default:
+			return;
+	}
+	e.preventDefault();
+	activateTab(tabs[next].dataset.tab, { focus: true });
+}
+
+function filterOptions() {
+	if (state.activeTab === "recipes") return ["appetizer", "entree", "dessert"];
+	if (state.activeTab === "ingredients") {
+		return [
+			...new Set(state.data.gatherables.ingredients.map((i) => i.category)),
+		].sort();
+	}
+	if (state.activeTab === "flowers") return ["abundant", "average", "rare", "ultra-rare"];
+	if (state.activeTab === "collectables") {
+		const methods = new Set();
+		for (const f of state.data.gatherables.collectables) {
+			if (!f.method) continue;
+			(Array.isArray(f.method) ? f.method : [f.method]).forEach((m) => methods.add(m));
+		}
+		return [...methods].sort();
+	}
+	return [];
+}
+
+function renderFilters() {
+	const el = document.getElementById("filters");
+	const opts = filterOptions();
+	el.innerHTML = opts
+		.map(
+			(o) =>
+				`<button class="filter" data-filter="${o}" aria-pressed="${state.filter === o}" type="button">${o}</button>`,
+		)
+		.join("");
+}
+
+function renderStarFilters() {
+	const wrap = document.getElementById("star-filters");
+	if (state.activeTab !== "recipes") {
+		wrap.style.display = "none";
+		wrap.innerHTML = "";
+		return;
+	}
+	wrap.style.display = "flex";
+	wrap.innerHTML = [1, 2, 3, 4, 5]
+		.map(
+			(n) =>
+				`<button class="filter star" data-star="${n}" aria-pressed="${state.starFilter === n}" type="button">${"★".repeat(n)}</button>`,
+		)
+		.join("");
+}
+
+function renderSort() {
+	const sel = document.getElementById("sort");
+	const opts = SORT_OPTIONS[state.activeTab] || SORT_OPTIONS.recipes;
+	// If the current sort isn't valid for this tab, reset to its default.
+	if (!opts.find((o) => o.id === state.sort)) state.sort = opts[0].id;
+	sel.innerHTML = opts
+		.map(
+			(o) =>
+				`<option value="${o.id}" ${o.id === state.sort ? "selected" : ""}>${o.label}</option>`,
+		)
+		.join("");
+}
+
+function renderIngredientSearchVisibility() {
+	const ingSearch = document.getElementById("search-ingredient");
+	const onRecipes = state.activeTab === "recipes";
+	ingSearch.style.display = onRecipes ? "block" : "none";
+	if (!onRecipes) {
+		state.searchIngredient = "";
+		ingSearch.value = "";
+	}
+}
+
+// Build the unique set of event names visible in the current tab.
+// For recipes, walks each recipe's ingredients to collect their events.
+function collectEventsForTab() {
+	const set = new Set();
+	if (state.activeTab === "gems") return set;
+	if (state.activeTab === "recipes") {
+		for (const r of state.data.recipes) {
+			for (const ev of recipeEvents(r)) set.add(ev);
+		}
+	} else {
+		for (const item of itemsForTab()) {
+			const ev = itemEvent(item);
+			if (ev) set.add(ev);
+		}
+	}
+	return set;
+}
+
+function renderEventControls() {
+	const checkboxWrap = document.getElementById("hide-events-control");
+	const checkbox = document.getElementById("hide-events");
+	const eventRow = document.getElementById("event-filters-row");
+	const eventGroup = document.getElementById("event-filters");
+	const events = collectEventsForTab();
+	const hasEvents = events.size > 0;
+	// Hide the whole UI when no events exist (currently just the gems tab).
+	checkboxWrap.style.display = hasEvents ? "inline-flex" : "none";
+	eventRow.style.display = hasEvents && events.size > 1 ? "flex" : "none";
+	if (!hasEvents) {
+		state.hideEvents = false;
+		state.eventFilter = null;
+		checkbox.checked = false;
+		eventGroup.innerHTML = "";
+		return;
+	}
+	checkbox.checked = state.hideEvents;
+	const sorted = [...events].sort((a, b) => a.localeCompare(b));
+	eventGroup.innerHTML = sorted
+		.map(
+			(ev) =>
+				`<button class="filter event" data-event="${escapeHtml(ev)}" aria-pressed="${state.eventFilter === ev}" type="button">${escapeHtml(ev)}</button>`,
+		)
+		.join("");
+}
+
+// ---- Cards -------------------------------------------------------------
+function escapeHtml(s) {
+	return String(s).replace(/[&<>"']/g, (c) => ({
+		"&": "&amp;", "<": "&lt;", ">": "&gt;",
+		'"': "&quot;", "'": "&#39;",
+	})[c]);
+}
+
+// Highlight ingredient-search term matches inside a slot name.
+function highlightTerms(name) {
+	const ingQ = state.searchIngredient.trim().toLowerCase();
+	if (!ingQ) return escapeHtml(name);
+	const terms = ingQ.split(",").map((t) => t.trim()).filter(Boolean);
+	if (!terms.length) return escapeHtml(name);
+	const lower = name.toLowerCase();
+	// Find first matching term + substring index; tag it with <mark>.
+	for (const t of terms) {
+		const i = lower.indexOf(t);
+		if (i >= 0) {
+			const before = escapeHtml(name.slice(0, i));
+			const hit = escapeHtml(name.slice(i, i + t.length));
+			const after = escapeHtml(name.slice(i + t.length));
+			return `${before}<mark>${hit}</mark>${after}`;
+		}
+	}
+	return escapeHtml(name);
+}
+
+const COIN_IMG = `<img class="coin" src="/assets/star-coin.png" alt="Star Coins" />`;
+
+function renderSlot(slot) {
+	const label = highlightTerms(slot.name);
+	const inner = slot.category ? `any ${label}` : label;
+	const cls = slot.category ? "ing-link cat-slot" : "ing-link";
+	const target = resolveSlot(slot);
+	if (!target) {
+		// No matching tab/filter — render as plain text (no link).
+		return slot.category ? `<span class="cat-slot">${inner}</span>` : inner;
+	}
+	const title = slot.category
+		? `Browse all ${escapeHtml(slot.name)} ingredients`
+		: `Find ${escapeHtml(target.search)} in catalog`;
+	return `<a class="${cls}" href="#"
+		data-nav-tab="${escapeHtml(target.tab)}"
+		data-nav-search="${escapeHtml(target.search || "")}"
+		data-nav-filter="${escapeHtml(target.filter || "")}"
+		title="${title}">${inner}</a>`;
+}
+
+function renderRecipeCard(r) {
+	// Group identical slots so duplicates render as "wheat x2" instead of
+	// "wheat, wheat". Key by name + whether it's a category slot so a
+	// fixed `wheat` and a category-slot named `wheat` don't collide.
+	const order = [];
+	const counts = new Map();
+	for (const slot of r.ingredients) {
+		const key = `${slot.name.toLowerCase()}|${slot.category ? "cat" : "fixed"}`;
+		if (counts.has(key)) {
+			counts.set(key, counts.get(key) + 1);
+		} else {
+			counts.set(key, 1);
+			order.push({ key, slot });
+		}
+	}
+	const slots = order
+		.map(({ key, slot }) => {
+			const html = renderSlot(slot);
+			const c = counts.get(key);
+			return c > 1 ? `${html} <span class="qty">x${c}</span>` : html;
+		})
+		.join(", ");
+	const style = spriteStyle(r, "recipes");
+	return `
+		<article class="card">
+			<div class="icon-wrap">
+				${style ? `<div class="icon" style="${style}"></div>` : `<span class="no-icon">·</span>`}
+			</div>
+			<div class="name">${escapeHtml(r.name)}</div>
+			<div class="meta">
+				<div class="meta-row">
+					<span>${"★".repeat(r.star_rating)} <span style="text-transform: capitalize;">${escapeHtml(r.course)}</span></span>
+				</div>
+				<div class="stats">
+					<span>⚡ ${r.energy.toLocaleString()}</span>
+					<span>${COIN_IMG}${r.sale_price.toLocaleString()}</span>
+				</div>
+				<div class="ingredients">${slots}</div>
+			</div>
+		</article>
+	`;
+}
+
+function renderGatherableCard(item) {
+	const style = spriteStyle(item, state.activeTab);
+	const tags = [];
+	if (item.category) tags.push(`<span class="tag">${escapeHtml(item.category)}</span>`);
+	if (item.availability) tags.push(`<span class="tag pink">${escapeHtml(item.availability)}</span>`);
+	if (item.method) {
+		const m = Array.isArray(item.method) ? item.method.join(" + ") : item.method;
+		tags.push(`<span class="tag">${escapeHtml(m)}</span>`);
+	}
+	if (item.event) tags.push(`<span class="tag event">${escapeHtml(item.event)}</span>`);
+
+	const stats = [];
+	if (item.energy != null) stats.push(`<span>⚡ ${item.energy.toLocaleString()}</span>`);
+	if (item.sale_price != null) stats.push(`<span>${COIN_IMG}${item.sale_price.toLocaleString()}</span>`);
+
+	const locations = (item.locations ?? []).filter(Boolean);
+	const locText = locations.length
+		? locations.map(escapeHtml).join(" · ")
+		: "<em>no location data</em>";
+
+	return `
+		<article class="card">
+			<div class="icon-wrap">
+				${style ? `<div class="icon" style="${style}"></div>` : `<span class="no-icon">·</span>`}
+			</div>
+			<div class="name">${escapeHtml(item.name)}</div>
+			<div class="meta">
+				<div class="tags">${tags.join("")}</div>
+				${stats.length ? `<div class="stats">${stats.join("")}</div>` : ""}
+				<div class="locations">${locText}</div>
+			</div>
+		</article>
+	`;
+}
+
+function activateTab(tabId, { focus = false } = {}) {
+	if (!TABS.find((t) => t.id === tabId)) return;
+	state.activeTab = tabId;
+	state.search = "";
+	state.searchIngredient = "";
+	state.filter = null;
+	state.starFilter = null;
+	state.eventFilter = null;
+	state.hideEvents = false;
+	state.sort = (SORT_OPTIONS[tabId] || SORT_OPTIONS.recipes)[0].id;
+	document.getElementById("search").value = "";
+	document.getElementById("search-ingredient").value = "";
+	render();
+	if (focus) {
+		const btn = document.querySelector(`#tab-${tabId}`);
+		if (btn) btn.focus();
+	}
+}
+
+
+// Lowercase name → { tab, search, filter } for every gatherable item.
+let ingredientLookup = null;
+
+function buildIngredientLookup() {
+	const map = new Map();
+	for (const [tab, items] of Object.entries(state.data.gatherables)) {
+		if (tab === "gems") continue; // not used as recipe ingredients
+		for (const item of items) {
+			map.set(item.name.toLowerCase(), {
+				tab,
+				search: item.name,
+				filter: null,
+			});
+		}
+	}
+	ingredientLookup = map;
+}
+
+function resolveSlot(slot) {
+	if (slot.category) {
+		return {
+			fish: { tab: "ingredients", filter: "fish" },
+			vegetable: { tab: "ingredients", filter: "vegetable" },
+			fruit: { tab: "ingredients", filter: "fruit" },
+			grain: { tab: "ingredients", filter: "grain" },
+			spice: { tab: "ingredients", filter: "spice" },
+			sweet: { tab: "ingredients", filter: "sweet" },
+			seafood: { tab: "ingredients", filter: "seafood" },
+			dairy: { tab: "ingredients", filter: "dairy" },
+			meat: { tab: "ingredients", filter: "meat" },
+			ice: { tab: "ingredients", filter: "ice" },
+		}[slot.name.toLowerCase()] || null;
+	}
+	return ingredientLookup?.get(slot.name.toLowerCase()) || null;
+}
+
+function navigateToIngredient(tab, search, filter) {
+	if (!TABS.find((t) => t.id === tab)) return;
+	state.activeTab = tab;
+	state.search = search || "";
+	state.searchIngredient = "";
+	state.filter = filter || null;
+	state.starFilter = null;
+	state.sort = (SORT_OPTIONS[tab] || SORT_OPTIONS.recipes)[0].id;
+	document.getElementById("search").value = state.search;
+	document.getElementById("search-ingredient").value = "";
+	render();
+	// Scroll back to top so the navigated tab is visible.
+	window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function populateNameSuggestions() {
+	const dl = document.getElementById("name-suggestions");
+	const items = itemsForTab();
+	dl.innerHTML = items
+		.map((i) => `<option value="${escapeHtml(i.name)}"></option>`)
+		.join("");
+}
+
+// Built once: unique slot names across all recipes (fixed ingredients +
+// category-slot names like "spice" / "vegetable"), alphabetised.
+function populateIngredientSuggestions() {
+	const dl = document.getElementById("ingredient-suggestions");
+	const set = new Set();
+	for (const r of state.data.recipes) {
+		for (const slot of r.ingredients) set.add(slot.name);
+	}
+	const sorted = [...set].sort((a, b) => a.localeCompare(b));
+	dl.innerHTML = sorted
+		.map((n) => `<option value="${escapeHtml(n)}"></option>`)
+		.join("");
+}
+
+function isFiltered() {
+	return Boolean(
+		state.search ||
+			state.searchIngredient ||
+			state.filter ||
+			state.starFilter != null ||
+			state.eventFilter ||
+			state.hideEvents,
+	);
+}
+
+function render() {
+	renderTabs();
+	renderFilters();
+	renderStarFilters();
+	renderEventControls();
+	renderSort();
+	renderIngredientSearchVisibility();
+	populateNameSuggestions();
+	const items = sortItems(itemsForTab().filter(passes));
+	const total = itemsForTab().length;
+	document.getElementById("summary").textContent =
+		`Showing ${items.length} of ${total}${isFiltered() ? " (filtered)" : ""}`;
+	const root = document.getElementById("results");
+	if (!items.length) {
+		root.innerHTML = `<div class="empty">No matches.</div>`;
+		return;
+	}
+	root.innerHTML =
+		state.activeTab === "recipes"
+			? items.map(renderRecipeCard).join("")
+			: items.map(renderGatherableCard).join("");
+}
+
+const tabsEl = document.getElementById("tabs");
+tabsEl.addEventListener("click", (e) => {
+	const btn = e.target.closest(".tab");
+	if (!btn) return;
+	activateTab(btn.dataset.tab);
+});
+tabsEl.addEventListener("keydown", handleTabKeyboard);
+document.getElementById("filters").addEventListener("click", (e) => {
+	const btn = e.target.closest(".filter");
+	if (!btn) return;
+	state.filter = state.filter === btn.dataset.filter ? null : btn.dataset.filter;
+	render();
+});
+document.getElementById("star-filters").addEventListener("click", (e) => {
+	const btn = e.target.closest(".filter");
+	if (!btn) return;
+	const n = Number(btn.dataset.star);
+	state.starFilter = state.starFilter === n ? null : n;
+	render();
+});
+document.getElementById("sort").addEventListener("change", (e) => {
+	state.sort = e.target.value;
+	render();
+});
+document.getElementById("search").addEventListener("input", (e) => {
+	state.search = e.target.value;
+	render();
+});
+document.getElementById("search-ingredient").addEventListener("input", (e) => {
+	state.searchIngredient = e.target.value;
+	render();
+});
+document.getElementById("hide-events").addEventListener("change", (e) => {
+	state.hideEvents = e.target.checked;
+	// Choosing "hide events" supersedes a specific-event selection.
+	if (state.hideEvents) state.eventFilter = null;
+	render();
+});
+document.getElementById("event-filters").addEventListener("click", (e) => {
+	const btn = e.target.closest(".filter");
+	if (!btn) return;
+	const ev = btn.dataset.event;
+	state.eventFilter = state.eventFilter === ev ? null : ev;
+	// Picking a specific event implies you want to see it; clear the
+	// hide-events toggle so the two don't fight.
+	if (state.eventFilter) state.hideEvents = false;
+	render();
+});
+
+// Click on a recipe ingredient → jump to the ingredient's tab + filter.
+document.getElementById("results").addEventListener("click", (e) => {
+	const a = e.target.closest("a[data-nav-tab]");
+	if (!a) return;
+	e.preventDefault();
+	navigateToIngredient(
+		a.dataset.navTab,
+		a.dataset.navSearch,
+		a.dataset.navFilter,
+	);
+});
+
+(() => {
+	const btn = document.getElementById("scroll-top");
+	const SHOW_AFTER_PX = 400;
+	let ticking = false;
+	function update() {
+		ticking = false;
+		btn.classList.toggle("show", window.scrollY > SHOW_AFTER_PX);
+	}
+	window.addEventListener(
+		"scroll",
+		() => {
+			if (!ticking) {
+				requestAnimationFrame(update);
+				ticking = true;
+			}
+		},
+		{ passive: true },
+	);
+	btn.addEventListener("click", () => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
+		// After scrolling, return focus to the active tab so keyboard
+		// users land somewhere meaningful.
+		const active = document.querySelector("[role='tab'][aria-selected='true']");
+		if (active) active.focus({ preventScroll: true });
+	});
+	update();
+})();
+
+(async () => {
+	document.getElementById("results").innerHTML =
+		'<div class="loading">Loading catalog…</div>';
+
+	state.data = {
+		recipes: {{ recipes | json | safe }},
+		gatherables: {{ gatherables | json | safe }},
+		coords: {{ coords | json | safe }},
+	};
+	try {
+		buildIngredientLookup(); // recipe-slot-name → catalog target
+		populateIngredientSuggestions(); // recipe-wide; built once
+		render();
+	} catch (err) {
+		document.getElementById("results").innerHTML =
+			`<div class="empty">Failed to load data: ${escapeHtml(err.message)}</div>`;
+	}
+})();
+{% endjs %}

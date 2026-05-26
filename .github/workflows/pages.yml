@@ -22,13 +22,33 @@ jobs:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+          persist-credentials: false
 
-      - name: Publish docs/ to gh-pages root
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Use Node LTS version
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+          registry-url: https://registry.npmjs.org
+
+      - name: Install Node dependencies
+        run: yarn install --immutable
+
+      - name: Run build
+        run: yarn ci
+
+      - name: Publish _site/ to gh-pages root
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: docs
+          folder: _site
           clean: true
           clean-exclude: pr-preview/
 
@@ -37,12 +57,32 @@ jobs:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Use Node LTS version
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+          registry-url: https://registry.npmjs.org
+
+      - name: Install Node dependencies
+        run: yarn install --immutable
+
+      - name: Run build
+        run: yarn ci
 
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: docs
+          source-dir: _site
           preview-branch: gh-pages
           umbrella-dir: pr-preview
           action: auto

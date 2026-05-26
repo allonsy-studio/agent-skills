@@ -15,6 +15,7 @@
   },
   "scripts": {
     "ci:test": "yarn test",
+    "coverage": "c8 yarn test",
     "format": "yarn package:format",
     "lint": "yarn package:lint",
     "test": "node --test \"tests/**/*.test.js\""

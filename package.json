@@ -36,8 +36,10 @@
     "CLAUDE.md"
   ],
   "scripts": {
-    "check": "yarn workspaces foreach -A run check",
+    "build": "yarn workspaces foreach -A run build",
+    "ci": "cross-env ELEVENTY_ENV=production yarn build && eleventy",
     "ci:test": "yarn workspaces foreach -A run ci:test",
+    "clean": "rimraf _site",
     "coverage": "node scripts/run-tests.js --coverage-only",
     "evals": "node scripts/run-evals.js",
     "format": "yarn package:format",
@@ -51,6 +53,7 @@
     "prepublishOnly": "yarn generate:marketplace",
     "release": "semantic-release",
     "security": "yarn workspaces foreach -A run security",
+    "serve": "eleventy --serve",
     "test": "node scripts/run-tests.js",
     "ts:check": "tsc --noEmit"
   },
@@ -58,10 +61,9 @@
     "skills/*",
     "docs/"
   ],
-  "dependencies": {
-    "adm-zip": "^0.5.17"
-  },
   "devDependencies": {
+    "@11ty/eleventy": "^3.1.5",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
     "@allons-y/envoy": "^1.1.0",
     "@anthropic-ai/sdk": "^0.96.0",
     "@commitlint/cli": "^20.5.3",
@@ -77,6 +79,7 @@
     "@semantic-release/npm": "^13.1.5",
     "@semantic-release/release-notes-generator": "^14.1.1",
     "colors": "^1.4.0",
+    "cross-env": "^10.1.0",
     "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsonc": "^3.1.2",
@@ -102,6 +105,11 @@
   "engines": {
     "node": ">=24.0.0"
   },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "not dead"
+  ],
   "lint-staged": {
     "*": [
       "eslint --fix --format stylish"
