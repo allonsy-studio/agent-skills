@@ -3,24 +3,26 @@ name: Deploy docs site
 on:
   push:
     branches: [main]
-    paths: ["docs/**", ".github/workflows/pages.yml"]
-  pull_request:
-    types: [opened, reopened, synchronize, closed]
-    paths: ["docs/**", ".github/workflows/pages.yml"]
+  workflow_dispatch:
 
 concurrency:
   group: pages-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   contents: write
   pull-requests: write
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
     name: Deploy to gh-pages
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -44,45 +46,14 @@ jobs:
       - name: Run build
         run: yarn ci
 
-      - name: Publish _site/ to gh-pages root
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          branch: gh-pages
-          folder: _site
-          clean: true
-          clean-exclude: pr-preview/
+          path: '_site'
 
-  preview:
-    name: Deploy PR preview
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 1
-          persist-credentials: false
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Use Node LTS version
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: .nvmrc
-          cache: yarn
-          registry-url: https://registry.npmjs.org
-
-      - name: Install Node dependencies
-        run: yarn install --immutable
-
-      - name: Run build
-        run: yarn ci
-
-      - name: Deploy preview
-        uses: rossjrw/pr-preview-action@v1
-        with:
-          source-dir: _site
-          preview-branch: gh-pages
-          umbrella-dir: pr-preview
-          action: auto
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
