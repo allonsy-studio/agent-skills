@@ -196,9 +196,12 @@ async function runSkillTests(skillName, ctx) {
 
 	let output = "\n\n";
 
+	// Invoke `coverage` (which wraps `test` with c8) rather than `test`
+	// directly, so each skill writes coverage/coverage-summary.json — that's
+	// what `parseCoverageSummary` reads below to populate the summary table.
 	const result = await execa(
 		"yarn",
-		["workspace", `@allons-y/skill-${skillName}`, "test"],
+		["workspace", `@allons-y/skill-${skillName}`, "coverage"],
 		{ reject: false, all: true, cwd: root, env: process.env }
 	).catch((err) => {
 		if (err?.message) output += `${err?.message ?? err}\n\n`;

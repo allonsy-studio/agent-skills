@@ -242,6 +242,8 @@ __metadata:
 "@allons-y/skill-design-system@workspace:skills/design-system":
   version: 0.0.0-use.local
   resolution: "@allons-y/skill-design-system@workspace:skills/design-system"
+  dependencies:
+    c8: "npm:^11.0.0"
   languageName: unknown
   linkType: soft
 
