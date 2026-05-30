@@ -80,6 +80,12 @@ export default defineConfig([
 		rules: {
 			"css/use-baseline": ["warn", { available: "newly" }],
 			"css/no-important": "off",
+			// Custom properties are declared in `_includes/foundation.njk`'s inline
+			// <style> block (injected per-page from theme data), so the linter
+			// can't statically trace them from the .css files alone. Treat
+			// var(--unknown) references as valid; we still catch typo'd properties
+			// and bad enum values.
+			"css/no-invalid-properties": ["error", { allowUnknownVariables: true }],
 		},
 	},
 	eslintConfigPrettier,

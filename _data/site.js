@@ -1,17 +1,23 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-/** @type {import('@11ty/eleventy/TemplateConfig').TemplateConfig} */
+/**
+ * Eleventy global data: package, repo, skills, harnesses, etc.
+ *
+ * @param {{ eleventy: { env: { root: string } } }} configData
+ */
 export default async function (configData) {
 	const rootDir = path.resolve(configData.eleventy.env.root);
 
 	const packageJson = await fs.readFile(path.join(rootDir, "package.json"), "utf-8");
 	const pkg = JSON.parse(packageJson);
-	const repoUrl = pkg?.repository?.url?.replace(/\.?git\+?/g, "");
+
+	const repoType = pkg.repository?.type;
+	const repoUrl = pkg?.repository?.url?.replace(new RegExp(`\\.?${repoType}\\+?`), "");
 	const repoSegments = repoUrl.replace(/^https?:\/\/[^/]+\//, "").split("/");
-	const repoOwner = repoSegments[0];
-	const repoName = repoSegments[1];
-	const repoSlug = `${repoOwner}/${repoName}`;
+	const repoOwner = repoSegments?.[0];
+	const repoName = repoSegments?.[1];
+	const repoSlug = repoOwner && repoName ? `${repoOwner}/${repoName}` : "";
 
 	const marketplaceJson = await fs
 		.readFile(path.join(rootDir, ".claude-plugin", "marketplace.json"), "utf-8")
@@ -31,6 +37,7 @@ export default async function (configData) {
 				return {
 					name: dir?.name,
 					description: skillData?.description,
+					homepage: skillData?.homepage,
 					url: `${repoUrl}/blob/main/skills/${dir?.name}/SKILL.md`,
 					triggers: skillData?.skill?.triggers ?? [],
 					commands: skillData?.skill?.commands ?? [],

@@ -1,0 +1,558 @@
+
+:root {
+	--theme--ui--color: var(--base);
+	--theme--ui--color--subtle: light-dark(hsl(0, 0%, 90%), hsl(0, 0%, 30%));
+
+	--theme--text--Color: light-dark(hsl(40, 12%, 20%), #fff7e6);
+	--theme--text--Color--accent: light-dark(
+		var(--base),
+		color-mix(in hsl, var(--base) 90%, white)
+	);
+	--theme--text--Color--subtle: light-dark(hsl(40, 10%, 30%), #fff7e6a6);
+	--theme--text--Color--invert: light-dark(hsl(0, 0%, 100%), hsl(40, 12%, 20%));
+
+	--theme--link--Color: var(--theme--text--Color--accent);
+	--theme--link--Color--hover: color-mix(
+		in oklch,
+		var(--theme--link--Color) 90%,
+		var(--theme--text--Color)
+	);
+
+	--theme--code--FontFamily: "PT Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+	--theme--surface--color: light-dark(hsl(0, 0%, 98%), hsl(0, 0%, 10%));
+	--theme--surface--color--accent: light-dark(
+		color-mix(in oklch, var(--base) 12%, var(--theme--surface--color) 80%),
+		color-mix(in hsl, var(--base) 30%, transparent)
+	);
+	--theme--surface--color--sunken: light-dark(hsl(40, 14%, 96%), hsl(0, 0%, 7%));
+
+	--theme--ui--shadow: 0 1px 2px hsl(0deg 0% 0% / 0.04), 0 4px 12px -6px hsl(0deg 0% 0% / 0.06);
+}
+
+/* eslint-disable-next-line css/use-baseline */
+::selection {
+	background: color-mix(in hsl, var(--base) 80%, transparent);
+	color: var(--theme--text--Color);
+	color: contrast-color(var(--base));
+}
+
+html {
+	color-scheme: light dark;
+	scroll-behavior: smooth;
+	scroll-padding-block-start: 2rem;
+}
+
+body {
+	background: var(--theme--surface--color);
+	color: var(--theme--text--Color);
+	margin: 0;
+	font-family: var(--theme--text--FontFamily);
+	font-size: 18px;
+	font-weight: normal;
+	line-height: 1.4;
+	font-optical-sizing: auto;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+
+[id] {
+	scroll-margin-block-start: 1.5rlh;
+}
+
+:is(a, :link) {
+	text-decoration: underline dotted;
+	text-decoration-color: currentColor;
+	text-underline-offset: 0.2ex;
+	text-decoration-thickness: 1px;
+
+	&:is(:hover, :focus-visible) {
+		text-decoration: underline;
+	}
+}
+
+:is(a, :link):not([class]) {
+	color: var(--theme--link--Color);
+
+	&:is(:hover, :focus-visible) {
+		color: var(--theme--link--Color--hover);
+	}
+}
+
+:is(h2, h3, h4, h5, h6) {
+	margin: 0;
+	font-family: var(--theme--text--FontFamily);
+	font-weight: bold;
+	font-size: clamp(1.8em, 2vw, 2.2rem);
+	line-height: 1.1;
+	letter-spacing: -0.01em;
+	color: inherit;
+
+	.card:not(.featured) & {
+		color: var(--theme--text--Color--accent);
+	}
+
+	:not(.layout) > &:not(:last-child) {
+		margin-block-end: 1.2rem;
+	}
+
+	&:has(.chip) {
+		--justify-content: space-between;
+	}
+
+	header & + p {
+		color: var(--theme--text--Color--subtle);
+		max-width: 80ch;
+	}
+}
+
+h1 {
+	font-weight: bold;
+	font-size: clamp(2.75rem, 7vw, 4.5rem);
+	line-height: 1.1;
+	color: var(--theme--text--Color--accent);
+	letter-spacing: -0.06em;
+}
+
+p {
+	color: var(--theme--text--Color--subtle);
+	font-size: 1em;
+	line-height: 1.8;
+}
+
+pre {
+	background: var(--theme--surface--color--sunken);
+	border-inline-start: 4px solid var(--base);
+	border-end-end-radius: .2em;
+	border-start-end-radius: .2em;
+	font-size: 0.8em !important;
+	box-shadow: inset 1px 1px 0 hsl(0deg 0% 0% / 0.04), inset -1px -1px 0 hsl(0deg 0% 0% / 0.04);
+}
+
+code {
+	font-family: var(--theme--code--FontFamily);
+	line-height: 1.4;
+}
+
+:not(pre) > code {
+	padding: 0.1em 0.4em;
+	border-radius: .2em;
+	font-size: 0.9em;
+	margin-block-start: -.1rem;
+	border: 1px solid var(--theme--ui--color--subtle);
+}
+
+:focus-visible {
+	outline: 1px solid var(--base);
+	outline-offset: 2px;
+	border-radius: .2em;
+}
+
+.container {
+	box-sizing: border-box;
+	max-inline-size: clamp(72rem, 1200px, 100%);
+	margin-inline: auto;
+	padding-inline: clamp(2rem, 4vw, 16px);
+}
+
+.content {
+	inline-size: min(60ch, 100%);
+}
+
+:is(h2, h3, h4, h5, h6):has(.anchor) {
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	gap: 0.4rem;
+	flex-direction: row-reverse;
+}
+
+.anchor {
+	color: var(--theme--text--Color--subtle);
+	font-weight: 400;
+	transition: scale 0.15s ease;
+
+	&:is(:hover, :focus-visible) {
+		outline: none;
+		scale: 1.1;
+	}
+}
+
+p {
+	margin: 0;
+
+	.content & {
+		text-wrap: balance;
+		text-wrap: pretty;
+	}
+
+	:not(.layout) > &:not(:last-child) {
+		margin-block-end: 1rem;
+	}
+}
+
+ul, ol {
+	padding-inline-start: 1.25rem;
+}
+
+li {
+	margin-block: 0.25rem;
+}
+
+.skip-link {
+	position: absolute;
+	inset-inline-start: -9999px;
+	inset-block-start: 1rem;
+	padding: 0.5rem 1rem;
+	font-size: 1.6rem;
+	font-weight: var(--theme--FontWeight--medium);
+
+	&:is(:focus-visible, :focus) {
+		inset-inline-start: 1rem;
+		z-index: 10;
+	}
+}
+
+:where(.layout) {
+	container: layout / inline-size;
+	inline-size: 100%;
+
+	--item-size: 320px;
+
+	gap: var(--gap, 0.4rem);
+	justify-content: var(--justify-content, center);
+	align-items: var(--align-items, center);
+
+	&:not(.grid) {
+		display: flex;
+		flex-wrap: wrap;
+
+		> a {
+			display: inline-flex;
+		}
+	}
+
+	@media (width >= 720px) {
+		--item-size: 380px;
+	}
+
+	&.masonry,
+	&.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(var(--item-size, 380px), 1fr));
+
+		gap: var(--gap, 1rem);
+		align-items: var(--align-items, stretch);
+
+		&:has(.aside) {
+			--item-size: 50ch;
+
+			gap: var(--gap, 2rem);
+			align-items: var(--align-items, center);
+		}
+	}
+
+	&.masonry {
+		/* `display: grid-lanes` is a new CSS spec value (currently Safari Tech Preview).
+		   Gracefully ignored by other browsers. */
+		/* eslint-disable-next-line css/no-invalid-properties */
+		display: grid-lanes;
+	}
+
+	&.stacked {
+		flex-direction: column;
+		gap: var(--gap, 1.5rem);
+		justify-content: var(--justify-content, start);
+		align-items: var(--align-items, start);
+	}
+
+	&.spread {
+		justify-content: var(--justify-content, space-between);
+	}
+}
+
+.btn {
+	display: inline-flex;
+	/* used for icon layout */
+	align-items: center;
+	gap: 0.4rem;
+
+	padding: 0.7rem 1.5rem;
+	margin: 1px;
+	border-radius: .4em;
+	border: 1px solid var(--theme--ui--color--subtle);
+	background: var(--theme--surface--color--sunken);
+	color: var(--theme--text--Color);
+	font-weight: bolder;
+	font-family: inherit;
+	font-size: 0.95rem;
+	transition:
+		transform 0.08s ease,
+		box-shadow 0.15s ease,
+		background 0.15s ease;
+
+	&:is(:hover) {
+		transform: translateY(-1px);
+		box-shadow: var(--theme--ui--shadow);
+	}
+
+	&:not(.primary):is(:focus-visible) {
+		outline-offset: 0;
+	}
+
+	&.primary {
+		background: var(--base);
+		color: var(--theme--text--Color--invert);
+		border-color: var(--base);
+		margin: 3px;
+
+		&:is(:hover, :focus-visible) {
+			color: var(--theme--text--Color--invert);
+			background: color-mix(in oklch, var(--base) 88%, black);
+		}
+	}
+}
+
+.btn-group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.6rem;
+	justify-content: var(--justify-content, start);
+	align-items: var(--align-items, center);
+}
+
+.cta {
+	color: var(--theme--link--Color);
+	font-size: 0.9em;
+	font-weight: 600;
+
+	text-decoration: underline dotted;
+
+	&::after {
+		content: "→";
+		margin-left: 0.25em;
+		font-size: 0.8em;
+		transition: transform 0.15s ease;
+
+		.card:is(:hover, :focus-within) &,
+		&:is(:hover, :focus-visible) {
+			transform: translateX(0.25em);
+		}
+	}
+
+	&:is(:hover, :focus-visible),
+	.card:is(:hover, :focus-within) & {
+		color: var(--theme--link--Color--hover);
+	}
+}
+
+.lede {
+	font-size: clamp(1.1rem, 2vw, 1.4rem);
+}
+
+.brand svg {
+	color: var(--theme--text--Color);
+	max-inline-size: 200px;
+	height: auto;
+
+	path {
+		fill: currentColor !important;
+	}
+}
+
+.title {
+	color: var(--theme--text--Color);
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+
+	.brand & {
+		font-family: var(--theme--code--FontFamily);
+		text-transform: none;
+		letter-spacing: 0;
+		font-size: 1.2rem;
+		color: var(--theme--text--Color--accent);
+		font-weight: bolder;
+	}
+}
+
+.meta {
+	font-size: 0.8em;
+
+	&:has(code) {
+		margin: 0;
+	}
+
+
+	> .label {
+		margin-right: 0.5em;
+	}
+}
+
+.label {
+	text-transform: uppercase;
+	font-weight: 600;
+	color: var(--theme--text--Color);
+}
+
+.chip {
+	display: inline-block;
+	padding: 0.2rem 0.8rem;
+	font-family: var(--theme--code--FontFamily);
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	background: var(--theme--surface--color);
+	color: var(--theme--text--Color--accent);
+	border: 1px solid currentColor;
+	border-radius: 2em;
+
+	.card header & {
+		margin-block-start: -3.4rem;
+		display: block;
+		inline-size: max-content;
+	}
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	inline-size: 2.5rem;
+	block-size: 2.5rem;
+	color: inherit;
+	font-size: .6em;
+}
+
+.note {
+	color: var(--theme--text--Color--subtle);
+	font-size: 0.9em;
+}
+
+.card {
+	container: card / inline-size;
+
+	display: inline-grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto 1fr auto;
+	gap: 1rem;
+
+	background: var(--theme--surface--color--sunken);
+	color: inherit;
+
+	border: 1px solid var(--theme--ui--color--subtle);
+	border-radius: .8em;
+	padding: 2rem 1.2rem 1.2rem;
+	transition:
+		transform 0.12s ease,
+		box-shadow 0.15s ease,
+		border-color 0.15s ease;
+
+	&:is(:link, a) {
+		text-decoration: none !important;
+
+		&:is(:hover, :focus-within) {
+			transform: translateY(-2px);
+			box-shadow: var(--theme--ui--shadow);
+			border-color: var(--theme--text--Color--accent);
+		}
+
+		&:not(.featured):is(:focus-visible, :focus-within) {
+			outline-offset: 0;
+		}
+	}
+
+	footer,
+	.footer {
+		overflow: hidden;
+	}
+
+	.icon {
+		margin-inline-end: 0.5rem;
+	}
+
+	pre,
+	:not(pre) > code {
+		background: var(--theme--surface--color);
+	}
+
+	:is(header, .header) :is(h2, h3, h4, h5, h6):not([class]) {
+		font-size: calc(1.2em + 1cqi);
+	}
+
+	.body :is(h2, h3, h4, h5, h6):not([class]) {
+		font-size: calc(.8em + 1cqi);
+		color: var(--theme--text--Color);
+	}
+
+	&.featured {
+		padding: clamp(1.5rem, 3vw, 2.5rem);
+		box-shadow: var(--theme--ui--shadow);
+		border-color: var(--theme--text--Color--accent);
+		/* @eslint/css can't parse var() inside linear-gradient() color stops
+		   even though it's valid CSS. */
+		/* eslint-disable css/no-invalid-properties */
+		background-image: linear-gradient(
+			180deg,
+			var(--theme--surface--color--accent),
+			var(--theme--surface--color--sunken)
+		);
+		/* eslint-enable css/no-invalid-properties */
+	}
+}
+
+body > :is(section, footer) {
+	padding-block: 3rem;
+}
+
+body > footer {
+	border-top: 1px solid var(--theme--ui--color--subtle);
+
+	color: var(--theme--text--Color--subtle);
+	font-size: 0.9rem;
+
+	display: flex;
+	gap: 2rem;
+	flex-wrap: wrap;
+	justify-content: var(--justify-content, space-between);
+	align-items: var(--align-items, start);
+
+	> * {
+		max-inline-size: 60ch;
+	}
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+	}
+
+	a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+
+		&:is(:hover, :focus-visible) {
+			color: var(--theme--text--Color--accent);
+		}
+	}
+
+	.meta {
+		margin: 0;
+		font-size: 0.8rem;
+	}
+}
+
+@media (width <= 720px) {
+	footer {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media (width <= 480px) {
+	footer {
+		grid-template-columns: 1fr;
+	}
+}

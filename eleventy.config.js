@@ -7,16 +7,35 @@ export default async function ( config ) {
 	config.setInputDirectory(".");
 	config.setTemplateFormats([
 		"njk",
+		"css",
+		"js",
 		"11ty.js",
 	]);
 
 	config.ignores.add("**/README.md");
 	config.ignores.add("**/CLAUDE.md");
+	/* ignore top-level config files */
+	config.ignores.add("./*.js");
+	config.ignores.add("scripts/*");
+	config.ignores.add("bin/*");
+	config.ignores.add("skills/*/*.js");
+	config.ignores.add("skills/*/evals/**");
+	config.ignores.add("skills/*/commands/**");
+	config.ignores.add("skills/*/scripts/**");
+	config.ignores.add("skills/*/tests/**");
+	config.ignores.add("skills/*/references/**");
 
 	config.addBundle("css");
 	config.addBundle("js");
+	config.addBundle("footer");
 
 	config.addFilter("json", (/** @type {string} */ value) => value && JSON.stringify(value));
+	config.addFilter("categories", (/** @type {{ category: string }[]} */ array) => {
+		return [...array.reduce((acc, item) => {
+			if (item.category) acc.add(item.category);
+			return acc;
+		}, new Set())].sort();
+	});
 
 	config.setServerOptions( {
 		// Open the browser automatically

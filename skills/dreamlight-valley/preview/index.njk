@@ -1,6 +1,10 @@
 ---
 layout: foundation.njk
 permalink: 'dreamlight-valley/index.html'
+theme:
+  colorScheme: "dark"
+  color: "#fdcd55"
+  fonts: ["Josefin Sans", "Lato", "Helvetica Neue"]
 title: Dreamlight Valley Catalog
 tagline_short: "Browse the data that @allons-y/skill-dreamlight-valley skill uses."
 tagline: "For the most customized experience, install the skill in Claude Code via the plugin marketplace, or vendor into any agent harness with npx."
@@ -8,56 +12,114 @@ tagline: "For the most customized experience, install the skill in Claude Code v
 
 {% css %}{% include "./styles.css" %}{% endcss %}
 
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
 <img class="background" src="/assets/thorn.svg" alt="Thorn" width="100" height="100">
 <header class="container">
 	<h1>Dreamlight Valley Catalog</h1>
-	<p>Browse the data that <a href="https://github.com/Allons-y-Studio/agent-skills/tree/main/skills/dreamlight-valley"><code>@allons-y/skill-dreamlight-valley</code></a> skill uses. For the most customized experience, install the skill in Claude Code via the plugin marketplace, or vendor into any agent harness with npx.</p>
+	<p>Browse the data that <a href="{{ site.github.repository_url }}/tree/main/skills/dreamlight-valley"><code>@allons-y/skill-dreamlight-valley</code></a> skill uses. For the most customized experience, install the skill in Claude Code via the plugin marketplace, or vendor into any agent harness with npx.</p>
 </header>
 
-<div class="container">
-	<div class="tabs" id="tabs" role="tablist" aria-label="Catalog category"></div>
-	<div class="controls">
-		<input id="search" class="search" type="search" placeholder="Search by name…" aria-label="Search by name" list="name-suggestions" autocomplete="off" />
-		<input id="search-ingredient" class="search" type="search" placeholder="Search by ingredient(s), comma-separated…" aria-label="Search by ingredient" list="ingredient-suggestions" autocomplete="off" style="display:none" />
+<main>
+	<div class="container layout stacked">
+		<div class="layout" id="categories" role="tablist" aria-label="Catalog category">
+			{% for tab in ["recipes", "ingredients", "collectables", "flowers", "gems"] %}
+				{% set selected = loop.index == 1 %}
+				{% set count = recipes.length %}
+				{% if loop.index > 1 %}
+					{% set count = gatherables[tab].length %}
+				{% endif %}
+				<button
+					class="filter primary"
+					role="button"
+					id="filter-{{ tab }}"
+					data-tab="{{ tab }}"
+					aria-selected="{% if selected %}true{% else %}false{% endif %}"
+					tabindex="{% if selected %}0{% else %}-1{% endif %}"
+					aria-controls="results"
+					type="button"
+				>
+					{{- tab | capitalize -}}
+					<span class="count">{{ count | default(0) }}</span>
+				</button>
+			{% endfor %}
+		</div>
+		<div class="layout">
+			<input id="search" class="search" type="search" placeholder="Search by name…" aria-label="Search by name" list="name-suggestions" autocomplete="off" />
+			<input id="search-ingredient" class="search" type="search" placeholder="Search by ingredient(s), comma-separated…" aria-label="Search by ingredient" list="ingredient-suggestions" autocomplete="off" style="display:none" />
+		</div>
+		<datalist id="name-suggestions"></datalist>
+		<datalist id="ingredient-suggestions"></datalist>
+		<div class="layout">
+			<div id="filters" class="filter-group" role="group" aria-label="Filters">
+				{% for filter in ["appetizer", "entree", "dessert"] %}
+					<button class="filter" data-filter="{{ filter }}" aria-pressed="false" type="button">{{ filter }}</button>
+				{% endfor %}
+				{% for category in gatherables.ingredients | categories %}
+					<button class="filter" data-filter="{{ category.category }}" aria-pressed="false" type="button">{{ category.category }}</button>
+				{% endfor %}
+				{% for filter in ["abundant", "average", "rare", "ultra-rare"] %}
+					<button class="filter" data-filter="{{ filter }}" aria-pressed="false" type="button">{{ filter }}</button>
+				{% endfor %}
+				{% for filter in ["digging", "foraging", "fishing", "purchase"] %}
+					<button class="filter" data-filter="{{ filter }}" aria-pressed="false" type="button">{{ filter }}</button>
+				{% endfor %}
+			</div>
+			<div id="star-filters" class="filter-group" role="group" aria-label="Star rating filter" style="display:none"></div>
+			<label class="sort-control">Sort:
+				<select id="sort" class="sort-select" aria-label="Sort"></select>
+			</label>
+		</div>
+		<div class="layout events-row" id="event-filters-row" style="display:none">
+			<h2 class="events-label">Events</h2>
+			<div id="event-filters" class="filter-group" role="group" aria-label="Event filter"></div>
+			<label class="hide-events" id="hide-events-control" style="display:none">
+				<input id="hide-events" type="checkbox" />
+				Hide seasonal items
+			</label>
+		</div>
+		<p class="note" id="summary"></p>
 	</div>
-	<datalist id="name-suggestions"></datalist>
-	<datalist id="ingredient-suggestions"></datalist>
-	<div class="controls">
-		<div id="filters" class="filter-group" role="group" aria-label="Filters"></div>
-		<div id="star-filters" class="filter-group" role="group" aria-label="Star rating filter" style="display:none"></div>
-		<label class="sort-control">Sort:
-			<select id="sort" class="sort-select" aria-label="Sort"></select>
-		</label>
-	</div>
-	<div class="controls events-row" id="event-filters-row" style="display:none">
-		<h2 class="events-label">Events</h2>
-		<div id="event-filters" class="filter-group" role="group" aria-label="Event filter"></div>
-		<label class="hide-events" id="hide-events-control" style="display:none">
-			<input id="hide-events" type="checkbox" />
-			Hide seasonal items
-		</label>
-	</div>
-	<div class="summary" id="summary"></div>
-	<main id="results" class="grid" role="tabpanel" aria-labelledby="tab-recipes" tabindex="0"></main>
-</div>
-
-<footer class="container">
-	<div class="footer-col footer-brand">
-		<p class="footer-title"><a href="https://github.com/Allons-y-Studio/agent-skills">@allons-y/agent-skills</a></p>
-		<p class="footer-tagline">A collection of self-contained agent skills that streamline common developer workflows and reduce token usage. Install in Claude Code via the plugin marketplace, or vendor into any agent harness with npx.</p>
-		<p class="footer-meta"><a href="https://github.com/Allons-y-Studio/agent-skills/blob/main/LICENSE">Licensed under MPL-2.0</a></p>
-	</div>
-	<div class="footer-col">
-		<p class="footer-title">brought to you by</p>
-		<a href="https://allons-y.studio"><img src="/assets/allons-y_studio.svg" alt="Allons-y Studio logo" width="200" height="100"></a>
-	</div>
-</footer>
+	<section id="results" class="layout masonry" role="tabpanel" aria-labelledby="tab-recipes" tabindex="0">
+		{% for r in recipes %}
+		<article class="card">
+			<header class="layout stacked">
+				{% set style = "background-image: url('/sprites/recipes.png'); background-position: -{{ coords.recipes.items[r.name].x }}px -{{ coords.recipes.items[r.name].y }}px;" %}
+				{% if style %}<div class="icon" style="{{ style }}"></div>{% endif %}
+				<h3>{{ r.name | safe }}</h3>
+			</header>
+			<div class="body layout stacked">
+				<p class="meta">
+					{% for i in range(0, 5) %}
+					{% set iconStyle = i < r.star_rating ? "fa-solid" : "fa-regular" %}
+					<span class="fa-star {{ iconStyle }}"></span>
+					{% endfor %}
+					<span style="text-transform: capitalize;">{{ r.course | safe }}</span>
+				</p>
+				<p class="stats">
+					<span>⚡ {{ r.energy }}</span>
+					<span><img class="coin" src="/assets/star-coin.png" alt="Star Coins" />{{ r.sale_price }}</span>
+				</p>
+			</div>
+			<footer>
+				<div class="ingredients">
+					{% for i in r.ingredients %}
+						<a class="ing-link{% if i.category %} cat-slot{% endif %}" href="#" data-nav-tab="ingredients" data-nav-search="{{ i.name | lower }}" data-nav-filter="{% if i.category %}{{ i.name }}{% endif %}" title="{% if i.category %}Browse all {{ i.name }} ingredients{% else %}Find {{ i.name }} in catalog{% endif %}">
+							{% if i.category %}any {% endif %}
+							{{ i.name }}
+						</a>
+						{% if i.count > 1 %}<span class="qty">x{{ i.count }}</span>{% endif %}
+					{% endfor %}
+				</div>
+			</footer>
+		</article>
+		{% endfor %}
+	</section>
+</main>
 
 <button id="scroll-top" class="scroll-top" type="button" aria-label="Scroll to top" title="Scroll to top">↑</button>
 
 {% js %}
+const COIN_IMG = `<img class="coin" src="/assets/star-coin.png" alt="Star Coins" />`;
+
 const state = {
 	activeTab: "recipes",
 	search: "",
@@ -67,7 +129,11 @@ const state = {
 	eventFilter: null, // specific event name or null
 	hideEvents: false, // when true, hide every event/seasonal item
 	sort: "name-asc",
-	data: null,
+	data: {
+		recipes: {{ recipes | json | safe }},
+		gatherables: {{ gatherables | json | safe }},
+		coords: {{ coords | json | safe }},
+	},
 };
 
 const SORT_OPTIONS = {
@@ -94,15 +160,6 @@ const SORT_OPTIONS = {
 	],
 	gems: [{ id: "name-asc", label: "Name (A→Z)" }],
 };
-
-// @todo: build from data instead of hardcoding
-const TABS = [
-	{ id: "recipes", label: "Recipes" },
-	{ id: "ingredients", label: "Ingredients" },
-	{ id: "collectables", label: "Collectables" },
-	{ id: "flowers", label: "Flowers" },
-	{ id: "gems", label: "Gems" },
-];
 
 function spriteStyle(item, tabId) {
 	const sheetId = tabId !== "ingredients" ? tabId : `ingredients-${item.category}`;
@@ -253,32 +310,6 @@ function sortItems(items) {
 	return sorted;
 }
 
-function renderTabs() {
-	const el = document.getElementById("tabs");
-	el.innerHTML = TABS.map((t) => {
-		const count =
-			t.id === "recipes"
-				? state.data.recipes.length
-				: state.data.gatherables[t.id]?.length ?? 0;
-		const selected = state.activeTab === t.id;
-		return `<button
-			class="tab"
-			role="tab"
-			id="tab-${t.id}"
-			data-tab="${t.id}"
-			aria-selected="${selected}"
-			aria-controls="results"
-			tabindex="${selected ? 0 : -1}"
-			type="button"
-		>${t.label}<span class="count">${count}</span></button>`;
-	}).join("");
-	// Point the panel's labelledby at the active tab so screen readers
-	// know which tab governs the current content.
-	document
-		.getElementById("results")
-		.setAttribute("aria-labelledby", `tab-${state.activeTab}`);
-}
-
 // Move focus + activation across the tablist via Arrow / Home / End.
 // Auto-activation: focus change immediately swaps content (cheap for us).
 function handleTabKeyboard(e) {
@@ -420,7 +451,6 @@ function renderEventControls() {
 		.join("");
 }
 
-// ---- Cards -------------------------------------------------------------
 function escapeHtml(s) {
 	return String(s).replace(/[&<>"']/g, (c) => ({
 		"&": "&amp;", "<": "&lt;", ">": "&gt;",
@@ -447,8 +477,6 @@ function highlightTerms(name) {
 	}
 	return escapeHtml(name);
 }
-
-const COIN_IMG = `<img class="coin" src="/assets/star-coin.png" alt="Star Coins" />`;
 
 function renderSlot(slot) {
 	const label = highlightTerms(slot.name);
@@ -494,20 +522,23 @@ function renderRecipeCard(r) {
 	const style = spriteStyle(r, "recipes");
 	return `
 		<article class="card">
-			<div class="icon-wrap">
-				${style ? `<div class="icon" style="${style}"></div>` : `<span class="no-icon">·</span>`}
-			</div>
-			<div class="name">${escapeHtml(r.name)}</div>
-			<div class="meta">
-				<div class="meta-row">
-					<span>${"★".repeat(r.star_rating)} <span style="text-transform: capitalize;">${escapeHtml(r.course)}</span></span>
-				</div>
-				<div class="stats">
+			<header class="layout stacked">
+				${style ? `<div class="icon" style="${style}"></div>` : ``}
+				<h3>${escapeHtml(r.name)}</h3>
+			</header>
+			<div class="body layout stacked">
+				<p class="meta">
+					${"★".repeat(r.star_rating)}
+					<span style="text-transform: capitalize;">${escapeHtml(r.course)}</span>
+				</p>
+				<p class="stats">
 					<span>⚡ ${r.energy.toLocaleString()}</span>
 					<span>${COIN_IMG}${r.sale_price.toLocaleString()}</span>
-				</div>
-				<div class="ingredients">${slots}</div>
+				</p>
 			</div>
+			<footer>
+				<div class="ingredients">${slots}</div>
+			</footer>
 		</article>
 	`;
 }
@@ -548,7 +579,6 @@ function renderGatherableCard(item) {
 }
 
 function activateTab(tabId, { focus = false } = {}) {
-	if (!TABS.find((t) => t.id === tabId)) return;
 	state.activeTab = tabId;
 	state.search = "";
 	state.searchIngredient = "";
@@ -604,7 +634,6 @@ function resolveSlot(slot) {
 }
 
 function navigateToIngredient(tab, search, filter) {
-	if (!TABS.find((t) => t.id === tab)) return;
 	state.activeTab = tab;
 	state.search = search || "";
 	state.searchIngredient = "";
@@ -652,18 +681,19 @@ function isFiltered() {
 }
 
 function render() {
-	renderTabs();
 	renderFilters();
 	renderStarFilters();
 	renderEventControls();
 	renderSort();
 	renderIngredientSearchVisibility();
 	populateNameSuggestions();
+
 	const items = sortItems(itemsForTab().filter(passes));
 	const total = itemsForTab().length;
 	document.getElementById("summary").textContent =
-		`Showing ${items.length} of ${total}${isFiltered() ? " (filtered)" : ""}`;
+	`Showing ${items.length} of ${total}${isFiltered() ? " (filtered)" : ""}`;
 	const root = document.getElementById("results");
+	root?.setAttribute("aria-labelledby", `tab-${state.activeTab}`);
 	if (!items.length) {
 		root.innerHTML = `<div class="empty">No matches.</div>`;
 		return;
@@ -674,13 +704,13 @@ function render() {
 			: items.map(renderGatherableCard).join("");
 }
 
-const tabsEl = document.getElementById("tabs");
-tabsEl.addEventListener("click", (e) => {
+const categoriesEl = document.getElementById("categories");
+categoriesEl.addEventListener("click", (e) => {
 	const btn = e.target.closest(".tab");
 	if (!btn) return;
 	activateTab(btn.dataset.tab);
 });
-tabsEl.addEventListener("keydown", handleTabKeyboard);
+categoriesEl.addEventListener("keydown", handleTabKeyboard);
 document.getElementById("filters").addEventListener("click", (e) => {
 	const btn = e.target.closest(".filter");
 	if (!btn) return;
@@ -770,11 +800,6 @@ document.getElementById("results").addEventListener("click", (e) => {
 	document.getElementById("results").innerHTML =
 		'<div class="loading">Loading catalog…</div>';
 
-	state.data = {
-		recipes: {{ recipes | json | safe }},
-		gatherables: {{ gatherables | json | safe }},
-		coords: {{ coords | json | safe }},
-	};
 	try {
 		buildIngredientLookup(); // recipe-slot-name → catalog target
 		populateIngredientSuggestions(); // recipe-wide; built once
