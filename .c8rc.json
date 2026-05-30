@@ -1,0 +1,33 @@
+{
+	"$comment": "c8 reads this file when invoked from any skill workspace. Globs are skill-relative because each skill runs `c8 yarn test` from its own cwd.",
+	"all": true,
+	"include": [
+		"scripts/**/*.{js,mjs}",
+		"bin/**/*.{js,mjs}",
+		"templates/**/*.{js,mjs}",
+		"preview/**/*.{js,mjs}",
+		"src/**/*.{js,mjs}",
+		"lib/**/*.{js,mjs}",
+		"index.{js,mjs}"
+	],
+	"exclude": [
+		"**/tests/**",
+		"**/*.test.{js,mjs}",
+		"**/coverage/**",
+		"**/node_modules/**",
+		"**/evals/**",
+		"**/references/**",
+		"**/commands/**",
+		"**/fixtures/**",
+		"**/*.config.{js,mjs}",
+		"eslint.config.{js,mjs}",
+		"prettier.config.{js,mjs}"
+	],
+	"reporter": ["text", "json-summary"],
+	"per-file": true,
+	"clean": true,
+	"lines": 80,
+	"functions": 80,
+	"branches": 80,
+	"statements": 80
+}

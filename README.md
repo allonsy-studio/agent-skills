@@ -193,5 +193,5 @@ Built and maintained by [Allons-y Studio](https://allons-y.studio) · Cassondra 
 [npm-url]: https://www.npmjs.com/package/@allons-y/agent-skills
 [conventional-commits-image]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
 [conventional-commits-url]: https://conventionalcommits.org/
-[coverage-image]: https://img.shields.io/nycrc/Allons-y-Studio/agent-skills
-[coverage-url]: https://github.com/Allons-y-Studio/agent-skills/blob/main/.nycrc
+[coverage-image]: https://img.shields.io/nycrc/Allons-y-Studio/agent-skills?config=.c8rc.json
+[coverage-url]: https://github.com/Allons-y-Studio/agent-skills/blob/main/.c8rc.json
