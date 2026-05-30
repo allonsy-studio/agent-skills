@@ -21,7 +21,8 @@
 		"**/fixtures/**",
 		"**/*.config.{js,mjs}",
 		"eslint.config.{js,mjs}",
-		"prettier.config.{js,mjs}"
+		"prettier.config.{js,mjs}",
+		"**/scripts/build-*.js"
 	],
 	"reporter": ["text", "json-summary"],
 	"per-file": true,

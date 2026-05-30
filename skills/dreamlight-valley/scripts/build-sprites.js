@@ -10,32 +10,36 @@
  *   2. Full rebuild: if references/images/<category>/*.png exist, also
  *      regenerates the labeled sprite sheets via sharp.
  *
+ * Pure data transforms (planSheets, computeCoords, buildCoordsDoc, helpers,
+ * LAYOUT) live in ./sprite-coords.js and are unit-tested. This file is the
+ * CLI + IO entry point: it orchestrates the build, drives sharp for the
+ * actual image compositing, and is excluded from coverage.
+ *
  * Layout matches the Python builder: 8-col alphabetical grid, 120-px icons,
  * 32-px label strip, dark background with section title.
  */
 
-import { readFile, readdir, writeFile, mkdir, access } from "node:fs/promises";
+import { readFile, readdir, writeFile, mkdir } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import {
+	LAYOUT,
+	planSheets,
+	buildCoordsDoc,
+	pathExists,
+	escapeXml,
+	estimateWidth,
+	wrapLabel,
+} from "./sprite-coords.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
 const IMG_DIR = join(ROOT, "references", "images");
 const OUT_DIR = join(ROOT, "references");
 const GATHERABLES = join(ROOT, "references", "gatherables.json");
 const RECIPES = join(ROOT, "references", "recipes.json");
-
-// Layout — must match build_sprites.py for backwards compatibility.
-const LAYOUT = {
-	img_size: 120,
-	pad_x: 6,
-	pad_y: 6,
-	label_h: 32,
-	cols: 8,
-	title_h: 52,
-};
-LAYOUT.cell_w = LAYOUT.img_size + 2 * LAYOUT.pad_x;
-LAYOUT.cell_h = LAYOUT.img_size + 2 * LAYOUT.pad_y + LAYOUT.label_h;
 
 const BG_HEX = "transparent";
 const LABEL_BG_HEX = "#26262c";
@@ -44,138 +48,13 @@ const TITLE_COLOR = "#ffffff";
 const RULE_COLOR = "#50505a";
 
 /**
- * Sheet definitions: which gatherables.json items belong on each sheet, and
- * what file they go to. Ingredient sheets are split by `category` field.
+ * Render one sprite sheet by compositing icons + SVG title/labels.
+ *
+ * @param {any} sharp  the dynamically-imported sharp module
+ * @param {{ id: string, file: string, title: string }} sheet
+ * @param {{ items: Record<string, { row: number, col: number }> }} coords
+ * @returns {Promise<{ built: false, reason: string } | { built: true, dim: [number, number], count: number }>}
  */
-function planSheets(categories, recipes) {
-	// Use the folder name for the ingredients sheet title.
-	const sheets = Object.keys(categories)
-		.filter(cat => cat !== "ingredients")
-		.map(cat => ({
-			id: cat,
-			file: `${cat}.png`,
-			title: cat.charAt(0).toUpperCase() + cat.slice(1),
-			items: categories[cat].map((i) => i.name)
-		}));
-
-	// Get a list of all possible categories from the ingredients sheet.
-	const byCategory = new Map();
-	for (const item of categories.ingredients) {
-		if (!byCategory.has(item.category)) byCategory.set(item.category, []);
-		byCategory.get(item.category).push(item.name);
-	}
-
-	for (const [folder, names] of byCategory) {
-		sheets.push({
-			id: `ingredients-${folder}`,
-			file: `ingredients-${folder}.png`,
-			title: `Ingredients — ${folder[0].toUpperCase()}${folder.slice(1)}`,
-			items: names,
-		});
-	}
-
-	if (recipes?.length) {
-		sheets.push({
-			id: "recipes",
-			file: "recipes.png",
-			title: "Recipes",
-			items: recipes.map((r) => r.name),
-		});
-	}
-
-	return sheets;
-}
-
-/** Compute grid (row, col) and pixel box for each item on a sheet. */
-function computeCoords(items) {
-	const sorted = [...items].sort((a, b) =>
-		a.toLowerCase().localeCompare(b.toLowerCase()),
-	);
-	const map = {};
-	sorted.forEach((name, idx) => {
-		const col = idx % LAYOUT.cols;
-		const row = Math.floor(idx / LAYOUT.cols);
-		const cx = col * LAYOUT.cell_w;
-		const cy = LAYOUT.title_h + row * LAYOUT.cell_h;
-		map[name] = {
-			row,
-			col,
-			x: cx + LAYOUT.pad_x,
-			y: cy + LAYOUT.pad_y,
-			w: LAYOUT.img_size,
-			h: LAYOUT.img_size,
-		};
-	});
-	return { sorted, map };
-}
-
-/** Generate the sprite-coords.json data structure. */
-function buildCoordsDoc(sheets) {
-	const doc = {
-		version: 1,
-		note: "Auto-generated. Item coordinates on each sprite sheet. Items are sorted alphabetically inside each sheet; (row, col) is the grid position and (x, y, w, h) is the pixel box of the icon (label strip is below at y+h..y+h+label_h).",
-		layout: LAYOUT,
-		sheets: {},
-	};
-	for (const sheet of sheets) {
-		const { sorted, map } = computeCoords(sheet.items);
-		doc.sheets[sheet.id] = {
-			file: sheet.file,
-			title: sheet.title,
-			item_count: sorted.length,
-			rows: Math.ceil(sorted.length / LAYOUT.cols),
-			items: map,
-		};
-	}
-	return doc;
-}
-
-async function pathExists(p) {
-	try {
-		await access(p);
-		return true;
-	} catch {
-		return false;
-	}
-}
-
-function escapeXml(s) {
-	return s
-		.replace(/&/g, "&amp;")
-		.replace(/</g, "&lt;")
-		.replace(/>/g, "&gt;")
-		.replace(/"/g, "&quot;")
-		.replace(/'/g, "&apos;");
-}
-
-/** Rough text-width estimate for a 12-px sans-serif label. */
-function estimateWidth(s) {
-	let w = 0;
-	for (const ch of s) {
-		if (/[A-Z]/.test(ch)) w += 8;
-		else if (/[0-9]/.test(ch)) w += 7;
-		else if (/[a-z]/.test(ch)) w += 6.5;
-		else w += 4; // space, punctuation
-	}
-	return Math.ceil(w);
-}
-
-function wrapLabel(name, maxWidth) {
-	const words = name.split(/\s+/);
-	const lines = [];
-	let cur = "";
-	for (const w of words) {
-		const trial = cur ? `${cur} ${w}` : w;
-		if (estimateWidth(trial) <= maxWidth) cur = trial;
-		else {
-			if (cur) lines.push(cur);
-			cur = w;
-		}
-	}
-	if (cur) lines.push(cur);
-	return lines.slice(0, 2);
-}
-
 async function buildSheet(sharp, sheet, coords) {
 	const folder = sheet.id.startsWith("ingredients-")
 		? join(IMG_DIR, "ingredients", sheet.id.replace("ingredients-", ""))
@@ -303,7 +182,11 @@ async function main() {
 	}
 }
 
-main().catch((err) => {
-	console.error(err);
-	process.exit(1);
-});
+// Run only when invoked as a CLI, not on import.
+const isCliInvocation = process.argv[1] && __filename === process.argv[1];
+if (isCliInvocation) {
+	main().catch((err) => {
+		console.error(err);
+		process.exit(1);
+	});
+}
