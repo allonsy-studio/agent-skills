@@ -82,14 +82,14 @@ tagline: "For the most customized experience, install the skill in Claude Code v
 		{% for r in recipes %}
 		<article class="card">
 			<header class="layout stacked">
-				{% set style = "background-image: url('/sprites/recipes.png'); background-position: -{{ coords.recipes.items[r.name].x }}px -{{ coords.recipes.items[r.name].y }}px;" %}
+				{% set style = "background-image: url('/sprites/recipes.png'); background-position: -" + coords.recipes.items[r.name].x + "px -" + coords.recipes.items[r.name].y + "px;" %}
 				{% if style %}<div class="icon" style="{{ style }}"></div>{% endif %}
 				<h3>{{ r.name | safe }}</h3>
 			</header>
 			<div class="body layout stacked">
 				<p class="meta">
 					{% for i in range(0, 5) %}
-					{% set iconStyle = i < r.star_rating ? "fa-solid" : "fa-regular" %}
+					{% set iconStyle = "fa-solid" if i < r.star_rating else "fa-regular" %}
 					<span class="fa-star {{ iconStyle }}"></span>
 					{% endfor %}
 					<span style="text-transform: capitalize;">{{ r.course | safe }}</span>
