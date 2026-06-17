@@ -4,6 +4,7 @@
   "description": "Review, summarize, and manage GitHub notifications via an interactive local dashboard. Unsubscribe from noisy threads, mark individual notifications or your whole inbox as done, all from a single prompt.",
   "type": "module",
   "skill": {
+    "category": "GitHub",
     "runtime": "node",
     "triggers": [
       "check my GitHub notifications",

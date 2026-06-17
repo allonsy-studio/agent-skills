@@ -24,7 +24,9 @@ export default defineConfig([
 		languageOptions: { globals: globals.node },
 	},
 	{
-		files: ["**/templates/*.js"],
+		// Browser-side scripts: skill dashboard templates and the client
+		// enhancements in `_includes/` that get bundled into each page.
+		files: ["**/templates/*.js", "_includes/**/*.js"],
 		plugins: { js },
 		extends: ["js/recommended"],
 		languageOptions: { globals: globals.browser },

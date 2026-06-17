@@ -1,0 +1,20 @@
+{#
+	Reusable chip cluster for a skill. Shared by the landing-page cards and the
+	per-skill detail pages.
+
+	Import with `from "skill-chips.njk" import skillChips`, then call
+	skillChips(skill) for the compact card cluster (category, flavor, tested) or
+	skillChips(skill, true) on a detail page to also surface the runtime.
+#}
+{% macro skillChips(skill, full=false) %}
+<p class="chips">
+	{%- if skill.category %}<span class="chip">{{ skill.category }}</span>{% endif -%}
+	{%- if skill.flavor == "reference" -%}
+	<span class="chip"><span class="fa-solid fa-book-open" aria-hidden="true"></span> Reference</span>
+	{%- else -%}
+	<span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span>
+	{%- endif -%}
+	<span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span>
+	{%- if full and skill.flavor != "reference" and skill.runtime %}<span class="chip"><span class="fa-brands fa-node-js" aria-hidden="true"></span> {{ skill.runtime | capitalize }}</span>{% endif -%}
+</p>
+{% endmacro %}
