@@ -64,3 +64,35 @@ jobs:
 
       - name: Lint
         run: yarn lint
+
+  build:
+    name: Build docs site
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Use Node LTS version
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+          registry-url: https://registry.npmjs.org
+
+      - name: Install Node dependencies
+        run: yarn install --immutable
+
+      # Builds every skill workspace and renders the Eleventy site the same way
+      # the Pages deploy does, so a broken `_data/site.js`, template, or skill
+      # metadata fails the PR instead of the post-merge deploy.
+      - name: Build site
+        run: yarn ci
