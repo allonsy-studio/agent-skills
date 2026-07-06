@@ -26,6 +26,8 @@ git checkout -b feat/new-useful-skill
 
 ### Adding a New Skill
 
+> **Designing the skill:** Before writing code, read [How to architect a skill](../docs/skill-architecture.md). It covers the decisions that make or break a skill — the triggering `description`, progressive disclosure, instructions vs. scripts, and evals — and ends with a pre-PR checklist. The [New Skill Proposal](../../issues/new?template=new_skill.yml) issue template walks through the same decisions.
+
 Each skill lives in its own directory under `skills/`. A standard skill should include:
 
 1. **`SKILL.md`**: Documentation following the required format (including YAML frontmatter with `name` and `description`). The `name` field must match the directory name exactly.
