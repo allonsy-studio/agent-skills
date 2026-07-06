@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "@allons-y/skill-gh-notification-summary",
   "version": "0.0.0",
   "description": "Review, summarize, and manage GitHub notifications via an interactive local dashboard. Unsubscribe from noisy threads, mark individual notifications or your whole inbox as done, all from a single prompt.",

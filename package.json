@@ -38,7 +38,7 @@
   "scripts": {
     "build": "yarn workspaces foreach -A run build",
     "ci": "cross-env ELEVENTY_ENV=production yarn build && eleventy",
-    "ci:test": "yarn workspaces foreach -A run ci:test",
+    "ci:test": "yarn constraints && yarn workspaces foreach -A run ci:test",
     "clean": "rimraf _site",
     "coverage": "node scripts/run-tests.js --coverage-only",
     "evals": "node scripts/run-evals.js",

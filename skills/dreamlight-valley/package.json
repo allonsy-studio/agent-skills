@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "@allons-y/skill-dreamlight-valley",
   "version": "0.0.0",
   "description": "Cooking, gathering, and inventory management for Dreamlight Valley.",
