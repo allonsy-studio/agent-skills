@@ -52,6 +52,8 @@ yarn workspaces foreach -A run lint
 
 ## Adding a new skill
 
+> Read [`docs/skill-architecture.md`](docs/skill-architecture.md) first — it covers how to _design_ a skill (the triggering `description`, progressive disclosure, instructions vs. scripts, evals). The steps below are the mechanical setup.
+
 1. Create a directory under `skills/<skill-name>/`.
 2. Add a `package.json` with `"private": true` and a `skill.runtime` field:
     ```json

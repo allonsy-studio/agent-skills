@@ -169,7 +169,7 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for the full guide: environment s
 
 ## Contributing
 
-Contributions are welcome — new skills, improvements to existing ones, bug fixes, and documentation. See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for guidelines.
+Contributions are welcome — new skills, improvements to existing ones, bug fixes, and documentation. See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for guidelines, and [How to architect a skill](docs/skill-architecture.md) for the design reference behind every skill in this repo.
 
 **Ideas for new skills:**
 

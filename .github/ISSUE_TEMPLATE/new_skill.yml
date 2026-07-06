@@ -1,17 +1,22 @@
 name: New Skill Proposal
-description: Propose a brand-new agent skill for Claude.
+description: Propose a brand-new agent skill, with a first pass at its architecture.
 labels: ["enhancement"]
 body:
   - type: markdown
     attributes:
       value: |
-        Got an idea for a new skill? Tell us what problem it solves and what it would let Claude do. You don't need a working implementation to open this — a clear description is enough to start a conversation.
+        Got an idea for a new skill? This template walks you through the same
+        decisions a skill's architecture turns on — discovery, structure, and proof.
+        You don't need a working implementation to open it; thoughtful answers to the
+        prompts below are enough to start the conversation.
+
+        **Please skim [How to architect a skill](https://github.com/Allons-y-Studio/agent-skills/blob/main/docs/skill-architecture.md) first.** It explains the "why" behind every field here — progressive disclosure, the triggering `description`, instructions vs. scripts, and evals.
 
   - type: input
     id: skill-name
     attributes:
       label: Proposed skill name
-      description: Lowercase, hyphenated, matching the directory name convention (e.g. `gh-notification-summary`).
+      description: Lowercase, hyphenated, and named for the **use case**, not the API (e.g. `linear-issue-triage`, not `linear-api-wrapper`). This becomes both the directory name and the `name` frontmatter field.
       placeholder: "linear-issue-triage"
     validations:
       required: true
@@ -20,44 +25,132 @@ body:
     id: problem
     attributes:
       label: What problem does this solve?
-      description: Describe the workflow or pain point this skill would address. Focus on the user experience, not the implementation.
-      placeholder: "I spend 15 minutes every morning triaging Linear issues assigned to my team. Claude should be able to do this for me."
+      description: Describe the workflow or pain point. Focus on the user experience, not the implementation.
+      placeholder: "I spend 15 minutes every morning triaging Linear issues assigned to my team. An agent should be able to do this for me."
     validations:
       required: true
 
   - type: textarea
     id: capabilities
     attributes:
-      label: What should Claude be able to do with this skill?
+      label: What should the agent be able to do?
       description: List the specific actions or outputs the skill should enable.
       placeholder: |
         - Fetch all unassigned issues in a Linear team
         - Summarize each issue in one sentence
-        - Suggest a priority level based on labels and description
+        - Suggest a priority based on labels and description
         - Assign issues on request
     validations:
       required: true
 
-  - type: textarea
-    id: triggers
+  - type: markdown
     attributes:
-      label: What prompts or phrases should trigger this skill?
-      description: These will inform the `description` field in `SKILL.md`.
-      placeholder: |
-        - "triage my Linear inbox"
-        - "what's unassigned on the team board?"
-        - "/linear triage"
+      value: |
+        ---
+        ### Discovery — how the agent knows to use it
+
+        A skill's `description` is the *only* signal an agent sees when deciding whether to trigger, out of potentially 100+ skills. Getting it right is the single highest-leverage part of the design.
+
+  - type: textarea
+    id: description-draft
+    attributes:
+      label: Draft the `description`
+      description: |
+        Write it in the house formula: **`<what it does>. Use when <triggers: phrases, commands, file types>.`** Third person, ≤ 1024 characters. Name the *actual* phrases a user would say.
+      placeholder: "Triage, summarize, and prioritize Linear issues. Use this skill whenever the user mentions their Linear inbox, unassigned issues, or team board — even if they don't say 'triage'. Also trigger for /linear triage, 'what's unassigned', or 'prioritize my backlog'."
     validations:
       required: true
+
+  - type: textarea
+    id: false-positives
+    attributes:
+      label: When should it NOT trigger?
+      description: List adjacent requests that sit close to the trigger boundary but should stay quiet. These become the negative evals that prove the `description` discriminates instead of matching greedily.
+      placeholder: |
+        - General questions about Linear the company/product ("is Linear free?")
+        - GitHub issue triage (that's a different skill)
+        - "Draw me a linear gradient"
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### Structure — how the skill is built
+
+  - type: dropdown
+    id: flavor
+    attributes:
+      label: Skill flavor
+      description: "**Implementation** ships runnable Node.js under `scripts/`. **Reference-only** is pure prompt + curated `references/*.md` (no scripts). See the architecture doc if unsure."
+      options:
+        - "Implementation (bundles scripts / a deterministic core)"
+        - "Reference-only (pure prompt + reference material)"
+        - "Not sure yet — let's discuss"
+    validations:
+      required: true
+
+  - type: textarea
+    id: determinism
+    attributes:
+      label: What is deterministic vs. judgment?
+      description: Deterministic operations (API calls, data transforms, computations) should be **bundled as scripts** so they're reliable and cheap; open-ended judgment stays as **prose instructions**. Sketch which parts fall where.
+      placeholder: |
+        - Deterministic (→ scripts): fetch issues via the Linear GraphQL API; sort by a scoring function
+        - Judgment (→ instructions): how to phrase the one-sentence summary; when to recommend escalating a priority
+    validations:
+      required: false
+
+  - type: textarea
+    id: progressive-disclosure
+    attributes:
+      label: Progressive-disclosure plan (optional)
+      description: The `SKILL.md` body should stay a lean orchestrator (< 500 lines). What content would live in `references/*.md`, `templates/`, or `assets/` and be loaded only on demand?
+      placeholder: |
+        - references/scoring.md — the priority heuristic, loaded only when ranking
+        - templates/summary.md — the output format for a triaged issue
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### Proof — how we'll know it works
+
+  - type: textarea
+    id: evals
+    attributes:
+      label: Eval sketch
+      description: "Sketch at least **two prompts that should trigger** the skill and **two that should not** (drawn from your false-positive list above). These seed `evals/evals.json`."
+      placeholder: |
+        Should trigger:
+        - "triage my Linear inbox"
+        - "what's unassigned on the team board?"
+        Should NOT trigger:
+        - "is Linear free for open source?"
+        - "add a linear-gradient background"
+    validations:
+      required: false
 
   - type: textarea
     id: implementation
     attributes:
       label: Implementation notes (optional)
       description: APIs, libraries, authentication approach, or prior art you have in mind. Leave blank if you're not sure.
-      placeholder: "Could use the Linear GraphQL API with a personal API key stored in LINEAR_API_KEY."
+      placeholder: "Linear GraphQL API with a personal API key stored in LINEAR_API_KEY. Mock the API in tests."
     validations:
       required: false
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Pre-flight
+      options:
+        - label: I've skimmed [How to architect a skill](https://github.com/Allons-y-Studio/agent-skills/blob/main/docs/skill-architecture.md).
+        - label: I searched existing issues and skills to avoid duplicating one that already exists.
+        - label: The `description` I drafted is third person and names concrete triggers.
 
   - type: checkboxes
     id: contribution
@@ -71,14 +164,13 @@ body:
     attributes:
       label: Sponsorship
       options:
-        - label: I'm willing to fund the development of this skill through a sponsorship and would like the repository owner to reach
+        - label: I'm willing to fund the development of this skill through a sponsorship and would like the repository owner to reach out.
 
   - type: textarea
     id: contact-details
-    if: ${{ inputs.sponsor }}
     attributes:
       label: Contact details
-      description: Please provide your contact details so that the repository owner can reach out to you to discuss the details of the sponsorship.
+      description: If you checked the sponsorship box, share how the repository owner can reach you to discuss details.
       placeholder: "Email address, LinkedIn profile, etc."
     validations:
       required: false
