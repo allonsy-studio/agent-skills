@@ -10,7 +10,7 @@ body:
         You don't need a working implementation to open it; thoughtful answers to the
         prompts below are enough to start the conversation.
 
-        **Please skim [How to architect a skill](https://github.com/Allons-y-Studio/agent-skills/blob/main/docs/skill-architecture.md) first.** It explains the "why" behind every field here — progressive disclosure, the triggering `description`, instructions vs. scripts, and evals.
+        **Please skim [How to architect a skill](https://github.com/allonsy-studio/agent-skills/blob/main/docs/skill-architecture.md) first.** It explains the "why" behind every field here — progressive disclosure, the triggering `description`, instructions vs. scripts, and evals.
 
   - type: input
     id: skill-name
@@ -148,7 +148,7 @@ body:
     attributes:
       label: Pre-flight
       options:
-        - label: I've skimmed [How to architect a skill](https://github.com/Allons-y-Studio/agent-skills/blob/main/docs/skill-architecture.md).
+        - label: I've skimmed [How to architect a skill](https://github.com/allonsy-studio/agent-skills/blob/main/docs/skill-architecture.md).
         - label: I searched existing issues and skills to avoid duplicating one that already exists.
         - label: The `description` I drafted is third person and names concrete triggers.
 

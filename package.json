@@ -8,7 +8,7 @@
   "description": "A collection of self-contained agent skills that streamline common developer workflows and reduce token usage. Install in Claude Code via the plugin marketplace, or vendor into any agent harness with npx.",
   "license": "MPL-2.0",
   "author": "Cassondra Roberts <castastrophe@users.noreply.github.com> (https://allons-y.studio)",
-  "homepage": "https://github.com/Allons-y-Studio/agent-skills#readme",
+  "homepage": "https://github.com/allonsy-studio/agent-skills#readme",
   "funding": [
     {
       "type": "github",
@@ -21,10 +21,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Allons-y-Studio/agent-skills.git"
+    "url": "git+https://github.com/allonsy-studio/agent-skills.git"
   },
   "bugs": {
-    "url": "https://github.com/Allons-y-Studio/agent-skills/issues"
+    "url": "https://github.com/allonsy-studio/agent-skills/issues"
   },
   "type": "module",
   "main": "index.js",

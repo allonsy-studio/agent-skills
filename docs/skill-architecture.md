@@ -4,7 +4,7 @@ This is the design reference for building skills in this repo. It explains what 
 skill _is_, how to structure one so an agent reliably discovers and uses it, and the
 concrete budgets, conventions, and checks every skill must satisfy before it merges.
 
-Read this **before** opening a [New Skill Proposal](https://github.com/Allons-y-Studio/agent-skills/issues/new?template=new_skill.yml)
+Read this **before** opening a [New Skill Proposal](https://github.com/allonsy-studio/agent-skills/issues/new?template=new_skill.yml)
 or writing your first `SKILL.md`. For the mechanical steps (workspace setup, running
 tests), see [`CONTRIBUTING.md`](../.github/CONTRIBUTING.md).
 
