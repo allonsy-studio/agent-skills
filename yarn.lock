@@ -225,6 +225,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@allons-y/docs@workspace:docs":
+  version: 0.0.0-use.local
+  resolution: "@allons-y/docs@workspace:docs"
+  dependencies:
+    ajv: "npm:^8.17.1"
+    markdown-it: "npm:^14.1.1"
+  languageName: unknown
+  linkType: soft
+
 "@allons-y/envoy@npm:^1.1.0":
   version: 1.1.0
   resolution: "@allons-y/envoy@npm:1.1.0"

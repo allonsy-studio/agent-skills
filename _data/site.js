@@ -1,35 +1,18 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import MarkdownIt from "markdown-it";
+import {
+	createSkillRenderer,
+	deriveFlavor,
+	renderSkillOverview,
+	skillGitHubBases,
+} from "./lib/skill-metadata.js";
 
 /**
  * Shared markdown renderer for skill `SKILL.md` bodies. Relative links and
- * images are rewritten to absolute GitHub URLs via the per-render `env` so the
- * rendered overview works when lifted out of the skill directory.
+ * images are rewritten to absolute GitHub URLs so the rendered overview works
+ * when lifted out of the skill directory. See `./lib/skill-metadata.js`.
  */
-const md = new MarkdownIt({ html: true, linkify: true, typographer: true });
-
-const renderToken = (tokens, idx, options, _env, self) => self.renderToken(tokens, idx, options);
-const defaultLinkOpen = md.renderer.rules.link_open ?? renderToken;
-
-md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
-	const href = tokens[idx].attrGet("href");
-	if (href && env?.blobBase && !/^(https?:|#|mailto:)/i.test(href)) {
-		tokens[idx].attrSet("href", `${env.blobBase}/${href.replace(/^\.?\//, "")}`);
-	}
-	return defaultLinkOpen(tokens, idx, options, env, self);
-};
-
-md.renderer.rules.image = (tokens, idx, options, env, self) => {
-	const src = tokens[idx].attrGet("src");
-	if (src && env?.rawBase && !/^https?:/i.test(src)) {
-		tokens[idx].attrSet("src", `${env.rawBase}/${src.replace(/^\.?\//, "")}`);
-	}
-	return renderToken(tokens, idx, options, env, self);
-};
-
-/** Strip a leading YAML frontmatter block from a markdown string. */
-const stripFrontmatter = (raw) => raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, "");
+const md = createSkillRenderer();
 
 const exists = (target) =>
 	fs
@@ -54,7 +37,6 @@ export default async function (configData) {
 	const repoOwner = repoSegments?.[0];
 	const repoName = repoSegments?.[1];
 	const repoSlug = repoOwner && repoName ? `${repoOwner}/${repoName}` : "";
-	const rawHost = repoUrl.replace("github.com", "raw.githubusercontent.com");
 
 	const marketplaceJson = await fs
 		.readFile(path.join(rootDir, ".claude-plugin", "marketplace.json"), "utf-8")
@@ -70,9 +52,12 @@ export default async function (configData) {
 				const skillData = JSON.parse(await fs.readFile(path.join(skillDir, "package.json"), "utf-8"));
 
 				const skillMd = await fs.readFile(path.join(skillDir, "SKILL.md"), "utf-8").catch(() => "");
-				const hasScripts = await exists(path.join(skillDir, "scripts"));
-				const blobBase = `${repoUrl}/blob/main/skills/${dir.name}`;
-				const rawBase = `${rawHost}/main/skills/${dir.name}`;
+				const [hasScripts, hasTests, hasEvals] = await Promise.all([
+					exists(path.join(skillDir, "scripts")),
+					exists(path.join(skillDir, "tests")),
+					exists(path.join(skillDir, "evals", "evals.json")),
+				]);
+				const { blobBase, rawBase } = skillGitHubBases({ repoUrl, skillName: dir.name });
 
 				return {
 					name: dir?.name,
@@ -81,15 +66,18 @@ export default async function (configData) {
 					url: `${blobBase}/SKILL.md`,
 					detailUrl: `/skills/${dir.name}/`,
 					runtime: skillData?.skill?.runtime,
-					// A skill with implementation scripts is runnable; otherwise it's
-					// pure prompt + reference material.
-					flavor: hasScripts ? "implementation" : "reference",
+					flavor: deriveFlavor(hasScripts),
 					category: skillData?.skill?.category,
 					keywords: skillData?.keywords ?? [],
 					triggers: skillData?.skill?.triggers ?? [],
 					commands: skillData?.skill?.commands ?? [],
 					featured: Boolean(skillData?.skill?.featured),
-					overviewHtml: skillMd ? md.render(stripFrontmatter(skillMd), { blobBase, rawBase }) : "",
+					// Trust facts, derived from the skill on disk rather than asserted.
+					// The `docs/tests` contract suite fails CI if any skill lacks these,
+					// so the "every skill tested / eval-backed" claims can't go stale.
+					hasTests,
+					hasEvals,
+					overviewHtml: renderSkillOverview(md, skillMd, { blobBase, rawBase }),
 				};
 			})
 	);
