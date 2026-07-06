@@ -66,7 +66,7 @@ The same criteria are encoded in the [New Skill Proposal issue template](.github
 The steps below are the mechanical setup — see [Designing a skill](#designing-a-skill) above for the design decisions.
 
 1. Create a directory under `skills/<skill-name>/`.
-2. Add a `package.json` with `"private": true` and a `skill.runtime` field:
+2. Add a `package.json` with `"private": true` and a `skill` block. The `skill.*` shape is validated against `schemas/skill.schema.json`:
     ```json
     {
     	"name": "@allons-y/skill-<skill-name>",
@@ -74,8 +74,11 @@ The steps below are the mechanical setup — see [Designing a skill](#designing-
     	"private": true,
     	"description": "One-sentence description",
     	"type": "module",
+    	"keywords": ["searchable", "topic", "tag"],
     	"skill": {
-    		"runtime": "node"
+    		"runtime": "node",
+    		"category": "Design",
+    		"triggers": ["example trigger phrase"]
     	},
     	"scripts": {
     		"test": "node --test \"tests/**/*.test.js\"",
@@ -96,8 +99,36 @@ The steps below are the mechanical setup — see [Designing a skill](#designing-
 4. Add implementation scripts under `scripts/` (Node.js, ESM). _Skip for reference-only skills (see below)._
 5. Write a full test suite under `tests/` using `node --test`. Tests must not require live credentials — mock all external API calls.
 6. Run `yarn install` to register the new workspace, then `yarn test` to verify.
+7. Run `yarn constraints` and the contract tests (`yarn workspace @allons-y/docs test`) to validate the skill against the metadata contract (see below). `yarn constraints --fix` auto-corrects the package.json-field issues.
+
+### Skill metadata
+
+Skill metadata is split across two places in `package.json`, because the marketplace site reads from both:
+
+- **The `skill` object** holds the fields the schema governs. Because it's `additionalProperties: false`, only the keys below are allowed — anything else fails the schema.
+    - **`runtime`** _(required)_ — the toolchain the tests run under. Today only `"node"` (see [Languages and tooling](#languages-and-tooling)).
+    - **`category`** _(required)_ — the grouping rendered as a chip on the marketplace site. Must be one of the allowed values: **`Design`**, **`Games`**, **`GitHub`**. The list is the `category` enum in `schemas/skill.schema.json` — adding one is a deliberate edit there (see [The metadata contract](#the-metadata-contract) below).
+    - **`triggers`** _(required, ≥ 1)_ — example prompts or slash commands that activate the skill. These populate the site's "Try saying" list, so it's never empty.
+    - **`commands`** _(optional)_ — slash commands the skill registers.
+    - **`featured`** _(optional, boolean)_ — when `true`, the skill is surfaced as the featured skill on the landing page. Defaults to `false`.
+- **The top-level `keywords` array** — the standard npm field. The site reads it as-is for search/discovery; it lives outside the `skill` object precisely because `skill` is `additionalProperties: false`.
+
+**Flavor is not a field you set** — the site derives it from whether the skill ships a `scripts/` directory: present → `implementation`, absent → `reference`. See [Skill flavors](#skill-flavors) below.
+
+### The metadata contract
+
+Two gates enforce it, split by what they can see. Both run in CI (wired into `ci:test`) and keep the catalog consistent as it scales.
+
+**`yarn constraints`** (Yarn's workspace engine, `yarn.config.cjs`) owns package.json-field invariants across every skill workspace: `private: true` and the canonical `@allons-y/skill-<dir>` package name. `yarn constraints --fix` rewrites offending manifests in place, with correct key order.
+
+**The JSON Schema + contract tests** (`schemas/skill.schema.json`, exercised by `docs/tests/skill-contract.test.js`) own the semantic invariants that live inside `SKILL.md` / `skill.*` — things constraints structurally can't reach: a `skill.category` and `skill.runtime` from the controlled enums, at least one `skill.trigger`, a `SKILL.md` frontmatter `name` matching the directory, and `tests/` + `evals/` suites that back the site's "tested" and "eval-backed" claims.
+
+- The allowed categories and runtimes are the `enum`s in `schemas/skill.schema.json`. Adding one is a deliberate one-line edit there — that's what stops `GitHub` / `Github` / `git` from forking.
+- `additionalProperties: false` means an unrecognized `skill.*` key fails the schema, so typos surface immediately.
 
 ### Skill flavors
+
+A skill's **flavor** is derived automatically from its layout — the marketplace site classifies it by whether a `scripts/` directory is present, not from a hand-set field:
 
 - **Implementation skills** ship runnable Node.js under `scripts/` (optionally with `bin/`, `templates/`). Example: `gh-notification-summary`.
 - **Reference-only skills** are pure prompt + reference material — `SKILL.md` walks the agent through curated `references/*.md` files. No `scripts/` directory is required. Tests validate that SKILL.md frontmatter is well-formed and that linked references resolve. Example: `design-system`.
