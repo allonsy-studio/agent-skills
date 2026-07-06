@@ -215,6 +215,7 @@ __metadata:
     husky: "npm:^9.1.7"
     lint-staged: "npm:^16.4.0"
     listr2: "npm:^10.2.1"
+    markdown-it: "npm:^14.1.1"
     pinst: "npm:^3.0.0"
     semantic-release: "npm:^25.0.3"
     text-table: "npm:^0.2.0"

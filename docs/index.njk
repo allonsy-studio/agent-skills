@@ -9,14 +9,22 @@ tagline: "Specialized agent skills that streamline common developer workflows an
 ---
 
 {% css %}{% include "./styles.css" %}{% endcss %}
+{% from "skill-chips.njk" import skillChips %}
 
-<header class="container">
+<header class="container hero">
+	<p class="eyebrow chip">Agent skills for AI coding agents</p>
 	<h1>{{ title | default(site.title) }}</h1>
 	<p class="lede">{{ tagline }}</p>
 	<p class="btn-group">
 		<a class="btn primary" href="#install">Get started</a>
 		<a class="btn" href="{{ site.repo.url }}"><span class="fa-brands fa-github" aria-hidden="true"></span> View on GitHub</a>
 	</p>
+	{% include "trust-strip.njk" %}
+	<div class="hero-terminal">
+		<span class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i></span>
+		{% highlight "shell" %}/plugin marketplace add {{ site.repo.slug }}
+/plugin install {{ site.featured.name }}@{{ site.marketplace_name }}{% endhighlight %}
+	</div>
 </header>
 
 <main id="main" class="container">
@@ -48,18 +56,43 @@ tagline: "Specialized agent skills that streamline common developer workflows an
 					{{ site.featured.name }}
 					<a class="anchor" href="#featured" aria-label="Permalink to featured skill">#</a>
 				</h3>
+				{{ skillChips(site.featured) }}
 			</header>
 			<div class="body">
 				<p>{{ site.featured.description }}</p>
 			</div>
 			<div class="footer">
 				<p class="btn-group">
-					<a class="btn primary" href="{{ site.featured.url }}">Read the docs</a>
+					<a class="btn primary" href="{{ site.featured.detailUrl }}">Read the docs</a>
 					<a class="btn" href="#install">Install it</a>
 				</p>
 			</div>
 		</aside>
 		{%- endif %}
+	</section>
+
+	<section id="trust" aria-labelledby="trust-heading" class="layout stacked">
+		<header>
+			<h2 id="trust-heading">
+				Built to be trusted
+				<a class="anchor" href="#trust" aria-label="Permalink to Built to be trusted">#</a>
+			</h2>
+			<p>These aren't prompt snippets pasted from a gist. Every skill is engineered, tested, and maintained like production software.</p>
+		</header>
+		<div class="layout grid quality-grid">
+			{% for item in site.quality -%}
+			<article class="quality">
+				<span class="icon" aria-hidden="true"><span class="{{ item.icon }} fa-xl"></span></span>
+				<h3>{{ item.title }}</h3>
+				<p>{{ item.text | safe }}</p>
+			</article>
+			{%- endfor %}
+		</div>
+		<p class="provenance note">
+			Built and maintained by
+			<a href="{{ site.maintainer.url }}">{{ site.maintainer.name }}</a>
+			· {{ site.maintainer.person }}.
+		</p>
 	</section>
 
 	<section id="skills" aria-labelledby="skills-heading" class="layout stacked">
@@ -72,9 +105,10 @@ tagline: "Specialized agent skills that streamline common developer workflows an
 		</header>
 		<article class="layout grid">
 			{% for skill in site.skills -%}
-			<a class="card" href="{{ skill.homepage or skill.url }}">
+			<a class="card" href="{{ skill.detailUrl }}">
 				<div class="header">
 					<h3>{{ skill.name }}</h3>
+					{{ skillChips(skill) }}
 				</div>
 				<div class="body">
 					<p>{{ skill.description | truncate(220) }}</p>
@@ -92,7 +126,7 @@ tagline: "Specialized agent skills that streamline common developer workflows an
 						{% for trigger in skill.triggers %}<code>"{{ trigger }}"</code>{% if not loop.last %} {% endif %}{% endfor %}
 					</p>
 					{%- endif %}
-					<p class="cta">{% if skill.homepage %}Preview this skill{% else %}Open SKILL.md{% endif %}</p>
+					<p class="cta">Learn more</p>
 				</div>
 			</a>
 			{%- endfor %}

@@ -4,6 +4,7 @@
   "description": "Cooking, gathering, and inventory management for Dreamlight Valley.",
   "type": "module",
   "skill": {
+    "category": "Games",
     "runtime": "node",
     "triggers": [
       "/cook <flags> <ingredients>",

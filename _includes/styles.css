@@ -141,6 +141,45 @@ code {
 	border: 1px solid var(--theme--ui--color--subtle);
 }
 
+/* Copy-to-clipboard affordance injected around every <pre> by copy-code.js. */
+.code-block {
+	position: relative;
+}
+
+.copy-button {
+	position: absolute;
+	inset-block-start: 0.5rem;
+	inset-inline-end: 0.5rem;
+
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35em;
+
+	padding: 0.3rem 0.55rem;
+	font-family: var(--theme--text--FontFamily);
+	font-size: 0.72rem;
+	font-weight: 600;
+	line-height: 1;
+	color: var(--theme--text--Color--subtle);
+	background: var(--theme--surface--color);
+	border: 1px solid var(--theme--ui--color--subtle);
+	border-radius: .35em;
+	cursor: pointer;
+	opacity: 0.55;
+	transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+	&:is(:hover, :focus-visible),
+	&.copied {
+		opacity: 1;
+		color: var(--theme--text--Color--accent);
+		border-color: var(--theme--text--Color--accent);
+	}
+}
+
+.code-block:is(:hover, :focus-within) .copy-button {
+	opacity: 1;
+}
+
 :focus-visible {
 	outline: 1px solid var(--base);
 	outline-offset: 2px;
@@ -405,10 +444,34 @@ li {
 	border: 1px solid currentColor;
 	border-radius: 2em;
 
-	.card header & {
+	/* The floating "Featured"/"Recommended" badge only applies to a chip placed
+	   as a direct child of a card header — not to chips nested in `.chips`. */
+	.card header > & {
 		margin-block-start: -3.4rem;
 		display: block;
 		inline-size: max-content;
+	}
+}
+
+/* Compact metadata chip cluster (runtime, flavor, category) for skill cards
+   and detail pages. Subtler than the standalone accent `.chip`. */
+.chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	margin: 0;
+
+	.chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35em;
+
+		padding: 0.15rem 0.6rem;
+		font-size: 0.7rem;
+		letter-spacing: 0.02em;
+		color: var(--theme--text--Color--subtle);
+		background: var(--theme--surface--color);
+		border-color: var(--theme--ui--color--subtle);
 	}
 }
 

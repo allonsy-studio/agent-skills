@@ -2,19 +2,170 @@ body > header {
 	--justify-content: center;
 
 	text-align: center;
-	padding-block: 2rem 2.5rem;
+	padding-block: 3.5rem 3rem;
+
+	/* Bold gradient backdrop derived from the theme color. */
+	background-image: radial-gradient(
+		70% 80% at 50% 0%,
+		var(--theme--surface--color--accent),
+		transparent 70%
+	);
+	border-block-end: 1px solid var(--theme--ui--color--subtle);
 
 	> * {
 		margin-inline: auto;
 
 		&:not(:last-child) {
-			margin-block-end: 1.75rem;
+			margin-block-end: 1.5rem;
 		}
 	}
 
-	:is(.lede) {
-		max-width: 50ch;
+	h1 {
+		max-width: 18ch;
+		background: linear-gradient(
+			120deg,
+			var(--theme--text--Color--accent),
+			color-mix(in oklch, var(--base) 65%, var(--theme--text--Color))
+		);
+		/* eslint-disable-next-line css/use-baseline */
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
+
+	:is(.lede) {
+		max-width: 55ch;
+	}
+}
+
+.eyebrow {
+	color: var(--theme--text--Color--accent);
+}
+
+.trust-strip {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	align-items: center;
+}
+
+.trust-stats {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem 1.5rem;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 0.95rem;
+	color: var(--theme--text--Color--subtle);
+
+	li {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45em;
+		margin: 0;
+	}
+
+	strong {
+		color: var(--theme--text--Color--accent);
+		font-size: 1.1em;
+	}
+
+	li + li {
+		border-inline-start: 1px solid var(--theme--ui--color--subtle);
+		padding-inline-start: 1.5rem;
+	}
+}
+
+.trust-strip .badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	justify-content: center;
+	margin: 0;
+
+	img {
+		display: block;
+	}
+
+	a:is(:hover, :focus-visible) {
+		opacity: 0.85;
+	}
+}
+
+.hero-terminal {
+	inline-size: min(560px, 100%);
+	text-align: start;
+
+	border: 1px solid var(--theme--ui--color--subtle);
+	border-radius: 0.6em;
+	overflow: hidden;
+	box-shadow: var(--theme--ui--shadow);
+
+	.terminal-bar {
+		display: flex;
+		gap: 0.4rem;
+		padding: 0.65rem 0.8rem;
+		background: var(--theme--surface--color);
+		border-block-end: 1px solid var(--theme--ui--color--subtle);
+
+		i {
+			inline-size: 0.7rem;
+			block-size: 0.7rem;
+			border-radius: 50%;
+			background: var(--theme--ui--color--subtle);
+		}
+	}
+
+	pre {
+		margin: 0;
+		border-inline-start: none;
+		box-shadow: none;
+	}
+}
+
+.quality-grid {
+	--item-size: 280px;
+}
+
+.quality {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+
+	padding: 1.5rem;
+	border-radius: 0.8em;
+	background: var(--theme--surface--color--sunken);
+	border: 1px solid var(--theme--ui--color--subtle);
+
+	.icon {
+		color: var(--theme--text--Color--accent);
+		inline-size: 2.6rem;
+		block-size: 2.6rem;
+		font-size: 1rem;
+		border-radius: 0.6em;
+		background: var(--theme--surface--color--accent);
+	}
+
+	h3 {
+		font-size: 1.15rem;
+		color: var(--theme--text--Color);
+	}
+
+	p {
+		font-size: 0.95rem;
+		line-height: 1.6;
+		margin: 0;
+	}
+}
+
+.provenance {
+	inline-size: 100%;
+	text-align: center;
 }
 
 :is(section, footer) {
@@ -29,4 +180,13 @@ body > header {
 h1,
 .card :is(h2, h3, h4, h5, h6):not([class]) {
 	font-family: var(--theme--code--FontFamily);
+}
+
+/* When the trust stats wrap onto their own lines, the inline dividers read as
+   stray ticks — drop them on narrow viewports. */
+@media (width <= 640px) {
+	.trust-stats li + li {
+		border-inline-start: none;
+		padding-inline-start: 0;
+	}
 }

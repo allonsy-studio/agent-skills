@@ -1,0 +1,17 @@
+{#
+	Hero trust strip: at-a-glance stats plus the CI/quality badge row.
+	Reads the `site` global (skills, license, badges); no parameters.
+#}
+<div class="trust-strip">
+	<ul class="trust-stats">
+		<li><strong>{{ site.skills.length }}</strong> expert-written {{ "skill" if site.skills.length == 1 else "skills" }}</li>
+		<li><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Every skill tested</li>
+		<li><span class="fa-brands fa-osi" aria-hidden="true"></span> Open source · {{ site.license.name }}</li>
+		<li><span class="fa-brands fa-node-js" aria-hidden="true"></span> Node&nbsp;&ge;&nbsp;24</li>
+	</ul>
+	<p class="badges">
+		{% for badge in site.badges -%}
+		<a href="{{ badge.url }}"><img alt="{{ badge.alt }}" src="{{ badge.src }}" loading="lazy" height="20"></a>
+		{% endfor -%}
+	</p>
+</div>
