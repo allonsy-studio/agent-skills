@@ -18,7 +18,7 @@ Each skill is a self-contained directory with a `SKILL.md`, Node.js implementati
 Register this repository as a marketplace, then install individual skills through the `/plugin` UI:
 
 ```sh
-/plugin marketplace add Allons-y-Studio/agent-skills
+/plugin marketplace add allonsy-studio/agent-skills
 /plugin install gh-notification-summary@agent-skills
 ```
 
@@ -139,7 +139,7 @@ agent-skills/                         # Root workspace (publishes to npm)
 <summary><b>How do I install a skill for use with Claude Code?</b></summary>
 
 ```sh
-/plugin marketplace add Allons-y-Studio/agent-skills
+/plugin marketplace add allonsy-studio/agent-skills
 /plugin install gh-notification-summary@agent-skills
 ```
 
@@ -187,11 +187,11 @@ Contributions are welcome — new skills, improvements to existing ones, bug fix
 
 Built and maintained by [Allons-y Studio](https://allons-y.studio) · Cassondra Roberts.
 
-[workflow-image]: https://github.com/Allons-y-Studio/agent-skills/actions/workflows/test.yml/badge.svg?branch=main
-[workflow-url]: https://github.com/Allons-y-Studio/agent-skills/actions/workflows/test.yml/badge.svg
+[workflow-image]: https://github.com/allonsy-studio/agent-skills/actions/workflows/test.yml/badge.svg?branch=main
+[workflow-url]: https://github.com/allonsy-studio/agent-skills/actions/workflows/test.yml/badge.svg
 [npm-image]: https://img.shields.io/npm/v/@allons-y/agent-skills?logo=npm
 [npm-url]: https://www.npmjs.com/package/@allons-y/agent-skills
 [conventional-commits-image]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
 [conventional-commits-url]: https://conventionalcommits.org/
-[coverage-image]: https://img.shields.io/nycrc/Allons-y-Studio/agent-skills?config=.c8rc.json
-[coverage-url]: https://github.com/Allons-y-Studio/agent-skills/blob/main/.c8rc.json
+[coverage-image]: https://img.shields.io/nycrc/allonsy-studio/agent-skills?config=.c8rc.json
+[coverage-url]: https://github.com/allonsy-studio/agent-skills/blob/main/.c8rc.json
