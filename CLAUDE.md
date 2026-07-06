@@ -50,9 +50,20 @@ yarn workspaces foreach -A run test
 yarn workspaces foreach -A run lint
 ```
 
+## Designing a skill
+
+**[`docs/skill-architecture.md`](docs/skill-architecture.md) is the source of truth for how to architect a skill** — read it before creating or substantially changing one. It is the canonical reference for the decisions that determine whether a skill works; the index below is just a signpost, not a substitute:
+
+- **The triggering `description`** — the highest-leverage field (what it does + when to use it).
+- **Progressive disclosure** — a lean `SKILL.md` body; depth in `references/`.
+- **Instructions vs. scripts** — degrees of freedom; deterministic work belongs in scripts.
+- **Discriminating evals** — positive triggers plus tempting negatives.
+
+The same criteria are encoded in the [New Skill Proposal issue template](.github/ISSUE_TEMPLATE/new_skill.yml) and the [pull request template](.github/pull_request_template.md), and gathered as a pre-PR checklist at the end of the guide.
+
 ## Adding a new skill
 
-> Read [`docs/skill-architecture.md`](docs/skill-architecture.md) first — it covers how to _design_ a skill (the triggering `description`, progressive disclosure, instructions vs. scripts, evals). The steps below are the mechanical setup.
+The steps below are the mechanical setup — see [Designing a skill](#designing-a-skill) above for the design decisions.
 
 1. Create a directory under `skills/<skill-name>/`.
 2. Add a `package.json` with `"private": true` and a `skill.runtime` field:
