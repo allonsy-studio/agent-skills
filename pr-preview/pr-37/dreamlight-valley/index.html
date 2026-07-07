@@ -694,13 +694,17 @@ html {
     background-image:
         radial-gradient(1200px 800px at 80% -10%, rgba(227, 90, 249, 0.18), transparent 60%),
         radial-gradient(900px 600px at 10% 110%, rgba(126, 133, 255, 0.18), transparent 60%),
-        linear-gradient(180deg, transparent 0%, rgba(45, 21, 53, 0.55) 80%, rgba(66, 18, 22, 0.75) 100%);
+        linear-gradient(180deg, #1a0a25 0%, #2d1535 80%, #421216 100%);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 body {
+    /* Transparent so the root backdrop shows through uniformly — otherwise the
+       foundation stylesheet's translucent `body` surface tint reappears and the
+       top margin gap reads as a darker band. */
+    background: transparent;
     min-height: 100vh;
 }
 
@@ -909,6 +913,10 @@ h1 {
 }
 #summary {
     text-align: right;
+}
+/* Breathing room between the card grid and the page footer's top border. */
+main {
+    margin-block-end: 3rem;
 }
 #results {
     --item-size: 220px;
