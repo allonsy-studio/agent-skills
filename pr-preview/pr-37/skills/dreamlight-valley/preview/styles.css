@@ -18,15 +18,21 @@
     --theme--surface--color--sunken: rgba(54, 63, 168, 0.35);
 }
 
-body {
-    background:
+/* Backdrop on the root element. The solid color propagates to the whole canvas,
+   so however tall the catalog gets there is never an uncovered (black) gap. The
+   gradient + glows layer on top, pinned to the viewport. */
+html {
+    background-color: #1a0a25;
+    background-image:
         radial-gradient(1200px 800px at 80% -10%, rgba(227, 90, 249, 0.18), transparent 60%),
         radial-gradient(900px 600px at 10% 110%, rgba(126, 133, 255, 0.18), transparent 60%),
-        linear-gradient(180deg, #1a0a25 0%, #2d1535 80%, #421216 100%);
+        linear-gradient(180deg, transparent 0%, rgba(45, 21, 53, 0.55) 80%, rgba(66, 18, 22, 0.75) 100%);
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-size: 100vw 100vh;
-    background-position: center center;
+    background-size: cover;
+}
+
+body {
     min-height: 100vh;
 }
 
@@ -333,6 +339,17 @@ mark {
     block-size: auto;
     background-repeat: no-repeat;
     background-size: auto;
+}
+/* Gatherable ("resource") cards: center the icon and label above the
+   left-aligned metadata. (Recipe cards center via their header layout.) */
+.icon-wrap {
+    display: flex;
+    justify-content: center;
+}
+.name {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.05rem;
 }
 .tags {
     display: flex;
