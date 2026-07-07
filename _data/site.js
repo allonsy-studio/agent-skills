@@ -54,10 +54,11 @@ export default async function (configData) {
 				const skillData = JSON.parse(await fs.readFile(path.join(skillDir, "package.json"), "utf-8"));
 
 				const skillMd = await fs.readFile(path.join(skillDir, "SKILL.md"), "utf-8").catch(() => "");
-				const [hasScripts, hasTests, hasEvals] = await Promise.all([
+				const [hasScripts, hasTests, hasEvals, hasPreview] = await Promise.all([
 					exists(path.join(skillDir, "scripts")),
 					exists(path.join(skillDir, "tests")),
 					exists(path.join(skillDir, "evals", "evals.json")),
+					exists(path.join(skillDir, "preview")),
 				]);
 				const { blobBase, rawBase } = skillGitHubBases({ repoUrl, skillName: dir.name });
 
@@ -67,6 +68,11 @@ export default async function (configData) {
 					homepage: skillData?.homepage,
 					url: `${blobBase}/SKILL.md`,
 					detailUrl: `/skills/${dir.name}/`,
+					// A skill with a `preview/` directory ships a hosted, interactive
+					// preview page. Convention: it builds to `/<skill>/` (see the
+					// preview's permalink). Root-relative so HtmlBasePlugin adds the
+					// site base path. Falls back to an external `homepage` if set.
+					previewUrl: hasPreview ? `/${dir.name}/` : skillData?.homepage ?? null,
 					runtime: skillData?.skill?.runtime,
 					flavor: deriveFlavor(hasScripts),
 					category: skillData?.skill?.category,

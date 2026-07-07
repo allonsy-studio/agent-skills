@@ -15,6 +15,7 @@
 	<span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span>
 	{%- endif -%}
 	<span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span>
+	{%- if skill.previewUrl %}<span class="chip"><span class="fa-solid fa-window-maximize" aria-hidden="true"></span> Live preview</span>{% endif -%}
 	{%- if full and skill.flavor != "reference" and skill.runtime %}<span class="chip"><span class="fa-brands fa-node-js" aria-hidden="true"></span> {{ skill.runtime | capitalize }}</span>{% endif -%}
 </p>
 {% endmacro %}

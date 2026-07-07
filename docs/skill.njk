@@ -25,7 +25,7 @@ eleventyComputed:
 	<p class="btn-group">
 		<a class="btn primary" href="#install">Install this skill</a>
 		<a class="btn" href="{{ skill.url }}"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
-		{% if skill.homepage %}<a class="btn" href="{{ skill.homepage }}"><span class="fa-solid fa-up-right-from-square" aria-hidden="true"></span> Live preview</a>{% endif %}
+		{% if skill.previewUrl %}<a class="btn" href="{{ skill.previewUrl }}"><span class="fa-solid fa-up-right-from-square" aria-hidden="true"></span> Preview skill interface</a>{% endif %}
 	</p>
 </header>
 
