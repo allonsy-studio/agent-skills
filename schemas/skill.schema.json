@@ -1,0 +1,38 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://allons-y.studio/schemas/skill.schema.json",
+	"title": "Skill metadata",
+	"description": "The `skill` object inside a skill workspace's package.json. Validated against every skills/*/package.json by docs/tests/skill-contract.test.js. Adding a new runtime or category is a deliberate edit here.",
+	"type": "object",
+	"required": ["runtime", "category", "triggers"],
+	"additionalProperties": false,
+	"properties": {
+		"runtime": {
+			"description": "Toolchain the skill's tests run under. Extending this set also requires wiring the runtime into scripts/run-tests.js.",
+			"enum": ["node"]
+		},
+		"category": {
+			"description": "Grouping shown as a chip on the marketplace site. Add new categories here so casing and spelling stay consistent (e.g. 'GitHub', not 'Github').",
+			"enum": ["Design", "Games", "GitHub"]
+		},
+		"flavor": {
+			"description": "Optional explicit override for the implementation/reference classification that is otherwise inferred from the presence of a scripts/ directory.",
+			"enum": ["implementation", "reference"]
+		},
+		"featured": {
+			"description": "Whether this skill is surfaced as the featured skill on the landing page.",
+			"type": "boolean"
+		},
+		"triggers": {
+			"description": "Example prompts or slash commands that activate the skill. Every skill must declare at least one, so the marketplace's 'Try saying' list is never empty.",
+			"type": "array",
+			"minItems": 1,
+			"items": { "type": "string", "minLength": 1 }
+		},
+		"commands": {
+			"description": "Slash commands the skill registers.",
+			"type": "array",
+			"items": { "type": "string", "minLength": 1 }
+		}
+	}
+}

@@ -126,6 +126,11 @@ pre {
 	border-start-end-radius: .2em;
 	font-size: 0.8em !important;
 	box-shadow: inset 1px 1px 0 hsl(0deg 0% 0% / 0.04), inset -1px -1px 0 hsl(0deg 0% 0% / 0.04);
+
+	/* Long lines (install commands, code samples) scroll inside the block
+	   instead of stretching the page past the viewport on narrow screens. */
+	max-inline-size: 100%;
+	overflow-x: auto;
 }
 
 code {
@@ -139,6 +144,51 @@ code {
 	font-size: 0.9em;
 	margin-block-start: -.1rem;
 	border: 1px solid var(--theme--ui--color--subtle);
+}
+
+/* Copy-to-clipboard affordance injected around every <pre> by copy-code.js. */
+.code-block {
+	position: relative;
+
+	/* As a flex/grid item this wrapper must shrink below the <pre>'s intrinsic
+	   width; otherwise it grows to the longest code line and pushes the page
+	   past the viewport instead of letting the <pre> scroll internally. */
+	min-inline-size: 0;
+	max-inline-size: 100%;
+}
+
+.copy-button {
+	position: absolute;
+	inset-block-start: 0.5rem;
+	inset-inline-end: 0.5rem;
+
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35em;
+
+	padding: 0.3rem 0.55rem;
+	font-family: var(--theme--text--FontFamily);
+	font-size: 0.72rem;
+	font-weight: 600;
+	line-height: 1;
+	color: var(--theme--text--Color--subtle);
+	background: var(--theme--surface--color);
+	border: 1px solid var(--theme--ui--color--subtle);
+	border-radius: .35em;
+	cursor: pointer;
+	opacity: 0.55;
+	transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+	&:is(:hover, :focus-visible),
+	&.copied {
+		opacity: 1;
+		color: var(--theme--text--Color--accent);
+		border-color: var(--theme--text--Color--accent);
+	}
+}
+
+.code-block:is(:hover, :focus-within) .copy-button {
+	opacity: 1;
 }
 
 :focus-visible {
@@ -238,7 +288,9 @@ li {
 	&.masonry,
 	&.grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(var(--item-size, 380px), 1fr));
+		/* min(item-size, 100%) so a track never demands more than the container
+		   width — otherwise a 380px min column overflows a ~375px phone. */
+		grid-template-columns: repeat(auto-fill, minmax(min(var(--item-size, 380px), 100%), 1fr));
 
 		gap: var(--gap, 1rem);
 		align-items: var(--align-items, stretch);
@@ -405,10 +457,34 @@ li {
 	border: 1px solid currentColor;
 	border-radius: 2em;
 
-	.card header & {
-		margin-block-start: -3.4rem;
+	/* The floating "Featured"/"Recommended" badge only applies to a chip placed
+	   as a direct child of a card header — not to chips nested in `.chips`. */
+	.card header > & {
+		margin-block-start: -2.6rem;
 		display: block;
 		inline-size: max-content;
+	}
+}
+
+/* Compact metadata chip cluster (runtime, flavor, category) for skill cards
+   and detail pages. Subtler than the standalone accent `.chip`. */
+.chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	margin: 0;
+
+	.chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35em;
+
+		padding: 0.15rem 0.6rem;
+		font-size: 0.7rem;
+		letter-spacing: 0.02em;
+		color: var(--theme--text--Color--subtle);
+		background: var(--theme--surface--color);
+		border-color: var(--theme--ui--color--subtle);
 	}
 }
 
@@ -435,6 +511,10 @@ li {
 	grid-template-columns: 1fr;
 	grid-template-rows: auto 1fr auto;
 	gap: 1rem;
+
+	/* Allow the card to shrink below its content's intrinsic width so a wide
+	   code block scrolls internally instead of widening the grid track. */
+	min-inline-size: 0;
 
 	background: var(--theme--surface--color--sunken);
 	color: inherit;

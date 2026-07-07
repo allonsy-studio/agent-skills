@@ -215,12 +215,22 @@ __metadata:
     husky: "npm:^9.1.7"
     lint-staged: "npm:^16.4.0"
     listr2: "npm:^10.2.1"
+    markdown-it: "npm:^14.1.1"
     pinst: "npm:^3.0.0"
     semantic-release: "npm:^25.0.3"
     text-table: "npm:^0.2.0"
     yargs: "npm:^18.0.0"
   bin:
     agent-skills: bin/install.js
+  languageName: unknown
+  linkType: soft
+
+"@allons-y/docs@workspace:docs":
+  version: 0.0.0-use.local
+  resolution: "@allons-y/docs@workspace:docs"
+  dependencies:
+    ajv: "npm:^8.17.1"
+    markdown-it: "npm:^14.1.1"
   languageName: unknown
   linkType: soft
 

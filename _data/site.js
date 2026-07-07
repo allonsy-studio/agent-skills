@@ -1,8 +1,27 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import {
+	createSkillRenderer,
+	deriveFlavor,
+	renderSkillOverview,
+	skillGitHubBases,
+} from "./lib/skill-metadata.js";
 
 /**
- * Eleventy global data: package, repo, skills, harnesses, etc.
+ * Shared markdown renderer for skill `SKILL.md` bodies. Relative links and
+ * images are rewritten to absolute GitHub URLs so the rendered overview works
+ * when lifted out of the skill directory. See `./lib/skill-metadata.js`.
+ */
+const md = createSkillRenderer();
+
+const exists = (target) =>
+	fs
+		.access(target)
+		.then(() => true)
+		.catch(() => false);
+
+/**
+ * Eleventy global data: package, repo, skills, harnesses, trust signals, etc.
  *
  * @param {{ eleventy: { env: { root: string } } }} configData
  */
@@ -12,8 +31,10 @@ export default async function (configData) {
 	const packageJson = await fs.readFile(path.join(rootDir, "package.json"), "utf-8");
 	const pkg = JSON.parse(packageJson);
 
-	const repoType = pkg.repository?.type;
-	const repoUrl = pkg?.repository?.url?.replace(new RegExp(`\\.?${repoType}\\+?`), "");
+	// Normalize the clone URL to a plain web URL: drop the `git+` prefix and the
+	// `.git` suffix. Leaving `.git` on breaks the CI badge (…/agent-skills.git/
+	// actions/…) and the coverage badge (shields reads repo "agent-skills.git").
+	const repoUrl = pkg?.repository?.url?.replace(/^git\+/, "").replace(/\.git$/, "");
 	const repoSegments = repoUrl.replace(/^https?:\/\/[^/]+\//, "").split("/");
 	const repoOwner = repoSegments?.[0];
 	const repoName = repoSegments?.[1];
@@ -29,19 +50,42 @@ export default async function (configData) {
 		skillsDirs
 			.filter((dir) => dir.isDirectory())
 			.map(async (dir) => {
-				const skillPackageJson = await fs.readFile(
-					path.join(dir.parentPath, dir.name, "package.json"),
-					"utf-8"
-				);
-				const skillData = JSON.parse(skillPackageJson);
+				const skillDir = path.join(dir.parentPath, dir.name);
+				const skillData = JSON.parse(await fs.readFile(path.join(skillDir, "package.json"), "utf-8"));
+
+				const skillMd = await fs.readFile(path.join(skillDir, "SKILL.md"), "utf-8").catch(() => "");
+				const [hasScripts, hasTests, hasEvals, hasPreview] = await Promise.all([
+					exists(path.join(skillDir, "scripts")),
+					exists(path.join(skillDir, "tests")),
+					exists(path.join(skillDir, "evals", "evals.json")),
+					exists(path.join(skillDir, "preview")),
+				]);
+				const { blobBase, rawBase } = skillGitHubBases({ repoUrl, skillName: dir.name });
+
 				return {
 					name: dir?.name,
 					description: skillData?.description,
 					homepage: skillData?.homepage,
-					url: `${repoUrl}/blob/main/skills/${dir?.name}/SKILL.md`,
+					url: `${blobBase}/SKILL.md`,
+					detailUrl: `/skills/${dir.name}/`,
+					// A skill with a `preview/` directory ships a hosted, interactive
+					// preview page. Convention: it builds to `/<skill>/` (see the
+					// preview's permalink). Root-relative so HtmlBasePlugin adds the
+					// site base path. Falls back to an external `homepage` if set.
+					previewUrl: hasPreview ? `/${dir.name}/` : skillData?.homepage ?? null,
+					runtime: skillData?.skill?.runtime,
+					flavor: deriveFlavor(hasScripts),
+					category: skillData?.skill?.category,
+					keywords: skillData?.keywords ?? [],
 					triggers: skillData?.skill?.triggers ?? [],
 					commands: skillData?.skill?.commands ?? [],
 					featured: Boolean(skillData?.skill?.featured),
+					// Trust facts, derived from the skill on disk rather than asserted.
+					// The `docs/tests` contract suite fails CI if any skill lacks these,
+					// so the "every skill tested / eval-backed" claims can't go stale.
+					hasTests,
+					hasEvals,
+					overviewHtml: renderSkillOverview(md, skillMd, { blobBase, rawBase }),
 				};
 			})
 	);
@@ -99,6 +143,82 @@ export default async function (configData) {
 		},
 	];
 
+	const npmUrl = `https://www.npmjs.com/package/${pkg?.name}`;
+
+	// Trust signals. Badge URLs mirror the set defined in README.md.
+	const badges = [
+		{
+			label: "CI",
+			url: `${repoUrl}/actions/workflows/test.yml`,
+			src: `${repoUrl}/actions/workflows/test.yml/badge.svg?branch=main`,
+			alt: "CI build status",
+		},
+		{
+			label: "npm version",
+			url: npmUrl,
+			src: `https://img.shields.io/npm/v/${pkg?.name}?logo=npm`,
+			alt: "Latest npm version",
+		},
+		{
+			label: "downloads",
+			url: npmUrl,
+			src: `https://img.shields.io/npm/dw/${pkg?.name}?logo=npm`,
+			alt: "Weekly npm downloads",
+		},
+		{
+			label: "coverage",
+			url: `${repoUrl}/blob/main/.c8rc.json`,
+			src: `https://img.shields.io/nycrc/${repoSlug}?config=.c8rc.json`,
+			alt: "Test coverage threshold",
+		},
+		{
+			label: "node",
+			url: "https://nodejs.org",
+			src: "https://img.shields.io/badge/node-%3E%3D24-brightgreen?logo=node.js",
+			alt: "Requires Node.js 24 or newer",
+		},
+		{
+			label: "conventional commits",
+			url: "https://conventionalcommits.org/",
+			src: "https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg",
+			alt: "Conventional Commits",
+		},
+	];
+
+	// "Built to be trusted" pillars. Copy may contain inline HTML (<code>).
+	const quality = [
+		{
+			icon: "fa-solid fa-feather-pointed",
+			title: "Expert-written",
+			text: "Every <code>SKILL.md</code> prompt is hand-authored by domain experts — not auto-generated boilerplate.",
+		},
+		{
+			icon: "fa-solid fa-vial-circle-check",
+			title: "Fully tested",
+			text: "Each skill ships a <code>node --test</code> suite with c8 coverage, so behavior is verified, not assumed.",
+		},
+		{
+			icon: "fa-solid fa-wand-magic-sparkles",
+			title: "Linted & formatted",
+			text: "ESLint and Prettier run on every commit for consistent, reviewable code.",
+		},
+		{
+			icon: "fa-solid fa-robot",
+			title: "Eval-backed",
+			text: "LLM eval suites check that each skill triggers and behaves correctly on real prompts.",
+		},
+		{
+			icon: "fa-solid fa-circle-check",
+			title: "CI on every change",
+			text: "Tests, linting, and evals run in GitHub Actions before anything merges to <code>main</code>.",
+		},
+		{
+			icon: "fa-solid fa-puzzle-piece",
+			title: "No vendor lock-in",
+			text: "Plain <code>SKILL.md</code> directories — install natively in Claude Code or vendor into any harness.",
+		},
+	];
+
 	return {
 		package: {
 			name: pkg?.name,
@@ -118,7 +238,7 @@ export default async function (configData) {
 		},
 		marketplace_name: marketplaceName,
 		npm: {
-			url: `https://www.npmjs.com/package/${pkg?.name}`,
+			url: npmUrl,
 		},
 		license: {
 			name: pkg?.license,
@@ -130,5 +250,7 @@ export default async function (configData) {
 		skills,
 		featured,
 		harnesses,
+		badges,
+		quality,
 	};
 }

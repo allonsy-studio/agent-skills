@@ -1,0 +1,15 @@
+{
+	"private": true,
+	"name": "@allons-y/docs",
+	"version": "0.0.0",
+	"description": "Marketplace site data layer and the skill-metadata contract tests that keep its trust claims honest.",
+	"type": "module",
+	"scripts": {
+		"ci:test": "yarn test",
+		"test": "node --test \"tests/**/*.test.js\""
+	},
+	"devDependencies": {
+		"ajv": "^8.17.1",
+		"markdown-it": "^14.1.1"
+	}
+}
