@@ -31,8 +31,10 @@ export default async function (configData) {
 	const packageJson = await fs.readFile(path.join(rootDir, "package.json"), "utf-8");
 	const pkg = JSON.parse(packageJson);
 
-	const repoType = pkg.repository?.type;
-	const repoUrl = pkg?.repository?.url?.replace(new RegExp(`\\.?${repoType}\\+?`), "");
+	// Normalize the clone URL to a plain web URL: drop the `git+` prefix and the
+	// `.git` suffix. Leaving `.git` on breaks the CI badge (…/agent-skills.git/
+	// actions/…) and the coverage badge (shields reads repo "agent-skills.git").
+	const repoUrl = pkg?.repository?.url?.replace(/^git\+/, "").replace(/\.git$/, "");
 	const repoSegments = repoUrl.replace(/^https?:\/\/[^/]+\//, "").split("/");
 	const repoOwner = repoSegments?.[0];
 	const repoName = repoSegments?.[1];
@@ -238,11 +240,6 @@ export default async function (configData) {
 		},
 		bugs: {
 			url: `${repoUrl}/issues`,
-		},
-		maintainer: {
-			name: "Allons-y Studio",
-			person: "Cassondra Roberts",
-			url: "https://allons-y.studio",
 		},
 		skills,
 		featured,

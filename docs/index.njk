@@ -12,7 +12,7 @@ tagline: "Specialized agent skills that streamline common developer workflows an
 {% from "skill-chips.njk" import skillChips %}
 
 <header class="container hero">
-	<p class="eyebrow chip">Agent skills for AI coding agents</p>
+	<p class="eyebrow chip">Skills for AI agents</p>
 	<h1>{{ title | default(site.title) }}</h1>
 	<p class="lede">{{ tagline }}</p>
 	<p class="btn-group">
@@ -88,11 +88,6 @@ tagline: "Specialized agent skills that streamline common developer workflows an
 			</article>
 			{%- endfor %}
 		</div>
-		<p class="provenance note">
-			Built and maintained by
-			<a href="{{ site.maintainer.url }}">{{ site.maintainer.name }}</a>
-			· {{ site.maintainer.person }}.
-		</p>
 	</section>
 
 	<section id="skills" aria-labelledby="skills-heading" class="layout stacked">

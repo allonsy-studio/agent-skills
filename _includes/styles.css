@@ -447,7 +447,7 @@ li {
 	/* The floating "Featured"/"Recommended" badge only applies to a chip placed
 	   as a direct child of a card header — not to chips nested in `.chips`. */
 	.card header > & {
-		margin-block-start: -3.4rem;
+		margin-block-start: -2.6rem;
 		display: block;
 		inline-size: max-content;
 	}
