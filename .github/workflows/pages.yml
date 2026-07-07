@@ -3,26 +3,35 @@ name: Deploy docs site
 on:
   push:
     branches: [main]
+  pull_request:
+    # open/reopen/update → build & publish a preview; close → tear it down.
+    types: [opened, reopened, synchronize, closed]
   workflow_dispatch:
 
+# Serialize every writer of the gh-pages branch so production and preview
+# deploys never race on a push. Deploys are never cancelled midway.
 concurrency:
-  group: pages-${{ github.ref }}
+  group: gh-pages-deploy
   cancel-in-progress: false
 
 permissions:
-  contents: write
-  pull-requests: write
-  pages: write
-  id-token: write
+  contents: write # push to the gh-pages branch
+  pull-requests: write # pr-preview-action comments the preview URL
+
+# Base path the site is served from.
+#   - Custom domain at root:            "/"              (default)
+#   - Default GitHub Pages project URL: "/agent-skills/"
+# Production builds with this prefix and previews nest under it, so changing
+# this one value keeps every internal link correct in both places.
+env:
+  SITE_BASE: "/"
 
 jobs:
-  deploy:
+  # ---- Production: publish main to the gh-pages root ----
+  production:
     name: Deploy to gh-pages
-    if: github.event_name == 'push'
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -43,17 +52,65 @@ jobs:
       - name: Install Node dependencies
         run: yarn install --immutable
 
-      - name: Run build
-        run: yarn ci
+      - name: Build site
+        env:
+          ELEVENTY_ENV: production
+        run: |
+          yarn build
+          yarn exec eleventy --pathprefix="$SITE_BASE"
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: '_site'
+          branch: gh-pages
+          folder: _site
+          # Wipe stale files, but keep active PR previews and the custom-domain
+          # CNAME (harmless no-op when neither is present).
+          clean: true
+          clean-exclude: |
+            pr-preview/
+            CNAME
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+  # ---- Preview: publish each PR under /pr-preview/pr-N/ ----
+  preview:
+    name: Deploy PR preview
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+
+      # A closed PR only needs teardown, so skip the build entirely.
+      - name: Enable Corepack
+        if: github.event.action != 'closed'
+        run: corepack enable
+
+      - name: Use Node LTS version
+        if: github.event.action != 'closed'
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+          registry-url: https://registry.npmjs.org
+
+      - name: Install Node dependencies
+        if: github.event.action != 'closed'
+        run: yarn install --immutable
+
+      - name: Build preview site
+        if: github.event.action != 'closed'
+        env:
+          ELEVENTY_ENV: production
+        run: |
+          yarn build
+          yarn exec eleventy --pathprefix="${SITE_BASE}pr-preview/pr-${{ github.event.number }}/"
+
+      - name: Deploy preview to gh-pages
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: _site
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview

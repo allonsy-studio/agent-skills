@@ -1,4 +1,4 @@
-import { InputPathToUrlTransformPlugin } from "@11ty/eleventy";
+import { HtmlBasePlugin, InputPathToUrlTransformPlugin } from "@11ty/eleventy";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
 /** @param {import('@11ty/eleventy').TemplateConfig} config */
@@ -45,6 +45,11 @@ export default async function ( config ) {
 	} );
 
 	/* -------- PLUGINS -------- */
+	// Rewrites root-relative URLs (nav links, favicons, images) to include the
+	// configured pathPrefix. A no-op at the default prefix ("/") so production is
+	// unchanged; PR previews build with --pathprefix=/pr-preview/pr-N/ so links
+	// stay inside the preview instead of pointing back at the live site.
+	config.addPlugin( HtmlBasePlugin );
 	config.addPlugin( InputPathToUrlTransformPlugin );
 	config.addPlugin( syntaxHighlight, {
 		alwaysWrapLineHighlights: true,
