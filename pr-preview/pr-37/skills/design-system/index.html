@@ -494,7 +494,7 @@ li {
 	/* The floating "Featured"/"Recommended" badge only applies to a chip placed
 	   as a direct child of a card header — not to chips nested in `.chips`. */
 	.card header > & {
-		margin-block-start: -3.4rem;
+		margin-block-start: -2.6rem;
 		display: block;
 		inline-size: max-content;
 	}
@@ -754,7 +754,7 @@ body > footer {
 
 	<p class="btn-group">
 		<a class="btn primary" href="#install">Install this skill</a>
-		<a class="btn" href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/SKILL.md"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
+		<a class="btn" href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/SKILL.md"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
 		
 	</p>
 </header>
@@ -799,7 +799,7 @@ body > footer {
 				</div>
 				<footer>
 					
-					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">/plugin marketplace <span class="token function">add</span> allonsy-studio/agent-skills.git</span>
+					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">/plugin marketplace <span class="token function">add</span> allonsy-studio/agent-skills</span>
 <span class="highlight-line">/plugin <span class="token function">install</span> design-system@agent-skills</span></code></pre>
 				</footer>
 			</article><article class="card" id="install-claude-agent-sdk">
@@ -859,7 +859,7 @@ body > footer {
 				Full skill instructions
 				<a class="anchor" href="#docs" aria-label="Permalink to Full skill instructions">#</a>
 			</h2>
-			<p>This is the <code>SKILL.md</code> the agent reads when the skill activates. <a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/SKILL.md">View the source on GitHub</a>.</p>
+			<p>This is the <code>SKILL.md</code> the agent reads when the skill activates. <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/SKILL.md">View the source on GitHub</a>.</p>
 		</header>
 		<div class="prose">
 			<h1>Design System Patterns</h1>
@@ -869,7 +869,7 @@ design systems (Material, Spectrum, Carbon, Lightning, Atlassian, Primer,
 Polaris, <a href="http://GOV.UK">GOV.UK</a>, U.S. Web Design System) and is grounded in the W3C WAI
 ARIA Authoring Practices.</p>
 <p><strong>Before recommending anything, read
-<a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/guiding-principles.md"><code>references/guiding-principles.md</code></a>.</strong>
+<a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/guiding-principles.md"><code>references/guiding-principles.md</code></a>.</strong>
 Those eight principles inform every decision below.</p>
 <h2>Two workflows</h2>
 <p>Ask the user which applies if it’s not obvious from their message.</p>
@@ -878,25 +878,25 @@ Those eight principles inform every decision below.</p>
 layer in order:</p>
 <ol>
 <li><strong>Identify the pattern</strong> — match their description to a known component
-category (see <a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/component-taxonomy.md"><code>references/component-taxonomy.md</code></a>).
+category (see <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/component-taxonomy.md"><code>references/component-taxonomy.md</code></a>).
 If it’s a composite or novel pattern, identify which primitives it combines.</li>
 <li><strong>Name it</strong> — propose a name following the conventions in
-<a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/naming-conventions.md"><code>references/naming-conventions.md</code></a>.
+<a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/naming-conventions.md"><code>references/naming-conventions.md</code></a>.
 Offer 2–3 candidates with trade-off notes.</li>
 <li><strong>Design the API</strong> — define the component’s public interface using the
-framework in <a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/api-design.md"><code>references/api-design.md</code></a>.
+framework in <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/api-design.md"><code>references/api-design.md</code></a>.
 Cover attributes/props, slots or content areas, events, CSS custom
 properties for theming, and design tokens.</li>
 <li><strong>Specify accessibility</strong> — read
-<a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/accessibility-patterns.md"><code>references/accessibility-patterns.md</code></a>
+<a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/accessibility-patterns.md"><code>references/accessibility-patterns.md</code></a>
 for the relevant ARIA pattern. Provide WCAG 2.2 AA requirements as
 baseline (“must”), AAA recommendations as stretch goals (“should
 consider”), and full keyboard interaction specs.</li>
 <li><strong>Consider typography, iconography, and i18n</strong> — if the component
 contains text, icons, or will be used in multilingual contexts (assume
-it will), consult <a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/typography.md"><code>references/typography.md</code></a>,
-<a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/iconography.md"><code>references/iconography.md</code></a>, and
-<a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/i18n.md"><code>references/i18n.md</code></a>.</li>
+it will), consult <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/typography.md"><code>references/typography.md</code></a>,
+<a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/iconography.md"><code>references/iconography.md</code></a>, and
+<a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/i18n.md"><code>references/i18n.md</code></a>.</li>
 <li><strong>Write example code</strong> — provide both a vanilla HTML/CSS/JS
 implementation and a Web Component implementation showing the API in
 action. Code should be production-quality, not pseudocode.</li>
@@ -907,7 +907,7 @@ author internalize the principles and apply them to future components.</p>
 or design-systems engineer responsible for defining and maintaining tokens
 (not just consuming them), ask whether they’d like guidance on token
 naming, tier structure, theming, governance, and lifecycle. If yes, read
-<a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/design-tokens.md"><code>references/design-tokens.md</code></a>. That
+<a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/design-tokens.md"><code>references/design-tokens.md</code></a>. That
 reference covers the full scope of managing tokens at organizational scale
 — a different audience and decision set than component API design.</p>
 <h3>2. Review an existing component or library</h3>
@@ -987,11 +987,11 @@ across a long session.</p>
 <tbody>
 <tr>
 <td>Decision-making (any task)</td>
-<td><a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/guiding-principles.md"><code>references/guiding-principles.md</code></a></td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/guiding-principles.md"><code>references/guiding-principles.md</code></a></td>
 </tr>
 <tr>
 <td>Identifying what kind of component it is</td>
-<td><a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/component-taxonomy.md"><code>references/component-taxonomy.md</code></a> (index), then the relevant section under <code>references/taxonomy/</code></td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/component-taxonomy.md"><code>references/component-taxonomy.md</code></a> (index), then the relevant section under <code>references/taxonomy/</code></td>
 </tr>
 <tr>
 <td>Looking up common mistakes for a component</td>
@@ -999,31 +999,31 @@ across a long session.</p>
 </tr>
 <tr>
 <td>Naming a component</td>
-<td><a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/naming-conventions.md"><code>references/naming-conventions.md</code></a></td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/naming-conventions.md"><code>references/naming-conventions.md</code></a></td>
 </tr>
 <tr>
 <td>Designing props, slots, events, tokens</td>
-<td><a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/api-design.md"><code>references/api-design.md</code></a></td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/api-design.md"><code>references/api-design.md</code></a></td>
 </tr>
 <tr>
 <td>Specifying ARIA, keyboard, screen reader</td>
-<td><a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/accessibility-patterns.md"><code>references/accessibility-patterns.md</code></a></td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/accessibility-patterns.md"><code>references/accessibility-patterns.md</code></a></td>
 </tr>
 <tr>
 <td>Typography, font stacks, type scale</td>
-<td><a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/typography.md"><code>references/typography.md</code></a></td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/typography.md"><code>references/typography.md</code></a></td>
 </tr>
 <tr>
 <td>Icons: format, sizing, color, a11y</td>
-<td><a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/iconography.md"><code>references/iconography.md</code></a></td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/iconography.md"><code>references/iconography.md</code></a></td>
 </tr>
 <tr>
 <td>RTL, logical properties, text expansion</td>
-<td><a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/i18n.md"><code>references/i18n.md</code></a></td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/i18n.md"><code>references/i18n.md</code></a></td>
 </tr>
 <tr>
 <td>Token architecture, naming, governance</td>
-<td><a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/skills/design-system/references/design-tokens.md"><code>references/design-tokens.md</code></a></td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/design-tokens.md"><code>references/design-tokens.md</code></a></td>
 </tr>
 <tr>
 <td>Reviewing an existing component</td>
@@ -1101,7 +1101,7 @@ and catches gaps that prose misses.</p>
 					<a href="https://www.npmjs.com/package/@allons-y/agent-skills"><img alt="" src="https://img.shields.io/npm/v/@allons-y/agent-skills?logo=npm&labelColor=black&color=%23d22d6f"></a>
 					<a href="https://www.npmjs.com/package/@allons-y/agent-skills"><img alt="" src="https://img.shields.io/npm/dw/@allons-y/agent-skills?logo=npm&labelColor=black&color=%23d22d6f"></a>
 				</p>
-				<p class="meta"><a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/LICENSE">Licensed under MPL-2.0</a></p>
+				<p class="meta"><a href="https://github.com/allonsy-studio/agent-skills/blob/main/LICENSE">Licensed under MPL-2.0</a></p>
 			</div>
 			
 			<div>

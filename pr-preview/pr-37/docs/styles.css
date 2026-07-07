@@ -163,13 +163,12 @@ body > header {
 	}
 }
 
-.provenance {
-	inline-size: 100%;
-	text-align: center;
-}
-
-:is(section, footer) {
+/* Top-level content sections only. Scoped to `main > section` so the divider
+   border and block padding never leak onto nested <footer> elements inside
+   cards (e.g. the install-card command blocks). */
+main > section {
 	border-top: 1px solid var(--theme--ui--color--subtle);
+	padding-block: 3rem;
 
 	> header:has(+ .content),
 	> .content {

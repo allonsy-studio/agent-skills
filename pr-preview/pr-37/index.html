@@ -494,7 +494,7 @@ li {
 	/* The floating "Featured"/"Recommended" badge only applies to a chip placed
 	   as a direct child of a card header — not to chips nested in `.chips`. */
 	.card header > & {
-		margin-block-start: -3.4rem;
+		margin-block-start: -2.6rem;
 		display: block;
 		inline-size: max-content;
 	}
@@ -832,13 +832,12 @@ body > footer {
 	}
 }
 
-.provenance {
-	inline-size: 100%;
-	text-align: center;
-}
-
-:is(section, footer) {
+/* Top-level content sections only. Scoped to `main > section` so the divider
+   border and block padding never leak onto nested <footer> elements inside
+   cards (e.g. the install-card command blocks). */
+main > section {
 	border-top: 1px solid var(--theme--ui--color--subtle);
+	padding-block: 3rem;
 
 	> header:has(+ .content),
 	> .content {
@@ -869,12 +868,12 @@ h1,
 
 
 <header class="container hero">
-	<p class="eyebrow chip">Agent skills for AI coding agents</p>
+	<p class="eyebrow chip">Skills for AI agents</p>
 	<h1>@allons-y/agent-skills</h1>
 	<p class="lede">Specialized agent skills that streamline common developer workflows and reduce token usage.</p>
 	<p class="btn-group">
 		<a class="btn primary" href="#install">Get started</a>
-		<a class="btn" href="https://github.com/allonsy-studio/agent-skills.git"><span class="fa-brands fa-github" aria-hidden="true"></span> View on GitHub</a>
+		<a class="btn" href="https://github.com/allonsy-studio/agent-skills"><span class="fa-brands fa-github" aria-hidden="true"></span> View on GitHub</a>
 	</p>
 	
 <div class="trust-strip">
@@ -885,10 +884,10 @@ h1,
 		<li><span class="fa-brands fa-node-js" aria-hidden="true"></span> Node&nbsp;&ge;&nbsp;24</li>
 	</ul>
 	<p class="badges">
-		<a href="https://github.com/allonsy-studio/agent-skills.git/actions/workflows/test.yml"><img alt="CI build status" src="https://github.com/allonsy-studio/agent-skills.git/actions/workflows/test.yml/badge.svg?branch=main" loading="lazy" height="20"></a>
+		<a href="https://github.com/allonsy-studio/agent-skills/actions/workflows/test.yml"><img alt="CI build status" src="https://github.com/allonsy-studio/agent-skills/actions/workflows/test.yml/badge.svg?branch=main" loading="lazy" height="20"></a>
 		<a href="https://www.npmjs.com/package/@allons-y/agent-skills"><img alt="Latest npm version" src="https://img.shields.io/npm/v/@allons-y/agent-skills?logo=npm" loading="lazy" height="20"></a>
 		<a href="https://www.npmjs.com/package/@allons-y/agent-skills"><img alt="Weekly npm downloads" src="https://img.shields.io/npm/dw/@allons-y/agent-skills?logo=npm" loading="lazy" height="20"></a>
-		<a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/.c8rc.json"><img alt="Test coverage threshold" src="https://img.shields.io/nycrc/allonsy-studio/agent-skills.git?config=.c8rc.json" loading="lazy" height="20"></a>
+		<a href="https://github.com/allonsy-studio/agent-skills/blob/main/.c8rc.json"><img alt="Test coverage threshold" src="https://img.shields.io/nycrc/allonsy-studio/agent-skills?config=.c8rc.json" loading="lazy" height="20"></a>
 		<a href="https://nodejs.org"><img alt="Requires Node.js 24 or newer" src="https://img.shields.io/badge/node-%3E%3D24-brightgreen?logo=node.js" loading="lazy" height="20"></a>
 		<a href="https://conventionalcommits.org/"><img alt="Conventional Commits" src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" loading="lazy" height="20"></a>
 		</p>
@@ -896,7 +895,7 @@ h1,
 
 	<div class="hero-terminal">
 		<span class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i></span>
-		<pre class="language-shell"><code class="language-shell"><span class="highlight-line">/plugin marketplace <span class="token function">add</span> allonsy-studio/agent-skills.git</span>
+		<pre class="language-shell"><code class="language-shell"><span class="highlight-line">/plugin marketplace <span class="token function">add</span> allonsy-studio/agent-skills</span>
 <span class="highlight-line">/plugin <span class="token function">install</span> design-system@agent-skills</span></code></pre>
 	</div>
 </header>
@@ -980,11 +979,6 @@ h1,
 				<p>Plain <code>SKILL.md</code> directories — install natively in Claude Code or vendor into any harness.</p>
 			</article>
 		</div>
-		<p class="provenance note">
-			Built and maintained by
-			<a href="https://allons-y.studio">Allons-y Studio</a>
-			· Cassondra Roberts.
-		</p>
 	</section>
 
 	<section id="skills" aria-labelledby="skills-heading" class="layout stacked">
@@ -1075,7 +1069,7 @@ h1,
 					<p>Register this repo as a Claude Code marketplace, then install skills via the <code>/plugin</code> UI.</p>
 				</div>
 				<footer>
-					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">/plugin marketplace <span class="token function">add</span> allonsy-studio/agent-skills.git</span>
+					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">/plugin marketplace <span class="token function">add</span> allonsy-studio/agent-skills</span>
 <span class="highlight-line">/plugin <span class="token function">install</span> design-system@agent-skills</span></code></pre>
 				</footer>
 			</article><article class="card" id="install-claude-agent-sdk">
@@ -1162,7 +1156,7 @@ h1,
 		<div class="content">
 			<p>
 				New skills, improvements, bug fixes, and documentation are all welcome.
-				See <a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/.github/CONTRIBUTING.md">CONTRIBUTING.md</a>
+				See <a href="https://github.com/allonsy-studio/agent-skills/blob/main/.github/CONTRIBUTING.md">CONTRIBUTING.md</a>
 				for environment setup, the test/lint/eval workflow, and the PR
 				checklist.
 			</p>
@@ -1188,20 +1182,20 @@ h1,
 					<a href="https://www.npmjs.com/package/@allons-y/agent-skills"><img alt="" src="https://img.shields.io/npm/v/@allons-y/agent-skills?logo=npm&labelColor=black&color=%23d22d6f"></a>
 					<a href="https://www.npmjs.com/package/@allons-y/agent-skills"><img alt="" src="https://img.shields.io/npm/dw/@allons-y/agent-skills?logo=npm&labelColor=black&color=%23d22d6f"></a>
 				</p>
-				<p class="meta"><a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/LICENSE">Licensed under MPL-2.0</a></p>
+				<p class="meta"><a href="https://github.com/allonsy-studio/agent-skills/blob/main/LICENSE">Licensed under MPL-2.0</a></p>
 			</div>
 			<div>
 	<p class="title">Resources</p>
 	<ul>
-		<li><a href="https://github.com/allonsy-studio/agent-skills.git"><span class="fa-brands fa-github" aria-hidden="true"></span> GitHub</a></li>
+		<li><a href="https://github.com/allonsy-studio/agent-skills"><span class="fa-brands fa-github" aria-hidden="true"></span> GitHub</a></li>
 		<li><a href="https://www.npmjs.com/package/@allons-y/agent-skills"><span class="fa-brands fa-npm" aria-hidden="true"></span> npm</a></li>
 	</ul>
 </div>
 <div>
 	<p class="title">Resources</p>
 	<ul>
-		<li><a href="https://github.com/allonsy-studio/agent-skills.git/issues">Report an issue</a></li>
-		<li><a href="https://github.com/allonsy-studio/agent-skills.git/blob/main/.github/CONTRIBUTING.md">Contributing guide</a></li>
+		<li><a href="https://github.com/allonsy-studio/agent-skills/issues">Report an issue</a></li>
+		<li><a href="https://github.com/allonsy-studio/agent-skills/blob/main/.github/CONTRIBUTING.md">Contributing guide</a></li>
 	</ul>
 </div>
 			<div>
