@@ -18,13 +18,13 @@ permissions:
   contents: write # push to the gh-pages branch
   pull-requests: write # pr-preview-action comments the preview URL
 
-# Base path the site is served from.
-#   - Custom domain at root:            "/"              (default)
-#   - Default GitHub Pages project URL: "/agent-skills/"
+# Base path the site is served from — the GitHub Pages project path.
+#   https://allonsy-studio.github.io/agent-skills/  ->  "/agent-skills/"
+# (Use "/" instead if the site ever moves to a custom domain root.)
 # Production builds with this prefix and previews nest under it, so changing
 # this one value keeps every internal link correct in both places.
 env:
-  SITE_BASE: "/"
+  SITE_BASE: "/agent-skills/"
 
 jobs:
   # ---- Production: publish main to the gh-pages root ----
