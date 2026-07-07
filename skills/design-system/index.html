@@ -10,8 +10,8 @@
 		<meta name="color-scheme" content="light dark">
 
         
-		<title>@allons-y/agent-skills | specialized skills for AI coding agents</title>
-		<meta name="description" content="">
+		<title>design-system | Build, name, document, and audit UI components with expert A...</title>
+		<meta name="description" content="Build, name, document, and audit UI components with expert ARIA, accessibility, design token, typography, and i18n guidance written by a Staff engineer with experience building design systems at scale.">
 		<meta name="keywords" content="">
 		<meta name="author" content="">
 
@@ -21,10 +21,10 @@
 		<meta name="yandexbot" content="index, follow">
 
 		<meta property="og:locale" content="en-US">
-		<meta property="og:title" content="@allons-y/agent-skills">
+		<meta property="og:title" content="design-system">
 		<meta property="og:url" content="https://github.com/allonsy-studio/agent-skills#readme">
-		<meta property="og:description" content="A collection of self-contained agent skills that streamline common developer workflows and reduce token usage. Install in Claude Code via the plugin marketplace, or vendor into any agent harness with npx.">
-		<meta property="og:site_name" content="@allons-y/agent-skills">
+		<meta property="og:description" content="Build, name, document, and audit UI components with expert ARIA, accessibility, design token, typography, and i18n guidance written by a Staff engineer with experience building design systems at scale.">
+		<meta property="og:site_name" content="design-system">
 		<meta name="fediverse:creator" content="@castastrophe@front-end.social">
 
 		<link rel="icon" href="/agent-skills/favicon.ico" sizes="32×32">
@@ -684,195 +684,107 @@ body > footer {
 	}
 }
 
-		body > header {
-	--justify-content: center;
-
-	text-align: center;
-	padding-block: 3.5rem 3rem;
-
-	/* Bold gradient backdrop derived from the theme color. */
-	background-image: radial-gradient(
-		70% 80% at 50% 0%,
-		var(--theme--surface--color--accent),
-		transparent 70%
-	);
+		.skill-hero {
+	padding-block: 2.5rem 2.25rem;
 	border-block-end: 1px solid var(--theme--ui--color--subtle);
+	background-image: linear-gradient(180deg, var(--theme--surface--color--accent), transparent);
 
-	> * {
-		margin-inline: auto;
-
-		&:not(:last-child) {
-			margin-block-end: 1.5rem;
-		}
+	> * + * {
+		margin-block-start: 1.25rem;
 	}
 
-	h1 {
-		max-width: 18ch;
-		background: linear-gradient(
-			120deg,
-			var(--theme--text--Color--accent),
-			color-mix(in oklch, var(--base) 65%, var(--theme--text--Color))
-		);
-		/* eslint-disable-next-line css/use-baseline */
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-	}
-
-	:is(.lede) {
-		max-width: 55ch;
+	.lede {
+		max-width: 70ch;
 	}
 }
 
-.eyebrow {
-	color: var(--theme--text--Color--accent);
-}
-
-.trust-strip {
-	display: flex;
-	flex-direction: column;
-	gap: 1.25rem;
-	align-items: center;
-}
-
-.trust-stats {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.6rem 1.5rem;
-	justify-content: center;
-	align-items: center;
-
-	font-size: 0.95rem;
+.breadcrumb {
+	font-family: var(--theme--code--FontFamily);
+	font-size: 0.85rem;
 	color: var(--theme--text--Color--subtle);
 
-	li {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.45em;
-		margin: 0;
+	a {
+		color: inherit;
 	}
 
-	strong {
-		color: var(--theme--text--Color--accent);
-		font-size: 1.1em;
-	}
-
-	li + li {
-		border-inline-start: 1px solid var(--theme--ui--color--subtle);
-		padding-inline-start: 1.5rem;
+	span {
+		margin-inline: 0.4em;
+		opacity: 0.6;
 	}
 }
 
-.trust-strip .badges {
+.skill-detail {
 	display: flex;
-	flex-wrap: wrap;
-	gap: 0.5rem;
-	justify-content: center;
+	flex-direction: column;
+	gap: 3rem;
+	padding-block: 2.5rem 4rem;
+}
+
+.snippet-list {
+	list-style: none;
+	padding: 0;
 	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	gap: 0.5rem;
 
-	img {
-		display: block;
-	}
-
-	a:is(:hover, :focus-visible) {
-		opacity: 0.85;
+	code {
+		background: var(--theme--surface--color--sunken);
 	}
 }
 
-.hero-terminal {
-	inline-size: min(560px, 100%);
-	text-align: start;
+.prose {
+	inline-size: min(80ch, 100%);
 
-	border: 1px solid var(--theme--ui--color--subtle);
-	border-radius: 0.6em;
-	overflow: hidden;
-	box-shadow: var(--theme--ui--shadow);
+	:is(h1, h2) {
+		font-size: clamp(1.5rem, 3vw, 2rem);
+	}
 
-	.terminal-bar {
-		display: flex;
-		gap: 0.4rem;
-		padding: 0.65rem 0.8rem;
-		background: var(--theme--surface--color);
-		border-block-end: 1px solid var(--theme--ui--color--subtle);
+	:is(h3, h4, h5, h6) {
+		font-size: clamp(1.1rem, 2vw, 1.35rem);
+	}
 
-		i {
-			inline-size: 0.7rem;
-			block-size: 0.7rem;
-			border-radius: 50%;
-			background: var(--theme--ui--color--subtle);
-		}
+	> :is(h2, h3, h4, h5, h6) {
+		margin-block-start: 1.75rem;
 	}
 
 	pre {
-		margin: 0;
-		border-inline-start: none;
-		box-shadow: none;
-	}
-}
-
-.quality-grid {
-	--item-size: 280px;
-}
-
-.quality {
-	display: flex;
-	flex-direction: column;
-	gap: 0.6rem;
-
-	padding: 1.5rem;
-	border-radius: 0.8em;
-	background: var(--theme--surface--color--sunken);
-	border: 1px solid var(--theme--ui--color--subtle);
-
-	.icon {
-		color: var(--theme--text--Color--accent);
-		inline-size: 2.6rem;
-		block-size: 2.6rem;
-		font-size: 1rem;
-		border-radius: 0.6em;
-		background: var(--theme--surface--color--accent);
+		margin-block: 1rem;
 	}
 
-	h3 {
-		font-size: 1.15rem;
-		color: var(--theme--text--Color);
+	/* Common markdown carried over from the rendered SKILL.md. */
+	.table-scroll {
+		max-inline-size: 100%;
+		overflow-x: auto;
 	}
 
-	p {
+	table {
+		inline-size: 100%;
+		border-collapse: collapse;
+		margin-block: 1.25rem;
 		font-size: 0.95rem;
-		line-height: 1.6;
-		margin: 0;
+
+		/* Framing rules top and bottom, with a subtle divider under the header. */
+		border-block: 1px solid var(--theme--ui--color--subtle);
+
+		:is(th, td) {
+			padding: 0.5rem 0.75rem;
+			text-align: start;
+			vertical-align: top;
+		}
+
+		thead th {
+			border-block-end: 1px solid var(--theme--ui--color--subtle);
+		}
 	}
-}
 
-/* Top-level content sections only. Scoped to `main > section` so the divider
-   border and block padding never leak onto nested <footer> elements inside
-   cards (e.g. the install-card command blocks). */
-main > section {
-	border-top: 1px solid var(--theme--ui--color--subtle);
-	padding-block: 3rem;
-
-	> header:has(+ .content),
-	> .content {
-		inline-size: min(clamp(400px, 80ch, 80vw), 100%);
-	}
-}
-
-h1,
-.card :is(h2, h3, h4, h5, h6):not([class]) {
-	font-family: var(--theme--code--FontFamily);
-}
-
-/* When the trust stats wrap onto their own lines, the inline dividers read as
-   stray ticks — drop them on narrow viewports. */
-@media (width <= 640px) {
-	.trust-stats li + li {
-		border-inline-start: none;
-		padding-inline-start: 0;
+	blockquote {
+		margin-block: 1.25rem;
+		margin-inline: 0;
+		padding-inline-start: 1rem;
+		border-inline-start: 3px solid var(--theme--ui--color--subtle);
+		color: var(--theme--text--Color--subtle);
 	}
 }
 		</style>
@@ -884,186 +796,36 @@ h1,
 
 
 
-<header class="container hero">
-	<p class="eyebrow chip">Skills for AI agents</p>
-	<h1>@allons-y/agent-skills</h1>
-	<p class="lede">Specialized agent skills that streamline common developer workflows and reduce token usage.</p>
-	<p class="btn-group">
-		<a class="btn primary" href="#install">Get started</a>
-		<a class="btn" href="https://github.com/allonsy-studio/agent-skills"><span class="fa-brands fa-github" aria-hidden="true"></span> View on GitHub</a>
-	</p>
+<header class="container skill-hero">
+	<p class="breadcrumb"><a href="/agent-skills/">@allons-y/agent-skills</a> <span aria-hidden="true">/</span> <a href="/agent-skills/#skills">skills</a></p>
+	<h1>design-system</h1>
+	<p class="lede">Build, name, document, and audit UI components with expert ARIA, accessibility, design token, typography, and i18n guidance written by a Staff engineer with experience building design systems at scale.</p>
 	
-<div class="trust-strip">
-	<ul class="trust-stats">
-		<li><strong>3</strong> expert-written skills</li>
-		<li><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Every skill tested</li>
-		<li><span class="fa-brands fa-osi" aria-hidden="true"></span> Open source · MPL-2.0</li>
-		<li><span class="fa-brands fa-node-js" aria-hidden="true"></span> Node&nbsp;&ge;&nbsp;24</li>
-	</ul>
-	<p class="badges">
-		<a href="https://github.com/allonsy-studio/agent-skills/actions/workflows/test.yml"><img alt="CI build status" src="https://github.com/allonsy-studio/agent-skills/actions/workflows/test.yml/badge.svg?branch=main" loading="lazy" height="20"></a>
-		<a href="https://www.npmjs.com/package/@allons-y/agent-skills"><img alt="Latest npm version" src="https://img.shields.io/npm/v/@allons-y/agent-skills?logo=npm" loading="lazy" height="20"></a>
-		<a href="https://www.npmjs.com/package/@allons-y/agent-skills"><img alt="Weekly npm downloads" src="https://img.shields.io/npm/dw/@allons-y/agent-skills?logo=npm" loading="lazy" height="20"></a>
-		<a href="https://github.com/allonsy-studio/agent-skills/blob/main/.c8rc.json"><img alt="Test coverage threshold" src="https://img.shields.io/nycrc/allonsy-studio/agent-skills?config=.c8rc.json" loading="lazy" height="20"></a>
-		<a href="https://nodejs.org"><img alt="Requires Node.js 24 or newer" src="https://img.shields.io/badge/node-%3E%3D24-brightgreen?logo=node.js" loading="lazy" height="20"></a>
-		<a href="https://conventionalcommits.org/"><img alt="Conventional Commits" src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" loading="lazy" height="20"></a>
-		</p>
-</div>
+<p class="chips"><span class="chip">Design</span><span class="chip"><span class="fa-solid fa-book-open" aria-hidden="true"></span> Reference</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span></p>
 
-	<div class="hero-terminal">
-		<span class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i></span>
-		<pre class="language-shell"><code class="language-shell"><span class="highlight-line">/plugin marketplace <span class="token function">add</span> allonsy-studio/agent-skills</span>
-<span class="highlight-line">/plugin <span class="token function">install</span> design-system@agent-skills</span></code></pre>
-	</div>
+	<p class="btn-group">
+		<a class="btn primary" href="#install">Install this skill</a>
+		<a class="btn" href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/SKILL.md"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
+		
+	</p>
 </header>
 
-<main id="main" class="container">
-	<section id="what" aria-labelledby="what-heading" class="layout grid">
+<main id="main" class="container skill-detail">
+	<section id="use" aria-labelledby="use-heading" class="layout stacked">
+		<header>
+			<h2 id="use-heading">
+				How to use it
+				<a class="anchor" href="#use" aria-label="Permalink to How to use it">#</a>
+			</h2>
+			<p>Once installed, this skill activates automatically when your prompt matches one of its triggers.</p>
+		</header>
+		
 		<div class="content">
-			<h2 id="what-heading">
-				What is an agent skill?
-				<a class="anchor" href="#what" aria-label="Permalink to What is this?">#</a>
-			</h2>
-			<p>
-				<strong>Agent skills</strong> are focused, self-contained capability
-				packs you can drop into an AI coding agent. Each skill bundles a
-				<code>SKILL.md</code> (the prompt and trigger description), a
-				Node.js implementation (where applicable), and a robust test suite — all under one directory.
-			</p>
-			<p>
-				Claude Code installs them natively via the plugin marketplace. Other
-				agent harnesses — Cursor, OpenCode, Aider, or anything built on the
-				Claude Agent SDK — can vendor any skill directory with one
-				<code>npx</code> command. No vendor lock-in.
-			</p>
+			<h3>Try saying</h3>
+			<ul class="snippet-list">
+				<li><code>design system</code></li><li><code>component library</code></li><li><code>ARIA pattern</code></li><li><code>what should I call this component</code></li><li><code>review my component library</code></li>
+			</ul>
 		</div>
-
-		<aside class="card featured">
-			<header>
-				<h2 class="chip">Featured skill</h2>
-				<h3 id="featured-skill">
-					design-system
-					<a class="anchor" href="#featured" aria-label="Permalink to featured skill">#</a>
-				</h3>
-				
-<p class="chips"><span class="chip">Design</span><span class="chip"><span class="fa-solid fa-book-open" aria-hidden="true"></span> Reference</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span></p>
-
-			</header>
-			<div class="body">
-				<p>Build, name, document, and audit UI components with expert ARIA, accessibility, design token, typography, and i18n guidance written by a Staff engineer with experience building design systems at scale.</p>
-			</div>
-			<div class="footer">
-				<p class="btn-group">
-					<a class="btn primary" href="/agent-skills/skills/design-system/">Read the docs</a>
-					<a class="btn" href="#install">Install it</a>
-					
-				</p>
-			</div>
-		</aside>
-	</section>
-
-	<section id="trust" aria-labelledby="trust-heading" class="layout stacked">
-		<header>
-			<h2 id="trust-heading">
-				Built to be trusted
-				<a class="anchor" href="#trust" aria-label="Permalink to Built to be trusted">#</a>
-			</h2>
-			<p>These aren't prompt snippets pasted from a gist. Every skill is engineered, tested, and maintained like production software.</p>
-		</header>
-		<div class="layout grid quality-grid">
-			<article class="quality">
-				<span class="icon" aria-hidden="true"><span class="fa-solid fa-feather-pointed fa-xl"></span></span>
-				<h3>Expert-written</h3>
-				<p>Every <code>SKILL.md</code> prompt is hand-authored by domain experts — not auto-generated boilerplate.</p>
-			</article><article class="quality">
-				<span class="icon" aria-hidden="true"><span class="fa-solid fa-vial-circle-check fa-xl"></span></span>
-				<h3>Fully tested</h3>
-				<p>Each skill ships a <code>node --test</code> suite with c8 coverage, so behavior is verified, not assumed.</p>
-			</article><article class="quality">
-				<span class="icon" aria-hidden="true"><span class="fa-solid fa-wand-magic-sparkles fa-xl"></span></span>
-				<h3>Linted &amp; formatted</h3>
-				<p>ESLint and Prettier run on every commit for consistent, reviewable code.</p>
-			</article><article class="quality">
-				<span class="icon" aria-hidden="true"><span class="fa-solid fa-robot fa-xl"></span></span>
-				<h3>Eval-backed</h3>
-				<p>LLM eval suites check that each skill triggers and behaves correctly on real prompts.</p>
-			</article><article class="quality">
-				<span class="icon" aria-hidden="true"><span class="fa-solid fa-circle-check fa-xl"></span></span>
-				<h3>CI on every change</h3>
-				<p>Tests, linting, and evals run in GitHub Actions before anything merges to <code>main</code>.</p>
-			</article><article class="quality">
-				<span class="icon" aria-hidden="true"><span class="fa-solid fa-puzzle-piece fa-xl"></span></span>
-				<h3>No vendor lock-in</h3>
-				<p>Plain <code>SKILL.md</code> directories — install natively in Claude Code or vendor into any harness.</p>
-			</article>
-		</div>
-	</section>
-
-	<section id="skills" aria-labelledby="skills-heading" class="layout stacked">
-		<header>
-			<h2 id="skills-heading">
-				Available skills
-				<a class="anchor" href="#skills" aria-label="Permalink to Available skills">#</a>
-			</h2>
-			<p>All skills currently published in this marketplace.</p>
-		</header>
-		<article class="layout grid">
-			<a class="card" href="/agent-skills/skills/design-system/">
-				<div class="header">
-					<h3>design-system</h3>
-					
-<p class="chips"><span class="chip">Design</span><span class="chip"><span class="fa-solid fa-book-open" aria-hidden="true"></span> Reference</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span></p>
-
-				</div>
-				<div class="body">
-					<p>Build, name, document, and audit UI components with expert ARIA, accessibility, design token, typography, and i18n guidance written by a Staff engineer with experience building design systems at scale.</p>
-				</div>
-				<div class="footer layout stacked">
-					
-					<p class="meta">
-						<span class="label">Triggers: </span>
-						<code>"design system"</code> <code>"component library"</code> <code>"ARIA pattern"</code> <code>"what should I call this component"</code> <code>"review my component library"</code>
-					</p>
-					<p class="cta">Learn more</p>
-				</div>
-			</a><a class="card" href="/agent-skills/skills/dreamlight-valley/">
-				<div class="header">
-					<h3>dreamlight-valley</h3>
-					
-<p class="chips"><span class="chip">Games</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span><span class="chip"><span class="fa-solid fa-window-maximize" aria-hidden="true"></span> Live preview</span></p>
-
-				</div>
-				<div class="body">
-					<p>Cooking, gathering, and inventory management for Dreamlight Valley.</p>
-				</div>
-				<div class="footer layout stacked">
-					
-					<p class="meta">
-						<span class="label">Triggers: </span>
-						<code>"/cook &lt;flags&gt; &lt;ingredients&gt;"</code> <code>"/restock &lt;flags&gt;"</code> <code>"/recipe &lt;dish name&gt;"</code> <code>"any request related to the video game Dreamlight Valley"</code>
-					</p>
-					<p class="cta">Learn more</p>
-				</div>
-			</a><a class="card" href="/agent-skills/skills/gh-notification-summary/">
-				<div class="header">
-					<h3>gh-notification-summary</h3>
-					
-<p class="chips"><span class="chip">GitHub</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span></p>
-
-				</div>
-				<div class="body">
-					<p>Review, summarize, and manage GitHub notifications via an interactive local dashboard. Unsubscribe from noisy threads, mark individual notifications or your whole inbox as done, all from a single prompt.</p>
-				</div>
-				<div class="footer layout stacked">
-					
-					<p class="meta">
-						<span class="label">Triggers: </span>
-						<code>"check my GitHub notifications"</code> <code>"/unsub &lt;number&gt;"</code> <code>"mark all done"</code> <code>"clear my GitHub inbox"</code> <code>"any request to triage, dismiss, or act on GitHub notifications"</code>
-					</p>
-					<p class="cta">Learn more</p>
-				</div>
-			</a>
-		</article>
 	</section>
 
 	<section id="install" aria-labelledby="install-heading" class="layout stacked">
@@ -1072,7 +834,7 @@ h1,
 				Install
 				<a class="anchor" href="#install" aria-label="Permalink to Install">#</a>
 			</h2>
-			<p>Pick the card for your agent harness. Every install uses the same skill payload — there's no Claude-specific wiring inside <code>SKILL.md</code>.</p>
+			<p>Pick the card for your agent harness. The skill payload is identical everywhere — no Claude-specific wiring.</p>
 		</header>
 		<div class="layout grid">
 			<article class="card featured" id="install-claude-code">
@@ -1087,6 +849,7 @@ h1,
 					<p>Register this repo as a Claude Code marketplace, then install skills via the <code>/plugin</code> UI.</p>
 				</div>
 				<footer>
+					
 					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">/plugin marketplace <span class="token function">add</span> allonsy-studio/agent-skills</span>
 <span class="highlight-line">/plugin <span class="token function">install</span> design-system@agent-skills</span></code></pre>
 				</footer>
@@ -1102,6 +865,7 @@ h1,
 					<p>Drop any skill into your agent's <code>SKILL.md</code> directory. No Claude-specific wiring.</p>
 				</div>
 				<footer>
+					
 					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">npx @allons-y/agent-skills design-system <span class="token parameter variable">--dir</span> ~/.claude/skills</span></code></pre>
 				</footer>
 			</article><article class="card" id="install-cursor">
@@ -1116,6 +880,7 @@ h1,
 					<p>Cursor reads skill folders from your project. Vendor the skill, then point Cursor at it.</p>
 				</div>
 				<footer>
+					
 					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">npx @allons-y/agent-skills design-system <span class="token parameter variable">--dir</span> .cursor/skills</span></code></pre>
 				</footer>
 			</article><article class="card" id="install-any">
@@ -1130,67 +895,256 @@ h1,
 					<p>Aider, OpenCode, or anything that reads <code>SKILL.md</code> directories. Choose your target folder.</p>
 				</div>
 				<footer>
+					
 					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">npx @allons-y/agent-skills <span class="token parameter variable">--list</span></span>
 <span class="highlight-line">npx @allons-y/agent-skills design-system <span class="token parameter variable">--dir</span> <span class="token operator">&lt;</span>your-skills-dir<span class="token operator">></span></span></code></pre>
 				</footer>
 			</article>
 		</div>
-		<p class="note">
-			For Node-runtime skills with dependencies, run
-			<code>npm install</code> in the vendored directory once.
-		</p>
+		
 	</section>
 
-	<section id="programmatic" aria-labelledby="programmatic-heading" class="layout stacked">
+	<section id="docs" aria-labelledby="docs-heading" class="layout stacked">
 		<header>
-			<h2 id="programmatic-heading">
-				Programmatic usage
-				<a class="anchor" href="#programmatic" aria-label="Permalink to Programmatic usage">#</a>
+			<h2 id="docs-heading">
+				Full skill instructions
+				<a class="anchor" href="#docs" aria-label="Permalink to Full skill instructions">#</a>
 			</h2>
-			<p>Tool builders can enumerate skills dynamically via the exported <code>getSkills()</code> helper.</p>
+			<p>This is the <code>SKILL.md</code> the agent reads when the skill activates. <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/SKILL.md">View the source on GitHub</a>.</p>
 		</header>
-<pre class="language-js"><code class="language-js"><span class="highlight-line"><span class="token keyword">import</span> <span class="token punctuation">{</span> getSkills <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@allons-y/agent-skills"</span><span class="token punctuation">;</span></span>
-<span class="highlight-line"></span>
-<span class="highlight-line"><span class="token keyword">const</span> skills <span class="token operator">=</span> <span class="token function">getSkills</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
-<span class="highlight-line"><span class="token comment">// returns =></span></span>
-<span class="highlight-line"><span class="token comment">// [</span></span>
-<span class="highlight-line"><span class="token comment">//   {</span></span>
-<span class="highlight-line"><span class="token comment">//     name: "design-system",</span></span>
-<span class="highlight-line"><span class="token comment">//     path: "/path/to/skills/design-system",</span></span>
-<span class="highlight-line"><span class="token comment">//     description: "Build, name, document, and audit UI components...",</span></span>
-<span class="highlight-line"><span class="token comment">//     mdPath: "/path/to/skills/design-system/SKILL.md",</span></span>
-<span class="highlight-line"><span class="token comment">//   },</span></span>
-<span class="highlight-line"><span class="token comment">//   ...</span></span>
-<span class="highlight-line"><span class="token comment">// ]</span></span></code></pre>
-	</section>
+		<div class="prose">
+			<h1>Design System Patterns</h1>
+<p>You are a design-system architect helping authors build, name, and evaluate
+UI components. Your guidance draws on established patterns across major
+design systems (Material, Spectrum, Carbon, Lightning, Atlassian, Primer,
+Polaris, <a href="http://GOV.UK">GOV.UK</a>, U.S. Web Design System) and is grounded in the W3C WAI
+ARIA Authoring Practices.</p>
+<p><strong>Before recommending anything, read
+<a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/guiding-principles.md"><code>references/guiding-principles.md</code></a>.</strong>
+Those eight principles inform every decision below.</p>
+<h2>Two workflows</h2>
+<p>Ask the user which applies if it’s not obvious from their message.</p>
+<h3>1. Build a new component from scratch</h3>
+<p>The user describes a component they want to create. Walk them through each
+layer in order:</p>
+<ol>
+<li><strong>Identify the pattern</strong> — match their description to a known component
+category (see <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/component-taxonomy.md"><code>references/component-taxonomy.md</code></a>).
+If it’s a composite or novel pattern, identify which primitives it combines.</li>
+<li><strong>Name it</strong> — propose a name following the conventions in
+<a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/naming-conventions.md"><code>references/naming-conventions.md</code></a>.
+Offer 2–3 candidates with trade-off notes.</li>
+<li><strong>Design the API</strong> — define the component’s public interface using the
+framework in <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/api-design.md"><code>references/api-design.md</code></a>.
+Cover attributes/props, slots or content areas, events, CSS custom
+properties for theming, and design tokens.</li>
+<li><strong>Specify accessibility</strong> — read
+<a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/accessibility-patterns.md"><code>references/accessibility-patterns.md</code></a>
+for the relevant ARIA pattern. Provide WCAG 2.2 AA requirements as
+baseline (“must”), AAA recommendations as stretch goals (“should
+consider”), and full keyboard interaction specs.</li>
+<li><strong>Consider typography, iconography, and i18n</strong> — if the component
+contains text, icons, or will be used in multilingual contexts (assume
+it will), consult <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/typography.md"><code>references/typography.md</code></a>,
+<a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/iconography.md"><code>references/iconography.md</code></a>, and
+<a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/i18n.md"><code>references/i18n.md</code></a>.</li>
+<li><strong>Write example code</strong> — provide both a vanilla HTML/CSS/JS
+implementation and a Web Component implementation showing the API in
+action. Code should be production-quality, not pseudocode.</li>
+</ol>
+<p>At each step, explain <em>why</em> the recommendation matters. This helps the
+author internalize the principles and apply them to future components.</p>
+<p><strong>Optional: deep-dive into token architecture.</strong> If the user is a designer
+or design-systems engineer responsible for defining and maintaining tokens
+(not just consuming them), ask whether they’d like guidance on token
+naming, tier structure, theming, governance, and lifecycle. If yes, read
+<a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/design-tokens.md"><code>references/design-tokens.md</code></a>. That
+reference covers the full scope of managing tokens at organizational scale
+— a different audience and decision set than component API design.</p>
+<h3>2. Review an existing component or library</h3>
+<p>The user points you at existing code (pasted markup, a URL, a file, or a
+description of their library). Before diving in, ask:</p>
+<blockquote>
+<p>What level of review would you like?</p>
+<ul>
+<li><strong>Full audit</strong> — naming, API surface, accessibility, keyboard
+interaction, screen reader behavior, design tokens, and suggested
+refactors with code. I’ll create a memory document to track the
+library’s patterns and update it as we work.</li>
+<li><strong>Naming + API + accessibility</strong> — the three core pillars, without
+full refactored code examples.</li>
+<li><strong>Quick checklist</strong> — pass/fail against best practices, easy to scan.</li>
+</ul>
+</blockquote>
+<p>For a <strong>full audit</strong>, create a memory document at
+<code>{workspace}/component-library-audit.md</code> tracking:</p>
+<ul>
+<li>Library name and version</li>
+<li>Components reviewed so far</li>
+<li>Key naming conventions observed (and whether they’re consistent)</li>
+<li>API patterns in use (and gaps)</li>
+<li>Accessibility issues found (severity: critical / major / minor)</li>
+<li>Design token usage patterns</li>
+<li>Decisions made during the review</li>
+</ul>
+<p>Update this document as you review each component so you maintain context
+across a long session.</p>
+<p>For any review depth, structure feedback per component as:</p>
+<pre><code class="language-markdown">## [Component Name]
 
-	<section id="contributing" aria-labelledby="contributing-heading" class="layout stacked">
-		<header>
-			<h2 id="contributing-heading">
-				Contributing
-				<a class="anchor" href="#contributing" aria-label="Permalink to Contributing">#</a>
-			</h2>
-		</header>
-		<div class="content">
-			<p>
-				New skills, improvements, bug fixes, and documentation are all welcome.
-				See <a href="https://github.com/allonsy-studio/agent-skills/blob/main/.github/CONTRIBUTING.md">CONTRIBUTING.md</a>
-				for environment setup, the test/lint/eval workflow, and the PR
-				checklist.
-			</p>
-			<p>Some ideas if you're looking for a starting point:</p>
-			<ul>
-				<li>GitHub PR review summarizer</li>
-				<li>Linear / Jira issue triage</li>
-				<li>Slack digest summarizer</li>
-				<li>Daily standup generator from git log</li>
-				<li>Accessibility audit runner (pairs nicely with <code>design-system</code>)</li>
-			</ul>
+### Naming
+- Current name: `x-foo`
+- Assessment: [rationale]
+- Suggestion: [if applicable]
+
+### API surface
+- [Analysis of props/attrs, slots, events, CSS custom properties]
+- [Missing API surface that users would expect]
+- [Global attribute collisions: flag any custom attrs that shadow native HTML attrs]
+- [Native element usage: is the component built on semantic HTML or div soup?]
+
+### Accessibility
+- ARIA pattern: [which WAI-ARIA pattern applies]
+- [Specific findings, severity-labeled]
+- Keyboard interaction: [expected vs. actual]
+
+### Typography &amp; iconography
+- [Type styles: tokenized or hard-coded? Consistent scale?]
+- [Icon format: SVG? Icon font? Accessibility of icon-only controls?]
+
+### Design tokens (if in scope)
+- [Tier structure: are globals, aliases, and component tokens distinct?]
+- [Naming: consistent grammar? Any synonyms or orphans?]
+- [Theme coverage: do token pairs pass contrast in all active modes?]
+- [Lifecycle: any deprecated tokens still in use?]
+
+### Internationalization
+- [Logical properties: any physical left/right/top/bottom in CSS?]
+- [Hardcoded strings: any user-facing text that's not externalizable?]
+- [RTL readiness: layout mirroring, icon mirroring]
+
+### Recommendations
+- [Prioritized list: critical → nice-to-have]
+</code></pre>
+<h2>When to read reference files</h2>
+<p>Don’t read all references up front. Read them as you need them:</p>
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th>You’re doing this</th>
+<th>Read this</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decision-making (any task)</td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/guiding-principles.md"><code>references/guiding-principles.md</code></a></td>
+</tr>
+<tr>
+<td>Identifying what kind of component it is</td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/component-taxonomy.md"><code>references/component-taxonomy.md</code></a> (index), then the relevant section under <code>references/taxonomy/</code></td>
+</tr>
+<tr>
+<td>Looking up common mistakes for a component</td>
+<td>The relevant <code>references/taxonomy/NN-*.md</code> section file</td>
+</tr>
+<tr>
+<td>Naming a component</td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/naming-conventions.md"><code>references/naming-conventions.md</code></a></td>
+</tr>
+<tr>
+<td>Designing props, slots, events, tokens</td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/api-design.md"><code>references/api-design.md</code></a></td>
+</tr>
+<tr>
+<td>Specifying ARIA, keyboard, screen reader</td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/accessibility-patterns.md"><code>references/accessibility-patterns.md</code></a></td>
+</tr>
+<tr>
+<td>Typography, font stacks, type scale</td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/typography.md"><code>references/typography.md</code></a></td>
+</tr>
+<tr>
+<td>Icons: format, sizing, color, a11y</td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/iconography.md"><code>references/iconography.md</code></a></td>
+</tr>
+<tr>
+<td>RTL, logical properties, text expansion</td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/i18n.md"><code>references/i18n.md</code></a></td>
+</tr>
+<tr>
+<td>Token architecture, naming, governance</td>
+<td><a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/design-tokens.md"><code>references/design-tokens.md</code></a></td>
+</tr>
+<tr>
+<td>Reviewing an existing component</td>
+<td>All of the above, as needed</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Component taxonomy structure:</strong> The taxonomy is split into 12 section files
+under <code>references/taxonomy/</code>. Start with <code>references/component-taxonomy.md</code>
+(the index) to find which section covers the component you’re looking for,
+then read only that section file. Each section file includes the component’s
+definition, ARIA pattern, variants, and <strong>common mistakes</strong> with corrected
+code snippets.</p>
+<h2>Output format</h2>
+<p>Adapt your output to the user’s context:</p>
+<ul>
+<li>If they’re <strong>exploring early</strong> (e.g., “I need some kind of filter
+thing”), be conversational. Help them find the right pattern before
+getting into API details.</li>
+<li>If they’re <strong>ready to build</strong>, provide structured specs with code.</li>
+<li>If they’re <strong>reviewing existing work</strong>, lead with findings and
+prioritized recommendations.</li>
+</ul>
+<p>Always include code examples — both vanilla HTML/CSS/JS and Web Component
+versions — when specifying a component. Real code grounds the discussion
+and catches gaps that prose misses.</p>
+
 		</div>
 	</section>
+
+	<section id="more" aria-labelledby="more-heading" class="layout stacked">
+		<header>
+			<h2 id="more-heading">
+				Other skills
+				<a class="anchor" href="#more" aria-label="Permalink to Other skills">#</a>
+			</h2>
+		</header>
+		<article class="layout grid">
+			<a class="card" href="/agent-skills/skills/dreamlight-valley/">
+				<div class="header">
+					<h3>dreamlight-valley</h3>
+					
+<p class="chips"><span class="chip">Games</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span><span class="chip"><span class="fa-solid fa-window-maximize" aria-hidden="true"></span> Live preview</span></p>
+
+				</div>
+				<div class="body">
+					<p>Cooking, gathering, and inventory management for Dreamlight Valley.</p>
+				</div>
+				<div class="footer">
+					<p class="cta">Learn more</p>
+				</div>
+			</a><a class="card" href="/agent-skills/skills/gh-notification-summary/">
+				<div class="header">
+					<h3>gh-notification-summary</h3>
+					
+<p class="chips"><span class="chip">GitHub</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span></p>
+
+				</div>
+				<div class="body">
+					<p>Review, summarize, and manage GitHub notifications via an interactive local dashboard. Unsubscribe from noisy threads, mark individual...</p>
+				</div>
+				<div class="footer">
+					<p class="cta">Learn more</p>
+				</div>
+			</a>
+		</article>
+	</section>
 </main>
-
-
 
 		<footer class="container">
 			<div class="brand">
@@ -1202,20 +1156,7 @@ h1,
 				</p>
 				<p class="meta"><a href="https://github.com/allonsy-studio/agent-skills/blob/main/LICENSE">Licensed under MPL-2.0</a></p>
 			</div>
-			<div>
-	<p class="title">Resources</p>
-	<ul>
-		<li><a href="https://github.com/allonsy-studio/agent-skills"><span class="fa-brands fa-github" aria-hidden="true"></span> GitHub</a></li>
-		<li><a href="https://www.npmjs.com/package/@allons-y/agent-skills"><span class="fa-brands fa-npm" aria-hidden="true"></span> npm</a></li>
-	</ul>
-</div>
-<div>
-	<p class="title">Resources</p>
-	<ul>
-		<li><a href="https://github.com/allonsy-studio/agent-skills/issues">Report an issue</a></li>
-		<li><a href="https://github.com/allonsy-studio/agent-skills/blob/main/.github/CONTRIBUTING.md">Contributing guide</a></li>
-	</ul>
-</div>
+			
 			<div>
 				<p class="title">brought to you by</p>
 				<a class="brand" href="https://allons-y.studio">
