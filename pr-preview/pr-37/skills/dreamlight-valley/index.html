@@ -735,6 +735,35 @@ body > footer {
 	pre {
 		margin-block: 1rem;
 	}
+
+	/* Common markdown carried over from the rendered SKILL.md. */
+	table {
+		inline-size: 100%;
+		border-collapse: collapse;
+		margin-block: 1.25rem;
+		font-size: 0.95rem;
+
+		/* Framing rules top and bottom, with a subtle divider under the header. */
+		border-block: 1px solid var(--theme--ui--color--subtle);
+
+		:is(th, td) {
+			padding: 0.5rem 0.75rem;
+			text-align: start;
+			vertical-align: top;
+		}
+
+		thead th {
+			border-block-end: 1px solid var(--theme--ui--color--subtle);
+		}
+	}
+
+	blockquote {
+		margin-block: 1.25rem;
+		margin-inline: 0;
+		padding-inline-start: 1rem;
+		border-inline-start: 3px solid var(--theme--ui--color--subtle);
+		color: var(--theme--text--Color--subtle);
+	}
 }
 		</style>
 	</head>
@@ -750,12 +779,12 @@ body > footer {
 	<h1>dreamlight-valley</h1>
 	<p class="lede">Cooking, gathering, and inventory management for Dreamlight Valley.</p>
 	
-<p class="chips"><span class="chip">Games</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span><span class="chip"><span class="fa-brands fa-node-js" aria-hidden="true"></span> Node</span></p>
+<p class="chips"><span class="chip">Games</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span><span class="chip"><span class="fa-solid fa-window-maximize" aria-hidden="true"></span> Live preview</span><span class="chip"><span class="fa-brands fa-node-js" aria-hidden="true"></span> Node</span></p>
 
 	<p class="btn-group">
 		<a class="btn primary" href="#install">Install this skill</a>
 		<a class="btn" href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/dreamlight-valley/SKILL.md"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
-		
+		<a class="btn" href="/agent-skills/pr-preview/pr-37/dreamlight-valley/"><span class="fa-solid fa-up-right-from-square" aria-hidden="true"></span> Preview skill interface</a>
 	</p>
 </header>
 

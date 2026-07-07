@@ -735,6 +735,35 @@ body > footer {
 	pre {
 		margin-block: 1rem;
 	}
+
+	/* Common markdown carried over from the rendered SKILL.md. */
+	table {
+		inline-size: 100%;
+		border-collapse: collapse;
+		margin-block: 1.25rem;
+		font-size: 0.95rem;
+
+		/* Framing rules top and bottom, with a subtle divider under the header. */
+		border-block: 1px solid var(--theme--ui--color--subtle);
+
+		:is(th, td) {
+			padding: 0.5rem 0.75rem;
+			text-align: start;
+			vertical-align: top;
+		}
+
+		thead th {
+			border-block-end: 1px solid var(--theme--ui--color--subtle);
+		}
+	}
+
+	blockquote {
+		margin-block: 1.25rem;
+		margin-inline: 0;
+		padding-inline-start: 1rem;
+		border-inline-start: 3px solid var(--theme--ui--color--subtle);
+		color: var(--theme--text--Color--subtle);
+	}
 }
 		</style>
 	</head>
@@ -1066,7 +1095,7 @@ and catches gaps that prose misses.</p>
 				<div class="header">
 					<h3>dreamlight-valley</h3>
 					
-<p class="chips"><span class="chip">Games</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span></p>
+<p class="chips"><span class="chip">Games</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span><span class="chip"><span class="fa-solid fa-window-maximize" aria-hidden="true"></span> Live preview</span></p>
 
 				</div>
 				<div class="body">
