@@ -68,6 +68,11 @@
 	}
 
 	/* Common markdown carried over from the rendered SKILL.md. */
+	.table-scroll {
+		max-inline-size: 100%;
+		overflow-x: auto;
+	}
+
 	table {
 		inline-size: 100%;
 		border-collapse: collapse;

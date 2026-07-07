@@ -173,6 +173,11 @@ pre {
 	border-start-end-radius: .2em;
 	font-size: 0.8em !important;
 	box-shadow: inset 1px 1px 0 hsl(0deg 0% 0% / 0.04), inset -1px -1px 0 hsl(0deg 0% 0% / 0.04);
+
+	/* Long lines (install commands, code samples) scroll inside the block
+	   instead of stretching the page past the viewport on narrow screens. */
+	max-inline-size: 100%;
+	overflow-x: auto;
 }
 
 code {
@@ -191,6 +196,12 @@ code {
 /* Copy-to-clipboard affordance injected around every <pre> by copy-code.js. */
 .code-block {
 	position: relative;
+
+	/* As a flex/grid item this wrapper must shrink below the <pre>'s intrinsic
+	   width; otherwise it grows to the longest code line and pushes the page
+	   past the viewport instead of letting the <pre> scroll internally. */
+	min-inline-size: 0;
+	max-inline-size: 100%;
 }
 
 .copy-button {
@@ -324,7 +335,9 @@ li {
 	&.masonry,
 	&.grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(var(--item-size, 380px), 1fr));
+		/* min(item-size, 100%) so a track never demands more than the container
+		   width — otherwise a 380px min column overflows a ~375px phone. */
+		grid-template-columns: repeat(auto-fill, minmax(min(var(--item-size, 380px), 100%), 1fr));
 
 		gap: var(--gap, 1rem);
 		align-items: var(--align-items, stretch);
@@ -545,6 +558,10 @@ li {
 	grid-template-columns: 1fr;
 	grid-template-rows: auto 1fr auto;
 	gap: 1rem;
+
+	/* Allow the card to shrink below its content's intrinsic width so a wide
+	   code block scrolls internally instead of widening the grid track. */
+	min-inline-size: 0;
 
 	background: var(--theme--surface--color--sunken);
 	color: inherit;
