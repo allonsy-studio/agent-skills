@@ -82,7 +82,7 @@ tagline: "For the most customized experience, install the skill in Claude Code v
 		{% for r in recipes %}
 		<article class="card">
 			<header class="layout stacked">
-				{% set style = "background-image: url('/sprites/recipes.png'); background-position: -" + coords.recipes.items[r.name].x + "px -" + coords.recipes.items[r.name].y + "px;" %}
+				{% set style = "background-image: url('" + ('/sprites/recipes.png' | url) + "'); background-position: -" + coords.recipes.items[r.name].x + "px -" + coords.recipes.items[r.name].y + "px;" %}
 				{% if style %}<div class="icon" style="{{ style }}"></div>{% endif %}
 				<h3>{{ r.name | safe }}</h3>
 			</header>
@@ -118,7 +118,12 @@ tagline: "For the most customized experience, install the skill in Claude Code v
 <button id="scroll-top" class="scroll-top" type="button" aria-label="Scroll to top" title="Scroll to top">↑</button>
 
 {% js %}
-const COIN_IMG = `<img class="coin" src="/assets/star-coin.png" alt="Star Coins" />`;
+// Asset bases resolved through Eleventy's `url` filter so sprite and image URLs
+// carry the site path prefix (e.g. /agent-skills/pr-preview/pr-N/). Built into
+// inline styles and injected markup, which HtmlBasePlugin can't rewrite.
+const SPRITE_BASE = "{{ '/sprites/' | url }}";
+const ASSET_BASE = "{{ '/assets/' | url }}";
+const COIN_IMG = `<img class="coin" src="${ASSET_BASE}star-coin.png" alt="Star Coins" />`;
 
 const state = {
 	activeTab: "recipes",
@@ -167,7 +172,7 @@ function spriteStyle(item, tabId) {
 	if (!sheet) return null;
 	const c = sheet.items[item.name];
 	if (!c) return null;
-	return `background-image: url('/sprites/${sheet.file}'); background-position: -${c.x}px -${c.y}px;`;
+	return `background-image: url('${SPRITE_BASE}${sheet.file}'); background-position: -${c.x}px -${c.y}px;`;
 }
 
 function itemsForTab() {
@@ -313,7 +318,7 @@ function sortItems(items) {
 // Move focus + activation across the tablist via Arrow / Home / End.
 // Auto-activation: focus change immediately swaps content (cheap for us).
 function handleTabKeyboard(e) {
-	const tabs = Array.from(document.querySelectorAll("#tabs [role='tab']"));
+	const tabs = Array.from(document.querySelectorAll("#categories [data-tab]"));
 	const i = tabs.findIndex((t) => t === document.activeElement);
 	if (i < 0) return;
 	let next = i;
@@ -589,9 +594,16 @@ function activateTab(tabId, { focus = false } = {}) {
 	state.sort = (SORT_OPTIONS[tabId] || SORT_OPTIONS.recipes)[0].id;
 	document.getElementById("search").value = "";
 	document.getElementById("search-ingredient").value = "";
+	// Move the roving tabindex + selected state onto the active category so the
+	// highlight and keyboard focus follow the switch.
+	document.querySelectorAll("#categories [data-tab]").forEach((b) => {
+		const on = b.dataset.tab === tabId;
+		b.setAttribute("aria-selected", on ? "true" : "false");
+		b.tabIndex = on ? 0 : -1;
+	});
 	render();
 	if (focus) {
-		const btn = document.querySelector(`#tab-${tabId}`);
+		const btn = document.getElementById(`filter-${tabId}`);
 		if (btn) btn.focus();
 	}
 }
@@ -706,7 +718,7 @@ function render() {
 
 const categoriesEl = document.getElementById("categories");
 categoriesEl.addEventListener("click", (e) => {
-	const btn = e.target.closest(".tab");
+	const btn = e.target.closest("[data-tab]");
 	if (!btn) return;
 	activateTab(btn.dataset.tab);
 });
