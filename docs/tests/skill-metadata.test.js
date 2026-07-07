@@ -99,3 +99,10 @@ test("renderSkillOverview returns an empty string for empty input", () => {
 	const md = createSkillRenderer();
 	assert.equal(renderSkillOverview(md, "", bases), "");
 });
+
+test("wraps tables in a horizontal scroll container", () => {
+	const md = createSkillRenderer();
+	const html = md.render("| a | b |\n| - | - |\n| 1 | 2 |");
+	assert.match(html, /<div class="table-scroll">\s*<table>/);
+	assert.match(html, /<\/table>\s*<\/div>/);
+});

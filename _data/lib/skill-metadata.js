@@ -70,6 +70,12 @@ export function createSkillRenderer() {
 		return renderToken(tokens, idx, options, env, self);
 	};
 
+	// Wrap tables in a horizontally scrollable container so a wide table scrolls
+	// within the prose instead of pushing the whole page past the viewport on
+	// narrow screens.
+	md.renderer.rules.table_open = () => '<div class="table-scroll">\n<table>\n';
+	md.renderer.rules.table_close = () => "</table>\n</div>\n";
+
 	return md;
 }
 
