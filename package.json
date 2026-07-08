@@ -57,7 +57,7 @@
     "serve": "eleventy --serve",
     "test": "node scripts/run-tests.js",
     "ts:check": "tsc --noEmit",
-    "version:packages": "changeset version && yarn generate:marketplace"
+    "version:packages": "changeset version && node scripts/clean-skill-changelogs.js && yarn generate:marketplace"
   },
   "workspaces": [
     "skills/*",
