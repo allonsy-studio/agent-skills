@@ -31,7 +31,8 @@ yarn test                       # Run all skill test suites (parallel)
 yarn test <skill-name>          # Run tests for a single skill
 yarn evals                      # Run LLM evals for all skills
 yarn generate:marketplace       # Regenerate .claude-plugin/marketplace.json and plugin.json
-yarn release                    # Cut a release via semantic-release
+yarn changeset                  # Record a change for the next release (writes .changeset/*.md)
+yarn changeset status           # Preview the next version bump
 ```
 
 ## Workspace commands
@@ -133,7 +134,7 @@ Each skill declares its runtime via `skill.runtime` in its `package.json`. Today
 
 ## Commits
 
-Commit messages will populate the changelog so it's important that their description be clear and succinct as well as written in a customer-focused way. If a pull request has multiple commits, they must be squashed before merging into `main` to ensure a clean release message.
+The customer-facing changelog is generated from **changeset** files (`.changeset/*.md`), not from commit messages — so every change that affects the published package should ship with a changeset (`yarn changeset`) whose description is clear, succinct, and customer-focused. Commit messages still follow Conventional Commits (enforced by commitlint) and, when a pull request has multiple commits, should be squashed before merging into `main` for a clean history.
 
 ### Do
 
@@ -162,15 +163,16 @@ Pairs well with a morning routine prompt — ask Claude to open your dashboard, 
 
 ## Release process
 
-Releases are fully automated via `semantic-release`. Merging to `main` triggers:
+Releases are automated via [**changesets**](https://github.com/changesets/changesets). The flow is two-step:
 
-1. Version bumps based on commit messages
-2. `prepublishOnly`: dynamic assets (`.claude-plugin/marketplace.json`, `plugin.json`) are regenerated
-3. Changelog update, npm publish, and a `chore(release):` commit back to `main`
+1. **Record** — every change that affects the published package lands with a changeset file (`yarn changeset`). All packages are versioned together (`fixed` versioning in `.changeset/config.json`), but only the root `@allons-y/agent-skills` is published to npm; the `skills/*` workspaces are `private` and ride along at the same version.
+2. **Release** — on merge to `main`, the `Release` workflow runs `changesets/action`. When unreleased changesets exist it opens (or updates) a **"Version Packages"** PR that bumps versions, rewrites `CHANGELOG.md`, and regenerates the `.claude-plugin/*` manifests. Merging that PR publishes to npm (`changeset publish`) and tags the release.
 
-Do not manually update `package.json` version or `CHANGELOG.md`.
+The workflow authenticates with the built-in `GITHUB_TOKEN` (plus `NPM_TOKEN` for publish) — no personal access token required.
+
+Do not manually update `package.json` version or `CHANGELOG.md`; let the Version Packages PR do it.
 
 ## What NOT to do
 
-- Do not edit `.claude-plugin/marketplace.json` or `.claude-plugin/plugin.json` by hand — both are auto-generated during publish and committed by semantic-release.
+- Do not edit `.claude-plugin/marketplace.json` or `.claude-plugin/plugin.json` by hand — both are auto-generated (regenerated during the Version Packages step and committed by the release workflow).
 - Do not add secrets or real credentials to tests — mock all external API calls.
