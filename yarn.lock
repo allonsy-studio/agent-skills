@@ -177,6 +177,7 @@ __metadata:
     listr2: "npm:^10.2.1"
     markdown-it: "npm:^14.1.1"
     pinst: "npm:^3.0.0"
+    prismjs: "npm:^1.30.0"
     text-table: "npm:^0.2.0"
     yargs: "npm:^18.0.0"
   bin:

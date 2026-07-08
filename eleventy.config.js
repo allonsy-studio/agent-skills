@@ -62,5 +62,11 @@ export default async function ( config ) {
 		"assets/*": "assets",
 		"skills/*/assets": "assets",
 		"skills/dreamlight-valley/references/sprites/*": "sprites",
+		// Prism syntax-highlighting themes, served from the installed `prismjs`
+		// dependency and linked from the base template (`_includes/foundation.njk`):
+		// the default light theme, plus a dark theme loaded under a dark-mode media
+		// query.
+		"node_modules/prismjs/themes/prism.css": "assets/prism.css",
+		"node_modules/prismjs/themes/prism-dark.css": "assets/prism-dark.css",
 	});
 };
