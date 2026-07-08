@@ -199,10 +199,10 @@ code {
 
 /* The dark Prism theme (prism-dark) ships a brown/tan panel, a thick tan border,
    and an inset shadow that don't fit the site's flat, layered dark surfaces.
-   Scoped to dark mode — where that theme loads — swap the panel for a recessed
-   surface layer and the border for a thin subtle rule, and drop the inset shadow.
-   The background is scoped to `.prose` so the install-card blocks keep the card's
-   own `.card pre` surface layer. */
+   Scoped to dark mode — where that theme loads — swap the panel for the same
+   surface color as inline `code` (`--theme--surface--color`) and the border for a
+   thin subtle rule, and drop the inset shadow. The background is scoped to `.prose`
+   so the install-card blocks keep the card's own `.card pre` surface layer. */
 @media (prefers-color-scheme: dark) {
 	pre[class*="language-"] {
 		border: 1px solid var(--theme--ui--color--subtle);
@@ -210,7 +210,7 @@ code {
 	}
 
 	.prose pre[class*="language-"] {
-		background: var(--theme--surface--color--sunken);
+		background: var(--theme--surface--color);
 	}
 }
 
