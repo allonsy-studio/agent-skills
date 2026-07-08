@@ -328,6 +328,14 @@ li {
 	justify-content: var(--justify-content, center);
 	align-items: var(--align-items, center);
 
+	/* Reserve clearance for the floating "Featured"/"Recommended" badge that
+	   straddles the top edge of a featured card. Applied to the container — not
+	   the card — so every item in the row shares the same top and the featured
+	   card stays aligned with its siblings. */
+	&:has(> .card.featured) {
+		padding-block-start: 1.5rem;
+	}
+
 	&:not(.grid) {
 		display: flex;
 		flex-wrap: wrap;
@@ -645,8 +653,6 @@ li {
 	&.featured {
 		--card-pad: clamp(1.5rem, 3vw, 2.5rem);
 		position: relative;
-		/* Clearance above the card for the floating badge that straddles the top. */
-		margin-block-start: 1.5rem;
 		padding: var(--card-pad);
 		box-shadow: var(--theme--ui--shadow);
 		border-color: var(--theme--text--Color--accent);
