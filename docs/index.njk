@@ -13,7 +13,9 @@ tagline: "Specialized agent skills that streamline common developer workflows an
 
 <header class="container hero">
 	<p class="eyebrow chip">Skills for AI agents</p>
-	<h1>{{ title | default(site.title) }}</h1>
+	{# Keep the package name on the dashes (non-breaking hyphen U+2011) and let it
+	   wrap only after the slash (<wbr>), so it breaks as "@allons-y/ | agent-skills". #}
+	<h1>{{ title | default(site.title) | replace("-", "&#8209;") | replace("/", "/<wbr>") | safe }}</h1>
 	<p class="lede">{{ tagline }}</p>
 	<p class="btn-group">
 		<a class="btn primary" href="#install">Get started</a>
