@@ -423,7 +423,9 @@ li {
 .btn-group {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 1.6rem;
+	/* Tighter row-gap so wrapped buttons don't leave a large vertical gap. */
+	column-gap: 1.6rem;
+	row-gap: 0.6rem;
 	justify-content: var(--justify-content, start);
 	align-items: var(--align-items, center);
 }
@@ -507,6 +509,9 @@ li {
 	font-family: var(--theme--code--FontFamily);
 	font-size: 0.8rem;
 	font-weight: 600;
+	/* Explicit so the badge centers consistently whether it's rendered as an
+	   <h2> (Featured) or <p> (Recommended), which inherit different line heights. */
+	line-height: 1;
 	letter-spacing: 0.04em;
 	background: var(--theme--surface--color);
 	color: var(--theme--text--Color--accent);
@@ -514,9 +519,16 @@ li {
 	border-radius: 2em;
 
 	/* The floating "Featured"/"Recommended" badge only applies to a chip placed
-	   as a direct child of a card header — not to chips nested in `.chips`. */
-	.card header > & {
-		margin-block-start: -2.6rem;
+	   as a direct child of a card header — not to chips nested in `.chips`.
+	   Absolutely centered on the card's top border so it straddles the edge
+	   regardless of its own height. */
+	.card.featured :is(header, .header) > & {
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline-start: var(--card-pad, 1.5rem);
+		transform: translateY(-50%);
+		margin: 0;
+		padding-block: 0.45rem;
 		display: block;
 		inline-size: max-content;
 	}
@@ -575,6 +587,11 @@ li {
 	background: var(--theme--surface--color--sunken);
 	color: inherit;
 
+	/* Balance wrapped card text; fall back to `pretty` where `balance`
+	   isn't implemented yet (the later declaration wins only if parsed). */
+	text-wrap: pretty;
+	text-wrap: balance;
+
 	border: 1px solid var(--theme--ui--color--subtle);
 	border-radius: .8em;
 	padding: 2rem 1.2rem 1.2rem;
@@ -620,8 +637,17 @@ li {
 		color: var(--theme--text--Color);
 	}
 
+	/* Tighter line height for card body copy than the page default. */
+	:is(p, li) {
+		line-height: 1.5;
+	}
+
 	&.featured {
-		padding: clamp(1.5rem, 3vw, 2.5rem);
+		--card-pad: clamp(1.5rem, 3vw, 2.5rem);
+		position: relative;
+		/* Clearance above the card for the floating badge that straddles the top. */
+		margin-block-start: 1.5rem;
+		padding: var(--card-pad);
 		box-shadow: var(--theme--ui--shadow);
 		border-color: var(--theme--text--Color--accent);
 		/* @eslint/css can't parse var() inside linear-gradient() color stops
@@ -633,6 +659,11 @@ li {
 			var(--theme--surface--color--sunken)
 		);
 		/* eslint-enable css/no-invalid-properties */
+
+		/* Space above the title so it clears the floating badge. */
+		:is(header, .header) > h3 {
+			margin-block-start: 0.75rem;
+		}
 	}
 }
 
@@ -830,7 +861,13 @@ body > footer {
 .quality {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	text-align: center;
 	gap: 0.6rem;
+
+	/* Balance wrapped text, falling back to `pretty` where unsupported. */
+	text-wrap: pretty;
+	text-wrap: balance;
 
 	padding: 1.5rem;
 	border-radius: 0.8em;
@@ -839,21 +876,21 @@ body > footer {
 
 	.icon {
 		color: var(--theme--text--Color--accent);
-		inline-size: 2.6rem;
-		block-size: 2.6rem;
-		font-size: 1rem;
-		border-radius: 0.6em;
+		inline-size: 3.5rem;
+		block-size: 3.5rem;
+		font-size: 1.4rem;
+		border-radius: 0.7em;
 		background: var(--theme--surface--color--accent);
 	}
 
 	h3 {
-		font-size: 1.15rem;
+		font-size: 1.4rem;
 		color: var(--theme--text--Color);
 	}
 
 	p {
 		font-size: 0.95rem;
-		line-height: 1.6;
+		line-height: 1.5;
 		margin: 0;
 	}
 }
@@ -947,13 +984,10 @@ h1,
 			</p>
 		</div>
 
-		<aside class="card featured">
+		<a class="card featured" href="/agent-skills/pr-preview/pr-32/skills/design-system/">
 			<header>
 				<h2 class="chip">Featured skill</h2>
-				<h3 id="featured-skill">
-					design-system
-					<a class="anchor" href="#featured" aria-label="Permalink to featured skill">#</a>
-				</h3>
+				<h3 id="featured-skill">design-system</h3>
 				
 <p class="chips"><span class="chip">Design</span><span class="chip"><span class="fa-solid fa-book-open" aria-hidden="true"></span> Reference</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span></p>
 
@@ -962,13 +996,9 @@ h1,
 				<p>Build, name, document, and audit UI components with expert ARIA, accessibility, design token, typography, and i18n guidance written by a Staff engineer with experience building design systems at scale.</p>
 			</div>
 			<div class="footer">
-				<p class="btn-group">
-					<a class="btn primary" href="/agent-skills/pr-preview/pr-32/skills/design-system/">Read the docs</a>
-					<a class="btn" href="#install">Install it</a>
-					
-				</p>
+				<p class="cta">Read the docs</p>
 			</div>
-		</aside>
+		</a>
 	</section>
 
 	<section id="trust" aria-labelledby="trust-heading" class="layout stacked">
