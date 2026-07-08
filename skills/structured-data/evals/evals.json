@@ -1,0 +1,29 @@
+{
+	"skill_name": "structured-data",
+	"evals": [
+		{
+			"id": 1,
+			"name": "add-json-ld-to-product-page",
+			"prompt": "Here's a product page template. Can you add structured data so it can show up as a rich result in Google?\n\n```html\n<article class=\"product\">\n  <h1>Aeron Chair</h1>\n  <img src=\"/img/aeron.jpg\" alt=\"Aeron Chair\">\n  <p class=\"price\">$1,395.00</p>\n  <p class=\"desc\">An ergonomic office chair with adjustable lumbar support.</p>\n  <p class=\"rating\">4.6 out of 5 (218 reviews)</p>\n</article>\n```\n\nWe render this server-side with Eleventy.",
+			"expected_output": "Should recommend JSON-LD (not Microdata) for a server-rendered page and explain why, generate a schema.org Product object with name, image, description, offers (price + priceCurrency), and aggregateRating (ratingValue + reviewCount), inject it as a <script type=\"application/ld+json\"> block at render time rather than editing the visible markup inline, present the change as a reviewable diff, and validate the JSON-LD against the reference processor before finishing. Should not overwrite the source file blindly.",
+			"files": [],
+			"assertions": []
+		},
+		{
+			"id": 2,
+			"name": "microdata-vs-json-ld-decision",
+			"prompt": "We're adding schema.org markup to an old server-rendered PHP site where the templates already have all the content in the HTML. Should I use Microdata or JSON-LD? I keep seeing both recommended and I don't know which fits.",
+			"expected_output": "Should give a decision, not a both-sides shrug: recommend JSON-LD as the default (decoupled from markup, easier to maintain and validate) while noting Microdata is a reasonable choice when the team wants a single source of truth annotated directly on existing HTML and wants to avoid duplicating content into a script block. Should tie the recommendation to the stated context (existing content in templates, server-rendered) and mention that whichever is chosen should be injected at build/server-render time and validated.",
+			"files": [],
+			"assertions": []
+		},
+		{
+			"id": 3,
+			"name": "validate-existing-structured-data",
+			"prompt": "Can you audit the structured data on this page and tell me if anything is broken?\n\n```html\n<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Recipe\",\n  \"name\": \"Sourdough Loaf\",\n  \"recipeIngredient\": \"500g flour\",\n  \"cookTime\": \"45 minutes\"\n}\n</script>\n```",
+			"expected_output": "Should validate the JSON-LD with the reference processor and flag the concrete problems: recipeIngredient should be a list of strings (not a single string), cookTime must be an ISO 8601 duration (\"PT45M\", not \"45 minutes\"), and note missing recommended Recipe properties for rich results (e.g. image, recipeInstructions). Should distinguish hard errors from warnings and offer a corrected version rather than only listing issues.",
+			"files": [],
+			"assertions": []
+		}
+	]
+}

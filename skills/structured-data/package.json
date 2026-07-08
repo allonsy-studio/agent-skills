@@ -5,6 +5,8 @@
   "description": "Inject or generate schema.org structured data (HTML Microdata or JSON-LD) into web markup, then validate it. Picks the right format per project, injects at build/server-render time only, and emits a reviewable diff instead of overwriting files.",
   "type": "module",
   "skill": {
+    "category": "SEO",
+    "commands": ["/preview-structured-data"],
     "runtime": "node",
     "triggers": [
       "add schema.org markup",
