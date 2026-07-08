@@ -115,11 +115,11 @@ test("Prism-highlights fenced code into a language-tagged block", () => {
 	assert.match(html, /<span class="token function">npm<\/span>/);
 });
 
-test("unlabeled fences fall back to an escaped language-none block", () => {
+test("unlabeled fences fall back to a tokenized bash block", () => {
 	const md = createSkillRenderer();
-	const html = md.render("```\n<script> & other\n```\n");
-	assert.match(html, /<pre class="language-none"><code class="language-none">/);
-	// No grammar, so the source is HTML-escaped rather than tokenized.
-	assert.match(html, /&lt;script&gt; &amp; other/);
-	assert.doesNotMatch(html, /class="token/);
+	const html = md.render("```\nnpm install foo && echo done\n```\n");
+	assert.match(html, /<pre class="language-bash"><code class="language-bash">/);
+	// Tokenized as bash so shell operators are still colored, and HTML is escaped.
+	assert.match(html, /<span class="token function">npm<\/span>/);
+	assert.doesNotMatch(html, /class="language-none"/);
 });
