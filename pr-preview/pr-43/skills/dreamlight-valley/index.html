@@ -38,7 +38,8 @@
 		<script src="https://kit.fontawesome.com/42e99b4632.js" crossorigin="anonymous"></script>
 
 		
-		<link href="/agent-skills/pr-preview/pr-43/assets/prism.css" rel="stylesheet">
+		<link href="/agent-skills/pr-preview/pr-43/assets/prism.css" rel="stylesheet" media="(prefers-color-scheme: light)">
+		<link href="/agent-skills/pr-preview/pr-43/assets/prism-dark.css" rel="stylesheet" media="(prefers-color-scheme: dark)">
 
         <style>
 		:root {
@@ -185,6 +186,15 @@ code {
 
 	/* Long file paths and identifiers wrap instead of overflowing the page. */
 	overflow-wrap: break-word;
+}
+
+/* Prism's themes add a text-shadow to code — a white "emboss" in the default
+   light theme — that reads as a halo on our card and prose surfaces (the code
+   block background is themed separately from Prism's own). Drop it so snippets
+   render flat and crisp in both light and dark mode. `text-shadow` inherits, so
+   this also clears it from the token spans. */
+:is(pre, code)[class*="language-"] {
+	text-shadow: none;
 }
 
 /* Copy-to-clipboard affordance injected around every <pre> by copy-code.js. */
