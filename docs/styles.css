@@ -135,7 +135,13 @@ body > header {
 .quality {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	text-align: center;
 	gap: 0.6rem;
+
+	/* Balance wrapped text, falling back to `pretty` where unsupported. */
+	text-wrap: pretty;
+	text-wrap: balance;
 
 	padding: 1.5rem;
 	border-radius: 0.8em;
@@ -144,21 +150,21 @@ body > header {
 
 	.icon {
 		color: var(--theme--text--Color--accent);
-		inline-size: 2.6rem;
-		block-size: 2.6rem;
-		font-size: 1rem;
-		border-radius: 0.6em;
+		inline-size: 3.5rem;
+		block-size: 3.5rem;
+		font-size: 1.4rem;
+		border-radius: 0.7em;
 		background: var(--theme--surface--color--accent);
 	}
 
 	h3 {
-		font-size: 1.15rem;
+		font-size: 1.4rem;
 		color: var(--theme--text--Color);
 	}
 
 	p {
 		font-size: 0.95rem;
-		line-height: 1.6;
+		line-height: 1.5;
 		margin: 0;
 	}
 }
