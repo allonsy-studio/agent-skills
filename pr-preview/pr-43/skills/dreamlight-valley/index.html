@@ -750,7 +750,14 @@ body > footer {
 		.skill-hero {
 	padding-block: 2.5rem 2.25rem;
 	border-block-end: 1px solid var(--theme--ui--color--subtle);
-	background-image: linear-gradient(180deg, var(--theme--surface--color--accent), transparent);
+
+	/* Soft glow that fades delicately outward, matching the home page header
+	   (docs/styles.css) rather than a flat top-to-bottom wash. */
+	background-image: radial-gradient(
+		70% 80% at 50% 0%,
+		var(--theme--surface--color--accent),
+		transparent 70%
+	);
 
 	> * + * {
 		margin-block-start: 1.25rem;
