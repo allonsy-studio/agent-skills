@@ -1,0 +1,115 @@
+.skill-hero {
+	padding-block: 2.5rem 2.25rem;
+	border-block-end: 1px solid var(--theme--ui--color--subtle);
+	background-image: linear-gradient(180deg, var(--theme--surface--color--accent), transparent);
+
+	> * + * {
+		margin-block-start: 1.25rem;
+	}
+
+	.lede {
+		max-width: 70ch;
+	}
+}
+
+.breadcrumb {
+	font-family: var(--theme--code--FontFamily);
+	font-size: 0.85rem;
+	color: var(--theme--text--Color--subtle);
+
+	a {
+		color: inherit;
+	}
+
+	span {
+		margin-inline: 0.4em;
+		opacity: 0.6;
+	}
+}
+
+.skill-detail {
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+	padding-block: 2.5rem 4rem;
+}
+
+/* ASCII folder-structure view above the rendered SKILL.md. Preserve the
+   `|--` connectors exactly and let a deep tree scroll rather than wrap. */
+.skill-tree {
+	inline-size: min(80ch, 100%);
+
+	code {
+		white-space: pre;
+	}
+}
+
+.snippet-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	gap: 0.5rem;
+
+	code {
+		background: var(--theme--surface--color--sunken);
+	}
+}
+
+.prose {
+	inline-size: min(80ch, 100%);
+	/* Long words and strings in body copy wrap instead of overflowing. */
+	overflow-wrap: break-word;
+
+	:is(h1, h2) {
+		font-size: clamp(1.5rem, 3vw, 2rem);
+	}
+
+	:is(h3, h4, h5, h6) {
+		font-size: clamp(1.1rem, 2vw, 1.35rem);
+	}
+
+	> :is(h2, h3, h4, h5, h6) {
+		margin-block-start: 1.75rem;
+	}
+
+	pre {
+		margin-block: 1rem;
+	}
+
+	/* Common markdown carried over from the rendered SKILL.md. */
+	.table-scroll {
+		max-inline-size: 100%;
+		overflow-x: auto;
+	}
+
+	table {
+		inline-size: 100%;
+		border-collapse: collapse;
+		margin-block: 1.25rem;
+		font-size: 0.95rem;
+
+		/* Framing rules top and bottom, with a subtle divider under the header. */
+		border-block: 1px solid var(--theme--ui--color--subtle);
+
+		:is(th, td) {
+			padding: 0.5rem 0.75rem;
+			text-align: start;
+			vertical-align: top;
+		}
+
+		thead th {
+			border-block-end: 1px solid var(--theme--ui--color--subtle);
+		}
+	}
+
+	blockquote {
+		margin-block: 1.25rem;
+		margin-inline: 0;
+		padding-inline-start: 1rem;
+		border-inline-start: 3px solid var(--theme--ui--color--subtle);
+		color: var(--theme--text--Color--subtle);
+	}
+}
