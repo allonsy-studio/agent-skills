@@ -1,0 +1,43 @@
+{
+  "private": true,
+  "name": "@allons-y/skill-structured-data",
+  "version": "0.0.0",
+  "description": "Inject or generate schema.org structured data (HTML Microdata or JSON-LD) into web markup, then validate it. Picks the right format per project, injects at build/server-render time only, and emits a reviewable diff instead of overwriting files.",
+  "type": "module",
+  "skill": {
+    "runtime": "node",
+    "triggers": [
+      "add schema.org markup",
+      "add structured data / rich snippets / SEO markup",
+      "add JSON-LD to this page",
+      "add itemprop/itemscope/itemtype attributes",
+      "validate, audit, or fix my structured data",
+      "should I use Microdata or JSON-LD"
+    ]
+  },
+  "scripts": {
+    "ci:test": "yarn coverage",
+    "coverage": "c8 yarn test",
+    "format": "yarn package:format",
+    "lint": "yarn package:lint",
+    "test": "node --test \"tests/**/*.test.js\""
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0",
+    "diff": "^9.0.0",
+    "jsonld": "^9.0.0",
+    "microdata-node": "^2.0.0"
+  },
+  "devDependencies": {
+    "c8": "^11.0.0",
+    "schema-dts": "^2.0.0"
+  },
+  "keywords": [
+    "structured-data",
+    "schema.org",
+    "microdata",
+    "json-ld",
+    "rich-results",
+    "seo"
+  ]
+}
