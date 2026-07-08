@@ -3,9 +3,12 @@
 	border-block-end: 1px solid var(--theme--ui--color--subtle);
 
 	/* Soft glow that fades delicately outward, matching the home page header
-	   (docs/styles.css) rather than a flat top-to-bottom wash. */
+	   (docs/styles.css) rather than a flat top-to-bottom wash. Anchored toward the
+	   start edge so the glow sits behind this hero's left-aligned content — the way
+	   the home glow sits behind its centered content — instead of leaving the
+	   top-left corner in the faint zone. */
 	background-image: radial-gradient(
-		70% 80% at 50% 0%,
+		75% 85% at 20% 0%,
 		var(--theme--surface--color--accent),
 		transparent 70%
 	);
