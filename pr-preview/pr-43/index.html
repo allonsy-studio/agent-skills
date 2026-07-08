@@ -887,8 +887,14 @@ body > header {
 
 	pre {
 		margin: 0;
-		border-inline-start: none;
+		/* The terminal frame owns the border, the rounded corners (via
+		   overflow: hidden), and the background. Clear Prism's own border, radius,
+		   shadow, and panel color so the code area fills the frame flush instead of
+		   showing a mismatched inner box with a tighter border-radius. */
+		border: none;
+		border-radius: 0;
 		box-shadow: none;
+		background: var(--theme--surface--color--sunken);
 	}
 }
 
