@@ -5,8 +5,6 @@ on:
     branches:
       - main
 
-# The built-in GITHUB_TOKEN opens the "Version Packages" PR, pushes its
-# branch, and publishes the release commit. id-token is for npm provenance.
 permissions:
   contents: write
   pull-requests: write
