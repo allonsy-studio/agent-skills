@@ -221,6 +221,7 @@ test("buildTreeFromPaths handles a flat, single-file list", () => {
 
 test("skillTreeText renders the git-tracked file list, honoring .gitignore", async () => {
 	let walked = false;
+	const warnings = [];
 	// The tracked list omits a gitignored `.env`, so it never reaches the tree.
 	const listTrackedFiles = async () => ["SKILL.md", ".env.example", "scripts/core.js"];
 	const fsImpl = {
@@ -229,27 +230,60 @@ test("skillTreeText renders the git-tracked file list, honoring .gitignore", asy
 			return [];
 		},
 	};
-	const text = await skillTreeText("skills/demo", "demo", { listTrackedFiles, fsImpl });
+	const text = await skillTreeText("skills/demo", "demo", {
+		listTrackedFiles,
+		fsImpl,
+		warn: (m) => warnings.push(m),
+	});
 	assert.equal(
 		text,
 		["demo/", "|-- scripts/", "|   `-- core.js", "|-- .env.example", "`-- SKILL.md"].join("\n")
 	);
 	assert.equal(walked, false, "should not walk the filesystem when git succeeds");
+	assert.deepEqual(warnings, [], "no fallback warning when git succeeds");
 	assert.ok(!text.includes("\n.env\n") && !text.includes("-- .env\n"), ".env stays out of the tree");
 });
 
-test("skillTreeText falls back to the filesystem walk when git is unavailable", async () => {
+test("skillTreeText falls back to the filesystem walk and warns when git is unavailable", async () => {
+	const warnings = [];
 	const listTrackedFiles = async () => {
 		throw new Error("not a git repository");
 	};
 	const fsImpl = mockFs({ "SKILL.md": "", scripts: { "core.js": "" } });
-	const text = await skillTreeText("", "demo", { listTrackedFiles, fsImpl });
+	const text = await skillTreeText("", "demo", { listTrackedFiles, fsImpl, warn: (m) => warnings.push(m) });
 	assert.equal(text, ["demo/", "|-- scripts/", "|   `-- core.js", "`-- SKILL.md"].join("\n"));
+	assert.equal(warnings.length, 1, "a git failure warns so a .gitignore leak is visible");
+	assert.match(warnings[0], /not a git repository/);
 });
 
-test("skillTreeText falls back to the filesystem walk when git returns nothing", async () => {
+test("skillTreeText falls back to the filesystem walk without warning when git returns nothing", async () => {
+	const warnings = [];
 	const listTrackedFiles = async () => [];
 	const fsImpl = mockFs({ "SKILL.md": "" });
-	const text = await skillTreeText("", "demo", { listTrackedFiles, fsImpl });
+	const text = await skillTreeText("", "demo", { listTrackedFiles, fsImpl, warn: (m) => warnings.push(m) });
 	assert.equal(text, ["demo/", "`-- SKILL.md"].join("\n"));
+	assert.deepEqual(warnings, [], "an empty tracked list is not a git failure and must not warn");
+});
+
+test("skillTreeText returns null when the skill directory is empty", async () => {
+	const listTrackedFiles = async () => [];
+	const fsImpl = mockFs({});
+	const text = await skillTreeText("", "demo", { listTrackedFiles, fsImpl, warn: () => {} });
+	assert.equal(text, null, "a contentless skill yields null so the template can skip the section");
+});
+
+test("skillTreeText propagates a buildTreeFromPaths bug instead of masking it as a fallback", async () => {
+	let walked = false;
+	// git succeeds with a non-empty list, but a malformed entry makes the pure
+	// tree builder throw (`null.split`). That error must NOT be swallowed into a
+	// filesystem fallback — which would also defeat the .gitignore guarantee.
+	const listTrackedFiles = async () => [null];
+	const fsImpl = {
+		readdir: async () => {
+			walked = true;
+			return [];
+		},
+	};
+	await assert.rejects(() => skillTreeText("", "demo", { listTrackedFiles, fsImpl, warn: () => {} }));
+	assert.equal(walked, false, "a non-git bug must not silently fall back to the filesystem walk");
 });
