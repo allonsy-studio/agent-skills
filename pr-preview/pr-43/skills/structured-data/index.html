@@ -201,15 +201,12 @@ code {
    and an inset shadow that don't fit the site's flat, layered dark surfaces.
    Scoped to dark mode — where that theme loads — swap the panel for the same
    surface color as inline `code` (`--theme--surface--color`) and the border for a
-   thin subtle rule, and drop the inset shadow. The background is scoped to `.prose`
-   so the install-card blocks keep the card's own `.card pre` surface layer. */
+   thin subtle rule, and drop the inset shadow. Components that own their code-area
+   background (`.hero-terminal pre`, `.card pre`) override the background below. */
 @media (prefers-color-scheme: dark) {
 	pre[class*="language-"] {
 		border: 1px solid var(--theme--ui--color--subtle);
 		box-shadow: none;
-	}
-
-	.prose pre[class*="language-"] {
 		background: var(--theme--surface--color);
 	}
 }
