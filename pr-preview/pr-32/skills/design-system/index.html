@@ -112,6 +112,9 @@ body {
 	text-underline-offset: 0.2ex;
 	text-decoration-thickness: 1px;
 
+	/* Break long, unbroken URLs so they wrap instead of overflowing the container. */
+	overflow-wrap: break-word;
+
 	&:is(:hover, :focus-visible) {
 		text-decoration: underline;
 	}
@@ -735,7 +738,7 @@ body > footer {
 }
 
 .prose {
-	inline-size: min(80ch, 100%);
+	inline-size: min(80ch, 100dvi);
 
 	:is(h1, h2) {
 		font-size: clamp(1.5rem, 3vw, 2rem);

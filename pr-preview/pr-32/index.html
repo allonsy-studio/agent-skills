@@ -112,6 +112,9 @@ body {
 	text-underline-offset: 0.2ex;
 	text-decoration-thickness: 1px;
 
+	/* Break long, unbroken URLs so they wrap instead of overflowing the container. */
+	overflow-wrap: break-word;
+
 	&:is(:hover, :focus-visible) {
 		text-decoration: underline;
 	}
