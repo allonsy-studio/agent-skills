@@ -13,12 +13,32 @@
       }
     },
     {
+      "id": "dreamlight-valley",
+      "name": "dreamlight-valley",
+      "description": "Identify a Disney Dreamlight Valley recipe from a photo or screenshot and return its required ingredients, OR recommend recipes to cook based on the ingredients the user has on hand — optimizing for energy restored or Star Coin profit. Use this skill whenever the user shows or uploads an image of a DDV recipe/dish, names a Dreamlight Valley dish and asks what's in it, asks \"what ingredients do I need for <dish>\", asks \"what can I cook with <ingredients>\", \"what's the most profitable thing to cook\", \"best recipe for energy\", or mentions Dreamlight Valley cooking, recipes, meals, or selling food for coins. Also triggers on phrases like \"what's in this recipe\", \"how do I make <dish> in Dreamlight\", \"what should I cook\", or any screenshot of the in-game cooking/cookbook/inventory screen. Covers base game, Eternity Isle (A Rift in Time), Storybook Vale, and Wishblossom Mountains expansions.",
+      "components": {
+        "skills": [
+          "dreamlight-valley"
+        ]
+      }
+    },
+    {
       "id": "gh-notification-summary",
       "name": "gh-notification-summary",
       "description": "Review, summarize, and manage GitHub notifications. Use this skill whenever the user mentions GitHub notifications, unread GitHub activity, open issues on their repos, or wants to catch up on project discussions — even if they don't use the word 'notifications'. Also trigger for /unsub <number>, 'mark all done', 'clear my GitHub inbox', or any request to triage, dismiss, or act on GitHub notifications.",
       "components": {
         "skills": [
           "gh-notification-summary"
+        ]
+      }
+    },
+    {
+      "id": "structured-data",
+      "name": "structured-data",
+      "description": "Inject or generate schema.org structured data (HTML Microdata attributes like itemscope/itemtype/itemprop, or JSON-LD script blocks) into web markup — raw HTML/templates, React/Vue/Web Components, or static-site pipelines (11ty, Astro, Eleventy, Hugo, etc.). Use whenever the user asks to add schema.org markup, structured data, rich snippets, SEO markup, itemprop/itemscope/itemtype attributes, or JSON-LD to a page, component, or site. Also trigger for requests to validate, audit, or fix existing structured data, or to decide between Microdata and JSON-LD for a project. Injection always runs through the pre-compile or server-side scripts bundled here — never via client-side JavaScript — since crawlers may index a page before hydration runs.",
+      "components": {
+        "skills": [
+          "structured-data"
         ]
       }
     }

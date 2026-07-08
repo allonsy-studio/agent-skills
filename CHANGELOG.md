@@ -1,12 +1,42 @@
 # Changelog
 
+## 1.2.0
+
+### Minor Changes
+
+- [#32](https://github.com/allonsy-studio/agent-skills/pull/32) [`02cda21`](https://github.com/allonsy-studio/agent-skills/commit/02cda21a75c93b0c39d1631d80b8b1c592f7cc66) Thanks [@castastrophe](https://github.com/castastrophe)! - Add a **structured-data** skill for adding schema.org markup (HTML Microdata or JSON-LD) to web pages, then validating it.
+    - Picks the right format for your project and injects markup at build or server-render time only, emitting a reviewable diff instead of overwriting your source files.
+    - Generates JSON-LD with typed authoring (schema-dts) and validates it against the reference JSON-LD processor, so broken or unknown types surface before they ship.
+    - Includes an extraction **preview** that shows exactly what a search-engine parser reads from your page, plus a `/preview-structured-data` command.
+    - Offers to wire structured-data regression tests into your project's existing suite so markup can't silently drift.
+
+    Say things like "add JSON-LD to this page", "add schema.org / rich-snippet markup", "validate my structured data", or "should I use Microdata or JSON-LD?" and Claude will know what to do.
+
+- [#39](https://github.com/allonsy-studio/agent-skills/pull/39) [`7738d8f`](https://github.com/allonsy-studio/agent-skills/commit/7738d8f4c9ecc8217408a8af8bb340e9bf300a4c) Thanks [@castastrophe](https://github.com/castastrophe)! - - Point every repository, homepage, and issues URL at the renamed `allonsy-studio` GitHub org so links and `npm` metadata resolve correctly.
+    - Add a `docs/skill-architecture.md` guide plus a stronger "New skill" issue template that walks contributors through the decisions that make a skill trigger reliably.
+    - Refresh the marketplace landing site.
+    - **dreamlight-valley:** fix the catalog preview page so its Eleventy build succeeds, and split the sprite-coordinate helpers into a tested `sprite-coords.js` module.
+    - Report per-skill test coverage correctly in CI.
+
+### Patch Changes
+
+- [#32](https://github.com/allonsy-studio/agent-skills/pull/32) [`02cda21`](https://github.com/allonsy-studio/agent-skills/commit/02cda21a75c93b0c39d1631d80b8b1c592f7cc66) Thanks [@castastrophe](https://github.com/castastrophe)! - Polish the marketplace site and stop skill pages from overflowing on narrow screens:
+    - The featured skill card is now a single link straight to its page (no more separate buttons), the "Featured"/"Recommended" badges sit centered on the card's top edge with consistent padding, and the quality/feature cards get larger centered icons and headings.
+    - Card body copy uses balanced text wrapping with a tighter line height.
+    - The landing headline breaks cleanly at the slash (`@allons-y/` / `agent-skills`) instead of mid-word at a hyphen.
+    - Long link URLs and inline code such as file paths now wrap instead of pushing past the screen, the prose column is capped to its container width, and code blocks get a small inset so text no longer sits flush against their accent border.
+
+- [#35](https://github.com/allonsy-studio/agent-skills/pull/35) [`aad7389`](https://github.com/allonsy-studio/agent-skills/commit/aad7389f0aadbd8189a20f59f558eec8309956bc) Thanks [@castastrophe](https://github.com/castastrophe)! - The install script was pointing to an old marketplace name and has now been fixed to "allonsy-studio/agent-skills"
+
+    `/plugin marketplace add allonsy-studio/agent-skills`
+
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [1.1.0](https://github.com/Allons-y-Studio/agent-skills/compare/v1.0.3...v1.1.0) (2026-05-27)
 
 ### ✨ Features
 
-* **dreamlight-valley:**new skill for cooking, gathering, and inventory management ([#21](https://github.com/Allons-y-Studio/agent-skills/issues/21)) ([440e59c]())
+- **dreamlight-valley:**new skill for cooking, gathering, and inventory management ([#21](https://github.com/Allons-y-Studio/agent-skills/issues/21)) ([440e59c]())
 
 ## Summary
 
@@ -18,18 +48,18 @@ single prompt or slash command.
 ## What it does
 
 - **`/recipe`** — Identify a dish from a typed name or a cookbook
-screenshot and return its ingredients. Fuzzy-matches misread or accented
-names; handles multi-dish screenshots one block at a time; optionally
-surfaces star rating, energy, and sell price.
+  screenshot and return its ingredients. Fuzzy-matches misread or accented
+  names; handles multi-dish screenshots one block at a time; optionally
+  surfaces star rating, energy, and sell price.
 - **`/cook`** — Recommend the best recipes to cook from the ingredients
-on hand, ranked by value per ingredient consumed. Reads quantities from
-a backpack screenshot or accepts them as text. Supports `--profit` /
-`--energy` objectives, per-course filtering, and an inventory floor so a
-recommendation never wipes out a stockpile.
+  on hand, ranked by value per ingredient consumed. Reads quantities from
+  a backpack screenshot or accepts them as text. Supports `--profit` /
+  `--energy` objectives, per-course filtering, and an inventory floor so a
+  recommendation never wipes out a stockpile.
 - **`/restock`** — Read a storage screenshot, compare against the full
-catalog, and output a categorized Markdown gather checklist. Includes a
-99-skip shortcut, per-category floors (cooking at 50, materials at 99),
-and uncertainty flagging.
+  catalog, and output a categorized Markdown gather checklist. Includes a
+  99-skip shortcut, per-category floors (cooking at 50, materials at 99),
+  and uncertainty flagging.
 
 Say anything like "what's in Ratatouille?", "what should I cook right
 now?", "/cook --profit lemon, garlic, herring", or upload a screenshot
@@ -38,16 +68,16 @@ of a cookbook / backpack / storage screen — the skill routes correctly.
 ## Bundled data (current to Wishblossom Mountains)
 
 - 472 recipes with star rating, course, energy, sale price, and
-ingredient slots (fixed or category-typed)
+  ingredient slots (fixed or category-typed)
 - 386-item catalog: 142 ingredients · 86 flowers · 62 forageables · 50
-gems · 45 fish — each with method, locations, sale price, energy, etc.
+  gems · 45 fish — each with method, locations, sale price, energy, etc.
 - 13 labeled sprite sheets (one per category) + `sprite-coords.json`
-sidecar mapping every catalog item to its exact pixel position for
-direct lookup
+  sidecar mapping every catalog item to its exact pixel position for
+  direct lookup
 - Reference docs split by mode (`identify.md`, `recommend.md`,
-`stock-check.md`) plus icon-reading cues and ingredient-category notes
+  `stock-check.md`) plus icon-reading cues and ingredient-category notes
 - Plain-text `dreamlight-valley.md` config file users can drop in `./`
-or `~/.config/` for per-player defaults
+  or `~/.config/` for per-player defaults
 
 ## Local catalog preview
 
@@ -62,56 +92,55 @@ datalist autocomplete on search inputs).
 ## Infrastructure
 
 - New `scripts/build-sprites.js` (Node + sharp): regenerates
-`sprite-coords.json` from `gatherables.json` deterministically; rebuilds
-sprite sheets when source PNGs are present in
-`references/images/<category>/*.png`
+  `sprite-coords.json` from `gatherables.json` deterministically; rebuilds
+  sprite sheets when source PNGs are present in
+  `references/images/<category>/*.png`
 - `scripts/run-evals.js` generalised to auto-register `commands/*.md`
-files as evaluable tools (was previously hardcoded for Python scripts
-and the gh-notifications CLI)
+  files as evaluable tools (was previously hardcoded for Python scripts
+  and the gh-notifications CLI)
 - `c8` declared as a devDependency on this skill (needed for `yarn
 coverage` to find the binary in yarn workspaces)
 
 ## Test plan
 
 - [x] `yarn workspace @allons-y/skill-dreamlight-valley test` — 20
-data-integrity tests pass (gatherables schema/duplicates/enums, recipes
-schema/cross-references, sprite-coords layout consistency)
+      data-integrity tests pass (gatherables schema/duplicates/enums, recipes
+      schema/cross-references, sprite-coords layout consistency)
 - [x] `yarn workspace @allons-y/skill-dreamlight-valley lint` — clean
 - [x] `yarn workspace @allons-y/skill-dreamlight-valley coverage` — runs
-(skill is data-only so 0% coverage is expected)
+      (skill is data-only so 0% coverage is expected)
 - [x] `yarn workspace @allons-y/skill-dreamlight-valley build:sprites` —
-regenerates coords + any sheets whose source images exist
+      regenerates coords + any sheets whose source images exist
 - [x] `yarn workspace @allons-y/skill-dreamlight-valley preview` — local
-catalog browser runs on http://localhost:8765
+      catalog browser runs on http://localhost:8765
 - [ ] 17 LLM evals under `evals/evals.json` (run with
-`ANTHROPIC_API_KEY` set) — cover routing for `/recipe`, `/cook`,
-`/restock` plus four negative cases
-
+      `ANTHROPIC_API_KEY` set) — cover routing for `/recipe`, `/cook`,
+      `/restock` plus four negative cases
 
 ### 📚 Documentation
 
-*GitHub Pages site, MPL-2.0 relicense, Renovate refresh ([#19](https://github.com/Allons-y-Studio/agent-skills/issues/19)) ([c3677d9]())
+\*GitHub Pages site, MPL-2.0 relicense, Renovate refresh ([#19](https://github.com/Allons-y-Studio/agent-skills/issues/19)) ([c3677d9]())
 
 ## Summary
 
 - **New docs site** at `/docs` — single-page, brand-aligned with
-Allons-y Studio (Roboto + Dancing Script + EB Garamond + PT Mono,
-magenta-red accent, warm neutral surfaces, `--theme--*` token system
-mirroring the main site). Ready to publish via **Settings → Pages →
-Deploy from a branch → `main` / `/docs`**.
+  Allons-y Studio (Roboto + Dancing Script + EB Garamond + PT Mono,
+  magenta-red accent, warm neutral surfaces, `--theme--*` token system
+  mirroring the main site). Ready to publish via **Settings → Pages →
+  Deploy from a branch → `main` / `/docs`**.
 - **Relicense Apache-2.0 → MPL-2.0** in `LICENSE`, `package.json`
-(SPDX), and the README license section. File-level copyleft fits
-skill-style code better.
+  (SPDX), and the README license section. File-level copyleft fits
+  skill-style code better.
 - **Renovate refresh** — moved to `config:best-practices` with grouped
-updates for the commitlint, jest, eslint, and semantic-release
-ecosystems. New updater workflow added.
+  updates for the commitlint, jest, eslint, and semantic-release
+  ecosystems. New updater workflow added.
 - README license blurb updated; rest of the README validated as current.
 
 ## [1.0.3](https://github.com/castastrophe/agent-skills/compare/v1.0.2...v1.0.3) (2026-05-15)
 
 ### 🐛 Bug Fixes
 
-* **deps:**update dependency @octokit/rest to v22 ([#13](https://github.com/castastrophe/agent-skills/issues/13)) ([81e1e52]())
+- **deps:**update dependency @octokit/rest to v22 ([#13](https://github.com/castastrophe/agent-skills/issues/13)) ([81e1e52]())
 
 Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
 
@@ -119,27 +148,26 @@ Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
 
 ### 🐛 Bug Fixes
 
-* **deps:**update dependency dotenv to v17 ([#15](https://github.com/castastrophe/agent-skills/issues/15)) ([1c648bb]())
+- **deps:**update dependency dotenv to v17 ([#15](https://github.com/castastrophe/agent-skills/issues/15)) ([1c648bb]())
 
 Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
 
-
 ### 📚 Documentation
 
-* **design-system:**add skill to README, rename to match directory, document reference-only flavor ([#17](https://github.com/castastrophe/agent-skills/issues/17)) ([4e67e49]())
+- **design-system:**add skill to README, rename to match directory, document reference-only flavor ([#17](https://github.com/castastrophe/agent-skills/issues/17)) ([4e67e49]())
 
-- Add design-system to the Available Skills table and getSkills() example
-- Rename the skill's frontmatter `name` from `design-system-patterns` to `design-system` so it matches the directory and package name (required by the loader)
-- Update the stale `skill_name` in evals.json after the rename
-- Regenerate .claude-plugin/marketplace.json and plugin.json
-- Document the "reference-only skill" flavor (no `scripts/` required) in CLAUDE.md and CONTRIBUTING.md so contributors know it's a supported pattern
-- Fix the broken coverage badge in the README (envoy -> agent-skills)
+* Add design-system to the Available Skills table and getSkills() example
+* Rename the skill's frontmatter `name` from `design-system-patterns` to `design-system` so it matches the directory and package name (required by the loader)
+* Update the stale `skill_name` in evals.json after the rename
+* Regenerate .claude-plugin/marketplace.json and plugin.json
+* Document the "reference-only skill" flavor (no `scripts/` required) in CLAUDE.md and CONTRIBUTING.md so contributors know it's a supported pattern
+* Fix the broken coverage badge in the README (envoy -> agent-skills)
 
 ## [1.0.1](https://github.com/castastrophe/agent-skills/compare/v1.0.0...v1.0.1) (2026-05-15)
 
 ### 🐛 Bug Fixes
 
-* **tooling:**unify linting under eslint-plugin-jsonc and clear all config warnings ([#16](https://github.com/castastrophe/agent-skills/issues/16)) ([ad21087]())
+- **tooling:**unify linting under eslint-plugin-jsonc and clear all config warnings ([#16](https://github.com/castastrophe/agent-skills/issues/16)) ([ad21087]())
 
 Swap out prettier-package-json for eslint-plugin-jsonc so that package.json key
 ordering, JSON sort-keys, and CSS baseline rules all run through a single yarn lint
