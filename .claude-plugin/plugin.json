@@ -1,12 +1,14 @@
 {
   "name": "agent-skills",
   "display_name": "@allons-y/agent-skills",
-  "description": "A collection of skills designed for Claude to streamline processes and reduce token-use",
-  "version": "1.0.0",
+  "description": "A collection of self-contained agent skills that streamline common developer workflows and reduce token usage. Install in Claude Code via the plugin marketplace, or vendor into any agent harness with npx.",
+  "version": "1.2.0",
   "components": {
     "skills": [
       "design-system",
-      "gh-notification-summary"
+      "dreamlight-valley",
+      "gh-notification-summary",
+      "structured-data"
     ]
   }
 }
