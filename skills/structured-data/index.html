@@ -10,8 +10,8 @@
 		<meta name="color-scheme" content="light dark">
 
         
-		<title>dreamlight-valley | Cooking, gathering, and inventory management for Dreamlight ...</title>
-		<meta name="description" content="Cooking, gathering, and inventory management for Dreamlight Valley.">
+		<title>structured-data | Inject or generate schema.org structured data (HTML Microdat...</title>
+		<meta name="description" content="Inject or generate schema.org structured data (HTML Microdata or JSON-LD) into web markup, then validate it. Picks the right format per project, injects at build/server-render time only, and emits a reviewable diff instead of overwriting files.">
 		<meta name="keywords" content="">
 		<meta name="author" content="">
 
@@ -21,10 +21,10 @@
 		<meta name="yandexbot" content="index, follow">
 
 		<meta property="og:locale" content="en-US">
-		<meta property="og:title" content="dreamlight-valley">
+		<meta property="og:title" content="structured-data">
 		<meta property="og:url" content="https://github.com/allonsy-studio/agent-skills#readme">
-		<meta property="og:description" content="Cooking, gathering, and inventory management for Dreamlight Valley.">
-		<meta property="og:site_name" content="dreamlight-valley">
+		<meta property="og:description" content="Inject or generate schema.org structured data (HTML Microdata or JSON-LD) into web markup, then validate it. Picks the right format per project, injects at build/server-render time only, and emits a reviewable diff instead of overwriting files.">
+		<meta property="og:site_name" content="structured-data">
 		<meta name="fediverse:creator" content="@castastrophe@front-end.social">
 
 		<link rel="icon" href="/agent-skills/favicon.ico" sizes="32×32">
@@ -840,15 +840,15 @@ body > footer {
 
 <header class="container skill-hero">
 	<p class="breadcrumb"><a href="/agent-skills/">@allons-y/agent-skills</a> <span aria-hidden="true">/</span> <a href="/agent-skills/#skills">skills</a></p>
-	<h1>dreamlight-valley</h1>
-	<p class="lede">Cooking, gathering, and inventory management for Dreamlight Valley.</p>
+	<h1>structured-data</h1>
+	<p class="lede">Inject or generate schema.org structured data (HTML Microdata or JSON-LD) into web markup, then validate it. Picks the right format per project, injects at build/server-render time only, and emits a reviewable diff instead of overwriting files.</p>
 	
-<p class="chips"><span class="chip">Games</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span><span class="chip"><span class="fa-solid fa-window-maximize" aria-hidden="true"></span> Live preview</span><span class="chip"><span class="fa-brands fa-node-js" aria-hidden="true"></span> Node</span></p>
+<p class="chips"><span class="chip">SEO</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span><span class="chip"><span class="fa-brands fa-node-js" aria-hidden="true"></span> Node</span></p>
 
 	<p class="btn-group">
 		<a class="btn primary" href="#install">Install this skill</a>
-		<a class="btn" href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/dreamlight-valley/SKILL.md"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
-		<a class="btn" href="/agent-skills/dreamlight-valley/"><span class="fa-solid fa-up-right-from-square" aria-hidden="true"></span> Preview skill interface</a>
+		<a class="btn" href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/structured-data/SKILL.md"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
+		
 	</p>
 </header>
 
@@ -861,11 +861,16 @@ body > footer {
 			</h2>
 			<p>Once installed, this skill activates automatically when your prompt matches one of its triggers.</p>
 		</header>
-		
+		<div class="content">
+			<h3>Commands</h3>
+			<ul class="snippet-list">
+				<li><code>/preview-structured-data</code></li>
+			</ul>
+		</div>
 		<div class="content">
 			<h3>Try saying</h3>
 			<ul class="snippet-list">
-				<li><code>/cook &lt;flags&gt; &lt;ingredients&gt;</code></li><li><code>/restock &lt;flags&gt;</code></li><li><code>/recipe &lt;dish name&gt;</code></li><li><code>any request related to the video game Dreamlight Valley</code></li>
+				<li><code>add schema.org markup</code></li><li><code>add structured data / rich snippets / SEO markup</code></li><li><code>add JSON-LD to this page</code></li><li><code>add itemprop/itemscope/itemtype attributes</code></li><li><code>validate, audit, or fix my structured data</code></li><li><code>should I use Microdata or JSON-LD</code></li>
 			</ul>
 		</div>
 	</section>
@@ -893,7 +898,7 @@ body > footer {
 				<footer>
 					
 					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">/plugin marketplace <span class="token function">add</span> allonsy-studio/agent-skills</span>
-<span class="highlight-line">/plugin <span class="token function">install</span> dreamlight-valley@agent-skills</span></code></pre>
+<span class="highlight-line">/plugin <span class="token function">install</span> structured-data@agent-skills</span></code></pre>
 				</footer>
 			</article><article class="card" id="install-claude-agent-sdk">
 				<header>
@@ -908,7 +913,7 @@ body > footer {
 				</div>
 				<footer>
 					
-					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">npx @allons-y/agent-skills dreamlight-valley <span class="token parameter variable">--dir</span> ~/.claude/skills</span></code></pre>
+					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">npx @allons-y/agent-skills structured-data <span class="token parameter variable">--dir</span> ~/.claude/skills</span></code></pre>
 				</footer>
 			</article><article class="card" id="install-cursor">
 				<header>
@@ -923,7 +928,7 @@ body > footer {
 				</div>
 				<footer>
 					
-					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">npx @allons-y/agent-skills dreamlight-valley <span class="token parameter variable">--dir</span> .cursor/skills</span></code></pre>
+					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">npx @allons-y/agent-skills structured-data <span class="token parameter variable">--dir</span> .cursor/skills</span></code></pre>
 				</footer>
 			</article><article class="card" id="install-any">
 				<header>
@@ -939,7 +944,7 @@ body > footer {
 				<footer>
 					
 					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">npx @allons-y/agent-skills <span class="token parameter variable">--list</span></span>
-<span class="highlight-line">npx @allons-y/agent-skills dreamlight-valley <span class="token parameter variable">--dir</span> <span class="token operator">&lt;</span>your-skills-dir<span class="token operator">></span></span></code></pre>
+<span class="highlight-line">npx @allons-y/agent-skills structured-data <span class="token parameter variable">--dir</span> <span class="token operator">&lt;</span>your-skills-dir<span class="token operator">></span></span></code></pre>
 				</footer>
 			</article>
 		</div>
@@ -954,115 +959,114 @@ body > footer {
 				Full skill instructions
 				<a class="anchor" href="#docs" aria-label="Permalink to Full skill instructions">#</a>
 			</h2>
-			<p>This is the <code>SKILL.md</code> the agent reads when the skill activates. <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/dreamlight-valley/SKILL.md">View the source on GitHub</a>.</p>
+			<p>This is the <code>SKILL.md</code> the agent reads when the skill activates. <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/structured-data/SKILL.md">View the source on GitHub</a>.</p>
 		</header>
 		<div class="prose">
-			<h1>Dreamlight Valley Cooking, Gathering, and Inventory Management</h1>
-<p>This skill has several modes. Pick the matching mode, then <strong>read its reference
-file for the full procedure</strong> — don’t execute from memory.</p>
+			<h1>Structured Data (Microdata + JSON-LD)</h1>
+<p>Adds <a href="http://schema.org">schema.org</a> structured data to markup so search engines can extract rich results (product prices, ratings, recipes, events, etc.) from a page. Covers two output formats — HTML Microdata and JSON-LD — and picks between them based on how the target project is built, not by default preference.</p>
+<p>Read this file fully before starting. It routes you to the right reference and script rather than repeating their contents here.</p>
+<p><strong>Flow at a glance:</strong> pick technique (Step 1) → pick format (2) → load the schema-type reference (3) → run the script, review the diff (4) → preview what a parser extracts (5) → validate (6) → offer regression tests for component/11ty targets (7). Steps 5–7 are diagnostics and follow-ups; 1–4 are the core injection path.</p>
+<h2>Step 1: Pick the injection technique</h2>
+<p>The technique depends on where the markup lives, not on the schema type:</p>
 <div class="table-scroll">
 <table>
 <thead>
 <tr>
-<th>Mode</th>
-<th>Trigger</th>
-<th>Procedure</th>
+<th>Target</th>
+<th>Technique</th>
+<th>Why</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Identify</strong> a dish → return ingredients</td>
-<td><code>/recipe &lt;dish name&gt;</code>, recipe-card or cookbook screenshot, “what’s in &lt;dish&gt;”</td>
-<td><code>references/identify.md</code></td>
+<td>Static-site pipeline (11ty, Astro, Eleventy, Hugo, Jekyll)</td>
+<td>Build-pipeline transform: write the mapping once in a plugin/config that runs at build time</td>
+<td>Zero per-page token or editing cost after setup; scales to the whole site</td>
 </tr>
 <tr>
-<td><strong>Recommend</strong> what to cook from on-hand ingredients</td>
-<td><code>/cook &lt;flags&gt; &lt;ingredients&gt;</code> (flags: <code>--energy</code> / <code>--profit</code> / <code>--floor N</code>), “what should I cook”, “most profitable”, “best energy”</td>
-<td><code>references/recommend.md</code></td>
+<td>Design-system component (Web Component, React, Vue)</td>
+<td>Template-level authoring: embed the <code>itemprop</code>/JSON-LD binding directly in the component’s template or render function</td>
+<td>One-time cost per component; every instance inherits it automatically</td>
 </tr>
 <tr>
-<td><strong>Stock-check</strong> — gather list from storage</td>
-<td><code>/restock &lt;flags&gt;</code> (flags: <code>--floor N</code> / <code>--category name</code>) with a storage screenshot, “what should I gather”, “restock”</td>
-<td><code>references/stock-check.md</code></td>
+<td>Existing/bulk HTML files, no build pipeline</td>
+<td><code>scripts/inject_microdata.js</code> or <code>scripts/generate_json_ld.js</code>, driven by a selector-map config</td>
+<td>Claude never has to read/rewrite full file contents in-context — only the small config and a diff</td>
+</tr>
+<tr>
+<td>A single one-off page</td>
+<td>Direct manual <code>str_replace</code> annotation</td>
+<td>Scripting overhead isn’t worth it for one file</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>When the user’s intent is ambiguous, ask one short routing question rather
-than guessing.</p>
-<h2>Bundled data</h2>
+<p><strong>Web Component caveat:</strong> if the component’s structured data lives inside a shadow root, only put it there via <strong>Declarative Shadow DOM</strong> (<code>&lt;template shadowrootmode=&quot;open&quot;&gt;</code>, rendered server-side so the markup is present in the initial HTML response) — never a shadow root attached at runtime via <code>attachShadow()</code>, since that content doesn’t exist until client-side JS runs, and current guidance is that even where it might get picked up by a fully-rendering crawler, it shouldn’t be relied on across tools. For anything you actually want indexed reliably, prefer surfacing the structured data in the light DOM or a page-level <code>&lt;head&gt;</code> JSON-LD block rather than burying it in a shadow tree at all — this applies even to non-declarative Microdata inside a component template.</p>
+<p>Whichever technique you use, structured data is injected at <strong>build time or server-render time only</strong>. Never add it via a client-side script (<code>element.setAttribute('itemprop', ...)</code> after page load, or JS that writes the JSON-LD block into the DOM post-hydration). Search crawlers frequently index a page before JS execution completes, so client-injected structured data is unreliable and sometimes invisible to crawlers entirely. If the only markup you have access to is rendered client-side with no SSR/SSG path, say so and flag the limitation rather than injecting into the client bundle.</p>
+<h2>Step 2: Pick the format — Microdata vs JSON-LD</h2>
+<p>Don’t default to one. Read <code>references/format-decision.md</code> for the full decision guide with spec citations; the short version:</p>
 <ul>
-<li><code>references/recipes.json</code> — 472 recipes. Each: <code>name</code>, <code>course</code>
-(<code>appetizer</code>/<code>entree</code>/<code>dessert</code>), <code>star_rating</code>, <code>energy</code>, <code>sale_price</code>,
-<code>ingredients</code>. An ingredient slot is either fixed (<code>{&quot;name&quot;: &quot;...&quot;}</code>) or a
-<strong>category slot</strong> (<code>{&quot;name&quot;: &quot;spice&quot;, &quot;category&quot;: true}</code>) accepting any
-ingredient of that category. Category slots are the single most important
-nuance in DDV cooking.</li>
-<li><code>references/gatherables.json</code> — master catalog under <code>categories</code>:
+<li><strong>Microdata</strong> (attributes on the visible elements) keeps structured data physically attached to what the user sees, so it can’t drift from the rendered content — good when you control the template tightly and want that guarantee (e.g., a design-system component where the visible price and the <code>itemprop=&quot;price&quot;</code> value are the literal same DOM node).</li>
+<li><strong>JSON-LD</strong> (a separate <code>&lt;script type=&quot;application/ld+json&quot;&gt;</code> block) decouples the data from the DOM, which is easier to maintain across template/CMS changes but can silently drift out of sync with what’s rendered if nobody keeps them aligned.</li>
+</ul>
+<p>Both are valid, current schema.org-supported formats. Pick per task using that tradeoff — don’t ask the user to pick unless the reference’s guidance is genuinely ambiguous for their case.</p>
+<h2>Step 3: Load only the relevant schema type reference</h2>
+<p>Under <code>references/schema-types/</code>, one file per common <a href="http://schema.org">schema.org</a> type: <code>article.md</code>, <code>product.md</code>, <code>person.md</code>, <code>organization.md</code>, <code>recipe.md</code>, <code>event.md</code>. Read only the one(s) the task needs — don’t load all of them into context. Each file lists required vs. recommended properties and gives both a Microdata and a JSON-LD example.</p>
+<p>If the task needs a <a href="http://schema.org">schema.org</a> type not covered by one of these files, look it up directly at <code>https://schema.org/&lt;TypeName&gt;</code> rather than guessing at property names from memory — <a href="http://schema.org">schema.org</a>’s vocabulary is versioned and property sets do get revised.</p>
+<h2>Step 4: Run the script and produce a diff</h2>
+<p>Both <code>scripts/inject_microdata.js</code> and <code>scripts/generate_json_ld.js</code> take the same config format (<code>assets/selector-map-template.json</code> — copy and fill in per project) so switching formats later doesn’t mean re-authoring the mapping. Both scripts <strong>never overwrite files directly</strong> — they print a unified diff to stdout for review. Apply the diff yourself with <code>patch</code> (or by hand via <code>str_replace</code>) only after the user has looked at it. This keeps the person in the loop on exactly what’s being added to their markup, which matters more here than most edits since structured data is publicly visible to any bot that requests the page.</p>
+<p>First install the two runtime dependencies (<code>package.json</code> in this skill’s root lists them):</p>
+<pre><code class="language-bash">npm install
+</code></pre>
+<p>Then run whichever script the task needs:</p>
+<pre><code class="language-bash">node scripts/inject_microdata.js --config assets/selector-map.json --target path/to/page.html
+node scripts/generate_json_ld.js --config assets/selector-map.json --target path/to/page.html
+</code></pre>
+<p><strong>Hand-authoring JSON-LD instead of generating it?</strong> When you’re writing a
+JSON-LD block by hand in a TypeScript project (a one-off page, or a component
+that emits its own <code>&lt;script&gt;</code>), type-check it against the <a href="http://schema.org">schema.org</a> vocabulary
+with Google’s <code>schema-dts</code> — it catches wrong property names and value shapes
+at compile time. See <code>references/typed-authoring.md</code>. This is authoring-time
+help only; generated output is still validated at runtime in Step 6.</p>
+<h2>Step 5: Preview what a parser extracts</h2>
+<p>Validation (Step 6) answers <em>“is the markup structurally correct?”</em> — but the more common failure is markup that’s valid yet says the <strong>wrong thing</strong>: a stale hidden <code>&lt;meta&gt;</code>, a currency symbol leaking into a price, or a JSON-LD block that drifted from the visible content. To eyeball the actual <strong>values</strong> a machine reads — and to catch Microdata/JSON-LD disagreement — run the extraction preview:</p>
+<p><strong>When to run it (don’t deliberate):</strong></p>
 <ul>
-<li><code>ingredients</code> (188) — <code>name</code>, <code>category</code> (vegetable, fruit, grain, spice,
-sweets, seafood, dairy, meat, ice, fish), <code>method</code>
-(gardening/foraging/fishing/purchase), <code>energy</code>, <code>sale_price</code>,
-<code>locations</code>. <strong>Fish live here</strong> with <code>category: &quot;fish&quot;</code> — recipes with
-a <code>fish</code> category slot resolve to these.</li>
-<li><code>flowers</code> (86) — <code>name</code>, <code>sale_price</code>, <code>locations</code>, optional
-<code>availability</code> (abundant/average/rare/ultra-rare; event/seasonal flowers
-intentionally omit it).</li>
-<li><code>collectables</code> (62) — <code>name</code>, <code>method</code> (string or array, e.g. Bones is
-<code>[&quot;digging&quot;,&quot;fishing&quot;]</code>), <code>locations</code>, optional <code>event</code>.</li>
-<li><code>gems</code> (50) — <code>name</code>, <code>locations</code>, optional <code>sale_price</code>.
-Locations include biome + sub-area (e.g. <code>&quot;Glittering Dunes (The Wastes)&quot;</code>).
-<code>&quot;All Biomes&quot;</code> is valid (Stone, Coal Ore). Shop-source values like
-<code>&quot;Kristoff's Stall&quot;</code> mean the item is purchasable there.</li>
+<li><strong>Run it automatically, without asking,</strong> whenever the page carries <strong>both</strong> Microdata and JSON-LD (the drift check is the whole point), or <strong>immediately after generating JSON-LD</strong> from existing markup.</li>
+<li><strong>Offer it</strong> (one line) for a single-format page the user hand-edited.</li>
+<li><strong>Skip it</strong> only when there’s no structured data to look at.</li>
 </ul>
-</li>
-<li><code>references/categories.md</code> — what each cooking category slot accepts.</li>
-<li><code>references/icon-cues.md</code> — reading storage screenshots and disambiguating
-icons (two-pass read, 99-skip, gem regular/shiny, color-family pitfalls,
-event-item floor convention, crafted-not-gathered exclusions).</li>
-<li><code>references/sprites/*.png</code> — labeled canonical art:
+<pre><code class="language-bash">node scripts/preview_extraction.js --target path/to/page.html
+node scripts/preview_extraction.js --target path/to/page.html --format microdata|json-ld|both
+node scripts/preview_extraction.js --target path/to/page.html --base https://your.site/  # resolve relative URLs
+node scripts/preview_extraction.js --target path/to/page.html --json                     # machine-readable
+</code></pre>
+<p>It prints the extracted Microdata and JSON-LD items and, when a page carries both, a <strong>drift report</strong> flagging where they disagree — the exact risk <code>references/format-decision.md</code> warns about. This is a parser’s-eye view for the injection loop, <strong>not</strong> a crawler simulation: it doesn’t run JS, filter by rich-result requirements, or judge eligibility. Frame it that way to the user and keep deferring eligibility to Google’s Rich Results Test. Details and the parser-vs-crawler boundary are in <code>references/extraction-preview.md</code>. Reach for this especially after generating JSON-LD, or whenever a page mixes both formats.</p>
+<h2>Step 6: Validate</h2>
+<p>Run <code>scripts/validate_structured_data.js</code> against the result before considering the task done. It checks:</p>
 <ul>
-<li>13 per-category gatherable sheets (<code>gems.png</code>, <code>flowers.png</code>,
-<code>collectables.png</code>, plus one <code>ingredients-&lt;category&gt;.png</code> per cooking
-category)</li>
-<li>one full-catalog <code>recipes.png</code> (472 dishes, 1056×9734 px)
-All use the same 8-column alphabetical grid with captions. Open the
-matching sheet to confirm a thumbnail by eye.</li>
+<li>Microdata: every <code>itemprop</code> resolves to an ancestor <code>itemscope</code> (or a valid <code>itemref</code>), no orphaned properties — this mirrors the tree-construction algorithm in the spec, not an approximation of it.</li>
+<li>JSON-LD: runs the block through the <strong><code>jsonld</code> reference processor</strong> (Digital Bazaar’s <code>jsonld.js</code> — the W3C JSON-LD spec authors’ implementation) to catch structural JSON-LD errors, offline; then checks that required properties are present for the declared <code>@type</code>. Note the required-property table is <strong>Google Search’s rich-results requirements, not <a href="http://schema.org">schema.org</a> vocabulary</strong> — <a href="http://schema.org">schema.org</a> has no “required” concept, and no npm package authoritatively publishes Google’s list (see the provenance note in <code>scripts/validate_structured_data.js</code>).</li>
 </ul>
-</li>
-<li><code>references/sprite-coords.json</code> — companion index mapping every
-gatherable item AND every recipe to its <code>(sheet, row, col, x, y, w, h)</code>
-plus the shared grid layout. Use it to jump straight to a known
-item/recipe’s icon without scanning the whole sheet, and to verify
-whether a name exists in the catalog. Regenerated by <code>yarn workspace @allons-y/skill-dreamlight-valley build:sprites</code>.</li>
-</ul>
-<p><strong>Do not recite this data from memory — read the files.</strong> The bundled data is
-authoritative; your memory isn’t.</p>
-<h2>Configuration</h2>
-<p>This skill is for a single player’s saved game, so the config is a small
-plain-text file the user edits by hand. Check these paths in order and use
-the <strong>first one that exists</strong>:</p>
-<ol>
-<li><code>./dreamlight-valley.md</code></li>
-<li><code>~/.config/dreamlight-valley.md</code></li>
-</ol>
-<p><code>config.example.md</code> (next to this <a href="http://SKILL.md">SKILL.md</a>) is the starter. Read the file at
-the start of each mode and <strong>interpret it generously</strong> — it’s prose, not
-JSON. Users can express: floor (single or per-category), <code>/cook</code> objective,
-top-N recipe count, secondary-payout callout, extra fields shown by
-<code>/recipe</code>, and <code>/restock</code> toggles. Command-line flags from the user always
-win over the config. No config file present → use built-in defaults silently
-(don’t mention the config unless asked).</p>
-<h2>What this skill does NOT do</h2>
+<p>This is a structural check, not a substitute for Google’s Rich Results Test — mention that tool to the user for final confirmation of search-result eligibility, since that also reflects current indexing requirements that shift independently of the <a href="http://schema.org">schema.org</a> vocabulary itself.</p>
+<h2>Step 7: Offer regression tests (component libraries &amp; 11ty projects only)</h2>
+<p>Step 6 validates the markup <em>once</em>. But structured data silently rots — a later template edit, a price refactor, or a component change can invalidate markup that passed, and nobody notices until a rich result quietly disappears. For the two targets where markup is <strong>regenerated on every build</strong> — design-system components and static-site pipelines (11ty, Astro, Hugo, etc.) — offer to wire validation into the project’s own test suite so every future build re-checks it.</p>
+<p>After the markup is added and Step 6 passes, <strong>ask the consumer</strong>: <em>“Want me to add structured-data validation tests to your test suite, so this stays valid on every build?”</em> Only prompt for component-library or static-site targets. Skip it for a single one-off page — nothing regenerates it, so there’s nothing to regress.</p>
+<p>If they say yes, run <code>scripts/scaffold_validation_test.js</code>, choosing <code>--type</code> from the target and <code>--runner</code> from the project’s existing test runner:</p>
+<pre><code class="language-bash"># static-site pipeline: validate the built HTML output (run after the build)
+node scripts/scaffold_validation_test.js --type eleventy --runner node --out tests --site-dir _site
+
+# component library: validate each component's rendered output
+node scripts/scaffold_validation_test.js --type component --runner vitest --out tests --render-module ../src/render.js
+</code></pre>
+<p>Like the other scripts, it <strong>writes nothing</strong> — it prints three files for review (a vendored validation core, a throwing assert helper, and a runner-appropriate test), which you then add to the project after the consumer looks them over. The generated tests depend only on <code>cheerio</code> and <code>jsonld</code> as devDependencies — no dependency on this skill staying installed. Full walkthrough, runner variants, and CI wiring are in <code>references/regression-tests.md</code>.</p>
+<h2>Spec references</h2>
 <ul>
-<li>Track which expansion a recipe belongs to (the field was removed). If the
-user wants an expansion-specific list, fall back to filtering by
-ingredient origin where reasonable, or say it’s unsupported.</li>
-<li>Account for the “Well Fed” bonus, seasonal modifiers, or Goofy’s-stall
-price fluctuations — <code>sale_price</code> is the standard base sell value.</li>
-<li>Guess item locations. A handful of fish/seafood ingredients and event critters have
-empty <code>locations</code> arrays — say so rather than fabricating one.</li>
+<li>WHATWG HTML Standard, §5 Microdata (the itemscope/itemprop/itemtype/itemid/itemref syntax): <a href="https://html.spec.whatwg.org/multipage/microdata.html">https://html.spec.whatwg.org/multipage/microdata.html</a></li>
+<li><a href="http://schema.org">schema.org</a> vocabulary root: <a href="https://schema.org/docs/full.html">https://schema.org/docs/full.html</a></li>
+<li>JSON-LD 1.1 syntax: <a href="https://www.w3.org/TR/json-ld11/">https://www.w3.org/TR/json-ld11/</a></li>
 </ul>
+<p>Note on browser support: no current browser implements the old Microdata <em>DOM API</em> (<code>document.getItems()</code>); only the attribute syntax itself is relevant here, and that’s fine since these scripts never rely on the DOM API.</p>
 
 		</div>
 	</section>
@@ -1088,6 +1092,19 @@ empty <code>locations</code> arrays — say so rather than fabricating one.</li>
 				<div class="footer">
 					<p class="cta">Learn more</p>
 				</div>
+			</a><a class="card" href="/agent-skills/skills/dreamlight-valley/">
+				<div class="header">
+					<h3>dreamlight-valley</h3>
+					
+<p class="chips"><span class="chip">Games</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span><span class="chip"><span class="fa-solid fa-window-maximize" aria-hidden="true"></span> Live preview</span></p>
+
+				</div>
+				<div class="body">
+					<p>Cooking, gathering, and inventory management for Dreamlight Valley.</p>
+				</div>
+				<div class="footer">
+					<p class="cta">Learn more</p>
+				</div>
 			</a><a class="card" href="/agent-skills/skills/gh-notification-summary/">
 				<div class="header">
 					<h3>gh-notification-summary</h3>
@@ -1097,19 +1114,6 @@ empty <code>locations</code> arrays — say so rather than fabricating one.</li>
 				</div>
 				<div class="body">
 					<p>Review, summarize, and manage GitHub notifications via an interactive local dashboard. Unsubscribe from noisy threads, mark individual...</p>
-				</div>
-				<div class="footer">
-					<p class="cta">Learn more</p>
-				</div>
-			</a><a class="card" href="/agent-skills/skills/structured-data/">
-				<div class="header">
-					<h3>structured-data</h3>
-					
-<p class="chips"><span class="chip">SEO</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span></p>
-
-				</div>
-				<div class="body">
-					<p>Inject or generate schema.org structured data (HTML Microdata or JSON-LD) into web markup, then validate it. Picks the right format per...</p>
 				</div>
 				<div class="footer">
 					<p class="cta">Learn more</p>

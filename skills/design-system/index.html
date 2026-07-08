@@ -112,6 +112,9 @@ body {
 	text-underline-offset: 0.2ex;
 	text-decoration-thickness: 1px;
 
+	/* Break long, unbroken URLs so they wrap instead of overflowing the container. */
+	overflow-wrap: break-word;
+
 	&:is(:hover, :focus-visible) {
 		text-decoration: underline;
 	}
@@ -174,6 +177,9 @@ pre {
 	font-size: 0.8em !important;
 	box-shadow: inset 1px 1px 0 hsl(0deg 0% 0% / 0.04), inset -1px -1px 0 hsl(0deg 0% 0% / 0.04);
 
+	/* Breathing room so code doesn't sit flush against the left accent border. */
+	padding: 0.2rem .4rem;
+
 	/* Long lines (install commands, code samples) scroll inside the block
 	   instead of stretching the page past the viewport on narrow screens. */
 	max-inline-size: 100%;
@@ -191,6 +197,9 @@ code {
 	font-size: 0.9em;
 	margin-block-start: -.1rem;
 	border: 1px solid var(--theme--ui--color--subtle);
+
+	/* Long file paths and identifiers wrap instead of overflowing the page. */
+	overflow-wrap: break-word;
 }
 
 /* Copy-to-clipboard affordance injected around every <pre> by copy-code.js. */
@@ -414,7 +423,9 @@ li {
 .btn-group {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 1.6rem;
+	/* Tighter row-gap so wrapped buttons don't leave a large vertical gap. */
+	column-gap: 1.6rem;
+	row-gap: 0.6rem;
 	justify-content: var(--justify-content, start);
 	align-items: var(--align-items, center);
 }
@@ -498,6 +509,9 @@ li {
 	font-family: var(--theme--code--FontFamily);
 	font-size: 0.8rem;
 	font-weight: 600;
+	/* Explicit so the badge centers consistently whether it's rendered as an
+	   <h2> (Featured) or <p> (Recommended), which inherit different line heights. */
+	line-height: 1;
 	letter-spacing: 0.04em;
 	background: var(--theme--surface--color);
 	color: var(--theme--text--Color--accent);
@@ -505,9 +519,16 @@ li {
 	border-radius: 2em;
 
 	/* The floating "Featured"/"Recommended" badge only applies to a chip placed
-	   as a direct child of a card header — not to chips nested in `.chips`. */
-	.card header > & {
-		margin-block-start: -2.6rem;
+	   as a direct child of a card header — not to chips nested in `.chips`.
+	   Absolutely centered on the card's top border so it straddles the edge
+	   regardless of its own height. */
+	.card.featured :is(header, .header) > & {
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline-start: var(--card-pad, 1.5rem);
+		transform: translateY(-50%);
+		margin: 0;
+		padding-block: 0.45rem;
 		display: block;
 		inline-size: max-content;
 	}
@@ -566,6 +587,11 @@ li {
 	background: var(--theme--surface--color--sunken);
 	color: inherit;
 
+	/* Balance wrapped card text; fall back to `pretty` where `balance`
+	   isn't implemented yet (the later declaration wins only if parsed). */
+	text-wrap: pretty;
+	text-wrap: balance;
+
 	border: 1px solid var(--theme--ui--color--subtle);
 	border-radius: .8em;
 	padding: 2rem 1.2rem 1.2rem;
@@ -611,8 +637,17 @@ li {
 		color: var(--theme--text--Color);
 	}
 
+	/* Tighter line height for card body copy than the page default. */
+	:is(p, li) {
+		line-height: 1.5;
+	}
+
 	&.featured {
-		padding: clamp(1.5rem, 3vw, 2.5rem);
+		--card-pad: clamp(1.5rem, 3vw, 2.5rem);
+		position: relative;
+		/* Clearance above the card for the floating badge that straddles the top. */
+		margin-block-start: 1.5rem;
+		padding: var(--card-pad);
 		box-shadow: var(--theme--ui--shadow);
 		border-color: var(--theme--text--Color--accent);
 		/* @eslint/css can't parse var() inside linear-gradient() color stops
@@ -624,6 +659,11 @@ li {
 			var(--theme--surface--color--sunken)
 		);
 		/* eslint-enable css/no-invalid-properties */
+
+		/* Space above the title so it clears the floating badge. */
+		:is(header, .header) > h3 {
+			margin-block-start: 0.75rem;
+		}
 	}
 }
 
@@ -736,6 +776,8 @@ body > footer {
 
 .prose {
 	inline-size: min(80ch, 100%);
+	/* Long words and strings in body copy wrap instead of overflowing. */
+	overflow-wrap: break-word;
 
 	:is(h1, h2) {
 		font-size: clamp(1.5rem, 3vw, 2rem);
@@ -1137,6 +1179,19 @@ and catches gaps that prose misses.</p>
 				</div>
 				<div class="body">
 					<p>Review, summarize, and manage GitHub notifications via an interactive local dashboard. Unsubscribe from noisy threads, mark individual...</p>
+				</div>
+				<div class="footer">
+					<p class="cta">Learn more</p>
+				</div>
+			</a><a class="card" href="/agent-skills/skills/structured-data/">
+				<div class="header">
+					<h3>structured-data</h3>
+					
+<p class="chips"><span class="chip">SEO</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span></p>
+
+				</div>
+				<div class="body">
+					<p>Inject or generate schema.org structured data (HTML Microdata or JSON-LD) into web markup, then validate it. Picks the right format per...</p>
 				</div>
 				<div class="footer">
 					<p class="cta">Learn more</p>
