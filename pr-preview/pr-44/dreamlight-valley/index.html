@@ -35,8 +35,11 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=PT+Mono&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap&family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-		<link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet">
 		<script src="https://kit.fontawesome.com/42e99b4632.js" crossorigin="anonymous"></script>
+
+		
+		<link href="/agent-skills/pr-preview/pr-44/assets/prism.css" rel="stylesheet" media="(prefers-color-scheme: light)">
+		<link href="/agent-skills/pr-preview/pr-44/assets/prism-dark.css" rel="stylesheet" media="(prefers-color-scheme: dark)">
 
         <style>
 		:root {
@@ -169,23 +172,6 @@ p {
 	line-height: 1.8;
 }
 
-pre {
-	background: var(--theme--surface--color--sunken);
-	border-inline-start: 4px solid var(--base);
-	border-end-end-radius: .2em;
-	border-start-end-radius: .2em;
-	font-size: 0.8em !important;
-	box-shadow: inset 1px 1px 0 hsl(0deg 0% 0% / 0.04), inset -1px -1px 0 hsl(0deg 0% 0% / 0.04);
-
-	/* Breathing room so code doesn't sit flush against the left accent border. */
-	padding: 0.2rem .4rem;
-
-	/* Long lines (install commands, code samples) scroll inside the block
-	   instead of stretching the page past the viewport on narrow screens. */
-	max-inline-size: 100%;
-	overflow-x: auto;
-}
-
 code {
 	font-family: var(--theme--code--FontFamily);
 	line-height: 1.4;
@@ -200,6 +186,28 @@ code {
 
 	/* Long file paths and identifiers wrap instead of overflowing the page. */
 	overflow-wrap: break-word;
+}
+
+/* Prism's themes add a text-shadow to code — a white "emboss" in the default
+   light theme — that reads as a halo on our card and prose surfaces (the code
+   block background is themed separately from Prism's own). Drop it so snippets
+   render flat and crisp in both light and dark mode. `text-shadow` inherits, so
+   this also clears it from the token spans. */
+:is(pre, code)[class*="language-"] {
+	text-shadow: none;
+}
+
+/* The site owns the code-block container so light and dark match: a flat surface
+   panel — the same color as inline `code` — with a thin subtle border and gentle
+   rounding. The Prism themes then supply only the token colors, so the light
+   theme's panel and prism-dark's brown panel, thick border, and inset shadow are
+   all overridden here. Components that own their code area (`.hero-terminal pre`,
+   `.card pre`) restyle it below. */
+pre[class*="language-"] {
+	background: var(--theme--surface--color);
+	border: 1px solid var(--theme--ui--color--subtle);
+	border-radius: 0.4em;
+	box-shadow: none;
 }
 
 /* Copy-to-clipboard affordance injected around every <pre> by copy-code.js. */
@@ -634,6 +642,15 @@ li {
 	pre,
 	:not(pre) > code {
 		background: var(--theme--surface--color);
+	}
+
+	/* Code snippets in a card carry the brand accent bar instead of the full
+	   border, with the leading corners squared so the bar reads as a clean edge. */
+	pre[class*="language-"] {
+		border: none;
+		border-inline-start: 4px solid var(--base);
+		border-start-start-radius: 0;
+		border-end-start-radius: 0;
 	}
 
 	:is(header, .header) :is(h2, h3, h4, h5, h6):not([class]) {
