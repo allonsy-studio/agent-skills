@@ -35,8 +35,15 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=PT+Mono&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap&family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-		<link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet" />
 		<script src="https://kit.fontawesome.com/42e99b4632.js" crossorigin="anonymous"></script>
+
+		{# Prism syntax-highlighting themes, vendored from the installed `prismjs`
+		   package via Eleventy passthrough copy (see `eleventy.config.js`). Light and
+		   dark variants are swapped by `prefers-color-scheme` so code snippets track
+		   the page's light/dark mode. Loaded before the site styles so those can
+		   override them. #}
+		<link href="/assets/prism.css" rel="stylesheet" media="(prefers-color-scheme: light)" />
+		<link href="/assets/prism-dark.css" rel="stylesheet" media="(prefers-color-scheme: dark)" />
 
         <style>
 		:root {

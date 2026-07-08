@@ -106,3 +106,20 @@ test("wraps tables in a horizontal scroll container", () => {
 	assert.match(html, /<div class="table-scroll">\s*<table>/);
 	assert.match(html, /<\/table>\s*<\/div>/);
 });
+
+test("Prism-highlights fenced code into a language-tagged block", () => {
+	const md = createSkillRenderer();
+	const html = md.render("```bash\nnpm install foo\n```\n");
+	assert.match(html, /<pre class="language-bash"><code class="language-bash">/);
+	// Tokenized by Prism so the shared theme colors the snippet.
+	assert.match(html, /<span class="token function">npm<\/span>/);
+});
+
+test("unlabeled fences fall back to a tokenized bash block", () => {
+	const md = createSkillRenderer();
+	const html = md.render("```\nnpm install foo && echo done\n```\n");
+	assert.match(html, /<pre class="language-bash"><code class="language-bash">/);
+	// Tokenized as bash so shell operators are still colored, and HTML is escaped.
+	assert.match(html, /<span class="token function">npm<\/span>/);
+	assert.doesNotMatch(html, /class="language-none"/);
+});

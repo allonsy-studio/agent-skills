@@ -6,6 +6,31 @@
  * `docs/tests/` exercise these directly.
  */
 import MarkdownIt from "markdown-it";
+import Prism from "prismjs";
+import loadLanguages from "prismjs/components/index.js";
+
+// Grammars for the fenced-code languages that appear in SKILL.md bodies. Loading
+// `bash` also registers its `shell` alias. `bash` doubles as the fallback grammar
+// for unknown/unlabeled fences (see `highlightFence`), so it must stay loaded.
+const FALLBACK_LANGUAGE = "bash";
+loadLanguages([FALLBACK_LANGUAGE, "json", "markdown", "yaml"]);
+
+/**
+ * Prism-highlight a fenced code block into the same `pre.language-*` markup the
+ * site's `{% highlight %}` shortcode emits, so the shared Prism theme formats the
+ * SKILL.md code snippets rendered on the per-skill landing pages. Unknown or
+ * unlabeled languages fall back to `bash` — most SKILL.md fences are shell
+ * commands — so every block is tokenized and picks up the Prism styling.
+ *
+ * @param {string} code
+ * @param {string} lang
+ * @returns {string}
+ */
+function highlightFence(code, lang) {
+	const language = lang && Prism.languages[lang] ? lang : FALLBACK_LANGUAGE;
+	const body = Prism.highlight(code, Prism.languages[language], language);
+	return `<pre class="language-${language}"><code class="language-${language}">${body}</code></pre>`;
+}
 
 /** Default branch used when building GitHub `blob`/raw URLs for skill assets. */
 export const DEFAULT_BRANCH = "main";
@@ -52,6 +77,7 @@ const renderToken = (tokens, idx, options, _env, self) => self.renderToken(token
  */
 export function createSkillRenderer() {
 	const md = new MarkdownIt({ html: true, linkify: true, typographer: true });
+	md.set({ highlight: (code, lang) => highlightFence(code, lang) });
 	const defaultLinkOpen = md.renderer.rules.link_open ?? renderToken;
 
 	md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
