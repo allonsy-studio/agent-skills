@@ -50,6 +50,8 @@
 
 .prose {
 	inline-size: min(80ch, 100%);
+	/* Long words and strings in body copy wrap instead of overflowing. */
+	overflow-wrap: break-word;
 
 	:is(h1, h2) {
 		font-size: clamp(1.5rem, 3vw, 2rem);

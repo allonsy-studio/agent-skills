@@ -13,7 +13,9 @@ tagline: "Specialized agent skills that streamline common developer workflows an
 
 <header class="container hero">
 	<p class="eyebrow chip">Skills for AI agents</p>
-	<h1>{{ title | default(site.title) }}</h1>
+	{# Keep the package name on the dashes (non-breaking hyphen U+2011) and let it
+	   wrap only after the slash (<wbr>), so it breaks as "@allons-y/ | agent-skills". #}
+	<h1>{{ title | default(site.title) | replace("-", "&#8209;") | replace("/", "/<wbr>") | safe }}</h1>
 	<p class="lede">{{ tagline }}</p>
 	<p class="btn-group">
 		<a class="btn primary" href="#install">Get started</a>
@@ -49,26 +51,19 @@ tagline: "Specialized agent skills that streamline common developer workflows an
 		</div>
 
 		{% if site.featured -%}
-		<aside class="card featured">
+		<a class="card featured" href="{{ site.featured.detailUrl }}">
 			<header>
 				<h2 class="chip">Featured skill</h2>
-				<h3 id="featured-skill">
-					{{ site.featured.name }}
-					<a class="anchor" href="#featured" aria-label="Permalink to featured skill">#</a>
-				</h3>
+				<h3 id="featured-skill">{{ site.featured.name }}</h3>
 				{{ skillChips(site.featured) }}
 			</header>
 			<div class="body">
 				<p>{{ site.featured.description }}</p>
 			</div>
 			<div class="footer">
-				<p class="btn-group">
-					<a class="btn primary" href="{{ site.featured.detailUrl }}">Read the docs</a>
-					<a class="btn" href="#install">Install it</a>
-					{% if site.featured.previewUrl %}<a class="btn" href="{{ site.featured.previewUrl }}"><span class="fa-solid fa-up-right-from-square" aria-hidden="true"></span> Preview skill interface</a>{% endif %}
-				</p>
+				<p class="cta">Read the docs</p>
 			</div>
-		</aside>
+		</a>
 		{%- endif %}
 	</section>
 

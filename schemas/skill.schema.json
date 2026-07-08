@@ -13,7 +13,7 @@
 		},
 		"category": {
 			"description": "Grouping shown as a chip on the marketplace site. Add new categories here so casing and spelling stay consistent (e.g. 'GitHub', not 'Github').",
-			"enum": ["Design", "Games", "GitHub"]
+			"enum": ["Design", "Games", "GitHub", "SEO"]
 		},
 		"flavor": {
 			"description": "Optional explicit override for the implementation/reference classification that is otherwise inferred from the presence of a scripts/ directory.",
