@@ -35,8 +35,11 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=PT+Mono&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap&family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-		<link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet">
 		<script src="https://kit.fontawesome.com/42e99b4632.js" crossorigin="anonymous"></script>
+
+		
+		<link href="/agent-skills/assets/prism.css" rel="stylesheet" media="(prefers-color-scheme: light)">
+		<link href="/agent-skills/assets/prism-dark.css" rel="stylesheet" media="(prefers-color-scheme: dark)">
 
         <style>
 		:root {
@@ -169,23 +172,6 @@ p {
 	line-height: 1.8;
 }
 
-pre {
-	background: var(--theme--surface--color--sunken);
-	border-inline-start: 4px solid var(--base);
-	border-end-end-radius: .2em;
-	border-start-end-radius: .2em;
-	font-size: 0.8em !important;
-	box-shadow: inset 1px 1px 0 hsl(0deg 0% 0% / 0.04), inset -1px -1px 0 hsl(0deg 0% 0% / 0.04);
-
-	/* Breathing room so code doesn't sit flush against the left accent border. */
-	padding: 0.2rem .4rem;
-
-	/* Long lines (install commands, code samples) scroll inside the block
-	   instead of stretching the page past the viewport on narrow screens. */
-	max-inline-size: 100%;
-	overflow-x: auto;
-}
-
 code {
 	font-family: var(--theme--code--FontFamily);
 	line-height: 1.4;
@@ -200,6 +186,28 @@ code {
 
 	/* Long file paths and identifiers wrap instead of overflowing the page. */
 	overflow-wrap: break-word;
+}
+
+/* Prism's themes add a text-shadow to code — a white "emboss" in the default
+   light theme — that reads as a halo on our card and prose surfaces (the code
+   block background is themed separately from Prism's own). Drop it so snippets
+   render flat and crisp in both light and dark mode. `text-shadow` inherits, so
+   this also clears it from the token spans. */
+:is(pre, code)[class*="language-"] {
+	text-shadow: none;
+}
+
+/* The site owns the code-block container so light and dark match: a flat surface
+   panel — the same color as inline `code` — with a thin subtle border and gentle
+   rounding. The Prism themes then supply only the token colors, so the light
+   theme's panel and prism-dark's brown panel, thick border, and inset shadow are
+   all overridden here. Components that own their code area (`.hero-terminal pre`,
+   `.card pre`) restyle it below. */
+pre[class*="language-"] {
+	background: var(--theme--surface--color);
+	border: 1px solid var(--theme--ui--color--subtle);
+	border-radius: 0.4em;
+	box-shadow: none;
 }
 
 /* Copy-to-clipboard affordance injected around every <pre> by copy-code.js. */
@@ -636,6 +644,15 @@ li {
 		background: var(--theme--surface--color);
 	}
 
+	/* Code snippets in a card carry the brand accent bar instead of the full
+	   border, with the leading corners squared so the bar reads as a clean edge. */
+	pre[class*="language-"] {
+		border: none;
+		border-inline-start: 4px solid var(--base);
+		border-start-start-radius: 0;
+		border-end-start-radius: 0;
+	}
+
 	:is(header, .header) :is(h2, h3, h4, h5, h6):not([class]) {
 		font-size: calc(1.2em + 1cqi);
 	}
@@ -733,7 +750,17 @@ body > footer {
 		.skill-hero {
 	padding-block: 2.5rem 2.25rem;
 	border-block-end: 1px solid var(--theme--ui--color--subtle);
-	background-image: linear-gradient(180deg, var(--theme--surface--color--accent), transparent);
+
+	/* Soft glow that fades delicately outward, matching the home page header
+	   (docs/styles.css) rather than a flat top-to-bottom wash. Anchored toward the
+	   start edge so the glow sits behind this hero's left-aligned content — the way
+	   the home glow sits behind its centered content — instead of leaving the
+	   top-left corner in the faint zone. */
+	background-image: radial-gradient(
+		75% 85% at 20% 0%,
+		var(--theme--surface--color--accent),
+		transparent 70%
+	);
 
 	> * + * {
 		margin-block-start: 1.25rem;
@@ -1022,11 +1049,11 @@ body > footer {
 <h2>Step 4: Run the script and produce a diff</h2>
 <p>Both <code>scripts/inject_microdata.js</code> and <code>scripts/generate_json_ld.js</code> take the same config format (<code>assets/selector-map-template.json</code> — copy and fill in per project) so switching formats later doesn’t mean re-authoring the mapping. Both scripts <strong>never overwrite files directly</strong> — they print a unified diff to stdout for review. Apply the diff yourself with <code>patch</code> (or by hand via <code>str_replace</code>) only after the user has looked at it. This keeps the person in the loop on exactly what’s being added to their markup, which matters more here than most edits since structured data is publicly visible to any bot that requests the page.</p>
 <p>First install the two runtime dependencies (<code>package.json</code> in this skill’s root lists them):</p>
-<pre><code class="language-bash">npm install
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span>
 </code></pre>
 <p>Then run whichever script the task needs:</p>
-<pre><code class="language-bash">node scripts/inject_microdata.js --config assets/selector-map.json --target path/to/page.html
-node scripts/generate_json_ld.js --config assets/selector-map.json --target path/to/page.html
+<pre class="language-bash"><code class="language-bash"><span class="token function">node</span> scripts/inject_microdata.js <span class="token parameter variable">--config</span> assets/selector-map.json <span class="token parameter variable">--target</span> path/to/page.html
+<span class="token function">node</span> scripts/generate_json_ld.js <span class="token parameter variable">--config</span> assets/selector-map.json <span class="token parameter variable">--target</span> path/to/page.html
 </code></pre>
 <p><strong>Hand-authoring JSON-LD instead of generating it?</strong> When you’re writing a
 JSON-LD block by hand in a TypeScript project (a one-off page, or a component
@@ -1042,10 +1069,10 @@ help only; generated output is still validated at runtime in Step 6.</p>
 <li><strong>Offer it</strong> (one line) for a single-format page the user hand-edited.</li>
 <li><strong>Skip it</strong> only when there’s no structured data to look at.</li>
 </ul>
-<pre><code class="language-bash">node scripts/preview_extraction.js --target path/to/page.html
-node scripts/preview_extraction.js --target path/to/page.html --format microdata|json-ld|both
-node scripts/preview_extraction.js --target path/to/page.html --base https://your.site/  # resolve relative URLs
-node scripts/preview_extraction.js --target path/to/page.html --json                     # machine-readable
+<pre class="language-bash"><code class="language-bash"><span class="token function">node</span> scripts/preview_extraction.js <span class="token parameter variable">--target</span> path/to/page.html
+<span class="token function">node</span> scripts/preview_extraction.js <span class="token parameter variable">--target</span> path/to/page.html <span class="token parameter variable">--format</span> microdata<span class="token operator">|</span>json-ld<span class="token operator">|</span>both
+<span class="token function">node</span> scripts/preview_extraction.js <span class="token parameter variable">--target</span> path/to/page.html <span class="token parameter variable">--base</span> https://your.site/  <span class="token comment"># resolve relative URLs</span>
+<span class="token function">node</span> scripts/preview_extraction.js <span class="token parameter variable">--target</span> path/to/page.html <span class="token parameter variable">--json</span>                     <span class="token comment"># machine-readable</span>
 </code></pre>
 <p>It prints the extracted Microdata and JSON-LD items and, when a page carries both, a <strong>drift report</strong> flagging where they disagree — the exact risk <code>references/format-decision.md</code> warns about. This is a parser’s-eye view for the injection loop, <strong>not</strong> a crawler simulation: it doesn’t run JS, filter by rich-result requirements, or judge eligibility. Frame it that way to the user and keep deferring eligibility to Google’s Rich Results Test. Details and the parser-vs-crawler boundary are in <code>references/extraction-preview.md</code>. Reach for this especially after generating JSON-LD, or whenever a page mixes both formats.</p>
 <h2>Step 6: Validate</h2>
@@ -1059,11 +1086,11 @@ node scripts/preview_extraction.js --target path/to/page.html --json            
 <p>Step 6 validates the markup <em>once</em>. But structured data silently rots — a later template edit, a price refactor, or a component change can invalidate markup that passed, and nobody notices until a rich result quietly disappears. For the two targets where markup is <strong>regenerated on every build</strong> — design-system components and static-site pipelines (11ty, Astro, Hugo, etc.) — offer to wire validation into the project’s own test suite so every future build re-checks it.</p>
 <p>After the markup is added and Step 6 passes, <strong>ask the consumer</strong>: <em>“Want me to add structured-data validation tests to your test suite, so this stays valid on every build?”</em> Only prompt for component-library or static-site targets. Skip it for a single one-off page — nothing regenerates it, so there’s nothing to regress.</p>
 <p>If they say yes, run <code>scripts/scaffold_validation_test.js</code>, choosing <code>--type</code> from the target and <code>--runner</code> from the project’s existing test runner:</p>
-<pre><code class="language-bash"># static-site pipeline: validate the built HTML output (run after the build)
-node scripts/scaffold_validation_test.js --type eleventy --runner node --out tests --site-dir _site
+<pre class="language-bash"><code class="language-bash"><span class="token comment"># static-site pipeline: validate the built HTML output (run after the build)</span>
+<span class="token function">node</span> scripts/scaffold_validation_test.js <span class="token parameter variable">--type</span> eleventy <span class="token parameter variable">--runner</span> <span class="token function">node</span> <span class="token parameter variable">--out</span> tests --site-dir _site
 
-# component library: validate each component's rendered output
-node scripts/scaffold_validation_test.js --type component --runner vitest --out tests --render-module ../src/render.js
+<span class="token comment"># component library: validate each component's rendered output</span>
+<span class="token function">node</span> scripts/scaffold_validation_test.js <span class="token parameter variable">--type</span> component <span class="token parameter variable">--runner</span> vitest <span class="token parameter variable">--out</span> tests --render-module <span class="token punctuation">..</span>/src/render.js
 </code></pre>
 <p>Like the other scripts, it <strong>writes nothing</strong> — it prints three files for review (a vendored validation core, a throwing assert helper, and a runner-appropriate test), which you then add to the project after the consumer looks them over. The generated tests depend only on <code>cheerio</code> and <code>jsonld</code> as devDependencies — no dependency on this skill staying installed. Full walkthrough, runner variants, and CI wiring are in <code>references/regression-tests.md</code>.</p>
 <h2>Spec references</h2>
