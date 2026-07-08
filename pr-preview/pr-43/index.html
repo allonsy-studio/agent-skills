@@ -197,18 +197,17 @@ code {
 	text-shadow: none;
 }
 
-/* The dark Prism theme (prism-dark) ships a brown/tan panel, a thick tan border,
-   and an inset shadow that don't fit the site's flat, layered dark surfaces.
-   Scoped to dark mode — where that theme loads — swap the panel for the same
-   surface color as inline `code` (`--theme--surface--color`) and the border for a
-   thin subtle rule, and drop the inset shadow. Components that own their code-area
-   background (`.hero-terminal pre`, `.card pre`) override the background below. */
-@media (prefers-color-scheme: dark) {
-	pre[class*="language-"] {
-		border: 1px solid var(--theme--ui--color--subtle);
-		box-shadow: none;
-		background: var(--theme--surface--color);
-	}
+/* The site owns the code-block container so light and dark match: a flat surface
+   panel — the same color as inline `code` — with a thin subtle border and gentle
+   rounding. The Prism themes then supply only the token colors, so the light
+   theme's panel and prism-dark's brown panel, thick border, and inset shadow are
+   all overridden here. Components that own their code area (`.hero-terminal pre`,
+   `.card pre`) restyle it below. */
+pre[class*="language-"] {
+	background: var(--theme--surface--color);
+	border: 1px solid var(--theme--ui--color--subtle);
+	border-radius: 0.4em;
+	box-shadow: none;
 }
 
 /* Copy-to-clipboard affordance injected around every <pre> by copy-code.js. */
@@ -645,6 +644,15 @@ li {
 		background: var(--theme--surface--color);
 	}
 
+	/* Code snippets in a card carry the brand accent bar instead of the full
+	   border, with the leading corners squared so the bar reads as a clean edge. */
+	pre[class*="language-"] {
+		border: none;
+		border-inline-start: 4px solid var(--base);
+		border-start-start-radius: 0;
+		border-end-start-radius: 0;
+	}
+
 	:is(header, .header) :is(h2, h3, h4, h5, h6):not([class]) {
 		font-size: calc(1.2em + 1cqi);
 	}
@@ -739,27 +747,7 @@ body > footer {
 	}
 }
 
-		/* Custom code-snippet styling for the home page only. The per-skill landing
-   pages instead let Prism format their code blocks, so this treatment lives here
-   rather than in the shared stylesheet. */
-pre {
-	background: var(--theme--surface--color--sunken);
-	border-inline-start: 4px solid var(--base);
-	border-end-end-radius: .2em;
-	border-start-end-radius: .2em;
-	font-size: 0.8em !important;
-	box-shadow: inset 1px 1px 0 hsl(0deg 0% 0% / 0.04), inset -1px -1px 0 hsl(0deg 0% 0% / 0.04);
-
-	/* Breathing room so code doesn't sit flush against the left accent border. */
-	padding: 0.2rem .4rem;
-
-	/* Long lines (install commands, code samples) scroll inside the block
-	   instead of stretching the page past the viewport on narrow screens. */
-	max-inline-size: 100%;
-	overflow-x: auto;
-}
-
-body > header {
+		body > header {
 	--justify-content: center;
 
 	text-align: center;
