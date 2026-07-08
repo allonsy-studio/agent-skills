@@ -65,6 +65,9 @@ body {
 	text-underline-offset: 0.2ex;
 	text-decoration-thickness: 1px;
 
+	/* Break long, unbroken URLs so they wrap instead of overflowing the container. */
+	overflow-wrap: break-word;
+
 	&:is(:hover, :focus-visible) {
 		text-decoration: underline;
 	}
@@ -127,6 +130,9 @@ pre {
 	font-size: 0.8em !important;
 	box-shadow: inset 1px 1px 0 hsl(0deg 0% 0% / 0.04), inset -1px -1px 0 hsl(0deg 0% 0% / 0.04);
 
+	/* Breathing room so code doesn't sit flush against the left accent border. */
+	padding: 0.2rem .4rem;
+
 	/* Long lines (install commands, code samples) scroll inside the block
 	   instead of stretching the page past the viewport on narrow screens. */
 	max-inline-size: 100%;
@@ -144,6 +150,9 @@ code {
 	font-size: 0.9em;
 	margin-block-start: -.1rem;
 	border: 1px solid var(--theme--ui--color--subtle);
+
+	/* Long file paths and identifiers wrap instead of overflowing the page. */
+	overflow-wrap: break-word;
 }
 
 /* Copy-to-clipboard affordance injected around every <pre> by copy-code.js. */
