@@ -41,6 +41,9 @@
 		<link href="/agent-skills/pr-preview/pr-44/assets/prism.css" rel="stylesheet" media="(prefers-color-scheme: light)">
 		<link href="/agent-skills/pr-preview/pr-44/assets/prism-dark.css" rel="stylesheet" media="(prefers-color-scheme: dark)">
 
+		
+		<link href="/agent-skills/pr-preview/pr-44/assets/prism-treeview.css" rel="stylesheet">
+
         <style>
 		:root {
 			color-scheme: light dark;
@@ -999,33 +1002,33 @@ body > footer {
 			</h2>
 			<p>Everything in this skill's source directory — scripts, references, and the tests and evals that back it. The installer copies the runtime files into your skills directory; the tests and evals stay in the repo.</p>
 		</header>
-		<pre class="skill-tree language-tree"><code>gh-notification-summary/
-|-- bin/
-|   `-- cli.js
-|-- evals/
-|   `-- evals.json
-|-- references/
-|   `-- development.md
-|-- scripts/
-|   |-- caching.js
-|   |-- github.js
-|   `-- server.js
-|-- templates/
-|   |-- dashboard.css
-|   |-- dashboard.html
-|   `-- dashboard.js
-|-- tests/
-|   |-- fixtures/
-|   |   |-- octokit-mock.js
-|   |   `-- octokit-responses.json
-|   |-- caching.test.js
-|   |-- cli.test.js
-|   |-- github.test.js
-|   |-- notifications-test-mode.test.js
-|   `-- server.test.js
-|-- .env.example
-|-- package.json
-`-- SKILL.md</code></pre>
+		<pre class="skill-tree language-treeview"><code class="language-treeview"><span class="token treeview-part"><span class="token entry-name dir">gh-notification-summary</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">bin</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-js">cli.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">evals</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-json">evals.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">references</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">development.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">scripts</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">caching.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">github.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-js">server.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">templates</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-css">dashboard.css</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-html">dashboard.html</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-js">dashboard.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">tests</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">fixtures</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">octokit-mock.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-json">octokit-responses.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">caching.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">cli.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">github.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">notifications-test-mode.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-test-js ext-js">server.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-env-example ext-example dotfile">.env.example</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">package.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">SKILL.md</span></span></code></pre>
 	</section>
 
 	<section id="docs" aria-labelledby="docs-heading" class="layout stacked">

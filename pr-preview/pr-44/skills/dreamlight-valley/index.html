@@ -41,6 +41,9 @@
 		<link href="/agent-skills/pr-preview/pr-44/assets/prism.css" rel="stylesheet" media="(prefers-color-scheme: light)">
 		<link href="/agent-skills/pr-preview/pr-44/assets/prism-dark.css" rel="stylesheet" media="(prefers-color-scheme: dark)">
 
+		
+		<link href="/agent-skills/pr-preview/pr-44/assets/prism-treeview.css" rel="stylesheet">
+
         <style>
 		:root {
 			color-scheme: light dark;
@@ -999,61 +1002,61 @@ body > footer {
 			</h2>
 			<p>Everything in this skill's source directory — scripts, references, and the tests and evals that back it. The installer copies the runtime files into your skills directory; the tests and evals stay in the repo.</p>
 		</header>
-		<pre class="skill-tree language-tree"><code>dreamlight-valley/
-|-- assets/
-|   |-- star-coin.png
-|   `-- thorn.svg
-|-- commands/
-|   |-- cook.md
-|   |-- recipe.md
-|   `-- restock.md
-|-- evals/
-|   `-- evals.json
-|-- preview/
-|   |-- index.11tydata.js
-|   |-- index.njk
-|   `-- styles.css
-|-- references/
-|   |-- sprites/
-|   |   |-- collectables.png
-|   |   |-- flowers.png
-|   |   |-- gems.png
-|   |   |-- ingredients-dairy.png
-|   |   |-- ingredients-fish.png
-|   |   |-- ingredients-fruit.png
-|   |   |-- ingredients-grain.png
-|   |   |-- ingredients-ice.png
-|   |   |-- ingredients-meat.png
-|   |   |-- ingredients-seafood.png
-|   |   |-- ingredients-spice.png
-|   |   |-- ingredients-sweet.png
-|   |   |-- ingredients-sweets.png
-|   |   |-- ingredients-vegetable.png
-|   |   |-- ingredients-vegetables.png
-|   |   |-- recipes.png
-|   |   `-- sprite-coords.json
-|   |-- categories.md
-|   |-- gatherables.json
-|   |-- icon-cues.md
-|   |-- identify.md
-|   |-- images.zip
-|   |-- recipes.json
-|   |-- recommend.md
-|   |-- sprite-coords.json
-|   `-- stock-check.md
-|-- scripts/
-|   |-- build-sprites.js
-|   `-- sprite-coords.js
-|-- tests/
-|   |-- build-sprites.test.js
-|   |-- gatherables.test.js
-|   |-- recipes.test.js
-|   `-- sprite-coords.test.js
-|-- config.example.md
-|-- eslint.config.js
-|-- package.json
-|-- README.md
-`-- SKILL.md</code></pre>
+		<pre class="skill-tree language-treeview"><code class="language-treeview"><span class="token treeview-part"><span class="token entry-name dir">dreamlight-valley</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">assets</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">star-coin.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-svg">thorn.svg</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">commands</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">cook.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">recipe.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">restock.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">evals</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-json">evals.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">preview</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-11tydata-js ext-js">index.11tydata.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-njk">index.njk</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-css">styles.css</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">references</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">sprites</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">collectables.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">flowers.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">gems.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-dairy.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-fish.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-fruit.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-grain.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-ice.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-meat.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-seafood.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-spice.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-sweet.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-sweets.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-vegetable.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-vegetables.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">recipes.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-json">sprite-coords.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">categories.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">gatherables.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">icon-cues.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">identify.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-zip">images.zip</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">recipes.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">recommend.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">sprite-coords.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">stock-check.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">scripts</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">build-sprites.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-js">sprite-coords.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">tests</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">build-sprites.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">gatherables.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">recipes.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-test-js ext-js">sprite-coords.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-example-md ext-md">config.example.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-config-js ext-js">eslint.config.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">package.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">README.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">SKILL.md</span></span></code></pre>
 	</section>
 
 	<section id="docs" aria-labelledby="docs-heading" class="layout stacked">

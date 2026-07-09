@@ -7,6 +7,7 @@ import {
 	buildTreeFromPaths,
 	createSkillRenderer,
 	deriveFlavor,
+	highlightTree,
 	rawHostFor,
 	readSkillTree,
 	renderSkillOverview,
@@ -303,4 +304,28 @@ test("skillTreeText propagates a buildTreeFromPaths bug instead of masking it as
 	};
 	await assert.rejects(() => skillTreeText("", "demo", { listTrackedFiles, fsImpl, warn: () => {} }));
 	assert.equal(walked, false, "a non-git bug must not silently fall back to the filesystem walk");
+});
+
+test("highlightTree tokenizes the tree with the Prism treeview grammar", () => {
+	const html = highlightTree(
+		renderSkillTree("demo", buildTreeFromPaths(["SKILL.md", "scripts/core.js", ".env.example"]))
+	);
+	// Directories, file extensions, and dotfiles get the classes prism-treeview.css
+	// styles into icons; the connectors become the branch-line spans it draws.
+	assert.match(html, /class="token entry-name dir">scripts</);
+	assert.match(html, /class="token entry-name ext-js">core\.js</);
+	assert.match(html, /class="token entry-name[^"]*\bdotfile\b[^"]*">\.env\.example</);
+	assert.match(html, /class="token entry-line line-h">\|-- /);
+	assert.match(html, /class="token entry-line line-v-last">`-- /);
+});
+
+test("highlightTree escapes HTML metacharacters in file names", () => {
+	const html = highlightTree(renderSkillTree("demo", buildTreeFromPaths(["a<b>&.js"])));
+	assert.match(html, /a&lt;b>&amp;\.js/);
+	assert.doesNotMatch(html, /<b>/);
+});
+
+test("highlightTree returns an empty string for a null or empty tree", () => {
+	assert.equal(highlightTree(null), "");
+	assert.equal(highlightTree(""), "");
 });

@@ -41,6 +41,9 @@
 		<link href="/agent-skills/pr-preview/pr-44/assets/prism.css" rel="stylesheet" media="(prefers-color-scheme: light)">
 		<link href="/agent-skills/pr-preview/pr-44/assets/prism-dark.css" rel="stylesheet" media="(prefers-color-scheme: dark)">
 
+		
+		<link href="/agent-skills/pr-preview/pr-44/assets/prism-treeview.css" rel="stylesheet">
+
         <style>
 		:root {
 			color-scheme: light dark;
@@ -997,36 +1000,36 @@ body > footer {
 			</h2>
 			<p>Everything in this skill's source directory — scripts, references, and the tests and evals that back it. The installer copies the runtime files into your skills directory; the tests and evals stay in the repo.</p>
 		</header>
-		<pre class="skill-tree language-tree"><code>design-system/
-|-- evals/
-|   `-- evals.json
-|-- references/
-|   |-- taxonomy/
-|   |   |-- 01-actions-inputs.md
-|   |   |-- 02-navigation-wayfinding.md
-|   |   |-- 03-disclosure-layering.md
-|   |   |-- 04-feedback-status.md
-|   |   |-- 05-layout-containers.md
-|   |   |-- 06-data-display.md
-|   |   |-- 07-form-controls.md
-|   |   |-- 08-media-imagery.md
-|   |   |-- 09-utilities.md
-|   |   |-- 10-application-chrome-layout.md
-|   |   |-- 11-application-tools.md
-|   |   `-- 12-composite-patterns.md
-|   |-- accessibility-patterns.md
-|   |-- api-design.md
-|   |-- component-taxonomy.md
-|   |-- design-tokens.md
-|   |-- guiding-principles.md
-|   |-- i18n.md
-|   |-- iconography.md
-|   |-- naming-conventions.md
-|   `-- typography.md
-|-- tests/
-|   `-- skill.test.js
-|-- package.json
-`-- SKILL.md</code></pre>
+		<pre class="skill-tree language-treeview"><code class="language-treeview"><span class="token treeview-part"><span class="token entry-name dir">design-system</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">evals</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-json">evals.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">references</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">taxonomy</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">01-actions-inputs.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">02-navigation-wayfinding.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">03-disclosure-layering.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">04-feedback-status.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">05-layout-containers.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">06-data-display.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">07-form-controls.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">08-media-imagery.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">09-utilities.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">10-application-chrome-layout.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">11-application-tools.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">12-composite-patterns.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">accessibility-patterns.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">api-design.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">component-taxonomy.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">design-tokens.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">guiding-principles.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">i18n.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">iconography.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">naming-conventions.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">typography.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">tests</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-test-js ext-js">skill.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">package.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">SKILL.md</span></span></code></pre>
 	</section>
 
 	<section id="docs" aria-labelledby="docs-heading" class="layout stacked">

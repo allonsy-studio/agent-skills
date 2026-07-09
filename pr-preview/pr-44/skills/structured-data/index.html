@@ -41,6 +41,9 @@
 		<link href="/agent-skills/pr-preview/pr-44/assets/prism.css" rel="stylesheet" media="(prefers-color-scheme: light)">
 		<link href="/agent-skills/pr-preview/pr-44/assets/prism-dark.css" rel="stylesheet" media="(prefers-color-scheme: dark)">
 
+		
+		<link href="/agent-skills/pr-preview/pr-44/assets/prism-treeview.css" rel="stylesheet">
+
         <style>
 		:root {
 			color-scheme: light dark;
@@ -1004,47 +1007,47 @@ body > footer {
 			</h2>
 			<p>Everything in this skill's source directory — scripts, references, and the tests and evals that back it. The installer copies the runtime files into your skills directory; the tests and evals stay in the repo.</p>
 		</header>
-		<pre class="skill-tree language-tree"><code>structured-data/
-|-- assets/
-|   `-- selector-map-template.json
-|-- commands/
-|   `-- preview-structured-data.md
-|-- evals/
-|   `-- evals.json
-|-- references/
-|   |-- schema-types/
-|   |   |-- article.md
-|   |   |-- event.md
-|   |   |-- organization.md
-|   |   |-- person.md
-|   |   |-- product.md
-|   |   `-- recipe.md
-|   |-- extraction-preview.md
-|   |-- format-decision.md
-|   |-- regression-tests.md
-|   `-- typed-authoring.md
-|-- scripts/
-|   |-- generate_json_ld.js
-|   |-- inject_microdata.js
-|   |-- preview_extraction.js
-|   |-- scaffold_validation_test.js
-|   |-- structured-data-assert.js
-|   |-- structured-data-core.js
-|   |-- structured-data-extract.js
-|   `-- validate_structured_data.js
-|-- tests/
-|   |-- fixtures/
-|   |   `-- product.html
-|   |-- docs_required_properties.test.js
-|   |-- generate_json_ld.test.js
-|   |-- inject_microdata.test.js
-|   |-- preview_extraction.test.js
-|   |-- scaffold_validation_test.test.js
-|   |-- structured_data_assert.test.js
-|   |-- structured_data_extract.test.js
-|   `-- validate_structured_data.test.js
-|-- package.json
-`-- SKILL.md</code></pre>
+		<pre class="skill-tree language-treeview"><code class="language-treeview"><span class="token treeview-part"><span class="token entry-name dir">structured-data</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">assets</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-json">selector-map-template.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">commands</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">preview-structured-data.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">evals</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-json">evals.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">references</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">schema-types</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">article.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">event.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">organization.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">person.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">product.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">recipe.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">extraction-preview.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">format-decision.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">regression-tests.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">typed-authoring.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">scripts</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">generate_json_ld.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">inject_microdata.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">preview_extraction.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">scaffold_validation_test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">structured-data-assert.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">structured-data-core.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">structured-data-extract.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-js">validate_structured_data.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">tests</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">fixtures</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-html">product.html</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">docs_required_properties.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">generate_json_ld.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">inject_microdata.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">preview_extraction.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">scaffold_validation_test.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">structured_data_assert.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">structured_data_extract.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-test-js ext-js">validate_structured_data.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">package.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">SKILL.md</span></span></code></pre>
 	</section>
 
 	<section id="docs" aria-labelledby="docs-heading" class="layout stacked">
