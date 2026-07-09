@@ -1235,7 +1235,10 @@ async function copyText(text) {
 	return ok;
 }
 
-for (const pre of document.querySelectorAll("pre")) {
+// The folder-structure tree (`.skill-tree`) is a display block, not a
+// copy-and-run snippet — an ASCII tree pastes nowhere useful — so it opts out
+// of the copy affordance.
+for (const pre of document.querySelectorAll("pre:not(.skill-tree)")) {
 	// Wrap the <pre> so the button can be absolutely positioned against it.
 	const wrapper = document.createElement("div");
 	wrapper.className = "code-block";
