@@ -44,6 +44,106 @@
 	padding-block: 2.5rem 4rem;
 }
 
+/* Install + folder tree share one band. The tree is the main column; Install is
+   a compact aside beside it on desktop and stacked above it on mobile — the
+   aside is first in the DOM, so single-column flow puts it on top. */
+.skill-payload {
+	display: grid;
+	/* A flex-sized (not content-sized) single column on mobile: `minmax(0, 1fr)`
+	   fills the container and can shrink to 0, so the tree's `min(80ch, 100%)`
+	   resolves its `100%` against a definite track instead of asserting 80ch and
+	   overflowing. Desktop adds the aside column below. */
+	grid-template-columns: minmax(0, 1fr);
+	gap: 2rem;
+}
+
+@media (min-width: 60rem) {
+	.skill-payload {
+		grid-template-columns: minmax(0, 1fr) minmax(15rem, 19rem);
+		align-items: start;
+		gap: 2.5rem;
+	}
+
+	.skill-payload .structure {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.skill-payload .install-aside {
+		grid-column: 2;
+		grid-row: 1;
+		/* Stay in view while a long tree scrolls past. */
+		position: sticky;
+		inset-block-start: 1.5rem;
+	}
+}
+
+/* Let the tree column shrink below its content so a wide tree scrolls inside its
+   own panel instead of stretching the grid track (and the page) wider. */
+.skill-payload .structure {
+	min-inline-size: 0;
+}
+
+.structure > header {
+	margin-block-end: 1.25rem;
+}
+
+.install-aside {
+	display: flex;
+	flex-direction: column;
+	gap: 1.15rem;
+
+	padding: 1.25rem 1.35rem;
+	background: var(--theme--surface--color--sunken);
+	border: 1px solid var(--theme--ui--color--subtle);
+	border-radius: 0.6em;
+
+	> header {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	h2 {
+		margin: 0;
+		font-size: 1.4rem;
+	}
+
+	h3 {
+		margin: 0;
+		font-size: 1.02rem;
+	}
+}
+
+.install-option {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+
+	.chip {
+		align-self: start;
+	}
+
+	p {
+		margin: 0;
+		font-size: 0.9em;
+	}
+}
+
+.install-aside .dirs {
+	font-size: 0.82em;
+	color: var(--theme--text--Color--subtle);
+}
+
+/* The aside is narrow, so wrap install commands to keep them fully visible
+   rather than scrolling out of sight (the copy button still copies the whole
+   command). Target the <code> too — the Prism theme pins it to `white-space:
+   pre`, and it holds the actual text. The tree keeps `white-space: pre`. */
+.install-aside :is(pre, code)[class*="language-"] {
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+}
+
 /* Prism-treeview folder view above the rendered SKILL.md. A deep tree scrolls
    inside the panel (overflow-x from the Prism theme) rather than wrapping. */
 .skill-tree {

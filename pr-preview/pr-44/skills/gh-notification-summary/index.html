@@ -796,6 +796,106 @@ body > footer {
 	padding-block: 2.5rem 4rem;
 }
 
+/* Install + folder tree share one band. The tree is the main column; Install is
+   a compact aside beside it on desktop and stacked above it on mobile — the
+   aside is first in the DOM, so single-column flow puts it on top. */
+.skill-payload {
+	display: grid;
+	/* A flex-sized (not content-sized) single column on mobile: `minmax(0, 1fr)`
+	   fills the container and can shrink to 0, so the tree's `min(80ch, 100%)`
+	   resolves its `100%` against a definite track instead of asserting 80ch and
+	   overflowing. Desktop adds the aside column below. */
+	grid-template-columns: minmax(0, 1fr);
+	gap: 2rem;
+}
+
+@media (min-width: 60rem) {
+	.skill-payload {
+		grid-template-columns: minmax(0, 1fr) minmax(15rem, 19rem);
+		align-items: start;
+		gap: 2.5rem;
+	}
+
+	.skill-payload .structure {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.skill-payload .install-aside {
+		grid-column: 2;
+		grid-row: 1;
+		/* Stay in view while a long tree scrolls past. */
+		position: sticky;
+		inset-block-start: 1.5rem;
+	}
+}
+
+/* Let the tree column shrink below its content so a wide tree scrolls inside its
+   own panel instead of stretching the grid track (and the page) wider. */
+.skill-payload .structure {
+	min-inline-size: 0;
+}
+
+.structure > header {
+	margin-block-end: 1.25rem;
+}
+
+.install-aside {
+	display: flex;
+	flex-direction: column;
+	gap: 1.15rem;
+
+	padding: 1.25rem 1.35rem;
+	background: var(--theme--surface--color--sunken);
+	border: 1px solid var(--theme--ui--color--subtle);
+	border-radius: 0.6em;
+
+	> header {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	h2 {
+		margin: 0;
+		font-size: 1.4rem;
+	}
+
+	h3 {
+		margin: 0;
+		font-size: 1.02rem;
+	}
+}
+
+.install-option {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+
+	.chip {
+		align-self: start;
+	}
+
+	p {
+		margin: 0;
+		font-size: 0.9em;
+	}
+}
+
+.install-aside .dirs {
+	font-size: 0.82em;
+	color: var(--theme--text--Color--subtle);
+}
+
+/* The aside is narrow, so wrap install commands to keep them fully visible
+   rather than scrolling out of sight (the copy button still copies the whole
+   command). Target the <code> too — the Prism theme pins it to `white-space:
+   pre`, and it holds the actual text. The tree keeps `white-space: pre`. */
+.install-aside :is(pre, code)[class*="language-"] {
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+}
+
 /* Prism-treeview folder view above the rendered SKILL.md. A deep tree scrolls
    inside the panel (overflow-x from the Prism theme) rather than wrapping. */
 .skill-tree {
@@ -921,93 +1021,42 @@ body > footer {
 		</div>
 	</section>
 
-	<section id="install" aria-labelledby="install-heading" class="layout stacked">
-		<header>
-			<h2 id="install-heading">
-				Install
-				<a class="anchor" href="#install" aria-label="Permalink to Install">#</a>
-			</h2>
-			<p>Pick the card for your agent harness. The skill payload is identical everywhere — no Claude-specific wiring.</p>
-		</header>
-		<div class="layout grid">
-			<article class="card featured" id="install-claude-code">
+	<section class="payload" aria-label="Install and folder structure">
+		<div class="skill-payload">
+			
+			<aside id="install" class="install-aside" aria-labelledby="install-heading">
 				<header>
-					<p class="chip">Recommended</p>
-					<h3>
-						<span class="icon" aria-hidden="true"><span class="fa-solid fa-bolt fa-xl"></span></span>Claude Code
-					</h3>
+					<h2 id="install-heading">
+						Install
+						<a class="anchor" href="#install" aria-label="Permalink to Install">#</a>
+					</h2>
+					<p class="note">The same skill payload everywhere — no Claude-specific wiring.</p>
 				</header>
-				<div class="body">
-					<h3>Native plugin install</h3>
-					<p>Register this repo as a Claude Code marketplace, then install skills via the <code>/plugin</code> UI.</p>
-				</div>
-				<footer>
-					
+				<div class="install-option">
+					<p class="chip">Recommended</p>
+					<h3>Claude Code</h3>
+					<p>Register the marketplace, then install from the <code>/plugin</code> UI.</p>
 					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">/plugin marketplace <span class="token function">add</span> allonsy-studio/agent-skills</span>
 <span class="highlight-line">/plugin <span class="token function">install</span> gh-notification-summary@agent-skills</span></code></pre>
-				</footer>
-			</article><article class="card" id="install-claude-agent-sdk">
-				<header>
-					
-					<h3>
-						<span class="icon" aria-hidden="true"><span class="fa-solid fa-cube fa-xl"></span></span>Claude Agent SDK
-					</h3>
-				</header>
-				<div class="body">
-					<h3>Vendor with npx</h3>
-					<p>Drop any skill into your agent's <code>SKILL.md</code> directory. No Claude-specific wiring.</p>
 				</div>
-				<footer>
-					
-					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">npx @allons-y/agent-skills gh-notification-summary <span class="token parameter variable">--dir</span> ~/.claude/skills</span></code></pre>
-				</footer>
-			</article><article class="card" id="install-cursor">
-				<header>
-					
-					<h3>
-						<span class="icon" aria-hidden="true"><span class="fa-solid fa-arrow-pointer fa-xl"></span></span>Cursor
-					</h3>
-				</header>
-				<div class="body">
-					<h3>Vendor with npx</h3>
-					<p>Cursor reads skill folders from your project. Vendor the skill, then point Cursor at it.</p>
+				<div class="install-option">
+					<h3>Any other harness</h3>
+					<p>Cursor, the Agent SDK, Aider, OpenCode — vendor the skill into your skills directory.</p>
+					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">npx @allons-y/agent-skills gh-notification-summary <span class="token parameter variable">--dir</span> <span class="token operator">&lt;</span>your-skills-dir<span class="token operator">></span></span></code></pre>
+					<p class="dirs">Common targets: <code>.cursor/skills</code>, <code>~/.claude/skills</code></p>
 				</div>
-				<footer>
-					
-					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">npx @allons-y/agent-skills gh-notification-summary <span class="token parameter variable">--dir</span> .cursor/skills</span></code></pre>
-				</footer>
-			</article><article class="card" id="install-any">
-				<header>
-					
-					<h3>
-						<span class="icon" aria-hidden="true"><span class="fa-solid fa-puzzle-piece fa-xl"></span></span>Any other harness
-					</h3>
-				</header>
-				<div class="body">
-					<h3>Pick your own directory</h3>
-					<p>Aider, OpenCode, or anything that reads <code>SKILL.md</code> directories. Choose your target folder.</p>
-				</div>
-				<footer>
-					
-					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">npx @allons-y/agent-skills <span class="token parameter variable">--list</span></span>
-<span class="highlight-line">npx @allons-y/agent-skills gh-notification-summary <span class="token parameter variable">--dir</span> <span class="token operator">&lt;</span>your-skills-dir<span class="token operator">></span></span></code></pre>
-				</footer>
-			</article>
-		</div>
-		<p class="note">
-			This skill ships a Node.js implementation — run <code>npm install</code> in the vendored directory once.
-		</p>
-	</section>
+				<p class="note">Ships a Node.js implementation — run <code>npm install</code> in the vendored directory once.</p>
+			</aside>
 
-	<section id="structure" aria-labelledby="structure-heading" class="layout stacked">
-		<header>
-			<h2 id="structure-heading">
-				Folder structure
-				<a class="anchor" href="#structure" aria-label="Permalink to Folder structure">#</a>
-			</h2>
-			<p>Everything in this skill's source directory — scripts, references, and the tests and evals that back it. The installer copies the runtime files into your skills directory; the tests and evals stay in the repo.</p>
-		</header>
-		<pre class="skill-tree language-treeview"><code class="language-treeview"><span class="token treeview-part"><span class="token entry-name dir">gh-notification-summary</span></span>
+			<div id="structure" class="structure" aria-labelledby="structure-heading">
+				<header>
+					<h2 id="structure-heading">
+						Folder structure
+						<a class="anchor" href="#structure" aria-label="Permalink to Folder structure">#</a>
+					</h2>
+					<p>Everything in this skill's source directory — scripts, references, and the tests and evals that back it. The installer copies the runtime files into your skills directory; the tests and evals stay in the repo.</p>
+				</header>
+				<pre class="skill-tree language-treeview"><code class="language-treeview"><span class="token treeview-part"><span class="token entry-name dir">gh-notification-summary</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">bin</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-js">cli.js</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">evals</span></span>
@@ -1034,6 +1083,8 @@ body > footer {
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-env-example ext-example dotfile">.env.example</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">package.json</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">SKILL.md</span></span></code></pre>
+			</div>
+		</div>
 	</section>
 
 	<section id="docs" aria-labelledby="docs-heading" class="layout stacked">
