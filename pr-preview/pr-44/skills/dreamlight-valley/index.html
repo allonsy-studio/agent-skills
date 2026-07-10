@@ -796,9 +796,14 @@ body > footer {
 	padding-block: 2.5rem 4rem;
 }
 
-/* ASCII folder-structure view above the rendered SKILL.md. Preserve the
-   `|--` connectors exactly and let a deep tree scroll rather than wrap. */
+/* Prism-treeview folder view above the rendered SKILL.md. A deep tree scrolls
+   inside the panel (overflow-x from the Prism theme) rather than wrapping. */
 .skill-tree {
+	/* Border-box so the panel's padding and border count inside the width cap.
+	   The site has no global border-box reset, so a content-box `inline-size:
+	   100%` plus Prism's 1em padding pushes the block ~6px past the viewport on
+	   mobile, triggering page-level horizontal scroll. */
+	box-sizing: border-box;
 	inline-size: min(80ch, 100%);
 
 	code {
