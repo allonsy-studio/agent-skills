@@ -71,18 +71,27 @@
 		/* Flow column is flex-sized (`minmax(0, 1fr)`) so the tree's
 		   `min(80ch, 100%)` resolves against a definite track; aside is fixed. */
 		grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
+		grid-template-rows: auto;
 		column-gap: 2.5rem;
 		align-items: start;
 	}
 
+	/* Rows are pinned explicitly on BOTH children. The aside precedes the flow
+	   in the DOM but sits in a later column, and the grid auto-placement cursor
+	   bumps a later item with an earlier definite column to the next row —
+	   WebKit follows that strictly (flow landed in row 2 on iPad, dropping all
+	   content below the aside) while Chromium keeps both in row 1. Explicit
+	   rows remove the engine divergence. */
 	.skill-cols > .skill-flow {
 		grid-column: 1;
+		grid-row: 1;
 	}
 
-	/* The aside's grid area spans the full height of the flow row, so sticky
-	   pins it from the top of the flow down to Other skills. */
+	/* The aside's grid area shares the flow's row, so sticky pins it from the
+	   top of the flow down to Other skills. */
 	.skill-cols > .install-aside {
 		grid-column: 2;
+		grid-row: 1;
 		align-self: start;
 		position: sticky;
 		inset-block-start: 1.5rem;
