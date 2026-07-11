@@ -796,44 +796,48 @@ body > footer {
 	padding-block: 2.5rem 4rem;
 }
 
-/* Install + folder tree share one band. The tree is the main column; Install is
-   a compact aside beside it on desktop and stacked above it on mobile — the
-   aside is first in the DOM, so single-column flow puts it on top. */
-.skill-payload {
-	display: grid;
-	/* A flex-sized (not content-sized) single column on mobile: `minmax(0, 1fr)`
-	   fills the container and can shrink to 0, so the tree's `min(80ch, 100%)`
-	   resolves its `100%` against a definite track instead of asserting 80ch and
-	   overflowing. Desktop adds the aside column below. */
-	grid-template-columns: minmax(0, 1fr);
-	gap: 2rem;
+/* The content flow (How to use it → Folder structure → Full instructions) and
+   the Install aside. On desktop they're two columns: the flow is the main
+   column, and Install sticks in the right column alongside the whole flow,
+   releasing at Other skills below. On mobile it's one column and — since the
+   aside is first in the DOM — Install leads the content. */
+.skill-cols {
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+}
+
+.skill-flow {
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+	/* Shrink below content so a wide tree scrolls inside its own panel instead
+	   of stretching the column (and the page) wider. */
+	min-inline-size: 0;
 }
 
 @media (min-width: 60rem) {
-	.skill-payload {
-		grid-template-columns: minmax(0, 1fr) minmax(15rem, 19rem);
+	.skill-cols {
+		display: grid;
+		/* Flow column is flex-sized (`minmax(0, 1fr)`) so the tree's
+		   `min(80ch, 100%)` resolves against a definite track; aside is fixed. */
+		grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
+		column-gap: 2.5rem;
 		align-items: start;
-		gap: 2.5rem;
 	}
 
-	.skill-payload .structure {
+	.skill-cols > .skill-flow {
 		grid-column: 1;
-		grid-row: 1;
 	}
 
-	.skill-payload .install-aside {
+	/* The aside's grid area spans the full height of the flow row, so sticky
+	   pins it from the top of the flow down to Other skills. */
+	.skill-cols > .install-aside {
 		grid-column: 2;
-		grid-row: 1;
-		/* Stay in view while a long tree scrolls past. */
+		align-self: start;
 		position: sticky;
 		inset-block-start: 1.5rem;
 	}
-}
-
-/* Let the tree column shrink below its content so a wide tree scrolls inside its
-   own panel instead of stretching the grid track (and the page) wider. */
-.skill-payload .structure {
-	min-inline-size: 0;
 }
 
 .structure > header {
@@ -843,9 +847,9 @@ body > footer {
 .install-aside {
 	display: flex;
 	flex-direction: column;
-	gap: 1.15rem;
+	gap: 0.85rem;
 
-	padding: 1.25rem 1.35rem;
+	padding: 1.1rem 1.2rem;
 	background: var(--theme--surface--color--sunken);
 	border: 1px solid var(--theme--ui--color--subtle);
 	border-radius: 0.6em;
@@ -853,47 +857,49 @@ body > footer {
 	> header {
 		display: flex;
 		flex-direction: column;
-		gap: 0.35rem;
+		gap: 0.3rem;
 	}
 
 	h2 {
 		margin: 0;
-		font-size: 1.4rem;
+		font-size: 1.25rem;
 	}
 
 	h3 {
 		margin: 0;
-		font-size: 1.02rem;
+		font-size: 0.98rem;
 	}
 }
 
 .install-option {
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
+	gap: 0.4rem;
 
 	.chip {
 		align-self: start;
 	}
-
-	p {
-		margin: 0;
-		font-size: 0.9em;
-	}
 }
 
 .install-aside .dirs {
+	margin: 0;
 	font-size: 0.82em;
 	color: var(--theme--text--Color--subtle);
 }
 
-/* The aside is narrow, so wrap install commands to keep them fully visible
-   rather than scrolling out of sight (the copy button still copies the whole
-   command). Target the <code> too — the Prism theme pins it to `white-space:
-   pre`, and it holds the actual text. The tree keeps `white-space: pre`. */
+/* Compact, wrapped command blocks: the aside is narrow, so shrink the type and
+   padding and wrap long commands (targeting the <code> too — the Prism theme
+   pins it to `white-space: pre`) so they stay fully visible without ballooning
+   the aside's height. The copy button still copies the whole command. */
 .install-aside :is(pre, code)[class*="language-"] {
 	white-space: pre-wrap;
 	overflow-wrap: anywhere;
+	font-size: 0.78em;
+}
+
+.install-aside pre[class*="language-"] {
+	margin-block: 0;
+	padding: 0.55rem 0.65rem;
 }
 
 /* Prism-treeview folder view above the rendered SKILL.md. A deep tree scrolls
@@ -1004,51 +1010,49 @@ body > footer {
 </header>
 
 <main id="main" class="container skill-detail">
-	<section id="use" aria-labelledby="use-heading" class="layout stacked">
-		<header>
-			<h2 id="use-heading">
-				How to use it
-				<a class="anchor" href="#use" aria-label="Permalink to How to use it">#</a>
-			</h2>
-			<p>Once installed, this skill activates automatically when your prompt matches one of its triggers.</p>
-		</header>
+	<div class="skill-cols">
 		
-		<div class="content">
-			<h3>Try saying</h3>
-			<ul class="snippet-list">
-				<li><code>design system</code></li><li><code>component library</code></li><li><code>ARIA pattern</code></li><li><code>what should I call this component</code></li><li><code>review my component library</code></li>
-			</ul>
-		</div>
-	</section>
-
-	<section class="payload" aria-label="Install and folder structure">
-		<div class="skill-payload">
-			
-			<aside id="install" class="install-aside" aria-labelledby="install-heading">
-				<header>
-					<h2 id="install-heading">
-						Install
-						<a class="anchor" href="#install" aria-label="Permalink to Install">#</a>
-					</h2>
-					<p class="note">The same skill payload everywhere — no Claude-specific wiring.</p>
-				</header>
-				<div class="install-option">
-					<p class="chip">Recommended</p>
-					<h3>Claude Code</h3>
-					<p>Register the marketplace, then install from the <code>/plugin</code> UI.</p>
-					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">/plugin marketplace <span class="token function">add</span> allonsy-studio/agent-skills</span>
+		<aside id="install" class="install-aside" aria-labelledby="install-heading">
+			<header>
+				<h2 id="install-heading">
+					Install
+					<a class="anchor" href="#install" aria-label="Permalink to Install">#</a>
+				</h2>
+				<p class="note">Same payload everywhere — no Claude-specific wiring.</p>
+			</header>
+			<div class="install-option">
+				<p class="chip">Recommended</p>
+				<h3>Claude Code</h3>
+				<pre class="language-shell"><code class="language-shell"><span class="highlight-line">/plugin marketplace <span class="token function">add</span> allonsy-studio/agent-skills</span>
 <span class="highlight-line">/plugin <span class="token function">install</span> design-system@agent-skills</span></code></pre>
-				</div>
-				<div class="install-option">
-					<h3>Any other harness</h3>
-					<p>Cursor, the Agent SDK, Aider, OpenCode — vendor the skill into your skills directory.</p>
-					<pre class="language-shell"><code class="language-shell"><span class="highlight-line">npx @allons-y/agent-skills design-system <span class="token parameter variable">--dir</span> <span class="token operator">&lt;</span>your-skills-dir<span class="token operator">></span></span></code></pre>
-					<p class="dirs">Common targets: <code>.cursor/skills</code>, <code>~/.claude/skills</code></p>
-				</div>
-				
-			</aside>
+			</div>
+			<div class="install-option">
+				<h3>Any other harness</h3>
+				<pre class="language-shell"><code class="language-shell"><span class="highlight-line">npx @allons-y/agent-skills design-system <span class="token parameter variable">--dir</span> <span class="token operator">&lt;</span>your-skills-dir<span class="token operator">></span></span></code></pre>
+				<p class="dirs">e.g. <code>.cursor/skills</code>, <code>~/.claude/skills</code></p>
+			</div>
+			
+		</aside>
 
-			<div id="structure" class="structure" aria-labelledby="structure-heading">
+		<div class="skill-flow">
+			<section id="use" aria-labelledby="use-heading" class="layout stacked">
+				<header>
+					<h2 id="use-heading">
+						How to use it
+						<a class="anchor" href="#use" aria-label="Permalink to How to use it">#</a>
+					</h2>
+					<p>Once installed, this skill activates automatically when your prompt matches one of its triggers.</p>
+				</header>
+				
+				<div class="content">
+					<h3>Try saying</h3>
+					<ul class="snippet-list">
+						<li><code>design system</code></li><li><code>component library</code></li><li><code>ARIA pattern</code></li><li><code>what should I call this component</code></li><li><code>review my component library</code></li>
+					</ul>
+				</div>
+			</section>
+
+			<section id="structure" class="structure" aria-labelledby="structure-heading">
 				<header>
 					<h2 id="structure-heading">
 						Folder structure
@@ -1086,20 +1090,18 @@ body > footer {
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-test-js ext-js">skill.test.js</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">package.json</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">SKILL.md</span></span></code></pre>
-			</div>
-		</div>
-	</section>
+			</section>
 
-	<section id="docs" aria-labelledby="docs-heading" class="layout stacked">
-		<header>
-			<h2 id="docs-heading">
-				Full skill instructions
-				<a class="anchor" href="#docs" aria-label="Permalink to Full skill instructions">#</a>
-			</h2>
-			<p>This is the <code>SKILL.md</code> the agent reads when the skill activates. <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/SKILL.md">View the source on GitHub</a>.</p>
-		</header>
-		<div class="prose">
-			<h1>Design System Patterns</h1>
+			<section id="docs" aria-labelledby="docs-heading" class="layout stacked">
+				<header>
+					<h2 id="docs-heading">
+						Full skill instructions
+						<a class="anchor" href="#docs" aria-label="Permalink to Full skill instructions">#</a>
+					</h2>
+					<p>This is the <code>SKILL.md</code> the agent reads when the skill activates. <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/SKILL.md">View the source on GitHub</a>.</p>
+				</header>
+				<div class="prose">
+					<h1>Design System Patterns</h1>
 <p>You are a design-system architect helping authors build, name, and evaluate
 UI components. Your guidance draws on established patterns across major
 design systems (Material, Spectrum, Carbon, Lightning, Atlassian, Primer,
@@ -1290,8 +1292,10 @@ prioritized recommendations.</li>
 versions — when specifying a component. Real code grounds the discussion
 and catches gaps that prose misses.</p>
 
+				</div>
+			</section>
 		</div>
-	</section>
+	</div>
 
 	<section id="more" aria-labelledby="more-heading" class="layout stacked">
 		<header>
