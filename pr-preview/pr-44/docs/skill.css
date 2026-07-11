@@ -3,17 +3,18 @@
 	border-block-end: 1px solid var(--theme--ui--color--subtle);
 
 	/* Soft glow that fades delicately outward, matching the home page header
-	   (docs/styles.css) rather than a flat top-to-bottom wash. Anchored toward the
-	   start edge so the glow sits behind this hero's left-aligned content — the way
-	   the home glow sits behind its centered content — instead of leaving the
-	   top-left corner in the faint zone. */
+	   (docs/styles.css). Anchored toward the start edge so the glow sits behind
+	   this hero's left-aligned content. The hero is full-bleed (the container
+	   wraps only the content), so the glow's strong side meets the viewport edge
+	   and the fade completes in open space — painted on the 1200px container it
+	   was clipped mid-strength, leaving a hard vertical line on wide screens. */
 	background-image: radial-gradient(
 		75% 85% at 20% 0%,
 		var(--theme--surface--color--accent),
 		transparent 70%
 	);
 
-	> * + * {
+	.container > * + * {
 		margin-block-start: 1.25rem;
 	}
 
@@ -124,15 +125,12 @@
 	flex-direction: column;
 	gap: 0.4rem;
 
-	.chip {
-		align-self: start;
+	/* Inline "Recommended" tag beside the harness name. */
+	h3 .chip {
+		margin-inline-start: 0.4em;
+		font-size: 0.7rem;
+		vertical-align: middle;
 	}
-}
-
-.install-aside .dirs {
-	margin: 0;
-	font-size: 0.82em;
-	color: var(--theme--text--Color--subtle);
 }
 
 /* Compact, wrapped command blocks: the aside is narrow, so shrink the type and

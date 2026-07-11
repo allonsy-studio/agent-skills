@@ -755,17 +755,18 @@ body > footer {
 	border-block-end: 1px solid var(--theme--ui--color--subtle);
 
 	/* Soft glow that fades delicately outward, matching the home page header
-	   (docs/styles.css) rather than a flat top-to-bottom wash. Anchored toward the
-	   start edge so the glow sits behind this hero's left-aligned content — the way
-	   the home glow sits behind its centered content — instead of leaving the
-	   top-left corner in the faint zone. */
+	   (docs/styles.css). Anchored toward the start edge so the glow sits behind
+	   this hero's left-aligned content. The hero is full-bleed (the container
+	   wraps only the content), so the glow's strong side meets the viewport edge
+	   and the fade completes in open space — painted on the 1200px container it
+	   was clipped mid-strength, leaving a hard vertical line on wide screens. */
 	background-image: radial-gradient(
 		75% 85% at 20% 0%,
 		var(--theme--surface--color--accent),
 		transparent 70%
 	);
 
-	> * + * {
+	.container > * + * {
 		margin-block-start: 1.25rem;
 	}
 
@@ -876,15 +877,12 @@ body > footer {
 	flex-direction: column;
 	gap: 0.4rem;
 
-	.chip {
-		align-self: start;
+	/* Inline "Recommended" tag beside the harness name. */
+	h3 .chip {
+		margin-inline-start: 0.4em;
+		font-size: 0.7rem;
+		vertical-align: middle;
 	}
-}
-
-.install-aside .dirs {
-	margin: 0;
-	font-size: 0.82em;
-	color: var(--theme--text--Color--subtle);
 }
 
 /* Compact, wrapped command blocks: the aside is narrow, so shrink the type and
@@ -995,18 +993,21 @@ body > footer {
 
 
 
-<header class="container skill-hero">
-	<p class="breadcrumb"><a href="/agent-skills/pr-preview/pr-44/">@allons-y/agent-skills</a> <span aria-hidden="true">/</span> <a href="/agent-skills/pr-preview/pr-44/#skills">skills</a></p>
-	<h1>gh-notification-summary</h1>
-	<p class="lede">Review, summarize, and manage GitHub notifications via an interactive local dashboard. Unsubscribe from noisy threads, mark individual notifications or your whole inbox as done, all from a single prompt.</p>
-	
+
+<header class="skill-hero">
+	<div class="container">
+		<p class="breadcrumb"><a href="/agent-skills/pr-preview/pr-44/">@allons-y/agent-skills</a> <span aria-hidden="true">/</span> <a href="/agent-skills/pr-preview/pr-44/#skills">skills</a></p>
+		<h1>gh-notification-summary</h1>
+		<p class="lede">Review, summarize, and manage GitHub notifications via an interactive local dashboard. Unsubscribe from noisy threads, mark individual notifications or your whole inbox as done, all from a single prompt.</p>
+		
 <p class="chips"><span class="chip">GitHub</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span><span class="chip"><span class="fa-brands fa-node-js" aria-hidden="true"></span> Node</span></p>
 
-	<p class="btn-group">
-		<a class="btn primary" href="#install">Install this skill</a>
-		<a class="btn" href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/gh-notification-summary/SKILL.md"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
-		
-	</p>
+		<p class="btn-group">
+			<a class="btn primary" href="#install">Install this skill</a>
+			<a class="btn" href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/gh-notification-summary/SKILL.md"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
+			
+		</p>
+	</div>
 </header>
 
 <main id="main" class="container skill-detail">
@@ -1018,20 +1019,17 @@ body > footer {
 					Install
 					<a class="anchor" href="#install" aria-label="Permalink to Install">#</a>
 				</h2>
-				<p class="note">Same payload everywhere — no Claude-specific wiring.</p>
 			</header>
 			<div class="install-option">
-				<p class="chip">Recommended</p>
-				<h3>Claude Code</h3>
+				<h3>Claude Code <span class="chip">Recommended</span></h3>
 				<pre class="language-shell"><code class="language-shell"><span class="highlight-line">/plugin marketplace <span class="token function">add</span> allonsy-studio/agent-skills</span>
 <span class="highlight-line">/plugin <span class="token function">install</span> gh-notification-summary@agent-skills</span></code></pre>
 			</div>
 			<div class="install-option">
 				<h3>Any other harness</h3>
 				<pre class="language-shell"><code class="language-shell"><span class="highlight-line">npx @allons-y/agent-skills gh-notification-summary <span class="token parameter variable">--dir</span> <span class="token operator">&lt;</span>your-skills-dir<span class="token operator">></span></span></code></pre>
-				<p class="dirs">e.g. <code>.cursor/skills</code>, <code>~/.claude/skills</code></p>
 			</div>
-			<p class="note">Node.js skill — run <code>npm install</code> in the vendored directory once.</p>
+			<p class="note">Node.js skill — <code>npm install</code> once after vendoring.</p>
 		</aside>
 
 		<div class="skill-flow">
