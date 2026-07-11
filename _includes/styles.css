@@ -687,7 +687,7 @@ body > footer {
 
 @media (width <= 720px) {
 	footer {
-		grid-template-columns: 1fr 1fr;
+		grid-auto-columns: minmax(0, 1fr);
 	}
 }
 

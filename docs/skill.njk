@@ -17,96 +17,94 @@ eleventyComputed:
 {% css %}{% include "./skill.css" %}{% endcss %}
 {% from "skill-chips.njk" import skillChips %}
 
-<header class="container skill-hero">
-	<p class="breadcrumb"><a href="/">{{ site.title }}</a> <span aria-hidden="true">/</span> <a href="/#skills">skills</a></p>
-	<h1>{{ skill.name }}</h1>
-	<p class="lede">{{ skill.description }}</p>
-	{{ skillChips(skill, true) }}
-	<p class="btn-group">
-		<a class="btn primary" href="#install">Install this skill</a>
-		<a class="btn" href="{{ skill.url }}"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
-		{% if skill.previewUrl %}<a class="btn" href="{{ skill.previewUrl }}"><span class="fa-solid fa-up-right-from-square" aria-hidden="true"></span> Preview skill interface</a>{% endif %}
-	</p>
+{# The hero is full-bleed so its glow fades out in open space instead of being
+   clipped at the container edge; only the content is container-constrained. #}
+<header class="skill-hero">
+	<div class="container">
+		<p class="breadcrumb"><a href="/">{{ site.title }}</a> <span aria-hidden="true">/</span> <a href="/#skills">skills</a></p>
+		<h1>{{ skill.name }}</h1>
+		<p class="lede">{{ skill.description }}</p>
+		{{ skillChips(skill, true) }}
+		<p class="btn-group">
+			<a class="btn primary" href="#install">Install this skill</a>
+			<a class="btn" href="{{ skill.url }}"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
+			{% if skill.previewUrl %}<a class="btn" href="{{ skill.previewUrl }}"><span class="fa-solid fa-up-right-from-square" aria-hidden="true"></span> Preview skill interface</a>{% endif %}
+		</p>
+	</div>
 </header>
 
 <main id="main" class="container skill-detail">
-	<section id="use" aria-labelledby="use-heading" class="layout stacked">
-		<header>
-			<h2 id="use-heading">
-				How to use it
-				<a class="anchor" href="#use" aria-label="Permalink to How to use it">#</a>
-			</h2>
-			<p>Once installed, this skill activates automatically when your prompt matches one of its triggers.</p>
-		</header>
-		{% if skill.commands.length > 0 -%}
-		<div class="content">
-			<h3>Commands</h3>
-			<ul class="snippet-list">
-				{% for command in skill.commands %}<li><code>{{ command }}</code></li>{% endfor %}
-			</ul>
-		</div>
-		{%- endif %}
-		{% if skill.triggers.length > 0 -%}
-		<div class="content">
-			<h3>Try saying</h3>
-			<ul class="snippet-list">
-				{% for trigger in skill.triggers %}<li><code>{{ trigger }}</code></li>{% endfor %}
-			</ul>
-		</div>
-		{%- endif %}
-	</section>
+	<div class="skill-cols">
+		<aside id="install" class="install-aside" aria-labelledby="install-heading">
+			<header>
+				<h2 id="install-heading">Install</h2>
+				<h3>Claude Code</h3>
+			</header>
+			<div class="install-option">
+				{% highlight "shell" %}/plugin marketplace add {{ site.repo.slug }}
+/plugin install {{ skill.name }}@{{ site.marketplace_name }}{% endhighlight %}
+			</div>
+			<div>
+				<a class="cta" href="{{ skill.url }}"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
+			</div>
+		</aside>
 
-	<section id="install" aria-labelledby="install-heading" class="layout stacked">
-		<header>
-			<h2 id="install-heading">
-				Install
-				<a class="anchor" href="#install" aria-label="Permalink to Install">#</a>
-			</h2>
-			<p>Pick the card for your agent harness. The skill payload is identical everywhere — no Claude-specific wiring.</p>
-		</header>
-		<div class="layout grid">
-			{% for harness in site.harnesses -%}
-			<article class="card{% if harness.recommended %} featured{% endif %}" id="install-{{ harness.id }}">
+		<div class="skill-flow">
+			<section id="use" aria-labelledby="use-heading" class="layout stacked">
 				<header>
-					{% if harness.recommended %}<p class="chip">Recommended</p>{% endif %}
-					<h3>
-						<span class="icon" aria-hidden="true"><span class="{{ harness.icon }} fa-xl"></span></span>
-						{{- harness.name }}
-					</h3>
+					<h2 id="use-heading">
+						How to use it
+						<a class="anchor" href="#use" aria-label="Permalink to How to use it">#</a>
+					</h2>
+					<p>Once installed, this skill activates automatically when your prompt matches one of its triggers.</p>
 				</header>
-				<div class="body">
-					<h3>{{ harness.tagline }}</h3>
-					<p>{{ harness.description | safe }}</p>
+				{% if skill.commands.length > 0 -%}
+				<div class="content">
+					<h3>Commands</h3>
+					<ul class="snippet-list">
+						{% for command in skill.commands %}<li><code>{{ command }}</code></li>{% endfor %}
+					</ul>
 				</div>
-				<footer>
-					{# Reuse the shared harness commands, swapping the example skill for this one. #}
-					{% highlight "shell" %}{% for command in harness.commands %}{{ command | replace(site.featured.name, skill.name) | safe }}{% if not loop.last %}
-{% endif %}{% endfor %}{% endhighlight %}
-				</footer>
-			</article>
-			{%- endfor %}
-		</div>
-		{% if skill.flavor != "reference" -%}
-		<p class="note">
-			This skill ships a Node.js implementation — run <code>npm install</code> in the vendored directory once.
-		</p>
-		{%- endif %}
-	</section>
+				{%- endif %}
+				{% if skill.triggers.length > 0 -%}
+				<div class="content">
+					<h3>Try saying</h3>
+					<ul class="snippet-list">
+						{% for trigger in skill.triggers %}<li><code>{{ trigger }}</code></li>{% endfor %}
+					</ul>
+				</div>
+				{%- endif %}
+			</section>
 
-	{% if skill.overviewHtml -%}
-	<section id="docs" aria-labelledby="docs-heading" class="layout stacked">
-		<header>
-			<h2 id="docs-heading">
-				Full skill instructions
-				<a class="anchor" href="#docs" aria-label="Permalink to Full skill instructions">#</a>
-			</h2>
-			<p>This is the <code>SKILL.md</code> the agent reads when the skill activates. <a href="{{ skill.url }}">View the source on GitHub</a>.</p>
-		</header>
-		<div class="prose">
-			{{ skill.overviewHtml | safe }}
+			{% if skill.treeHtml -%}
+			<section id="structure" class="structure" aria-labelledby="structure-heading">
+				<header>
+					<h2 id="structure-heading">
+						Folder structure
+						<a class="anchor" href="#structure" aria-label="Permalink to Folder structure">#</a>
+					</h2>
+					<p>Everything in this skill's source directory — scripts, references, and the tests and evals that back it. The installer copies the runtime files into your skills directory; the tests and evals stay in the repo.</p>
+				</header>
+				<pre class="skill-tree language-treeview"><code class="language-treeview">{{ skill.treeHtml | safe }}</code></pre>
+			</section>
+			{%- endif %}
+
+			{% if skill.overviewHtml -%}
+			<section id="docs" aria-labelledby="docs-heading" class="layout stacked">
+				<header>
+					<h2 id="docs-heading">
+						Full skill instructions
+						<a class="anchor" href="#docs" aria-label="Permalink to Full skill instructions">#</a>
+					</h2>
+					<p>This is the <code>SKILL.md</code> the agent reads when the skill activates. <a href="{{ skill.url }}">View the source on GitHub</a>.</p>
+				</header>
+				<div class="prose">
+					{{ skill.overviewHtml | safe }}
+				</div>
+			</section>
+			{%- endif %}
 		</div>
-	</section>
-	{%- endif %}
+	</div>
 
 	{% if site.skills.length > 1 -%}
 	<section id="more" aria-labelledby="more-heading" class="layout stacked">

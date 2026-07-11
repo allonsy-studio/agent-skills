@@ -1,10 +1,13 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+
 import {
 	createSkillRenderer,
 	deriveFlavor,
+	highlightTree,
 	renderSkillOverview,
 	skillGitHubBases,
+	skillTreeText,
 } from "./lib/skill-metadata.js";
 
 /**
@@ -62,6 +65,14 @@ export default async function (configData) {
 				]);
 				const { blobBase, rawBase } = skillGitHubBases({ repoUrl, skillName: dir.name });
 
+				// A `|--` folder-structure view of the skill's source directory,
+				// shown above the rendered SKILL.md on the detail page so readers see
+				// the shape of what they're installing before the prose. Driven by the
+				// git-tracked file list (mirrors what ships, skips gitignored cruft),
+				// then tokenized with Prism's `treeview` grammar so the vendored
+				// `prism-treeview.css` renders branch lines and file-type icons.
+				const treeHtml = highlightTree(await skillTreeText(skillDir, dir.name));
+
 				return {
 					name: dir?.name,
 					description: skillData?.description,
@@ -85,6 +96,7 @@ export default async function (configData) {
 					// so the "every skill tested / eval-backed" claims can't go stale.
 					hasTests,
 					hasEvals,
+					treeHtml,
 					overviewHtml: renderSkillOverview(md, skillMd, { blobBase, rawBase }),
 				};
 			})
@@ -94,130 +106,7 @@ export default async function (configData) {
 	// otherwise fall back to the first skill alphabetically.
 	const featured = skills.find((s) => s.featured) ?? skills[0];
 
-	// Per-harness install instructions. The npx commands are identical across
-	// most harnesses; only the target directory differs.
-	const exampleSkill = featured?.name ?? skills[0]?.name;
-	const harnesses = [
-		{
-			id: "claude-code",
-			name: "Claude Code",
-			tagline: "Native plugin install",
-			recommended: true,
-			icon: "fa-solid fa-bolt",
-			description:
-				"Register this repo as a Claude Code marketplace, then install skills via the <code>/plugin</code> UI.",
-			commands: [
-				`/plugin marketplace add ${repoSlug}`,
-				`/plugin install ${exampleSkill}@${marketplaceName}`,
-			],
-		},
-		{
-			id: "claude-agent-sdk",
-			name: "Claude Agent SDK",
-			tagline: "Vendor with npx",
-			icon: "fa-solid fa-cube",
-			description:
-				"Drop any skill into your agent's <code>SKILL.md</code> directory. No Claude-specific wiring.",
-			commands: [`npx ${pkg.name} ${exampleSkill} --dir ~/.claude/skills`],
-		},
-		{
-			id: "cursor",
-			name: "Cursor",
-			tagline: "Vendor with npx",
-			icon: "fa-solid fa-arrow-pointer",
-			description:
-				"Cursor reads skill folders from your project. Vendor the skill, then point Cursor at it.",
-			commands: [`npx ${pkg.name} ${exampleSkill} --dir .cursor/skills`],
-		},
-		{
-			id: "any",
-			name: "Any other harness",
-			tagline: "Pick your own directory",
-			icon: "fa-solid fa-puzzle-piece",
-			description:
-				"Aider, OpenCode, or anything that reads <code>SKILL.md</code> directories. Choose your target folder.",
-			commands: [
-				`npx ${pkg.name} --list`,
-				`npx ${pkg.name} ${exampleSkill} --dir <your-skills-dir>`,
-			],
-		},
-	];
-
 	const npmUrl = `https://www.npmjs.com/package/${pkg?.name}`;
-
-	// Trust signals. Badge URLs mirror the set defined in README.md.
-	const badges = [
-		{
-			label: "CI",
-			url: `${repoUrl}/actions/workflows/test.yml`,
-			src: `${repoUrl}/actions/workflows/test.yml/badge.svg?branch=main`,
-			alt: "CI build status",
-		},
-		{
-			label: "npm version",
-			url: npmUrl,
-			src: `https://img.shields.io/npm/v/${pkg?.name}?logo=npm`,
-			alt: "Latest npm version",
-		},
-		{
-			label: "downloads",
-			url: npmUrl,
-			src: `https://img.shields.io/npm/dw/${pkg?.name}?logo=npm`,
-			alt: "Weekly npm downloads",
-		},
-		{
-			label: "coverage",
-			url: `${repoUrl}/blob/main/.c8rc.json`,
-			src: `https://img.shields.io/nycrc/${repoSlug}?config=.c8rc.json`,
-			alt: "Test coverage threshold",
-		},
-		{
-			label: "node",
-			url: "https://nodejs.org",
-			src: "https://img.shields.io/badge/node-%3E%3D24-brightgreen?logo=node.js",
-			alt: "Requires Node.js 24 or newer",
-		},
-		{
-			label: "conventional commits",
-			url: "https://conventionalcommits.org/",
-			src: "https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg",
-			alt: "Conventional Commits",
-		},
-	];
-
-	// "Built to be trusted" pillars. Copy may contain inline HTML (<code>).
-	const quality = [
-		{
-			icon: "fa-solid fa-feather-pointed",
-			title: "Expert-written",
-			text: "Every <code>SKILL.md</code> prompt is hand-authored by domain experts — not auto-generated boilerplate.",
-		},
-		{
-			icon: "fa-solid fa-vial-circle-check",
-			title: "Fully tested",
-			text: "Each skill ships a <code>node --test</code> suite with c8 coverage, so behavior is verified, not assumed.",
-		},
-		{
-			icon: "fa-solid fa-wand-magic-sparkles",
-			title: "Linted & formatted",
-			text: "ESLint and Prettier run on every commit for consistent, reviewable code.",
-		},
-		{
-			icon: "fa-solid fa-robot",
-			title: "Eval-backed",
-			text: "LLM eval suites check that each skill triggers and behaves correctly on real prompts.",
-		},
-		{
-			icon: "fa-solid fa-circle-check",
-			title: "CI on every change",
-			text: "Tests, linting, and evals run in GitHub Actions before anything merges to <code>main</code>.",
-		},
-		{
-			icon: "fa-solid fa-puzzle-piece",
-			title: "No vendor lock-in",
-			text: "Plain <code>SKILL.md</code> directories — install natively in Claude Code or vendor into any harness.",
-		},
-	];
 
 	return {
 		package: {
@@ -249,8 +138,88 @@ export default async function (configData) {
 		},
 		skills,
 		featured,
-		harnesses,
-		badges,
-		quality,
+		harnesses: [
+			{
+				id: "claude-code",
+				name: "Claude Code",
+				tagline: "Native plugin install",
+				recommended: true,
+				icon: "fa-solid fa-bolt",
+				description:
+					"Register this repo as a Claude Code marketplace, then install skills via the <code>/plugin</code> UI.",
+				commands: [
+					`/plugin marketplace add ${repoSlug}`,
+					`/plugin install ${featured?.name ?? skills[0]?.name}@${marketplaceName}`,
+				],
+			},
+			{
+				id: "claude-agent-sdk",
+				name: "Claude Agent SDK",
+				tagline: "Vendor with npx",
+				icon: "fa-solid fa-cube",
+				description:
+					"Drop any skill into your agent's <code>SKILL.md</code> directory. No Claude-specific wiring.",
+				commands: [`npx ${pkg.name} ${featured?.name ?? skills[0]?.name} --dir ~/.claude/skills`],
+			},
+			{
+				id: "cursor",
+				name: "Cursor",
+				tagline: "Vendor with npx",
+				icon: "fa-solid fa-arrow-pointer",
+				description:
+					"Cursor reads skill folders from your project. Vendor the skill, then point Cursor at it.",
+				commands: [`npx ${pkg.name} ${featured?.name ?? skills[0]?.name} --dir .cursor/skills`],
+			},
+			{
+				id: "any",
+				name: "Any other harness",
+				tagline: "Pick your own directory",
+				icon: "fa-solid fa-puzzle-piece",
+				description:
+					"Aider, OpenCode, or anything that reads <code>SKILL.md</code> directories. Choose your target folder.",
+				commands: [
+					`npx ${pkg.name} --list`,
+					`npx ${pkg.name} ${featured?.name ?? skills[0]?.name} --dir <your-skills-dir>`,
+				],
+			},
+		],
+		badges: [
+			{
+				label: "CI",
+				url: `${repoUrl}/actions/workflows/test.yml`,
+				src: `${repoUrl}/actions/workflows/test.yml/badge.svg?branch=main`,
+				alt: "CI build status",
+			},
+			{
+				label: "npm version",
+				url: npmUrl,
+				src: `https://img.shields.io/npm/v/${pkg?.name}?logo=npm`,
+				alt: "Latest npm version",
+			},
+			{
+				label: "downloads",
+				url: npmUrl,
+				src: `https://img.shields.io/npm/dw/${pkg?.name}?logo=npm`,
+				alt: "Weekly npm downloads",
+			},
+			{
+				label: "coverage",
+				url: `${repoUrl}/blob/main/.c8rc.json`,
+				src: `https://img.shields.io/nycrc/${repoSlug}?config=.c8rc.json`,
+				alt: "Test coverage threshold",
+			},
+			{
+				label: "node",
+				url: "https://nodejs.org",
+				src: "https://img.shields.io/badge/node-%3E%3D24-brightgreen?logo=node.js",
+				alt: "Requires Node.js 24 or newer",
+			},
+			{
+				label: "conventional commits",
+				url: "https://conventionalcommits.org/",
+				src: "https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg",
+				alt: "Conventional Commits",
+			},
+		],
 	};
 }

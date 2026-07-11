@@ -45,6 +45,11 @@
 		<link href="/assets/prism.css" rel="stylesheet" media="(prefers-color-scheme: light)" />
 		<link href="/assets/prism-dark.css" rel="stylesheet" media="(prefers-color-scheme: dark)" />
 
+		{# Prism Treeview plugin CSS — structural (branch lines + file-type icon
+		   webfont), theme-agnostic, so it loads for both color schemes. Styles the
+		   skill detail page's `language-treeview` folder tree. #}
+		<link href="/assets/prism-treeview.css" rel="stylesheet" />
+
         <style>
 		:root {
 			color-scheme: {{ theme.colorScheme | default('light dark') }};
@@ -58,6 +63,9 @@
 	</head>
 	<body>
 		<a class="skip-link" href="#main">Skip to content</a>
+		<a href="https://allons-y.studio" style="display: flex;">
+			<img alt="Brought to you by Allons-y Studio" src="/assets/oss-banner.png" width="1200" style="inline-size: 100%;">
+		</a>
 
         {{ content | safe }}
 		<footer class="container">
@@ -72,8 +80,14 @@
 			</div>
 			{% getBundle "footer" %}
 			<div>
-				<p class="title">brought to you by</p>
-				<a class="brand" href="https://allons-y.studio">{% include "../assets/allons-y_studio.svg" %}</a>
+				<p align="center">
+					<a href="https://allons-y.studio">
+						<picture>
+							<source media="(prefers-color-scheme: dark)" srcset="/assets/oss-footer-dark.png">
+							<img alt="Brought to you by Allons-y Studio" src="/assets/oss-footer-light.png" width="220">
+						</picture>
+					</a>
+				</p>
 			</div>
 		</footer>
 
