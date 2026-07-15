@@ -16,6 +16,7 @@ export default defineConfig([
 		".yarn/**",
 		".cache/**",
 		"CHANGELOG.md",
+		"skills/**/CHANGELOG.md",
 	]),
 	{
 		files: ["**/*.js"],
@@ -80,7 +81,7 @@ export default defineConfig([
 		language: "css/css",
 		extends: ["css/recommended"],
 		rules: {
-			"css/use-baseline": ["warn", { available: "newly" }],
+			"css/use-baseline": "off",
 			"css/no-important": "off",
 			// Custom properties are declared in `_includes/foundation.njk`'s inline
 			// <style> block (injected per-page from theme data), so the linter
