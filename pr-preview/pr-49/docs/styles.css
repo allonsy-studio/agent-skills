@@ -1,0 +1,203 @@
+body > header {
+	--justify-content: center;
+
+	text-align: center;
+	padding-block: 3.5rem 3rem;
+
+	/* Bold gradient backdrop derived from the theme color. */
+	background-image: radial-gradient(
+		70% 80% at 50% 0%,
+		var(--theme--surface--color--accent),
+		transparent 70%
+	);
+	border-block-end: 1px solid var(--theme--ui--color--subtle);
+
+	> * {
+		margin-inline: auto;
+
+		&:not(:last-child) {
+			margin-block-end: 1.5rem;
+		}
+	}
+
+	h1 {
+		max-width: 18ch;
+		background: linear-gradient(
+			120deg,
+			var(--theme--text--Color--accent),
+			color-mix(in oklch, var(--base) 65%, var(--theme--text--Color))
+		);
+		 
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	:is(.lede) {
+		max-width: 55ch;
+	}
+}
+
+.eyebrow {
+	color: var(--theme--text--Color--accent);
+}
+
+.trust-strip {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	align-items: center;
+}
+
+.trust-stats {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem 1.5rem;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 0.95rem;
+	color: var(--theme--text--Color--subtle);
+
+	li {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45em;
+		margin: 0;
+	}
+
+	strong {
+		color: var(--theme--text--Color--accent);
+		font-size: 1.1em;
+	}
+
+	li + li {
+		border-inline-start: 1px solid var(--theme--ui--color--subtle);
+		padding-inline-start: 1.5rem;
+	}
+}
+
+.trust-strip .badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	justify-content: center;
+	margin: 0;
+
+	img {
+		display: block;
+	}
+
+	a:is(:hover, :focus-visible) {
+		opacity: 0.85;
+	}
+}
+
+.hero-terminal {
+	inline-size: min(560px, 100%);
+	text-align: start;
+
+	border: 1px solid var(--theme--ui--color--subtle);
+	border-radius: 0.6em;
+	overflow: hidden;
+	box-shadow: var(--theme--ui--shadow);
+
+	.terminal-bar {
+		display: flex;
+		gap: 0.4rem;
+		padding: 0.65rem 0.8rem;
+		background: var(--theme--surface--color);
+		border-block-end: 1px solid var(--theme--ui--color--subtle);
+
+		i {
+			inline-size: 0.7rem;
+			block-size: 0.7rem;
+			border-radius: 50%;
+			background: var(--theme--ui--color--subtle);
+		}
+	}
+
+	pre {
+		margin: 0;
+		/* The terminal frame owns the border, the rounded corners (via
+		   overflow: hidden), and the background. Clear Prism's own border, radius,
+		   shadow, and panel color so the code area fills the frame flush instead of
+		   showing a mismatched inner box with a tighter border-radius. */
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		background: var(--theme--surface--color--sunken);
+	}
+}
+
+.quality-grid {
+	--item-size: 280px;
+}
+
+.quality {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	gap: 0.6rem;
+
+	/* Balance wrapped text, falling back to `pretty` where unsupported. */
+	text-wrap: pretty;
+	text-wrap: balance;
+
+	padding: 1.5rem;
+	border-radius: 0.8em;
+	background: var(--theme--surface--color--sunken);
+	border: 1px solid var(--theme--ui--color--subtle);
+
+	.icon {
+		color: var(--theme--text--Color--accent);
+		inline-size: 3.5rem;
+		block-size: 3.5rem;
+		font-size: 1.4rem;
+		border-radius: 0.7em;
+		background: var(--theme--surface--color--accent);
+	}
+
+	h3 {
+		font-size: 1.4rem;
+		color: var(--theme--text--Color);
+	}
+
+	p {
+		font-size: 0.95rem;
+		line-height: 1.5;
+		margin: 0;
+	}
+}
+
+/* Top-level content sections only. Scoped to `main > section` so the divider
+   border and block padding never leak onto nested <footer> elements inside
+   cards (e.g. the install-card command blocks). */
+main > section {
+	border-top: 1px solid var(--theme--ui--color--subtle);
+	padding-block: 3rem;
+
+	> header:has(+ .content),
+	> .content {
+		inline-size: min(clamp(400px, 80ch, 80vw), 100%);
+	}
+}
+
+h1,
+.card :is(h2, h3, h4, h5, h6):not([class]) {
+	font-family: var(--theme--code--FontFamily);
+}
+
+/* When the trust stats wrap onto their own lines, the inline dividers read as
+   stray ticks — drop them on narrow viewports. */
+@media (width <= 640px) {
+	.trust-stats li + li {
+		border-inline-start: none;
+		padding-inline-start: 0;
+	}
+}
