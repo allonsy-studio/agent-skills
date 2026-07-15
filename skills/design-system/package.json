@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@allons-y/skill-design-system",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Build, name, document, and audit UI components with expert ARIA, accessibility, design token, typography, and i18n guidance written by a Staff engineer with experience building design systems at scale.",
   "type": "module",
   "skill": {
