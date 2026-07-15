@@ -1,5 +1,4 @@
-import { cp, rm } from "fs/promises";
-import { existsSync } from "fs";
+import { cp } from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import { getSkills } from "./parse-skills.js";
