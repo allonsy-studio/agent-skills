@@ -27,7 +27,7 @@ body > header {
 			var(--theme--text--Color--accent),
 			color-mix(in oklch, var(--base) 65%, var(--theme--text--Color))
 		);
-		/* eslint-disable-next-line css/use-baseline */
+		 
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
