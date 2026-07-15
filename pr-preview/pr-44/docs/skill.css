@@ -133,13 +133,6 @@
 	display: flex;
 	flex-direction: column;
 	gap: 0.4rem;
-
-	/* Inline "Recommended" tag beside the harness name. */
-	h3 .chip {
-		margin-inline-start: 0.4em;
-		font-size: 0.7rem;
-		vertical-align: middle;
-	}
 }
 
 /* Compact, wrapped command blocks: the aside is narrow, so shrink the type and
