@@ -1,4 +1,4 @@
-import { rm } from "fs/promises";
+import { cp, rm } from "fs/promises";
 import { existsSync } from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -12,7 +12,7 @@ const skillsDir = path.join(root, "skills");
 // `changeset version` writes a CHANGELOG.md into every versioned workspace,
 // including the private `skills/*` members. Only the root `@allons-y/agent-skills`
 // is published and only its changelog is customer-facing, so the per-skill files
-// are noise. This deletes them after each version bump — it runs in the
+// must be kept in-sync. This copies the root changelog to them after each version bump — it runs in the
 // `version:packages` script (see package.json) so the Version Packages PR never
 // carries per-skill changelogs.
 async function main() {
@@ -20,7 +20,7 @@ async function main() {
 
 	await Promise.all(
 		names.map((name) =>
-			existsSync(path.join(skillsDir, name, "CHANGELOG.md")) ? rm(path.join(skillsDir, name, "CHANGELOG.md"), { force: true }) : null
+			cp(path.join(root, "CHANGELOG.md"), path.join(skillsDir, name, "CHANGELOG.md")).catch(() => null)
 		)
 	);
 
