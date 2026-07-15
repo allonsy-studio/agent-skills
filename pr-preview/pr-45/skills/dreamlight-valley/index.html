@@ -1,0 +1,1410 @@
+<!doctype html>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+		<meta name="theme-color" content="#d22d6f">
+		<meta name="color-scheme" content="light dark">
+
+        
+		<title>dreamlight-valley | Cooking, gathering, and inventory management for Dreamlight ...</title>
+		<meta name="description" content="Cooking, gathering, and inventory management for Dreamlight Valley.">
+		<meta name="keywords" content="">
+		<meta name="author" content="">
+
+		<meta name="robots" content="index, follow">
+		<meta name="googlebot" content="index, follow">
+		<meta name="bingbot" content="index, follow">
+		<meta name="yandexbot" content="index, follow">
+
+		<meta property="og:locale" content="en-US">
+		<meta property="og:title" content="dreamlight-valley">
+		<meta property="og:url" content="https://github.com/allonsy-studio/agent-skills#readme">
+		<meta property="og:description" content="Cooking, gathering, and inventory management for Dreamlight Valley.">
+		<meta property="og:site_name" content="dreamlight-valley">
+		<meta name="fediverse:creator" content="@castastrophe@front-end.social">
+
+		<link rel="icon" href="/agent-skills/pr-preview/pr-45/favicon.ico" sizes="32×32">
+		<link rel="icon" href="/agent-skills/pr-preview/pr-45/favicon.svg" type="image/svg+xml">
+		<link rel="apple-touch-icon" href="/agent-skills/pr-preview/pr-45/favicon.svg">
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=PT+Mono&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap&family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+		<script src="https://kit.fontawesome.com/42e99b4632.js" crossorigin="anonymous"></script>
+
+		
+		<link href="/agent-skills/pr-preview/pr-45/assets/prism.css" rel="stylesheet" media="(prefers-color-scheme: light)">
+		<link href="/agent-skills/pr-preview/pr-45/assets/prism-dark.css" rel="stylesheet" media="(prefers-color-scheme: dark)">
+
+		
+		<link href="/agent-skills/pr-preview/pr-45/assets/prism-treeview.css" rel="stylesheet">
+
+        <style>
+		:root {
+			color-scheme: light dark;
+
+			--base: #d22d6f;
+			--theme--text--FontFamily: Roboto, Lato, Helvetica Neue, Helvetica, Arial, sans-serif;
+		}
+		
+:root {
+	--theme--ui--color: var(--base);
+	--theme--ui--color--subtle: light-dark(hsl(0, 0%, 90%), hsl(0, 0%, 30%));
+
+	--theme--text--Color: light-dark(hsl(40, 12%, 20%), #fff7e6);
+	--theme--text--Color--accent: light-dark(
+		var(--base),
+		color-mix(in hsl, var(--base) 90%, white)
+	);
+	--theme--text--Color--subtle: light-dark(hsl(40, 10%, 30%), #fff7e6a6);
+	--theme--text--Color--invert: light-dark(hsl(0, 0%, 100%), hsl(40, 12%, 20%));
+
+	--theme--link--Color: var(--theme--text--Color--accent);
+	--theme--link--Color--hover: color-mix(
+		in oklch,
+		var(--theme--link--Color) 90%,
+		var(--theme--text--Color)
+	);
+
+	--theme--code--FontFamily: "PT Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+	--theme--surface--color: light-dark(hsl(0, 0%, 98%), hsl(0, 0%, 10%));
+	--theme--surface--color--accent: light-dark(
+		color-mix(in oklch, var(--base) 12%, var(--theme--surface--color) 80%),
+		color-mix(in hsl, var(--base) 30%, transparent)
+	);
+	--theme--surface--color--sunken: light-dark(hsl(40, 14%, 96%), hsl(0, 0%, 7%));
+
+	--theme--ui--shadow: 0 1px 2px hsl(0deg 0% 0% / 0.04), 0 4px 12px -6px hsl(0deg 0% 0% / 0.06);
+}
+
+/* eslint-disable-next-line css/use-baseline */
+::selection {
+	background: color-mix(in hsl, var(--base) 80%, transparent);
+	color: var(--theme--text--Color);
+	color: contrast-color(var(--base));
+}
+
+html {
+	color-scheme: light dark;
+	scroll-behavior: smooth;
+	scroll-padding-block-start: 2rem;
+}
+
+body {
+	background: var(--theme--surface--color);
+	color: var(--theme--text--Color);
+	margin: 0;
+	font-family: var(--theme--text--FontFamily);
+	font-size: 18px;
+	font-weight: normal;
+	line-height: 1.4;
+	font-optical-sizing: auto;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+
+[id] {
+	scroll-margin-block-start: 1.5rlh;
+}
+
+:is(a, :link) {
+	text-decoration: underline dotted;
+	text-decoration-color: currentColor;
+	text-underline-offset: 0.2ex;
+	text-decoration-thickness: 1px;
+
+	/* Break long, unbroken URLs so they wrap instead of overflowing the container. */
+	overflow-wrap: break-word;
+
+	&:is(:hover, :focus-visible) {
+		text-decoration: underline;
+	}
+}
+
+:is(a, :link):not([class]) {
+	color: var(--theme--link--Color);
+
+	&:is(:hover, :focus-visible) {
+		color: var(--theme--link--Color--hover);
+	}
+}
+
+:is(h2, h3, h4, h5, h6) {
+	margin: 0;
+	font-family: var(--theme--text--FontFamily);
+	font-weight: bold;
+	font-size: clamp(1.8em, 2vw, 2.2rem);
+	line-height: 1.1;
+	letter-spacing: -0.01em;
+	color: inherit;
+
+	.card:not(.featured) & {
+		color: var(--theme--text--Color--accent);
+	}
+
+	:not(.layout) > &:not(:last-child) {
+		margin-block-end: 1.2rem;
+	}
+
+	&:has(.chip) {
+		--justify-content: space-between;
+	}
+
+	header & + p {
+		color: var(--theme--text--Color--subtle);
+		max-width: 80ch;
+	}
+}
+
+h1 {
+	font-weight: bold;
+	font-size: clamp(2.75rem, 7vw, 4.5rem);
+	line-height: 1.1;
+	color: var(--theme--text--Color--accent);
+	letter-spacing: -0.06em;
+}
+
+p {
+	color: var(--theme--text--Color--subtle);
+	font-size: 1em;
+	line-height: 1.8;
+}
+
+code {
+	font-family: var(--theme--code--FontFamily);
+	line-height: 1.4;
+}
+
+:not(pre) > code {
+	padding: 0.1em 0.4em;
+	border-radius: .2em;
+	font-size: 0.9em;
+	margin-block-start: -.1rem;
+	border: 1px solid var(--theme--ui--color--subtle);
+
+	/* Long file paths and identifiers wrap instead of overflowing the page. */
+	overflow-wrap: break-word;
+}
+
+/* Prism's themes add a text-shadow to code — a white "emboss" in the default
+   light theme — that reads as a halo on our card and prose surfaces (the code
+   block background is themed separately from Prism's own). Drop it so snippets
+   render flat and crisp in both light and dark mode. `text-shadow` inherits, so
+   this also clears it from the token spans. */
+:is(pre, code)[class*="language-"] {
+	text-shadow: none;
+}
+
+/* The site owns the code-block container so light and dark match: a flat surface
+   panel — the same color as inline `code` — with a thin subtle border and gentle
+   rounding. The Prism themes then supply only the token colors, so the light
+   theme's panel and prism-dark's brown panel, thick border, and inset shadow are
+   all overridden here. Components that own their code area (`.hero-terminal pre`,
+   `.card pre`) restyle it below. */
+pre[class*="language-"] {
+	background: var(--theme--surface--color);
+	border: 1px solid var(--theme--ui--color--subtle);
+	border-radius: 0.4em;
+	box-shadow: none;
+}
+
+/* Copy-to-clipboard affordance injected around every <pre> by copy-code.js. */
+.code-block {
+	position: relative;
+
+	/* As a flex/grid item this wrapper must shrink below the <pre>'s intrinsic
+	   width; otherwise it grows to the longest code line and pushes the page
+	   past the viewport instead of letting the <pre> scroll internally. */
+	min-inline-size: 0;
+	max-inline-size: 100%;
+}
+
+.copy-button {
+	position: absolute;
+	inset-block-start: 0.5rem;
+	inset-inline-end: 0.5rem;
+
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35em;
+
+	padding: 0.3rem 0.55rem;
+	font-family: var(--theme--text--FontFamily);
+	font-size: 0.72rem;
+	font-weight: 600;
+	line-height: 1;
+	color: var(--theme--text--Color--subtle);
+	background: var(--theme--surface--color);
+	border: 1px solid var(--theme--ui--color--subtle);
+	border-radius: .35em;
+	cursor: pointer;
+	opacity: 0.55;
+	transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+	&:is(:hover, :focus-visible),
+	&.copied {
+		opacity: 1;
+		color: var(--theme--text--Color--accent);
+		border-color: var(--theme--text--Color--accent);
+	}
+}
+
+.code-block:is(:hover, :focus-within) .copy-button {
+	opacity: 1;
+}
+
+:focus-visible {
+	outline: 1px solid var(--base);
+	outline-offset: 2px;
+	border-radius: .2em;
+}
+
+.container {
+	box-sizing: border-box;
+	max-inline-size: clamp(72rem, 1200px, 100%);
+	margin-inline: auto;
+	padding-inline: clamp(2rem, 4vw, 16px);
+}
+
+.content {
+	inline-size: min(60ch, 100%);
+}
+
+:is(h2, h3, h4, h5, h6):has(.anchor) {
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	gap: 0.4rem;
+	flex-direction: row-reverse;
+}
+
+.anchor {
+	color: var(--theme--text--Color--subtle);
+	font-weight: 400;
+	transition: scale 0.15s ease;
+
+	&:is(:hover, :focus-visible) {
+		outline: none;
+		scale: 1.1;
+	}
+}
+
+p {
+	margin: 0;
+
+	.content & {
+		text-wrap: balance;
+		text-wrap: pretty;
+	}
+
+	:not(.layout) > &:not(:last-child) {
+		margin-block-end: 1rem;
+	}
+}
+
+ul, ol {
+	padding-inline-start: 1.25rem;
+}
+
+li {
+	margin-block: 0.25rem;
+}
+
+.skip-link {
+	position: absolute;
+	inset-inline-start: -9999px;
+	inset-block-start: 1rem;
+	padding: 0.5rem 1rem;
+	font-size: 1.6rem;
+	font-weight: var(--theme--FontWeight--medium);
+
+	&:is(:focus-visible, :focus) {
+		inset-inline-start: 1rem;
+		z-index: 10;
+	}
+}
+
+:where(.layout) {
+	container: layout / inline-size;
+	inline-size: 100%;
+
+	--item-size: 320px;
+
+	gap: var(--gap, 0.4rem);
+	justify-content: var(--justify-content, center);
+	align-items: var(--align-items, center);
+
+	/* Reserve clearance for the floating "Featured"/"Recommended" badge that
+	   straddles the top edge of a featured card. Applied to the container — not
+	   the card — so every item in the row shares the same top and the featured
+	   card stays aligned with its siblings. */
+	&:has(> .card.featured) {
+		padding-block-start: 1.5rem;
+	}
+
+	&:not(.grid) {
+		display: flex;
+		flex-wrap: wrap;
+
+		> a {
+			display: inline-flex;
+		}
+	}
+
+	@media (width >= 720px) {
+		--item-size: 380px;
+	}
+
+	&.masonry,
+	&.grid {
+		display: grid;
+		/* min(item-size, 100%) so a track never demands more than the container
+		   width — otherwise a 380px min column overflows a ~375px phone. */
+		grid-template-columns: repeat(auto-fill, minmax(min(var(--item-size, 380px), 100%), 1fr));
+
+		gap: var(--gap, 1rem);
+		align-items: var(--align-items, stretch);
+
+		&:has(.aside) {
+			--item-size: 50ch;
+
+			gap: var(--gap, 2rem);
+			align-items: var(--align-items, center);
+		}
+	}
+
+	&.masonry {
+		/* `display: grid-lanes` is a new CSS spec value (currently Safari Tech Preview).
+		   Gracefully ignored by other browsers. */
+		/* eslint-disable-next-line css/no-invalid-properties */
+		display: grid-lanes;
+	}
+
+	&.stacked {
+		flex-direction: column;
+		gap: var(--gap, 1.5rem);
+		justify-content: var(--justify-content, start);
+		align-items: var(--align-items, start);
+	}
+
+	&.spread {
+		justify-content: var(--justify-content, space-between);
+	}
+}
+
+.btn {
+	display: inline-flex;
+	/* used for icon layout */
+	align-items: center;
+	gap: 0.4rem;
+
+	padding: 0.7rem 1.5rem;
+	margin: 1px;
+	border-radius: .4em;
+	border: 1px solid var(--theme--ui--color--subtle);
+	background: var(--theme--surface--color--sunken);
+	color: var(--theme--text--Color);
+	font-weight: bolder;
+	font-family: inherit;
+	font-size: 0.95rem;
+	transition:
+		transform 0.08s ease,
+		box-shadow 0.15s ease,
+		background 0.15s ease;
+
+	&:is(:hover) {
+		transform: translateY(-1px);
+		box-shadow: var(--theme--ui--shadow);
+	}
+
+	&:not(.primary):is(:focus-visible) {
+		outline-offset: 0;
+	}
+
+	&.primary {
+		background: var(--base);
+		color: var(--theme--text--Color--invert);
+		border-color: var(--base);
+		margin: 3px;
+
+		&:is(:hover, :focus-visible) {
+			color: var(--theme--text--Color--invert);
+			background: color-mix(in oklch, var(--base) 88%, black);
+		}
+	}
+}
+
+.btn-group {
+	display: flex;
+	flex-wrap: wrap;
+	/* Tighter row-gap so wrapped buttons don't leave a large vertical gap. */
+	column-gap: 1.6rem;
+	row-gap: 0.6rem;
+	justify-content: var(--justify-content, start);
+	align-items: var(--align-items, center);
+}
+
+.cta {
+	color: var(--theme--link--Color);
+	font-size: 0.9em;
+	font-weight: 600;
+
+	text-decoration: underline dotted;
+
+	&::after {
+		content: "→";
+		margin-left: 0.25em;
+		font-size: 0.8em;
+		transition: transform 0.15s ease;
+
+		.card:is(:hover, :focus-within) &,
+		&:is(:hover, :focus-visible) {
+			transform: translateX(0.25em);
+		}
+	}
+
+	&:is(:hover, :focus-visible),
+	.card:is(:hover, :focus-within) & {
+		color: var(--theme--link--Color--hover);
+	}
+}
+
+.lede {
+	font-size: clamp(1.1rem, 2vw, 1.4rem);
+}
+
+.brand svg {
+	color: var(--theme--text--Color);
+	max-inline-size: 200px;
+	height: auto;
+
+	path {
+		fill: currentColor !important;
+	}
+}
+
+.title {
+	color: var(--theme--text--Color);
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+
+	.brand & {
+		font-family: var(--theme--code--FontFamily);
+		text-transform: none;
+		letter-spacing: 0;
+		font-size: 1.2rem;
+		color: var(--theme--text--Color--accent);
+		font-weight: bolder;
+	}
+}
+
+.meta {
+	font-size: 0.8em;
+
+	&:has(code) {
+		margin: 0;
+	}
+
+
+	> .label {
+		margin-right: 0.5em;
+	}
+}
+
+.label {
+	text-transform: uppercase;
+	font-weight: 600;
+	color: var(--theme--text--Color);
+}
+
+.chip {
+	display: inline-block;
+	padding: 0.2rem 0.8rem;
+	font-family: var(--theme--code--FontFamily);
+	font-size: 0.8rem;
+	font-weight: 600;
+	/* Explicit so the badge centers consistently whether it's rendered as an
+	   <h2> (Featured) or <p> (Recommended), which inherit different line heights. */
+	line-height: 1;
+	letter-spacing: 0.04em;
+	background: var(--theme--surface--color);
+	color: var(--theme--text--Color--accent);
+	border: 1px solid currentColor;
+	border-radius: 2em;
+
+	/* The floating "Featured"/"Recommended" badge only applies to a chip placed
+	   as a direct child of a card header — not to chips nested in `.chips`.
+	   Absolutely centered on the card's top border so it straddles the edge
+	   regardless of its own height. */
+	.card.featured :is(header, .header) > & {
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline-start: var(--card-pad, 1.5rem);
+		transform: translateY(-50%);
+		margin: 0;
+		padding-block: 0.45rem;
+		display: block;
+		inline-size: max-content;
+	}
+}
+
+/* Compact metadata chip cluster (runtime, flavor, category) for skill cards
+   and detail pages. Subtler than the standalone accent `.chip`. */
+.chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	margin: 0;
+
+	.chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35em;
+
+		padding: 0.15rem 0.6rem;
+		font-size: 0.7rem;
+		letter-spacing: 0.02em;
+		color: var(--theme--text--Color--subtle);
+		background: var(--theme--surface--color);
+		border-color: var(--theme--ui--color--subtle);
+	}
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	inline-size: 2.5rem;
+	block-size: 2.5rem;
+	color: inherit;
+	font-size: .6em;
+}
+
+.note {
+	color: var(--theme--text--Color--subtle);
+	font-size: 0.9em;
+}
+
+.card {
+	container: card / inline-size;
+
+	display: inline-grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto 1fr auto;
+	gap: 1rem;
+
+	/* Allow the card to shrink below its content's intrinsic width so a wide
+	   code block scrolls internally instead of widening the grid track. */
+	min-inline-size: 0;
+
+	background: var(--theme--surface--color--sunken);
+	color: inherit;
+
+	/* Balance wrapped card text; fall back to `pretty` where `balance`
+	   isn't implemented yet (the later declaration wins only if parsed). */
+	text-wrap: pretty;
+	text-wrap: balance;
+
+	border: 1px solid var(--theme--ui--color--subtle);
+	border-radius: .8em;
+	padding: 2rem 1.2rem 1.2rem;
+	transition:
+		transform 0.12s ease,
+		box-shadow 0.15s ease,
+		border-color 0.15s ease;
+
+	&:is(:link, a) {
+		text-decoration: none !important;
+
+		&:is(:hover, :focus-within) {
+			transform: translateY(-2px);
+			box-shadow: var(--theme--ui--shadow);
+			border-color: var(--theme--text--Color--accent);
+		}
+
+		&:not(.featured):is(:focus-visible, :focus-within) {
+			outline-offset: 0;
+		}
+	}
+
+	footer,
+	.footer {
+		overflow: hidden;
+	}
+
+	.icon {
+		margin-inline-end: 0.5rem;
+	}
+
+	pre,
+	:not(pre) > code {
+		background: var(--theme--surface--color);
+	}
+
+	/* Code snippets in a card carry the brand accent bar instead of the full
+	   border, with the leading corners squared so the bar reads as a clean edge. */
+	pre[class*="language-"] {
+		border: none;
+		border-inline-start: 4px solid var(--base);
+		border-start-start-radius: 0;
+		border-end-start-radius: 0;
+	}
+
+	:is(header, .header) :is(h2, h3, h4, h5, h6):not([class]) {
+		font-size: calc(1.2em + 1cqi);
+	}
+
+	.body :is(h2, h3, h4, h5, h6):not([class]) {
+		font-size: calc(.8em + 1cqi);
+		color: var(--theme--text--Color);
+	}
+
+	/* Tighter line height for card body copy than the page default. */
+	:is(p, li) {
+		line-height: 1.5;
+	}
+
+	&.featured {
+		--card-pad: clamp(1.5rem, 3vw, 2.5rem);
+		position: relative;
+		padding: var(--card-pad);
+		box-shadow: var(--theme--ui--shadow);
+		border-color: var(--theme--text--Color--accent);
+		/* @eslint/css can't parse var() inside linear-gradient() color stops
+		   even though it's valid CSS. */
+		/* eslint-disable css/no-invalid-properties */
+		background-image: linear-gradient(
+			180deg,
+			var(--theme--surface--color--accent),
+			var(--theme--surface--color--sunken)
+		);
+		/* eslint-enable css/no-invalid-properties */
+
+		/* Space above the title so it clears the floating badge. */
+		:is(header, .header) > h3 {
+			margin-block-start: 0.75rem;
+		}
+	}
+}
+
+body > :is(section, footer) {
+	padding-block: 3rem;
+}
+
+body > footer {
+	border-top: 1px solid var(--theme--ui--color--subtle);
+
+	color: var(--theme--text--Color--subtle);
+	font-size: 0.9rem;
+
+	display: flex;
+	gap: 2rem;
+	flex-wrap: wrap;
+	justify-content: var(--justify-content, space-between);
+	align-items: var(--align-items, start);
+
+	> * {
+		max-inline-size: 60ch;
+	}
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+	}
+
+	a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+
+		&:is(:hover, :focus-visible) {
+			color: var(--theme--text--Color--accent);
+		}
+	}
+
+	.meta {
+		margin: 0;
+		font-size: 0.8rem;
+	}
+}
+
+@media (width <= 720px) {
+	footer {
+		grid-auto-columns: minmax(0, 1fr);
+	}
+}
+
+@media (width <= 480px) {
+	footer {
+		grid-template-columns: 1fr;
+	}
+}
+
+		.skill-hero {
+	padding-block: 2.5rem 2.25rem;
+	border-block-end: 1px solid var(--theme--ui--color--subtle);
+
+	/* Soft glow that fades delicately outward, matching the home page header
+	   (docs/styles.css). Anchored toward the start edge so the glow sits behind
+	   this hero's left-aligned content. The hero is full-bleed (the container
+	   wraps only the content), so the glow's strong side meets the viewport edge
+	   and the fade completes in open space — painted on the 1200px container it
+	   was clipped mid-strength, leaving a hard vertical line on wide screens. */
+	background-image: radial-gradient(
+		75% 85% at 20% 0%,
+		var(--theme--surface--color--accent),
+		transparent 70%
+	);
+
+	.container > * + * {
+		margin-block-start: 1.25rem;
+	}
+
+	.lede {
+		max-width: 70ch;
+	}
+}
+
+.breadcrumb {
+	font-family: var(--theme--code--FontFamily);
+	font-size: 0.85rem;
+	color: var(--theme--text--Color--subtle);
+
+	a {
+		color: inherit;
+	}
+
+	span {
+		margin-inline: 0.4em;
+		opacity: 0.6;
+	}
+}
+
+.skill-detail {
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+	padding-block: 2.5rem 4rem;
+}
+
+/* The content flow (How to use it → Folder structure → Full instructions) and
+   the Install aside. On desktop they're two columns: the flow is the main
+   column, and Install sticks in the right column alongside the whole flow,
+   releasing at Other skills below. On mobile it's one column and — since the
+   aside is first in the DOM — Install leads the content. */
+.skill-cols {
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+}
+
+.skill-flow {
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+	/* Shrink below content so a wide tree scrolls inside its own panel instead
+	   of stretching the column (and the page) wider. */
+	min-inline-size: 0;
+}
+
+@media (min-width: 60rem) {
+	.skill-cols {
+		display: grid;
+		/* Flow column is flex-sized (`minmax(0, 1fr)`) so the tree's
+		   `min(80ch, 100%)` resolves against a definite track; aside is fixed. */
+		grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
+		grid-template-rows: auto;
+		column-gap: 2.5rem;
+		align-items: start;
+	}
+
+	/* Rows are pinned explicitly on BOTH children. The aside precedes the flow
+	   in the DOM but sits in a later column, and the grid auto-placement cursor
+	   bumps a later item with an earlier definite column to the next row —
+	   WebKit follows that strictly (flow landed in row 2 on iPad, dropping all
+	   content below the aside) while Chromium keeps both in row 1. Explicit
+	   rows remove the engine divergence. */
+	.skill-cols > .skill-flow {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	/* The aside's grid area shares the flow's row, so sticky pins it from the
+	   top of the flow down to Other skills. */
+	.skill-cols > .install-aside {
+		grid-column: 2;
+		grid-row: 1;
+		align-self: start;
+		position: sticky;
+		inset-block-start: 1.5rem;
+	}
+}
+
+.structure > header {
+	margin-block-end: 1.25rem;
+}
+
+.install-aside {
+	display: flex;
+	flex-direction: column;
+	gap: 0.85rem;
+
+	padding: 1.1rem 1.2rem;
+	background: var(--theme--surface--color--sunken);
+	border: 1px solid var(--theme--ui--color--subtle);
+	border-radius: 0.6em;
+
+	> header {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+	}
+
+	h2 {
+		margin: 0;
+		font-size: 1.25rem;
+	}
+
+	h3 {
+		margin: 0;
+		font-size: 0.98rem;
+	}
+}
+
+.install-option {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+}
+
+/* Compact, wrapped command blocks: the aside is narrow, so shrink the type and
+   padding and wrap long commands (targeting the <code> too — the Prism theme
+   pins it to `white-space: pre`) so they stay fully visible without ballooning
+   the aside's height. The copy button still copies the whole command. */
+.install-aside :is(pre, code)[class*="language-"] {
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+	font-size: 0.78em;
+}
+
+.install-aside pre[class*="language-"] {
+	margin-block: 0;
+	padding: 0.55rem 0.65rem;
+}
+
+/* Prism-treeview folder view above the rendered SKILL.md. A deep tree scrolls
+   inside the panel (overflow-x from the Prism theme) rather than wrapping. */
+.skill-tree {
+	/* Border-box so the panel's padding and border count inside the width cap.
+	   The site has no global border-box reset, so a content-box `inline-size:
+	   100%` plus Prism's 1em padding pushes the block ~6px past the viewport on
+	   mobile, triggering page-level horizontal scroll. */
+	box-sizing: border-box;
+	inline-size: min(80ch, 100%);
+
+	code {
+		white-space: pre;
+	}
+}
+
+.snippet-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	gap: 0.5rem;
+
+	code {
+		background: var(--theme--surface--color--sunken);
+	}
+}
+
+.prose {
+	inline-size: min(80ch, 100%);
+	/* Long words and strings in body copy wrap instead of overflowing. */
+	overflow-wrap: break-word;
+
+	:is(h1, h2) {
+		font-size: clamp(1.5rem, 3vw, 2rem);
+	}
+
+	:is(h3, h4, h5, h6) {
+		font-size: clamp(1.1rem, 2vw, 1.35rem);
+	}
+
+	> :is(h2, h3, h4, h5, h6) {
+		margin-block-start: 1.75rem;
+	}
+
+	pre {
+		margin-block: 1rem;
+	}
+
+	/* Common markdown carried over from the rendered SKILL.md. */
+	.table-scroll {
+		max-inline-size: 100%;
+		overflow-x: auto;
+	}
+
+	table {
+		inline-size: 100%;
+		border-collapse: collapse;
+		margin-block: 1.25rem;
+		font-size: 0.95rem;
+
+		/* Framing rules top and bottom, with a subtle divider under the header. */
+		border-block: 1px solid var(--theme--ui--color--subtle);
+
+		:is(th, td) {
+			padding: 0.5rem 0.75rem;
+			text-align: start;
+			vertical-align: top;
+		}
+
+		thead th {
+			border-block-end: 1px solid var(--theme--ui--color--subtle);
+		}
+	}
+
+	blockquote {
+		margin-block: 1.25rem;
+		margin-inline: 0;
+		padding-inline-start: 1rem;
+		border-inline-start: 3px solid var(--theme--ui--color--subtle);
+		color: var(--theme--text--Color--subtle);
+	}
+}
+		</style>
+	</head>
+	<body>
+		<a class="skip-link" href="#main">Skip to content</a>
+		<a href="https://allons-y.studio" style="display: flex;">
+			<img alt="Brought to you by Allons-y Studio" src="/agent-skills/pr-preview/pr-45/assets/oss-banner.png" width="1200" style="inline-size: 100%;">
+		</a>
+
+        
+
+
+
+
+<header class="skill-hero">
+	<div class="container">
+		<p class="breadcrumb"><a href="/agent-skills/pr-preview/pr-45/">@allons-y/agent-skills</a> <span aria-hidden="true">/</span> <a href="/agent-skills/pr-preview/pr-45/#skills">skills</a></p>
+		<h1>dreamlight-valley</h1>
+		<p class="lede">Cooking, gathering, and inventory management for Dreamlight Valley.</p>
+		
+<p class="chips"><span class="chip">Games</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span><span class="chip"><span class="fa-solid fa-window-maximize" aria-hidden="true"></span> Live preview</span><span class="chip"><span class="fa-brands fa-node-js" aria-hidden="true"></span> Node</span></p>
+
+		<p class="btn-group">
+			<a class="btn primary" href="#install">Install this skill</a>
+			<a class="btn" href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/dreamlight-valley/SKILL.md"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
+			<a class="btn" href="/agent-skills/pr-preview/pr-45/dreamlight-valley/"><span class="fa-solid fa-up-right-from-square" aria-hidden="true"></span> Preview skill interface</a>
+		</p>
+	</div>
+</header>
+
+<main id="main" class="container skill-detail">
+	<div class="skill-cols">
+		<aside id="install" class="install-aside" aria-labelledby="install-heading">
+			<header>
+				<h2 id="install-heading">Install</h2>
+				<h3>Claude Code</h3>
+			</header>
+			<div class="install-option">
+				<pre class="language-shell"><code class="language-shell"><span class="highlight-line">/plugin marketplace <span class="token function">add</span> allonsy-studio/agent-skills</span>
+<span class="highlight-line">/plugin <span class="token function">install</span> dreamlight-valley@agent-skills</span></code></pre>
+			</div>
+			<div>
+				<a class="cta" href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/dreamlight-valley/SKILL.md"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
+			</div>
+		</aside>
+
+		<div class="skill-flow">
+			<section id="use" aria-labelledby="use-heading" class="layout stacked">
+				<header>
+					<h2 id="use-heading">
+						How to use it
+						<a class="anchor" href="#use" aria-label="Permalink to How to use it">#</a>
+					</h2>
+					<p>Once installed, this skill activates automatically when your prompt matches one of its triggers.</p>
+				</header>
+				
+				<div class="content">
+					<h3>Try saying</h3>
+					<ul class="snippet-list">
+						<li><code>/cook &lt;flags&gt; &lt;ingredients&gt;</code></li><li><code>/restock &lt;flags&gt;</code></li><li><code>/recipe &lt;dish name&gt;</code></li><li><code>any request related to the video game Dreamlight Valley</code></li>
+					</ul>
+				</div>
+			</section>
+
+			<section id="structure" class="structure" aria-labelledby="structure-heading">
+				<header>
+					<h2 id="structure-heading">
+						Folder structure
+						<a class="anchor" href="#structure" aria-label="Permalink to Folder structure">#</a>
+					</h2>
+					<p>Everything in this skill's source directory — scripts, references, and the tests and evals that back it. The installer copies the runtime files into your skills directory; the tests and evals stay in the repo.</p>
+				</header>
+				<pre class="skill-tree language-treeview"><code class="language-treeview"><span class="token treeview-part"><span class="token entry-name dir">dreamlight-valley</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">assets</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">star-coin.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-svg">thorn.svg</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">commands</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">cook.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">recipe.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">restock.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">evals</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-json">evals.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">preview</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-11tydata-js ext-js">index.11tydata.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-njk">index.njk</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-css">styles.css</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">references</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">sprites</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">collectables.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">flowers.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">gems.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-dairy.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-fish.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-fruit.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-grain.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-ice.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-meat.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-seafood.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-spice.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-sweet.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-sweets.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-vegetable.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">ingredients-vegetables.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-png">recipes.png</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-json">sprite-coords.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">categories.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">gatherables.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">icon-cues.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">identify.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-zip">images.zip</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">recipes.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">recommend.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">sprite-coords.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">stock-check.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">scripts</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">build-sprites.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-js">sprite-coords.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">tests</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">build-sprites.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">gatherables.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">recipes.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-test-js ext-js">sprite-coords.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-example-md ext-md">config.example.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-config-js ext-js">eslint.config.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">package.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">README.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">SKILL.md</span></span></code></pre>
+			</section>
+
+			<section id="docs" aria-labelledby="docs-heading" class="layout stacked">
+				<header>
+					<h2 id="docs-heading">
+						Full skill instructions
+						<a class="anchor" href="#docs" aria-label="Permalink to Full skill instructions">#</a>
+					</h2>
+					<p>This is the <code>SKILL.md</code> the agent reads when the skill activates. <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/dreamlight-valley/SKILL.md">View the source on GitHub</a>.</p>
+				</header>
+				<div class="prose">
+					<h1>Dreamlight Valley Cooking, Gathering, and Inventory Management</h1>
+<p>This skill has several modes. Pick the matching mode, then <strong>read its reference
+file for the full procedure</strong> — don’t execute from memory.</p>
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Trigger</th>
+<th>Procedure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Identify</strong> a dish → return ingredients</td>
+<td><code>/recipe &lt;dish name&gt;</code>, recipe-card or cookbook screenshot, “what’s in &lt;dish&gt;”</td>
+<td><code>references/identify.md</code></td>
+</tr>
+<tr>
+<td><strong>Recommend</strong> what to cook from on-hand ingredients</td>
+<td><code>/cook &lt;flags&gt; &lt;ingredients&gt;</code> (flags: <code>--energy</code> / <code>--profit</code> / <code>--floor N</code>), “what should I cook”, “most profitable”, “best energy”</td>
+<td><code>references/recommend.md</code></td>
+</tr>
+<tr>
+<td><strong>Stock-check</strong> — gather list from storage</td>
+<td><code>/restock &lt;flags&gt;</code> (flags: <code>--floor N</code> / <code>--category name</code>) with a storage screenshot, “what should I gather”, “restock”</td>
+<td><code>references/stock-check.md</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>When the user’s intent is ambiguous, ask one short routing question rather
+than guessing.</p>
+<h2>Bundled data</h2>
+<ul>
+<li><code>references/recipes.json</code> — 472 recipes. Each: <code>name</code>, <code>course</code>
+(<code>appetizer</code>/<code>entree</code>/<code>dessert</code>), <code>star_rating</code>, <code>energy</code>, <code>sale_price</code>,
+<code>ingredients</code>. An ingredient slot is either fixed (<code>{&quot;name&quot;: &quot;...&quot;}</code>) or a
+<strong>category slot</strong> (<code>{&quot;name&quot;: &quot;spice&quot;, &quot;category&quot;: true}</code>) accepting any
+ingredient of that category. Category slots are the single most important
+nuance in DDV cooking.</li>
+<li><code>references/gatherables.json</code> — master catalog under <code>categories</code>:
+<ul>
+<li><code>ingredients</code> (188) — <code>name</code>, <code>category</code> (vegetable, fruit, grain, spice,
+sweets, seafood, dairy, meat, ice, fish), <code>method</code>
+(gardening/foraging/fishing/purchase), <code>energy</code>, <code>sale_price</code>,
+<code>locations</code>. <strong>Fish live here</strong> with <code>category: &quot;fish&quot;</code> — recipes with
+a <code>fish</code> category slot resolve to these.</li>
+<li><code>flowers</code> (86) — <code>name</code>, <code>sale_price</code>, <code>locations</code>, optional
+<code>availability</code> (abundant/average/rare/ultra-rare; event/seasonal flowers
+intentionally omit it).</li>
+<li><code>collectables</code> (62) — <code>name</code>, <code>method</code> (string or array, e.g. Bones is
+<code>[&quot;digging&quot;,&quot;fishing&quot;]</code>), <code>locations</code>, optional <code>event</code>.</li>
+<li><code>gems</code> (50) — <code>name</code>, <code>locations</code>, optional <code>sale_price</code>.
+Locations include biome + sub-area (e.g. <code>&quot;Glittering Dunes (The Wastes)&quot;</code>).
+<code>&quot;All Biomes&quot;</code> is valid (Stone, Coal Ore). Shop-source values like
+<code>&quot;Kristoff's Stall&quot;</code> mean the item is purchasable there.</li>
+</ul>
+</li>
+<li><code>references/categories.md</code> — what each cooking category slot accepts.</li>
+<li><code>references/icon-cues.md</code> — reading storage screenshots and disambiguating
+icons (two-pass read, 99-skip, gem regular/shiny, color-family pitfalls,
+event-item floor convention, crafted-not-gathered exclusions).</li>
+<li><code>references/sprites/*.png</code> — labeled canonical art:
+<ul>
+<li>13 per-category gatherable sheets (<code>gems.png</code>, <code>flowers.png</code>,
+<code>collectables.png</code>, plus one <code>ingredients-&lt;category&gt;.png</code> per cooking
+category)</li>
+<li>one full-catalog <code>recipes.png</code> (472 dishes, 1056×9734 px)
+All use the same 8-column alphabetical grid with captions. Open the
+matching sheet to confirm a thumbnail by eye.</li>
+</ul>
+</li>
+<li><code>references/sprite-coords.json</code> — companion index mapping every
+gatherable item AND every recipe to its <code>(sheet, row, col, x, y, w, h)</code>
+plus the shared grid layout. Use it to jump straight to a known
+item/recipe’s icon without scanning the whole sheet, and to verify
+whether a name exists in the catalog. Regenerated by <code>yarn workspace @allons-y/skill-dreamlight-valley build:sprites</code>.</li>
+</ul>
+<p><strong>Do not recite this data from memory — read the files.</strong> The bundled data is
+authoritative; your memory isn’t.</p>
+<h2>Configuration</h2>
+<p>This skill is for a single player’s saved game, so the config is a small
+plain-text file the user edits by hand. Check these paths in order and use
+the <strong>first one that exists</strong>:</p>
+<ol>
+<li><code>./dreamlight-valley.md</code></li>
+<li><code>~/.config/dreamlight-valley.md</code></li>
+</ol>
+<p><code>config.example.md</code> (next to this <a href="http://SKILL.md">SKILL.md</a>) is the starter. Read the file at
+the start of each mode and <strong>interpret it generously</strong> — it’s prose, not
+JSON. Users can express: floor (single or per-category), <code>/cook</code> objective,
+top-N recipe count, secondary-payout callout, extra fields shown by
+<code>/recipe</code>, and <code>/restock</code> toggles. Command-line flags from the user always
+win over the config. No config file present → use built-in defaults silently
+(don’t mention the config unless asked).</p>
+<h2>What this skill does NOT do</h2>
+<ul>
+<li>Track which expansion a recipe belongs to (the field was removed). If the
+user wants an expansion-specific list, fall back to filtering by
+ingredient origin where reasonable, or say it’s unsupported.</li>
+<li>Account for the “Well Fed” bonus, seasonal modifiers, or Goofy’s-stall
+price fluctuations — <code>sale_price</code> is the standard base sell value.</li>
+<li>Guess item locations. A handful of fish/seafood ingredients and event critters have
+empty <code>locations</code> arrays — say so rather than fabricating one.</li>
+</ul>
+
+				</div>
+			</section>
+		</div>
+	</div>
+
+	<section id="more" aria-labelledby="more-heading" class="layout stacked">
+		<header>
+			<h2 id="more-heading">
+				Other skills
+				<a class="anchor" href="#more" aria-label="Permalink to Other skills">#</a>
+			</h2>
+		</header>
+		<article class="layout grid">
+			<a class="card" href="/agent-skills/pr-preview/pr-45/skills/design-system/">
+				<div class="header">
+					<h3>design-system</h3>
+					
+<p class="chips"><span class="chip">Design</span><span class="chip"><span class="fa-solid fa-book-open" aria-hidden="true"></span> Reference</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span></p>
+
+				</div>
+				<div class="body">
+					<p>Build, name, document, and audit UI components with expert ARIA, accessibility, design token, typography, and i18n guidance written by a...</p>
+				</div>
+				<div class="footer">
+					<p class="cta">Learn more</p>
+				</div>
+			</a><a class="card" href="/agent-skills/pr-preview/pr-45/skills/gh-notification-summary/">
+				<div class="header">
+					<h3>gh-notification-summary</h3>
+					
+<p class="chips"><span class="chip">GitHub</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span></p>
+
+				</div>
+				<div class="body">
+					<p>Review, summarize, and manage GitHub notifications via an interactive local dashboard. Unsubscribe from noisy threads, mark individual...</p>
+				</div>
+				<div class="footer">
+					<p class="cta">Learn more</p>
+				</div>
+			</a><a class="card" href="/agent-skills/pr-preview/pr-45/skills/structured-data/">
+				<div class="header">
+					<h3>structured-data</h3>
+					
+<p class="chips"><span class="chip">SEO</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span></p>
+
+				</div>
+				<div class="body">
+					<p>Inject or generate schema.org structured data (HTML Microdata or JSON-LD) into web markup, then validate it. Picks the right format per...</p>
+				</div>
+				<div class="footer">
+					<p class="cta">Learn more</p>
+				</div>
+			</a>
+		</article>
+	</section>
+</main>
+
+		<footer class="container">
+			<div class="brand">
+				<p class="title">@allons-y/agent-skills</p>
+				<p class="lede">A collection of self-contained agent skills that streamline common developer workflows and reduce token usage. Install in Claude Code via the plugin marketplace, or vendor into any agent harness with npx.</p>
+				<p class="badges">
+					<a href="https://www.npmjs.com/package/@allons-y/agent-skills"><img alt="" src="https://img.shields.io/npm/v/@allons-y/agent-skills?logo=npm&labelColor=black&color=%23d22d6f"></a>
+					<a href="https://www.npmjs.com/package/@allons-y/agent-skills"><img alt="" src="https://img.shields.io/npm/dw/@allons-y/agent-skills?logo=npm&labelColor=black&color=%23d22d6f"></a>
+				</p>
+				<p class="meta"><a href="https://github.com/allonsy-studio/agent-skills/blob/main/LICENSE">Licensed under MPL-2.0</a></p>
+			</div>
+			
+			<div>
+				<p align="center">
+					<a href="https://allons-y.studio">
+						<picture>
+							<source media="(prefers-color-scheme: dark)" srcset="/agent-skills/pr-preview/pr-45/assets/oss-footer-dark.png">
+							<img alt="Brought to you by Allons-y Studio" src="/agent-skills/pr-preview/pr-45/assets/oss-footer-light.png" width="220">
+						</picture>
+					</a>
+				</p>
+			</div>
+		</footer>
+
+        
+        <script type="module">// Progressive enhancement: add a copy-to-clipboard button to every code block.
+// Loaded into the shared `js` bundle from foundation.njk, so it runs on the
+// landing page, the per-skill detail pages, and the rendered SKILL.md prose.
+
+/** Build a decorative Font Awesome icon span. */
+function icon(classes) {
+	const span = document.createElement("span");
+	span.className = classes;
+	span.setAttribute("aria-hidden", "true");
+	return span;
+}
+
+/** Set the button's contents from a (possibly null) icon and optional label. */
+function setState(button, iconClasses, label) {
+	button.replaceChildren();
+	if (iconClasses) button.append(icon(iconClasses));
+	if (label) button.append(label);
+}
+
+/**
+ * Strip a leading shell prompt (`$ `) from each line so copied commands are
+ * paste-ready. Requires whitespace after `$` to avoid touching shell variables
+ * like `$VAR` or `${CLAUDE_PLUGIN_ROOT}`.
+ *
+ * @param {string} text
+ * @returns {string}
+ */
+function stripPrompt(text) {
+	return text
+		.split("\n")
+		.map((line) => line.replace(/^\$\s+/, ""))
+		.join("\n");
+}
+
+/**
+ * Copy text to the clipboard, falling back to a temporary textarea + execCommand
+ * when the async Clipboard API is unavailable (e.g. non-secure contexts). Both
+ * paths copy the exact string passed in, so normalization stays consistent.
+ *
+ * @param {string} text
+ * @returns {Promise<boolean>} whether the copy succeeded
+ */
+async function copyText(text) {
+	if (navigator.clipboard?.writeText) {
+		try {
+			await navigator.clipboard.writeText(text);
+			return true;
+		} catch {
+			/* fall through to the textarea fallback */
+		}
+	}
+
+	const textarea = document.createElement("textarea");
+	textarea.value = text;
+	textarea.setAttribute("readonly", "");
+	textarea.style.position = "fixed";
+	textarea.style.opacity = "0";
+	textarea.style.pointerEvents = "none";
+	document.body.append(textarea);
+	textarea.select();
+	const ok = document.execCommand?.("copy") ?? false;
+	textarea.remove();
+	return ok;
+}
+
+// The folder-structure tree (`.skill-tree`) is a display block, not a
+// copy-and-run snippet — an ASCII tree pastes nowhere useful — so it opts out
+// of the copy affordance.
+for (const pre of document.querySelectorAll("pre:not(.skill-tree)")) {
+	// Wrap the <pre> so the button can be absolutely positioned against it.
+	const wrapper = document.createElement("div");
+	wrapper.className = "code-block";
+	pre.replaceWith(wrapper);
+	wrapper.append(pre);
+
+	const button = document.createElement("button");
+	button.type = "button";
+	button.className = "copy-button";
+	button.setAttribute("aria-label", "Copy code to clipboard");
+	setState(button, "fa-regular fa-copy", null);
+	wrapper.append(button);
+
+	let resetTimer;
+	button.addEventListener("click", async () => {
+		const ok = await copyText(stripPrompt(pre.innerText));
+		button.classList.toggle("copied", ok);
+		setState(button, ok ? "fa-solid fa-check" : null, ok ? "Copied" : "Press ⌘C");
+
+		clearTimeout(resetTimer);
+		resetTimer = setTimeout(() => {
+			button.classList.remove("copied");
+			setState(button, "fa-regular fa-copy", null);
+		}, 2000);
+	});
+}</script>
+	</body>
+</html>
