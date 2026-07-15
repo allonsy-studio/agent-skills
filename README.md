@@ -1,3 +1,11 @@
+<p>
+  <a href="https://allons-y.studio">
+    <picture>
+      <img alt="Brought to you by Allons-y Studio" src="/assets/oss-banner.png" width="1200" style="inline-size: 100%">
+    </picture>
+  </a>
+</p>
+
 # @allons-y/agent-skills
 
 [![CI][workflow-image]][workflow-url]
@@ -183,10 +191,6 @@ Contributions are welcome — new skills, improvements to existing ones, bug fix
 
 [MPL-2.0](LICENSE) — use freely, modify as needed; changes to MPL-licensed files should be shared back under the same license.
 
----
-
-Built and maintained by [Allons-y Studio](https://allons-y.studio) · Cassondra Roberts.
-
 [workflow-image]: https://github.com/allonsy-studio/agent-skills/actions/workflows/test.yml/badge.svg?branch=main
 [workflow-url]: https://github.com/allonsy-studio/agent-skills/actions/workflows/test.yml/badge.svg
 [npm-image]: https://img.shields.io/npm/v/@allons-y/agent-skills?logo=npm
@@ -195,3 +199,14 @@ Built and maintained by [Allons-y Studio](https://allons-y.studio) · Cassondra 
 [conventional-commits-url]: https://conventionalcommits.org/
 [coverage-image]: https://img.shields.io/nycrc/allonsy-studio/agent-skills?config=.c8rc.json
 [coverage-url]: https://github.com/allonsy-studio/agent-skills/blob/main/.c8rc.json
+
+---
+
+<p>
+  <a href="https://allons-y.studio">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="/assets/oss-footer-dark.png">
+      <img alt="Brought to you by Allons-y Studio" src="/assets/oss-footer-light.png" width="240">
+    </picture>
+  </a>
+</p>
