@@ -68,5 +68,9 @@ export default async function ( config ) {
 		// query.
 		"node_modules/prismjs/themes/prism.css": "assets/prism.css",
 		"node_modules/prismjs/themes/prism-dark.css": "assets/prism-dark.css",
+		// Prism Treeview plugin CSS — renders `language-treeview` blocks as a file
+		// tree with branch lines and file-type icons (an embedded icon webfont, no
+		// external asset). Used by the skill detail page's folder-structure section.
+		"node_modules/prismjs/plugins/treeview/prism-treeview.css": "assets/prism-treeview.css",
 	});
 };
