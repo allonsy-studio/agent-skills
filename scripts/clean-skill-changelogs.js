@@ -1,4 +1,5 @@
 import { rm } from "fs/promises";
+import { existsSync } from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { getSkills } from "./parse-skills.js";
@@ -19,7 +20,7 @@ async function main() {
 
 	await Promise.all(
 		names.map((name) =>
-			rm(path.join(skillsDir, name, "CHANGELOG.md"), { force: true })
+			existsSync(path.join(skillsDir, name, "CHANGELOG.md")) ? rm(path.join(skillsDir, name, "CHANGELOG.md"), { force: true }) : null
 		)
 	);
 
