@@ -17,4 +17,6 @@ Two scripts do the work that shouldn't be left to judgment:
 - `order-tools.js` resolves your selection into install order, adds the prerequisites you forgot, and warns about combinations that produce a contradictory guide (two version managers for one runtime, or nvm on Windows, which is a different project with different syntax).
 - `build-guide.js` renders the PDF and then verifies it, catching the failure modes that survive visual review — most importantly commands that wrap inside a narrow column and arrive broken when a reader copies them out.
 
+There is also a hosted example of the output, so you can see what you get before installing anything: pick your platform and your tools, and the page assembles the steps in dependency order, tells you which prerequisites it added and why, and prints all your selected platforms at once.
+
 Say anything like "write a setup guide", "new hires keep asking how to get set up", "install instructions for Python and Postgres, Mac and Windows", or "add Docker to the guide we made last month".

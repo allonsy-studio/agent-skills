@@ -12,6 +12,10 @@ export default defineConfig([
 	globalIgnores([
 		"**/node_modules/**",
 		"**/dist/**",
+		// Eleventy's build output. It is a copy of files that are linted at
+		// their source, plus vendored CSS from node_modules, so linting it
+		// reports the same problems twice and fails after any site build.
+		"_site/**",
 		"**/coverage/**",
 		".yarn/**",
 		".cache/**",

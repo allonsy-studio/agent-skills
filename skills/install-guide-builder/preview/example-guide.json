@@ -1,0 +1,528 @@
+{
+	"title": "Team Onboarding: Machine Setup",
+	"subtitle": "Everything you need installed before your first pull request.",
+	"audience": "early-career",
+	"platforms": ["macos", "windows", "linux"],
+	"selected": ["vscode", "git", "gh", "nvm", "node", "uv", "python", "docker", "postgres"],
+	"tools": {
+		"xcode-clt": {
+			"blurb": "Apple's compiler toolchain. Git ships inside it, and Homebrew requires it.",
+			"steps": {
+				"macos": [
+					{
+						"do": "Run `xcode-select --install` and click **Install** in the dialog that appears.",
+						"cmd": "xcode-select --install"
+					},
+					{
+						"do": "Wait. This is several hundred megabytes and takes 5 to 10 minutes. There is no progress detail, so a slow download looks like a hang. It is not.",
+						"callout": {
+							"kind": "note",
+							"label": "Expect a long wait",
+							"text": "Nothing on screen changes for minutes at a time. Leave it alone."
+						}
+					}
+				]
+			},
+			"verify": {
+				"macos": {
+					"cmd": "xcode-select -p",
+					"expect": "a path ending in CommandLineTools or Xcode.app"
+				}
+			},
+			"troubleshooting": [
+				{
+					"sym": "The install dialog fails partway through",
+					"platforms": ["macos"],
+					"fix": "Remove the partial install and start again: `sudo rm -rf /Library/Developer/CommandLineTools`, then re-run `xcode-select --install`."
+				}
+			]
+		},
+
+		"homebrew": {
+			"blurb": "The package manager most macOS developer tooling assumes exists.",
+			"steps": {
+				"macos": [
+					{
+						"do": "Open **brew.sh** and copy the install command from the top of that page. Copy it from their page, not from this one: it is long, and a `curl | bash` line broken across a line break is both wrong and alarming.",
+						"callout": {
+							"kind": "warn",
+							"label": "Copy from brew.sh",
+							"text": "This is the one command in this guide you should not copy from here."
+						}
+					},
+					{
+						"do": "When it finishes, the installer prints a **Next steps** block with two or three `shellenv` commands. Run what your own screen prints. The path differs depending on your chip, so it will not match anyone else's.",
+						"callout": {
+							"kind": "stop",
+							"label": "Do not skip this",
+							"text": "Skipping the Next steps block is the most common Homebrew failure. `brew` is then 'command not found' in every new terminal."
+						}
+					},
+					{ "do": "Open a new terminal window before continuing." }
+				],
+				"linux": [
+					{
+						"do": "Open **brew.sh** and copy the install command from the top of that page."
+					},
+					{
+						"do": "Run the `shellenv` lines the installer prints when it finishes, then open a new terminal."
+					}
+				]
+			},
+			"verify": {
+				"*": { "cmd": "brew --version", "expect": "a version number" }
+			},
+			"troubleshooting": [
+				{
+					"sym": "zsh: command not found: brew",
+					"platforms": ["macos", "linux"],
+					"fix": "The **Next steps** block was skipped. Re-run the installer to print it again, run those lines, then open a new terminal."
+				},
+				{
+					"sym": "An install takes an hour and prints compiler output",
+					"platforms": ["macos"],
+					"fix": "Prebuilt bottles only exist for recent macOS versions. On an older one Homebrew builds from source. It usually still works, but budget the time."
+				}
+			]
+		},
+
+		"vscode": {
+			"blurb": "The editor. It goes first because Git's Windows installer asks which editor to use.",
+			"steps": {
+				"macos": [
+					{ "do": "Download from **code.visualstudio.com**, unzip, and drag **Visual Studio Code.app** into **Applications**." },
+					{
+						"do": "Open the command palette with **Cmd+Shift+P**, run **Shell Command: Install 'code' command in PATH**, and confirm.",
+						"callout": {
+							"kind": "warn",
+							"label": "This step gets skipped",
+							"text": "Without it, `code` does nothing in a terminal, and the failure shows up much later as a confusing error in a different step."
+						}
+					}
+				],
+				"windows": [
+					{ "do": "Download from **code.visualstudio.com**. The default button gives you the **User Installer**, which needs no administrator rights." },
+					{
+						"do": "On the **Select Additional Tasks** screen, confirm **Add to PATH** is checked. It usually is, but not always.",
+						"callout": {
+							"kind": "warn",
+							"label": "Check the box",
+							"text": "If it is unchecked, the failure surfaces much later as `'code' is not recognized`."
+						}
+					}
+				],
+				"linux": [
+					{ "do": "Take the `.deb` or `.rpm` from **code.visualstudio.com**, or add the Microsoft apt/dnf repository if you want it to update with the rest of your system." }
+				]
+			},
+			"verify": {
+				"*": { "cmd": "code --version", "expect": "three lines: version, commit hash, architecture" }
+			},
+			"troubleshooting": [
+				{
+					"sym": "'code' is not recognized",
+					"platforms": ["windows"],
+					"fix": "**Add to PATH** was unchecked during install. Re-run the installer; it preserves your other settings."
+				},
+				{
+					"sym": "zsh: command not found: code",
+					"platforms": ["macos"],
+					"fix": "The shell command was never installed. Cmd+Shift+P, then **Shell Command: Install 'code' command in PATH**."
+				}
+			],
+			"note": "Extensions worth adding by name, because search results are full of near-duplicates: **Python** (Microsoft), **ESLint**, **Prettier**."
+		},
+
+		"git": {
+			"blurb": "Version control. Install it after your editor, before anything that clones.",
+			"steps": {
+				"macos": [
+					{
+						"do": "Git comes with the Command Line Tools. Run `git --version` and let the install dialog appear if it has not already.",
+						"cmd": "git --version"
+					},
+					{
+						"do": "Set your identity. The email has to match a verified email on your GitHub account.",
+						"cmd": "git config --global user.name \"Your Full Name\"\ngit config --global user.email \"you@example.com\""
+					},
+					{
+						"do": "Set what the Windows installer sets for you.",
+						"cmd": "git config --global core.editor \"code --wait\"\ngit config --global init.defaultBranch main"
+					}
+				],
+				"windows": [
+					{ "do": "Run the installer from **git-scm.com**. It is roughly 14 screens. Four of them need changing and the rest are already correct." },
+					{
+						"do": "**Default editor** — change it from Vim to VS Code. This is the most important screen in the installer.",
+						"callout": {
+							"kind": "stop",
+							"label": "If you land in Vim anyway",
+							"text": "Press **Esc**, type `:q!`, press **Enter**. Vim gives no visible way out and this traps people for a long time."
+						}
+					},
+					{ "do": "**Initial branch name** — override it to `main`, to match GitHub." },
+					{ "do": "**PATH environment** — keep the recommended middle option." },
+					{ "do": "**Credential helper** — keep Git Credential Manager. It opens a browser to log into GitHub instead of asking for a password you do not have." },
+					{
+						"do": "Set your identity. The email has to match a verified email on your GitHub account.",
+						"cmd": "git config --global user.name \"Your Full Name\"\ngit config --global user.email \"you@example.com\""
+					}
+				],
+				"linux": [
+					{ "do": "Install the distro package: `sudo apt install git`, or your distribution's equivalent." },
+					{
+						"do": "Set your identity. The email has to match a verified email on your GitHub account.",
+						"cmd": "git config --global user.name \"Your Full Name\"\ngit config --global user.email \"you@example.com\""
+					}
+				]
+			},
+			"verify": {
+				"*": { "cmd": "git --version", "expect": "a version number" }
+			},
+			"troubleshooting": [
+				{
+					"sym": "Your commits show up on GitHub as someone else, or as no one",
+					"platforms": ["macos", "windows", "linux"],
+					"fix": "`user.email` does not match a verified email on your GitHub account. Nothing errors when this is wrong, which is why it goes unnoticed. Fix it with `git config --global user.email` and check **github.com/settings/emails**."
+				},
+				{
+					"sym": "Filename too long",
+					"platforms": ["windows"],
+					"fix": "Run `git config --global core.longpaths true`. This bites on Node projects in particular."
+				},
+				{
+					"sym": "You clicked past one of the four screens that mattered",
+					"platforms": ["windows"],
+					"fix": "Re-run the installer. It is safe, and it preserves the settings you already made."
+				}
+			]
+		},
+
+		"gh": {
+			"blurb": "GitHub from the terminal: authentication, pull requests, repository operations.",
+			"steps": {
+				"macos": [
+					{ "do": "Install it with Homebrew.", "cmd": "brew install gh" },
+					{ "do": "Log in and follow the browser flow.", "cmd": "gh auth login" }
+				],
+				"windows": [
+					{ "do": "Install it with winget.", "cmd": "winget install --id GitHub.cli" },
+					{ "do": "Open a new terminal, then log in and follow the browser flow.", "cmd": "gh auth login" }
+				],
+				"linux": [
+					{ "do": "Install it from your package manager, or follow the instructions at **cli.github.com**." },
+					{ "do": "Log in and follow the browser flow.", "cmd": "gh auth login" }
+				]
+			},
+			"verify": {
+				"*": { "cmd": "gh auth status", "expect": "your GitHub username, and 'Logged in to github.com'" }
+			}
+		},
+
+		"nvm": {
+			"blurb": "A Node version manager. Install this instead of installing Node directly, so a project needing a different Node version is a one-line change rather than a reinstall.",
+			"steps": {
+				"macos": [
+					{
+						"do": "Open **github.com/nvm-sh/nvm** and copy the install command from its README. Copy it from there rather than from here: the command has a version number in the URL, so a printed one goes stale and installs an old nvm."
+					},
+					{
+						"do": "Open a new terminal. The installer appends a block to your shell profile, and it does not apply to the terminal you ran it in.",
+						"callout": {
+							"kind": "warn",
+							"label": "New terminal required",
+							"text": "Without one, `nvm` is not found and the install looks like it failed."
+						}
+					},
+					{
+						"do": "Install the current LTS and make it the default.",
+						"cmd": "nvm install --lts\nnvm use --lts\nnvm alias default lts/*"
+					},
+					{
+						"do": "The `alias default` line matters. Without it, every new terminal starts with the system Node, or none at all, and it looks like nvm did not work."
+					}
+				],
+				"windows": [
+					{
+						"do": "**Uninstall any existing Node.js first**, from **Add or remove programs**.",
+						"callout": {
+							"kind": "stop",
+							"label": "Do this before anything else",
+							"text": "An existing Node install sits earlier on your PATH. `nvm use` then reports success while the old Node stays active, and you get a version manager that silently does nothing."
+						}
+					},
+					{
+						"do": "Download `nvm-setup.exe` from **github.com/coreybutler/nvm-windows/releases** and run it.",
+						"callout": {
+							"kind": "note",
+							"label": "This is a different project",
+							"text": "Windows nvm is `coreybutler/nvm-windows`, by a different author. Its commands differ from every nvm tutorial written for macOS or Linux."
+						}
+					},
+					{
+						"do": "Right-click your terminal and choose **Run as administrator**, then install the current LTS. Note the syntax: no double dashes.",
+						"cmd": "nvm install lts\nnvm use lts"
+					},
+					{
+						"do": "`nvm use` needs the administrator terminal, because it works by rewriting a symlink. In a normal terminal it fails in a way that does not obviously say 'run me as admin'."
+					}
+				],
+				"linux": [
+					{ "do": "Open **github.com/nvm-sh/nvm** and copy the install command from its README." },
+					{ "do": "Open a new terminal, then install the current LTS and make it the default.", "cmd": "nvm install --lts\nnvm use --lts\nnvm alias default lts/*" }
+				]
+			},
+			"verify": {
+				"macos": { "cmd": "nvm --version\nnode --version", "expect": "an nvm version, then a Node version" },
+				"linux": { "cmd": "nvm --version\nnode --version", "expect": "an nvm version, then a Node version" },
+				"windows": { "cmd": "nvm version\nnode --version", "expect": "an nvm version, then a Node version" }
+			},
+			"troubleshooting": [
+				{
+					"sym": "which nvm finds nothing",
+					"platforms": ["macos", "linux"],
+					"fix": "This is expected. nvm is a shell function, not a binary, so `which` cannot see it. Use `command -v nvm` instead: it prints `nvm` when things are working."
+				},
+				{
+					"sym": "nvm: command not found",
+					"platforms": ["macos", "linux"],
+					"fix": "You are still in the terminal you ran the installer in. Open a new one."
+				},
+				{
+					"sym": "nvm use succeeds but node --version is unchanged",
+					"platforms": ["windows"],
+					"fix": "An older Node install is still on your PATH. Uninstall it from **Add or remove programs**, then run `nvm use lts` again in an administrator terminal."
+				},
+				{
+					"sym": "exit status 1: Access is denied",
+					"platforms": ["windows"],
+					"fix": "`nvm use` needs an administrator terminal. Right-click your terminal and choose **Run as administrator**."
+				}
+			]
+		},
+
+		"node": {
+			"blurb": "The JavaScript runtime.",
+			"managedNote": "You installed nvm, so Node came with it. There is nothing to install here, and on Windows installing Node separately would actively break nvm. Just confirm the version.",
+			"steps": {
+				"macos": [{ "do": "From **nodejs.org**, take the **LTS** button on the left, not **Current** on the right. The `.pkg`, all defaults." }],
+				"windows": [
+					{ "do": "From **nodejs.org**, take the **LTS** button on the left, not **Current** on the right." },
+					{
+						"do": "Run the `.msi`. **Leave 'Tools for Native Modules' unchecked.**",
+						"callout": {
+							"kind": "warn",
+							"label": "Leave that box alone",
+							"text": "Checking it launches a PowerShell window that downloads Chocolatey, Python and Visual Studio Build Tools. Twenty minutes or more, frequently fails, rarely needed."
+						}
+					},
+					{
+						"do": "Allow npm to run scripts, then confirm the change stuck.",
+						"cmd": "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned\nGet-ExecutionPolicy -Scope CurrentUser"
+					}
+				],
+				"linux": [{ "do": "Use the NodeSource repository, or a version manager. The distro package is usually well behind." }]
+			},
+			"verify": {
+				"*": { "cmd": "node --version\nnpm --version", "expect": "two version numbers" }
+			},
+			"troubleshooting": [
+				{
+					"sym": "npm cannot be loaded because running scripts is disabled on this system",
+					"platforms": ["windows"],
+					"fix": "Run `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`, then `Get-ExecutionPolicy -Scope CurrentUser` to confirm. On a managed laptop the change is sometimes silently overridden; if so, use Command Prompt instead of PowerShell, where npm works unchanged."
+				},
+				{
+					"sym": "EACCES: permission denied when installing a global package",
+					"platforms": ["macos", "linux"],
+					"fix": "Do not reach for `sudo npm install -g`. It creates root-owned files in your home directory that break later installs in confusing ways. Use a version manager instead, which puts everything under your own account."
+				}
+			]
+		},
+
+		"uv": {
+			"blurb": "One tool covering Python interpreters, virtual environments and packages.",
+			"steps": {
+				"macos": [
+					{ "do": "Install it with Homebrew, or with the script on **docs.astral.sh/uv**.", "cmd": "brew install uv" },
+					{ "do": "Get an interpreter.", "cmd": "uv python install" }
+				],
+				"windows": [
+					{ "do": "Install it with winget, or with the script on **docs.astral.sh/uv**.", "cmd": "winget install --id astral-sh.uv" },
+					{ "do": "Open a new terminal, then get an interpreter.", "cmd": "uv python install" }
+				],
+				"linux": [
+					{ "do": "Install it with the script on **docs.astral.sh/uv**." },
+					{ "do": "Open a new terminal, then get an interpreter.", "cmd": "uv python install" }
+				]
+			},
+			"verify": {
+				"*": { "cmd": "uv --version", "expect": "a version number" }
+			},
+			"note": "Day to day: `uv init` starts a project, `uv venv` makes an environment, `uv add <pkg>` installs into it.",
+			"troubleshooting": [
+				{
+					"sym": "Code runs in the terminal but the editor shows import errors",
+					"platforms": ["macos", "windows", "linux"],
+					"fix": "The editor is pointed at a different Python. In VS Code, run **Python: Select Interpreter** from the command palette and choose the one inside your project's `.venv` folder."
+				}
+			]
+		},
+
+		"python": {
+			"blurb": "The Python interpreter.",
+			"managedNote": "You installed uv, which manages interpreters itself, so there is nothing to install from python.org. Installing one anyway leaves two Pythons on the machine, which is the top cause of 'it works in the terminal but not in my editor'.",
+			"steps": {
+				"macos": [
+					{ "do": "Take the `.pkg` from **python.org/downloads**." },
+					{
+						"do": "Open the installed folder in **Applications** and double-click **Install Certificates.command**.",
+						"callout": {
+							"kind": "warn",
+							"label": "Do not skip this",
+							"text": "Skipping it produces an SSL error later that is genuinely hard to trace back to here."
+						}
+					}
+				],
+				"windows": [
+					{ "do": "Take the large button at the top of **python.org/downloads**." },
+					{
+						"do": "On the first installer screen, tick **Add python.exe to PATH**. It is at the bottom of the screen and it is unchecked by default.",
+						"callout": {
+							"kind": "stop",
+							"label": "The single most consequential checkbox",
+							"text": "If you miss it: re-run the installer, choose **Modify**, and enable PATH. You do not need to uninstall anything."
+						}
+					}
+				],
+				"linux": [
+					{ "do": "It is usually already there. Check with `python3 --version` before installing anything." }
+				]
+			},
+			"verify": {
+				"macos": { "cmd": "python3 --version", "expect": "a version number" },
+				"linux": { "cmd": "python3 --version", "expect": "a version number" },
+				"windows": { "cmd": "py --version", "expect": "a version number" }
+			},
+			"note": "**Which word you type matters.** `py` on Windows, `python3` on macOS and Linux. Bare `python` opens the Microsoft Store on Windows and usually does not exist on macOS.",
+			"troubleshooting": [
+				{
+					"sym": "Typing python opens the Microsoft Store",
+					"platforms": ["windows"],
+					"fix": "That is a stub Microsoft ships. Use `py` instead. To remove the stub permanently: **Settings → Apps → Advanced app settings → App execution aliases**, and turn off `python.exe` and `python3.exe`."
+				},
+				{
+					"sym": "It reports Python 2",
+					"platforms": ["macos", "linux"],
+					"fix": "You reached a system Python. Use `python3`."
+				},
+				{
+					"sym": "SSL: CERTIFICATE_VERIFY_FAILED",
+					"platforms": ["macos"],
+					"fix": "**Install Certificates.command** was never run. Open the Python folder in **Applications** and double-click it."
+				}
+			]
+		},
+
+		"docker": {
+			"blurb": "Containers. This one is a large download and wants a restart, so it is late on purpose.",
+			"steps": {
+				"macos": [
+					{ "do": "Download **Docker Desktop** from **docker.com** and install it. Choose the build matching your chip, Apple Silicon or Intel." },
+					{ "do": "Launch Docker Desktop once and wait for the whale icon in the menu bar to stop animating. The command line does not work until it has." }
+				],
+				"windows": [
+					{
+						"do": "Download **Docker Desktop** from **docker.com** and install it. It will install WSL2 if you do not have it.",
+						"callout": {
+							"kind": "note",
+							"label": "Expect a restart",
+							"text": "WSL2 requires one. Save your work before you start this step."
+						}
+					},
+					{ "do": "After the restart, launch Docker Desktop once and wait for it to report **Engine running**." }
+				],
+				"linux": [
+					{ "do": "Install **Docker Engine** following the instructions for your distribution at **docs.docker.com/engine/install**." },
+					{ "do": "Add yourself to the `docker` group so you do not need `sudo` for every command, then log out and back in.", "cmd": "sudo usermod -aG docker $USER" }
+				]
+			},
+			"verify": {
+				"*": { "cmd": "docker run hello-world", "expect": "\"Hello from Docker!\" and a short explanation" }
+			},
+			"troubleshooting": [
+				{
+					"sym": "Cannot connect to the Docker daemon",
+					"platforms": ["macos", "windows", "linux"],
+					"fix": "Docker is installed but not running. On macOS and Windows, launch Docker Desktop and wait for it to finish starting. On Linux, `sudo systemctl start docker`."
+				},
+				{
+					"sym": "An image runs but is noticeably slow",
+					"platforms": ["macos"],
+					"fix": "On Apple Silicon, `x86` images run under emulation. Look for an `arm64` tag of the image, or accept the slower run."
+				}
+			]
+		},
+
+		"postgres": {
+			"blurb": "A client-server relational database. Two checks, not one: a version check only proves the client program exists.",
+			"steps": {
+				"macos": [
+					{
+						"do": "Install it with Homebrew, pinning the major version so a later `brew upgrade` cannot move the data directory out from under you.",
+						"cmd": "brew install postgresql@18"
+					},
+					{
+						"do": "Start it. This is a separate step and it is the one people skip.",
+						"cmd": "brew services start postgresql@18",
+						"callout": {
+							"kind": "stop",
+							"label": "Installing is not starting",
+							"text": "Homebrew installs the service and leaves it stopped. `brew services list` shows whether it is actually running."
+						}
+					}
+				],
+				"windows": [
+					{ "do": "Run the installer from **enterprisedb.com**. It bundles pgAdmin, which is worth keeping." },
+					{
+						"do": "Partway through it asks for a superuser password. **Write it down now.**",
+						"callout": {
+							"kind": "stop",
+							"label": "There is no recovery path",
+							"text": "If you lose this password there is no way to recover it later. Put it in your password manager before you click Next."
+						}
+					},
+					{ "do": "Leave the port at 5432 unless something already has it." }
+				],
+				"linux": [
+					{ "do": "Install and enable it.", "cmd": "sudo apt install postgresql\nsudo systemctl enable --now postgresql" },
+					{ "do": "On Debian and Ubuntu the install creates a `postgres` system user, so your first connection is usually `sudo -u postgres psql` rather than a bare `psql`." }
+				]
+			},
+			"verify": {
+				"*": {
+					"cmd": "psql --version\npsql -d postgres -c \"select version();\"",
+					"expect": "a version number, then a row of server version detail"
+				}
+			},
+			"note": "The first check proves the client exists. The second proves the server is running and reachable, which is the thing you actually need.",
+			"troubleshooting": [
+				{
+					"sym": "database \"yourname\" does not exist",
+					"platforms": ["macos", "windows", "linux"],
+					"fix": "`psql` with no arguments tries to connect to a database named after your OS user. Nothing is wrong. Use `psql -d postgres` instead."
+				},
+				{
+					"sym": "could not connect to server: Connection refused",
+					"platforms": ["macos", "linux"],
+					"fix": "The server is not running. macOS: `brew services start postgresql@18`. Linux: `sudo systemctl start postgresql`."
+				},
+				{
+					"sym": "Port 5432 is already in use",
+					"platforms": ["macos", "windows", "linux"],
+					"fix": "Something else has it, usually an older Postgres install or a Docker container. The error does not say which. `docker ps` first, then look for an existing service."
+				}
+			]
+		}
+	}
+}

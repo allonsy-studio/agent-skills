@@ -1,0 +1,515 @@
+---
+layout: foundation.njk
+permalink: 'install-guide-builder/index.html'
+theme:
+  colorScheme: "light dark"
+  color: "#0f766e"
+  fonts: ["EB Garamond", "Georgia", "serif"]
+title: Team Onboarding Setup Guide
+tagline_short: "An example of what @allons-y/skill-install-guide-builder produces."
+tagline: "Pick your platform and your tools; the page assembles the steps in dependency order."
+---
+
+{% css %}{% include "./styles.css" %}{% endcss %}
+
+<header class="container guide-header">
+	<p class="eyebrow">Example output</p>
+	<h1>{{ guide.title }}</h1>
+	<p class="lede">{{ guide.subtitle }}</p>
+	<p class="byline">
+		This is a worked example of what
+		<a href="{{ site.repo.url }}/tree/main/skills/install-guide-builder"><code>@allons-y/skill-install-guide-builder</code></a>
+		writes. The same content also prints as a PDF with each platform in its own column. Written for an
+		<b>{{ guide.audience }}</b> audience.
+	</p>
+	<p class="byline">
+		Nothing here is fetched at page load, and nothing is stored anywhere but your own browser.
+		Version numbers in the steps are pinned at build time, which is what the skill does rather than
+		hardcoding them in its catalog.
+	</p>
+</header>
+
+<main id="main">
+	<div class="container layout stacked">
+
+		<section class="picker" aria-labelledby="picker-heading">
+			<h2 id="picker-heading">Build your copy</h2>
+
+			<div class="picker-row">
+				<fieldset class="os-picker">
+					<legend>Platforms to include</legend>
+					<p class="hint" id="os-hint">Print includes every platform you tick. The screen shows one at a time.</p>
+					<div class="filter-group" role="group" aria-describedby="os-hint">
+						{% for os in platforms %}
+							<label class="chip">
+								<input type="checkbox" name="os" value="{{ os.id }}" checked />
+								<span>{{ os.label }}</span>
+							</label>
+						{% endfor %}
+					</div>
+				</fieldset>
+
+				<fieldset class="os-view" id="os-view-control">
+					<legend>Showing</legend>
+					<div class="filter-group" role="radiogroup" aria-label="Platform shown on screen">
+						{% for os in platforms %}
+							<label class="chip">
+								<input type="radio" name="os-view" value="{{ os.id }}" {% if loop.index == 1 %}checked{% endif %} />
+								<span>{{ os.label }}</span>
+							</label>
+						{% endfor %}
+					</div>
+				</fieldset>
+			</div>
+
+			<fieldset class="tool-picker">
+				<legend>Tools</legend>
+				<div class="tool-grid">
+					{% for tool in choices %}
+						<label class="chip tool-chip"{% if tool.managedBy %} data-manages="{{ tool.managedBy }}"{% endif %}>
+							<input type="checkbox" name="tool" value="{{ tool.id }}" checked />
+							<span>{{ tool.label }}</span>
+						</label>
+					{% endfor %}
+				</div>
+			</fieldset>
+
+			<div class="resolved" aria-live="polite">
+				<h3>Install order</h3>
+				<ol id="resolved-order" class="resolved-list">
+					{% for tool in tools %}
+						<li data-tool="{{ tool.id }}">
+							<a href="#step-{{ tool.id }}">{{ tool.label }}</a>
+							<span class="added-marker" title="Added as a prerequisite"{% if not tool.added %} hidden{% endif %}>prerequisite</span>
+						</li>
+					{% endfor %}
+				</ol>
+				<p class="hint" id="print-note"></p>
+			</div>
+		</section>
+
+		<section class="steps" id="steps" aria-labelledby="steps-heading">
+			<h2 id="steps-heading" class="sr-only">Steps</h2>
+
+			{% for tool in tools %}
+				<article class="step" id="step-{{ tool.id }}" data-tool="{{ tool.id }}" data-layer="{{ tool.layer }}">
+					<header class="step-head">
+						<span class="step-num" aria-hidden="true">{{ tool.step }}</span>
+						<h3>
+							{{ tool.label }}
+							{# Every step carries the marker and the reason, hidden unless they
+							   apply. Any tool can become a prerequisite when the selection
+							   changes: uncheck Git while the GitHub CLI stays checked and Git
+							   comes back as one. #}
+							<span class="added-marker"{% if not tool.added %} hidden{% endif %}>prerequisite</span>
+						</h3>
+					</header>
+
+					<p class="blurb">{{ tool.blurb | safe }}</p>
+
+					<p class="why"{% if not tool.added %} hidden{% endif %}>
+						{%- if tool.added -%}
+							You did not pick this one. It is here because
+							{% for dep in tool.addedFor %}<b>{{ dep }}</b>{% if not loop.last %} and {% endif %}{% endfor %}
+							needs it first.
+						{%- endif -%}
+					</p>
+
+					{% if tool.managedBy %}
+						<div class="callout note managed" data-managed-by="{{ tool.managedBy }}">
+							<span class="lbl">Handled by {{ tool.managedBy }}</span>
+							<p>{{ tool.managedNote | safe }}</p>
+						</div>
+					{% endif %}
+
+					{% for os in tool.platforms %}
+						<div class="pf" data-os="{{ os }}">
+							<h4 class="pfhead">{% for p in platforms %}{% if p.id == os %}{{ p.label }}{% endif %}{% endfor %}</h4>
+
+							<ol class="do-list{% if tool.managedBy %} superseded{% endif %}">
+								{% for step in tool.steps[os] %}
+									<li>
+										<label class="tick">
+											<input type="checkbox" class="progress" data-key="{{ tool.id }}:{{ os }}:{{ loop.index }}" />
+											<span class="tick-body">
+												<span class="tick-text">{{ step.do | safe }}</span>
+												{% if step.cmd %}<pre><code>{{ step.cmd }}</code></pre>{% endif %}
+												{% if step.callout %}
+													<div class="callout {{ step.callout.kind }}">
+														<span class="lbl">{{ step.callout.label }}</span>
+														<p>{{ step.callout.text | safe }}</p>
+													</div>
+												{% endif %}
+											</span>
+										</label>
+									</li>
+								{% endfor %}
+							</ol>
+
+							{% if tool.verify[os] %}
+								<div class="done">
+									<b>Done when</b> {{ tool.verify[os].expect | safe }}.
+									<pre><code>{{ tool.verify[os].cmd }}</code></pre>
+								</div>
+							{% endif %}
+						</div>
+					{% endfor %}
+
+					{% if tool.note %}<p class="footnote">{{ tool.note | safe }}</p>{% endif %}
+				</article>
+			{% endfor %}
+		</section>
+
+		<section class="roundup" id="roundup" aria-labelledby="roundup-heading">
+			<h2 id="roundup-heading">Check your work</h2>
+			<p class="lede">Every check for what you selected, in one place. Run them in a new terminal.</p>
+			{% for os in platforms %}
+				<div class="pf" data-os="{{ os.id }}">
+					<h4 class="pfhead">{{ os.label }}</h4>
+					<ul class="roundup-list">
+						{% for tool in tools %}
+							{% if tool.verify[os.id] %}
+								<li data-tool="{{ tool.id }}">
+									<span class="roundup-label">{{ tool.label }}</span>
+									<pre><code>{{ tool.verify[os.id].cmd }}</code></pre>
+									<span class="roundup-expect">{{ tool.verify[os.id].expect | safe }}</span>
+								</li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
+			{% endfor %}
+		</section>
+
+		<section class="trouble" id="trouble" aria-labelledby="trouble-heading">
+			<h2 id="trouble-heading">When it goes wrong</h2>
+			<p class="lede">
+				Indexed by what is on your screen, not by topic. Use your browser's find
+				(<kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>F</kbd>) and paste the error text.
+			</p>
+			{% for tool in tools %}
+				{% for entry in tool.troubleshooting %}
+					<div class="tsq" data-tool="{{ tool.id }}" data-platforms="{{ entry.platforms | join(' ') }}">
+						<div class="sym"><code>{{ entry.sym }}</code></div>
+						<p class="badges">
+							{% for os in entry.platforms %}
+								{% for p in platforms %}{% if p.id == os %}<span class="badge {{ os }}">{{ p.label }}</span>{% endif %}{% endfor %}
+							{% endfor %}
+							<span class="badge tool">{{ tool.label }}</span>
+						</p>
+						<p>{{ entry.fix | safe }}</p>
+					</div>
+				{% endfor %}
+			{% endfor %}
+		</section>
+
+		<section class="colophon">
+			<h2>How this page was made</h2>
+			<p>
+				The dependency graph driving the install order is
+				<a href="{{ site.repo.url }}/blob/main/skills/install-guide-builder/scripts/order-tools.js"><code>scripts/order-tools.js</code></a>,
+				imported directly at build time, so this demo cannot show an order the skill would not produce.
+				Run it yourself:
+			</p>
+			<pre><code>node scripts/order-tools.js postgres node docker --os macos</code></pre>
+			<p>
+				The prose is an authored example, the way real output is: the skill writes it from
+				<a href="{{ site.repo.url }}/blob/main/skills/install-guide-builder/references/tool-catalog.md"><code>references/tool-catalog.md</code></a>,
+				which holds source material and traps rather than finished steps.
+			</p>
+		</section>
+	</div>
+</main>
+
+<button id="scroll-top" class="scroll-top" type="button" aria-label="Scroll to top" title="Scroll to top">↑</button>
+
+{% js %}
+// Progressive enhancement. Server-rendered markup already holds every tool and
+// every platform, so with JavaScript off this page is a complete guide covering
+// everything. What follows narrows it to the reader's selection; the `js` class
+// is what lets the stylesheet start hiding non-active platforms.
+document.documentElement.classList.add("js");
+
+//
+// The ordering rules here mirror scripts/order-tools.js, per references/web-guide.md:
+// the page has to work as one file with no imports.
+const GRAPH = {{ tools | json | safe }}.reduce((acc, t) => {
+	acc[t.id] = {
+		layer: t.layer,
+		requires: t.requires,
+		platforms: t.graphPlatforms,
+		label: t.label,
+		managedBy: t.managedBy,
+	};
+	return acc;
+}, {});
+
+const ALL_OS = {{ platforms | json | safe }}.map((p) => p.id);
+const CHOICE_IDS = {{ choices | json | safe }}.map((t) => t.id);
+const ORDER = Object.keys(GRAPH);
+const STORE_KEY = "install-guide-builder:selection";
+const PROGRESS_KEY = "install-guide-builder:progress";
+
+/** localStorage throws in private windows; never let that break the page. */
+function readStore(key, fallback) {
+	try {
+		const raw = localStorage.getItem(key);
+		return raw ? JSON.parse(raw) : fallback;
+	} catch {
+		return fallback;
+	}
+}
+
+function writeStore(key, value) {
+	try {
+		localStorage.setItem(key, JSON.stringify(value));
+	} catch {
+		/* private window, or storage disabled — the page still works */
+	}
+}
+
+/**
+ * Expand a selection into install order: pull in prerequisites transitively,
+ * drop anything that does not apply, sort by layer, then by the order the
+ * checkboxes appear in.
+ */
+function resolveOrder(selected, platforms) {
+	const chosen = new Set(selected);
+	const added = new Set();
+
+	let changed = true;
+	while (changed) {
+		changed = false;
+		for (const name of [...chosen]) {
+			for (const pre of GRAPH[name]?.requires ?? []) {
+				if (!GRAPH[pre] || chosen.has(pre)) continue;
+				// A prerequisite that applies to no selected platform is not a
+				// prerequisite here: Homebrew precedes PHP on macOS, not Windows.
+				if (!appliesToAny(pre, platforms)) continue;
+				chosen.add(pre);
+				added.add(pre);
+				changed = true;
+			}
+		}
+	}
+
+	const ordered = [...chosen]
+		.filter((name) => appliesToAny(name, platforms))
+		.sort((a, b) => GRAPH[a].layer - GRAPH[b].layer || ORDER.indexOf(a) - ORDER.indexOf(b));
+
+	// Emit in dependency order so a prerequisite never trails the tool that
+	// needs it when the two share a layer (git and gh both sit at layer 3).
+	const blocking = new Map(
+		ordered.map((name) => [name, new Set(GRAPH[name].requires.filter((p) => ordered.includes(p)))])
+	);
+	const out = [];
+	const remaining = [...ordered];
+	while (remaining.length > 0) {
+		const i = remaining.findIndex((name) => blocking.get(name).size === 0);
+		const [next] = remaining.splice(i < 0 ? 0 : i, 1);
+		out.push(next);
+		for (const set of blocking.values()) set.delete(next);
+	}
+
+	return { ordered: out, added };
+}
+
+function appliesToAny(name, platforms) {
+	const supported = GRAPH[name].platforms;
+	if (supported.includes("*")) return true;
+	return platforms.some((os) => supported.includes(os));
+}
+
+const state = {
+	platforms: [...ALL_OS],
+	view: ALL_OS[0],
+	tools: [...CHOICE_IDS],
+};
+
+/* ---------- initial state: URL wins over storage, storage over defaults ---------- */
+
+const params = new URLSearchParams(location.search);
+const stored = readStore(STORE_KEY, null);
+
+if (stored) {
+	if (Array.isArray(stored.platforms) && stored.platforms.length) state.platforms = stored.platforms.filter((os) => ALL_OS.includes(os));
+	if (Array.isArray(stored.tools)) state.tools = stored.tools.filter((t) => CHOICE_IDS.includes(t));
+	if (ALL_OS.includes(stored.view)) state.view = stored.view;
+}
+
+if (params.has("os")) {
+	const wanted = params.get("os").split(",").filter((os) => ALL_OS.includes(os));
+	if (wanted.length) {
+		state.platforms = wanted;
+		state.view = wanted[0];
+	}
+}
+if (params.has("tools")) {
+	state.tools = params.get("tools").split(",").filter((t) => CHOICE_IDS.includes(t));
+}
+if (!state.platforms.length) state.platforms = [...ALL_OS];
+if (!state.platforms.includes(state.view)) state.view = state.platforms[0];
+
+/* ---------- render ---------- */
+
+const osBoxes = [...document.querySelectorAll('input[name="os"]')];
+const viewRadios = [...document.querySelectorAll('input[name="os-view"]')];
+const toolBoxes = [...document.querySelectorAll('input[name="tool"]')];
+const viewControl = document.getElementById("os-view-control");
+const resolvedList = document.getElementById("resolved-order");
+const printNote = document.getElementById("print-note");
+const stepsRoot = document.getElementById("steps");
+
+function render() {
+	const { ordered, added } = resolveOrder(state.tools, state.platforms);
+	const inOrder = new Set(ordered);
+
+	// Which manager, if any, supplies each runtime in this selection.
+	const superseded = new Set(
+		ordered.filter((name) => GRAPH[name].managedBy && ordered.includes(GRAPH[name].managedBy))
+	);
+
+	for (const box of osBoxes) box.checked = state.platforms.includes(box.value);
+	for (const box of toolBoxes) box.checked = state.tools.includes(box.value);
+	for (const radio of viewRadios) {
+		radio.checked = radio.value === state.view;
+		radio.closest(".chip").hidden = !state.platforms.includes(radio.value);
+	}
+
+	// With one platform selected there is nothing to switch between, and the
+	// per-step platform headings are noise.
+	viewControl.hidden = state.platforms.length < 2;
+	document.body.classList.toggle("single-os", state.platforms.length < 2);
+
+	// Steps: reorder, renumber, and show only what is selected.
+	for (const article of stepsRoot.querySelectorAll(".step")) {
+		const id = article.dataset.tool;
+		const position = ordered.indexOf(id);
+		article.hidden = position < 0;
+		if (position < 0) continue;
+
+		article.style.order = String(position);
+		article.querySelector(".step-num").textContent = String(position + 1);
+		article.classList.toggle("is-added", added.has(id));
+
+		// Say why a prerequisite is here. A silent addition reads as a bug.
+		const why = article.querySelector(".why");
+		why.hidden = !added.has(id);
+		article.querySelector(".step-head .added-marker").hidden = !added.has(id);
+		if (added.has(id)) {
+			const needed = ordered
+				.filter((other) => GRAPH[other].requires.includes(id))
+				.map((other) => GRAPH[other].label);
+			why.innerHTML = `You did not pick this one. It is here because ${needed
+				.map((label) => `<b>${label}</b>`)
+				.join(" and ")} needs it first.`;
+		}
+
+		const managed = superseded.has(id);
+		article.classList.toggle("is-managed", managed);
+		const managedBox = article.querySelector(".managed");
+		if (managedBox) managedBox.hidden = !managed;
+		for (const list of article.querySelectorAll(".do-list")) list.hidden = managed;
+	}
+
+	// Platform blocks everywhere: the DOM keeps them all, CSS shows the active one.
+	for (const block of document.querySelectorAll(".pf")) {
+		const os = block.dataset.os;
+		block.hidden = !state.platforms.includes(os);
+		block.classList.toggle("active-os", os === state.view);
+	}
+
+	// Round-up rows follow the step selection.
+	for (const row of document.querySelectorAll(".roundup-list li")) {
+		row.hidden = !inOrder.has(row.dataset.tool);
+	}
+
+	// Troubleshooting: only entries belonging to selected tools, and only those
+	// that match a selected platform. Never collapsed — people arrive here by
+	// searching the page for their error text.
+	for (const entry of document.querySelectorAll(".tsq")) {
+		const matchesTool = inOrder.has(entry.dataset.tool);
+		const entryOs = entry.dataset.platforms.split(" ").filter(Boolean);
+		const matchesOs = entryOs.some((os) => state.platforms.includes(os));
+		entry.hidden = !(matchesTool && matchesOs);
+	}
+	for (const badge of document.querySelectorAll(".tsq .badge:not(.tool)")) {
+		badge.hidden = !state.platforms.includes([...badge.classList].find((c) => ALL_OS.includes(c)));
+	}
+
+	// Resolved order list.
+	for (const item of resolvedList.querySelectorAll("li")) {
+		const position = ordered.indexOf(item.dataset.tool);
+		item.hidden = position < 0;
+		item.style.order = String(position);
+		item.querySelector(".added-marker")?.toggleAttribute("hidden", !added.has(item.dataset.tool));
+	}
+
+	printNote.textContent =
+		state.platforms.length > 1
+			? `Printing includes all ${state.platforms.length} selected platforms, not just the one on screen.`
+			: "Printing includes the platform above.";
+
+	writeStore(STORE_KEY, state);
+	const url = new URL(location.href);
+	url.searchParams.set("os", state.platforms.join(","));
+	url.searchParams.set("tools", state.tools.join(","));
+	history.replaceState(null, "", url);
+}
+
+/* ---------- events ---------- */
+
+for (const box of osBoxes) {
+	box.addEventListener("change", () => {
+		const next = osBoxes.filter((b) => b.checked).map((b) => b.value);
+		// Never allow zero platforms: an empty guide is not a useful answer.
+		if (next.length === 0) {
+			box.checked = true;
+			document.getElementById("os-hint").textContent =
+				"Keep at least one platform selected — otherwise there is nothing to show.";
+			return;
+		}
+		state.platforms = next;
+		if (!next.includes(state.view)) state.view = next[0];
+		render();
+	});
+}
+
+for (const radio of viewRadios) {
+	radio.addEventListener("change", () => {
+		state.view = radio.value;
+		render();
+	});
+}
+
+for (const box of toolBoxes) {
+	box.addEventListener("change", () => {
+		state.tools = toolBoxes.filter((b) => b.checked).map((b) => b.value);
+		render();
+	});
+}
+
+/* ---------- progress ticks, keyed per platform ---------- */
+
+const progress = readStore(PROGRESS_KEY, {});
+for (const tick of document.querySelectorAll(".progress")) {
+	// Keyed tool:os:index, so ticking a macOS step does not also tick Windows.
+	tick.checked = Boolean(progress[tick.dataset.key]);
+	tick.closest("li").classList.toggle("ticked", tick.checked);
+	tick.addEventListener("change", () => {
+		progress[tick.dataset.key] = tick.checked;
+		tick.closest("li").classList.toggle("ticked", tick.checked);
+		writeStore(PROGRESS_KEY, progress);
+	});
+}
+
+render();
+
+/* ---------- scroll to top ---------- */
+
+const scrollTop = document.getElementById("scroll-top");
+scrollTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+window.addEventListener("scroll", () => {
+	scrollTop.classList.toggle("visible", window.scrollY > 600);
+}, { passive: true });
+{% endjs %}
