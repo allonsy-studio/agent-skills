@@ -15,7 +15,7 @@ const frontmatter = skillMd.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? "";
 describe("SKILL.md", () => {
 	test("starts with parseable frontmatter", () => {
 		assert.ok(frontmatter, "SKILL.md must start with YAML frontmatter");
-		assert.match(frontmatter, /^name:\s*devenv-guide$/m);
+		assert.match(frontmatter, /^name:\s*install-guide-builder$/m);
 		assert.match(frontmatter, /^description:/m);
 	});
 
@@ -140,7 +140,7 @@ describe("evals", () => {
 	const evals = JSON.parse(read("evals", "evals.json"));
 
 	test("declares the skill it exercises", () => {
-		assert.equal(evals.skill_name, "devenv-guide");
+		assert.equal(evals.skill_name, "install-guide-builder");
 	});
 
 	test("every eval has a unique id and a prompt", () => {

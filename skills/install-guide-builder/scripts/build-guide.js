@@ -114,7 +114,7 @@ function chromeRenderer(binary) {
 			"Chrome does not support CSS margin boxes, so the running footer and " +
 			"page numbers are missing. Install WeasyPrint for a print-ready PDF.",
 		render(html, output) {
-			const dir = mkdtempSync(join(tmpdir(), "devenv-guide-"));
+			const dir = mkdtempSync(join(tmpdir(), "install-guide-"));
 			const page = join(dir, "guide.html");
 			writeFileSync(page, html, "utf8");
 			const result = spawnSync(

@@ -217,14 +217,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@allons-y/skill-devenv-guide@workspace:skills/devenv-guide":
-  version: 0.0.0-use.local
-  resolution: "@allons-y/skill-devenv-guide@workspace:skills/devenv-guide"
-  dependencies:
-    c8: "npm:^11.0.0"
-  languageName: unknown
-  linkType: soft
-
 "@allons-y/skill-dreamlight-valley@workspace:skills/dreamlight-valley":
   version: 0.0.0-use.local
   resolution: "@allons-y/skill-dreamlight-valley@workspace:skills/dreamlight-valley"
@@ -254,6 +246,14 @@ __metadata:
     yargs: "npm:^18.0.0"
   bin:
     gh-notifications: bin/cli.js
+  languageName: unknown
+  linkType: soft
+
+"@allons-y/skill-install-guide-builder@workspace:skills/install-guide-builder":
+  version: 0.0.0-use.local
+  resolution: "@allons-y/skill-install-guide-builder@workspace:skills/install-guide-builder"
+  dependencies:
+    c8: "npm:^11.0.0"
   languageName: unknown
   linkType: soft
 

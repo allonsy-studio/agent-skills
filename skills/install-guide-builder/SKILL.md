@@ -1,5 +1,5 @@
 ---
-name: devenv-guide
+name: install-guide-builder
 description: Generate a printable, platform-split developer environment setup guide as a PDF (and optionally an interactive HTML page) covering tools like Git, Node, Python, PHP, Docker, databases, and their version managers. Use this whenever someone asks for install instructions, onboarding docs, a setup guide, a "getting started on a new laptop" document, a dev environment doc, machine setup steps, or wants to document how to install a toolchain for students, new hires, workshop attendees, or a team. Also use it when someone asks to add a tool to an existing setup guide, or to rewrite install steps for a different skill level or a different operating system. Trigger on phrases like "setup guide", "install instructions", "onboarding doc", "how do I document installing X", "environment setup", "new machine checklist", "get the team set up", or a bare list of tools plus an operating system.
 ---
 

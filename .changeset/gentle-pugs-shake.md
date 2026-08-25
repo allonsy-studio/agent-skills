@@ -1,9 +1,9 @@
 ---
 "@allons-y/agent-skills": minor
-"@allons-y/skill-devenv-guide": minor
+"@allons-y/skill-install-guide-builder": minor
 ---
 
-New skill: **devenv-guide**, for writing developer environment setup guides that someone can actually follow alone, at 11pm, without you.
+New skill: **install-guide-builder**, for writing developer environment setup guides that someone can actually follow alone, at 11pm, without you.
 
 Give it a list of tools, the platforms you support, and who the guide is for, and it produces a print-ready PDF with each platform's steps side by side. Two properties make these guides work, and the skill holds onto both:
 
