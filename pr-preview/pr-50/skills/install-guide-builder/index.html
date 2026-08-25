@@ -1005,12 +1005,12 @@ body > footer {
 		<h1>install-guide-builder</h1>
 		<p class="lede">Generate printable, platform-split developer environment setup guides — install steps side by side per OS, a verification check after every step, and troubleshooting indexed by the error text on the reader&#39;s screen.</p>
 		
-<p class="chips"><span class="chip">Documentation</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span><span class="chip"><span class="fa-brands fa-node-js" aria-hidden="true"></span> Node</span></p>
+<p class="chips"><span class="chip">Documentation</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span><span class="chip"><span class="fa-solid fa-window-maximize" aria-hidden="true"></span> Live preview</span><span class="chip"><span class="fa-brands fa-node-js" aria-hidden="true"></span> Node</span></p>
 
 		<p class="btn-group">
 			<a class="btn primary" href="#install">Install this skill</a>
 			<a class="btn" href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/install-guide-builder/SKILL.md"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
-			
+			<a class="btn" href="/agent-skills/pr-preview/pr-50/install-guide-builder/"><span class="fa-solid fa-up-right-from-square" aria-hidden="true"></span> Preview skill interface</a>
 		</p>
 	</div>
 </header>
@@ -1062,6 +1062,11 @@ body > footer {
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-css">guide.css</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">evals</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-json">evals.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">preview</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">example-guide.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-11tydata-js ext-js">index.11tydata.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-njk">index.njk</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-css">styles.css</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">references</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">dependency-rules.md</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">house-style.md</span></span>
@@ -1074,6 +1079,7 @@ body > footer {
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-js">verify-guide.js</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">tests</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">order-tools.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">preview.test.js</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">skill.test.js</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-test-js ext-js">verify-guide.test.js</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">package.json</span></span>
