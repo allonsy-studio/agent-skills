@@ -10,9 +10,34 @@ const root = process.cwd();
 const MODEL = process.env.ANTHROPIC_MODEL || "claude-haiku-4-5";
 
 /**
+ * First sentence of a script's leading block comment, used as the tool
+ * description so the model picks between entrypoints on what they do rather
+ * than on the filename alone.
+ *
+ * @param {string} filePath
+ * @param {string} fallback
+ * @returns {string}
+ */
+function describeScript(filePath, fallback) {
+	const head = fs.readFileSync(filePath, "utf8").slice(0, 2000);
+	const block = head.match(/\/\*\*([\s\S]*?)\*\//) ?? head.match(/"""([\s\S]*?)"""/);
+	if (!block) return fallback;
+	const prose = block[1]
+		.split("\n")
+		.map((l) => l.replace(/^\s*\*\s?/, "").trim())
+		.filter(Boolean)
+		.join(" ")
+		.trim();
+	const sentence = prose.split(/(?<=\.)\s/)[0];
+	return sentence && sentence.length > 10 ? sentence : fallback;
+}
+
+/**
  * Build a minimal tool definition for runnable entrypoints in the skill.
  * Sources, in order:
- *   - Python scripts in `scripts/` → one tool per `.py` file.
+ *   - Scripts in `scripts/` → one tool per entrypoint. Python files count as
+ *     entrypoints; JavaScript files count only when they carry a shebang, so
+ *     shared library modules don't show up as things the agent can invoke.
  *   - The gh-notifications.js CLI → `fetch` / `done` / `unsub` subcommands.
  *   - Slash commands in `commands/*.md` → one tool per command, named after
  *     the filename and described by the file's frontmatter `description`.
@@ -27,13 +52,20 @@ function buildTools(skillPath) {
 		const files = fs.readdirSync(scriptsPath);
 
 		for (const f of files) {
-			if (f.endsWith(".py") && f !== "__init__.py") {
-				tools.push({
-					name: f.replace(".py", ""),
-					description: `Run the ${f} script`,
-					input_schema: { type: "object", properties: {} },
-				});
-			}
+			const isPython = f.endsWith(".py") && f !== "__init__.py";
+			const isJs = /\.(mjs|js)$/.test(f);
+			if (!isPython && !isJs) continue;
+
+			const full = path.join(scriptsPath, f);
+			// A JS entrypoint announces itself with a shebang; anything else in
+			// scripts/ is a module the entrypoints import.
+			if (isJs && !fs.readFileSync(full, "utf8").startsWith("#!")) continue;
+
+			tools.push({
+				name: f.replace(/\.(py|mjs|js)$/, ""),
+				description: describeScript(full, `Run the ${f} script`),
+				input_schema: { type: "object", properties: {} },
+			});
 		}
 
 		const hasGhNotificationsCli = files.some((f) =>

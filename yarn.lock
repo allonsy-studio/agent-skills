@@ -217,6 +217,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@allons-y/skill-devenv-guide@workspace:skills/devenv-guide":
+  version: 0.0.0-use.local
+  resolution: "@allons-y/skill-devenv-guide@workspace:skills/devenv-guide"
+  dependencies:
+    c8: "npm:^11.0.0"
+  languageName: unknown
+  linkType: soft
+
 "@allons-y/skill-dreamlight-valley@workspace:skills/dreamlight-valley":
   version: 0.0.0-use.local
   resolution: "@allons-y/skill-dreamlight-valley@workspace:skills/dreamlight-valley"

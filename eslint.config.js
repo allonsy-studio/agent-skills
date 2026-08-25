@@ -91,5 +91,15 @@ export default defineConfig([
 			"css/no-invalid-properties": ["error", { allowUnknownVariables: true }],
 		},
 	},
+	{
+		// Print stylesheets for the PDF guides. `@page` margin boxes
+		// (`@bottom-left`, `counter(pages)`) are CSS Paged Media Level 3, which
+		// the linter's at-rule data does not cover — they are how the running
+		// footer and page numbers get onto the page in WeasyPrint.
+		files: ["skills/*/assets/*.css"],
+		rules: {
+			"css/no-invalid-at-rules": "off",
+		},
+	},
 	eslintConfigPrettier,
 ]);
