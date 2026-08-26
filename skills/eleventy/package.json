@@ -1,0 +1,35 @@
+{
+	"private": true,
+	"name": "@allons-y/skill-eleventy",
+	"version": "0.0.0",
+	"description": "Configure, template, and build static sites with Eleventy (11ty) v3 — config, data cascade, Nunjucks/Markdown/WebC/11ty.js templating, data-driven pages, images, bundling, and build performance.",
+	"type": "module",
+	"skill": {
+		"category": "Web Development",
+		"runtime": "node",
+		"triggers": [
+			"set up an Eleventy project",
+			"why isn't my 11ty collection sorting correctly",
+			"generate pages from an API with Eleventy",
+			"optimize images in my Eleventy build",
+			"my Eleventy build is slow"
+		]
+	},
+	"scripts": {
+		"ci:test": "yarn coverage",
+		"coverage": "c8 yarn test",
+		"format": "yarn package:format",
+		"lint": "yarn package:lint",
+		"test": "node --test \"tests/**/*.test.js\""
+	},
+	"devDependencies": {
+		"c8": "^11.0.0"
+	},
+	"keywords": [
+		"eleventy",
+		"11ty",
+		"static site generator",
+		"nunjucks",
+		"webc"
+	]
+}

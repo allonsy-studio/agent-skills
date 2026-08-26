@@ -226,6 +226,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@allons-y/skill-eleventy@workspace:skills/eleventy":
+  version: 0.0.0-use.local
+  resolution: "@allons-y/skill-eleventy@workspace:skills/eleventy"
+  dependencies:
+    c8: "npm:^11.0.0"
+  languageName: unknown
+  linkType: soft
+
 "@allons-y/skill-gh-notification-summary@workspace:skills/gh-notification-summary":
   version: 0.0.0-use.local
   resolution: "@allons-y/skill-gh-notification-summary@workspace:skills/gh-notification-summary"

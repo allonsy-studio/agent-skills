@@ -1,0 +1,56 @@
+{
+	"skill_name": "eleventy",
+	"evals": [
+		{
+			"id": 1,
+			"name": "pages-from-api",
+			"prompt": "I have an Eleventy site (v3, Nunjucks) and I want to build a page for each product from our headless CMS. The API is at https://api.example.com/products and returns a JSON array of { id, name, slug, body }. I want URLs like /products/blue-widget/ and I don't want the build hitting the API on every single rebuild while I'm developing. How do I set this up?",
+			"expected_output": "Triggers the skill. Should propose a _data/products.js JS data file using @11ty/eleventy-fetch with a duration cache (and .cache in .gitignore), a template paginating with size: 1 and an alias, and a slugified permalink using the item's slug. Should note the stale-cache-on-network-failure behavior and keep transformation in the data file.",
+			"files": [],
+			"assertions": []
+		},
+		{
+			"id": 2,
+			"name": "escaped-html-and-md-syntax",
+			"prompt": "Two weird things in my 11ty site: my blog posts render with visible raw HTML tags in the body (like I can literally see <p> on the page), and the {{ site.title }} in my markdown files just prints as-is instead of the site title. My layouts are .njk files. eleventy.config.js is basically the default from a tutorial.",
+			"expected_output": "Triggers the skill. Should diagnose (1) the Nunjucks layout missing `| safe` on {{ content }}, and (2) markdownTemplateEngine defaulting to Liquid — with Liquid-vs-Nunjucks syntax divergence or preprocessing disabled; fix is markdownTemplateEngine: \"njk\" (or templateEngineOverride). Both answers should come with the config/layout edits.",
+			"files": [],
+			"assertions": []
+		},
+		{
+			"id": 3,
+			"name": "slow-build-images",
+			"prompt": "Our marketing site build went from 4 seconds to almost 3 minutes after we added responsive images with eleventy-img (avif+webp+jpeg at 4 widths, via an async shortcode). Dev server reloads are unbearable now. What are our options to make this fast again without giving up the optimized images in production?",
+			"expected_output": "Triggers the skill. Should recommend the image transform plugin with transformOnRequest during --serve (or conditionally reducing formats/widths in dev, e.g. dropping avif), rely on eleventy-img's disk cache and persist it in CI, mention DEBUG=Eleventy:Benchmark* to confirm where time goes, and possibly --incremental.",
+			"files": [],
+			"assertions": []
+		},
+		{
+			"id": 4,
+			"name": "astro-site-negative",
+			"prompt": "My static site is slow to build and I want to add image optimization. It's an Astro project — astro.config.mjs, src/pages, the works. What's the best way to handle responsive images here?",
+			"expected_output": "Does NOT trigger. Astro is a different static site generator; the skill's description explicitly excludes non-Eleventy SSGs. The agent should answer with Astro's own image handling instead.",
+			"files": [],
+			"should_trigger": false,
+			"assertions": []
+		},
+		{
+			"id": 5,
+			"name": "generic-nunjucks-negative",
+			"prompt": "I'm using Nunjucks templates in my Express app to render emails. How do I write a macro that takes named arguments and escapes HTML by default?",
+			"expected_output": "Does NOT trigger. Nunjucks alone isn't Eleventy — this is an Express server-side templating question with no static site build involved.",
+			"files": [],
+			"should_trigger": false,
+			"assertions": []
+		},
+		{
+			"id": 6,
+			"name": "jekyll-migration-boundary",
+			"prompt": "We're moving our company blog off Jekyll. Can you compare Hugo and Gatsby for a content team that writes in markdown?",
+			"expected_output": "Does NOT trigger. No Eleventy involvement — a comparison of other SSGs. (If the user had asked to migrate TO Eleventy, it should trigger.)",
+			"files": [],
+			"should_trigger": false,
+			"assertions": []
+		}
+	]
+}
