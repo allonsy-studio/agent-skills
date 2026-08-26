@@ -10,8 +10,8 @@
 		<meta name="color-scheme" content="light dark">
 
         
-		<title>structured-data | Inject or generate schema.org structured data (HTML Microdat...</title>
-		<meta name="description" content="Inject or generate schema.org structured data (HTML Microdata or JSON-LD) into web markup, then validate it. Picks the right format per project, injects at build/server-render time only, and emits a reviewable diff instead of overwriting files.">
+		<title>install-guide-builder | Generate printable, platform-split developer environment set...</title>
+		<meta name="description" content="Generate printable, platform-split developer environment setup guides — install steps side by side per OS, a verification check after every step, and troubleshooting indexed by the error text on the reader&amp;#39;s screen.">
 		<meta name="keywords" content="">
 		<meta name="author" content="">
 
@@ -21,10 +21,10 @@
 		<meta name="yandexbot" content="index, follow">
 
 		<meta property="og:locale" content="en-US">
-		<meta property="og:title" content="structured-data">
+		<meta property="og:title" content="install-guide-builder">
 		<meta property="og:url" content="https://github.com/allonsy-studio/agent-skills#readme">
-		<meta property="og:description" content="Inject or generate schema.org structured data (HTML Microdata or JSON-LD) into web markup, then validate it. Picks the right format per project, injects at build/server-render time only, and emits a reviewable diff instead of overwriting files.">
-		<meta property="og:site_name" content="structured-data">
+		<meta property="og:description" content="Generate printable, platform-split developer environment setup guides — install steps side by side per OS, a verification check after every step, and troubleshooting indexed by the error text on the reader&amp;#39;s screen.">
+		<meta property="og:site_name" content="install-guide-builder">
 		<meta name="fediverse:creator" content="@castastrophe@front-end.social">
 
 		<link rel="icon" href="/agent-skills/favicon.ico" sizes="32×32">
@@ -1002,15 +1002,15 @@ body > footer {
 <header class="skill-hero">
 	<div class="container">
 		<p class="breadcrumb"><a href="/agent-skills/">@allons-y/agent-skills</a> <span aria-hidden="true">/</span> <a href="/agent-skills/#skills">skills</a></p>
-		<h1>structured-data</h1>
-		<p class="lede">Inject or generate schema.org structured data (HTML Microdata or JSON-LD) into web markup, then validate it. Picks the right format per project, injects at build/server-render time only, and emits a reviewable diff instead of overwriting files.</p>
+		<h1>install-guide-builder</h1>
+		<p class="lede">Generate printable, platform-split developer environment setup guides — install steps side by side per OS, a verification check after every step, and troubleshooting indexed by the error text on the reader&#39;s screen.</p>
 		
-<p class="chips"><span class="chip">SEO</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span><span class="chip"><span class="fa-brands fa-node-js" aria-hidden="true"></span> Node</span></p>
+<p class="chips"><span class="chip">Documentation</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span><span class="chip"><span class="fa-solid fa-window-maximize" aria-hidden="true"></span> Live preview</span><span class="chip"><span class="fa-brands fa-node-js" aria-hidden="true"></span> Node</span></p>
 
 		<p class="btn-group">
 			<a class="btn primary" href="#install">Install this skill</a>
-			<a class="btn" href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/structured-data/SKILL.md"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
-			
+			<a class="btn" href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/install-guide-builder/SKILL.md"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
+			<a class="btn" href="/agent-skills/install-guide-builder/"><span class="fa-solid fa-up-right-from-square" aria-hidden="true"></span> Preview skill interface</a>
 		</p>
 	</div>
 </header>
@@ -1024,10 +1024,10 @@ body > footer {
 			</header>
 			<div class="install-option">
 				<pre class="language-shell"><code class="language-shell"><span class="highlight-line">/plugin marketplace <span class="token function">add</span> allonsy-studio/agent-skills</span>
-<span class="highlight-line">/plugin <span class="token function">install</span> structured-data@agent-skills</span></code></pre>
+<span class="highlight-line">/plugin <span class="token function">install</span> install-guide-builder@agent-skills</span></code></pre>
 			</div>
 			<div>
-				<a class="cta" href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/structured-data/SKILL.md"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
+				<a class="cta" href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/install-guide-builder/SKILL.md"><span class="fa-brands fa-github" aria-hidden="true"></span> View source</a>
 			</div>
 		</aside>
 
@@ -1040,16 +1040,11 @@ body > footer {
 					</h2>
 					<p>Once installed, this skill activates automatically when your prompt matches one of its triggers.</p>
 				</header>
-				<div class="content">
-					<h3>Commands</h3>
-					<ul class="snippet-list">
-						<li><code>/preview-structured-data</code></li>
-					</ul>
-				</div>
+				
 				<div class="content">
 					<h3>Try saying</h3>
 					<ul class="snippet-list">
-						<li><code>add schema.org markup</code></li><li><code>add structured data / rich snippets / SEO markup</code></li><li><code>add JSON-LD to this page</code></li><li><code>add itemprop/itemscope/itemtype attributes</code></li><li><code>validate, audit, or fix my structured data</code></li><li><code>should I use Microdata or JSON-LD</code></li>
+						<li><code>write a setup guide for our dev environment</code></li><li><code>new hires keep asking how to get set up</code></li><li><code>install instructions for Python and Postgres, Mac and Windows</code></li><li><code>add Docker to the setup guide we made last month</code></li><li><code>onboarding doc / new machine checklist</code></li><li><code>a bare list of tools plus an operating system</code></li>
 					</ul>
 				</div>
 			</section>
@@ -1062,46 +1057,31 @@ body > footer {
 					</h2>
 					<p>Everything in this skill's source directory — scripts, references, and the tests and evals that back it. The installer copies the runtime files into your skills directory; the tests and evals stay in the repo.</p>
 				</header>
-				<pre class="skill-tree language-treeview"><code class="language-treeview"><span class="token treeview-part"><span class="token entry-name dir">structured-data</span></span>
+				<pre class="skill-tree language-treeview"><code class="language-treeview"><span class="token treeview-part"><span class="token entry-name dir">install-guide-builder</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">assets</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-json">selector-map-template.json</span></span>
-<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">commands</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">preview-structured-data.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-css">guide.css</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">evals</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-json">evals.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">preview</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">example-guide.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-11tydata-js ext-js">index.11tydata.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-njk">index.njk</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-css">styles.css</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">references</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">schema-types</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">article.md</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">event.md</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">organization.md</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">person.md</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">product.md</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">recipe.md</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">extraction-preview.md</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">format-decision.md</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">regression-tests.md</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">typed-authoring.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">dependency-rules.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">house-style.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">tool-catalog.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">version-policy.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">web-guide.md</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">scripts</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">generate_json_ld.js</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">inject_microdata.js</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">preview_extraction.js</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">scaffold_validation_test.js</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">structured-data-assert.js</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">structured-data-core.js</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">structured-data-extract.js</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-js">validate_structured_data.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">build-guide.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-js">order-tools.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-js">verify-guide.js</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">tests</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">fixtures</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-html">product.html</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">docs_required_properties.test.js</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">generate_json_ld.test.js</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">inject_microdata.test.js</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">preview_extraction.test.js</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">scaffold_validation_test.test.js</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">structured_data_assert.test.js</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">structured_data_extract.test.js</span></span>
-<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-test-js ext-js">validate_structured_data.test.js</span></span>
-<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">CHANGELOG.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">order-tools.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">preview.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-test-js ext-js">skill.test.js</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-test-js ext-js">verify-guide.test.js</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">package.json</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">SKILL.md</span></span></code></pre>
 			</section>
@@ -1112,114 +1092,207 @@ body > footer {
 						Full skill instructions
 						<a class="anchor" href="#docs" aria-label="Permalink to Full skill instructions">#</a>
 					</h2>
-					<p>This is the <code>SKILL.md</code> the agent reads when the skill activates. <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/structured-data/SKILL.md">View the source on GitHub</a>.</p>
+					<p>This is the <code>SKILL.md</code> the agent reads when the skill activates. <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/install-guide-builder/SKILL.md">View the source on GitHub</a>.</p>
 				</header>
 				<div class="prose">
-					<h1>Structured Data (Microdata + JSON-LD)</h1>
-<p>Adds <a href="http://schema.org">schema.org</a> structured data to markup so search engines can extract rich results (product prices, ratings, recipes, events, etc.) from a page. Covers two output formats — HTML Microdata and JSON-LD — and picks between them based on how the target project is built, not by default preference.</p>
-<p>Read this file fully before starting. It routes you to the right reference and script rather than repeating their contents here.</p>
-<p><strong>Flow at a glance:</strong> pick technique (Step 1) → pick format (2) → load the schema-type reference (3) → run the script, review the diff (4) → preview what a parser extracts (5) → validate (6) → offer regression tests for component/11ty targets (7). Steps 5–7 are diagnostics and follow-ups; 1–4 are the core injection path.</p>
-<h2>Step 1: Pick the injection technique</h2>
-<p>The technique depends on where the markup lives, not on the schema type:</p>
+					<h1>Dev Environment Setup Guide Builder</h1>
+<p>Produces setup guides that a real person can follow alone, at 11pm, without you. The
+output is a PDF with each platform’s steps side by side, a verification step after every
+install, and a troubleshooting section keyed to actual error messages.</p>
+<p>The thing that makes these guides work is not completeness. It is that <strong>every step ends
+with a check that tells the reader whether it worked</strong>, and that the troubleshooting
+section is indexed by the error text the reader is staring at rather than by topic. Keep
+that property no matter what else you change.</p>
+<h2>Workflow</h2>
+<ol>
+<li><strong>Gather the four inputs</strong> (below). Ask for anything missing before building.</li>
+<li><strong>Resolve the tool list into install order</strong> with
+<code>node scripts/order-tools.js &lt;tools...&gt; --os &lt;platform&gt;</code>, which is the graph in
+<code>references/dependency-rules.md</code> made executable. It adds the prerequisites a reader
+did not ask for and warns about combinations that produce a contradictory guide.</li>
+<li><strong>Verify current versions.</strong> The catalog deliberately hardcodes no version numbers.
+Fetch the current stable release for every selected tool before writing steps.</li>
+<li><strong>Write the guide</strong> following <code>references/house-style.md</code>, pulling per-tool content
+from <code>references/tool-catalog.md</code>.</li>
+<li><strong>Build the PDF</strong> with <code>scripts/build-guide.js</code>.</li>
+<li><strong>Verify the output</strong> using the checklist at the end of this file. Do not skip this;
+it catches the failure modes that make a guide actively harmful.</li>
+</ol>
+<h2>The four inputs</h2>
+<p>Ask for all four. Use <code>AskUserQuestion</code> when the interface supports it. Never guess at
+the audience — it changes more of the document than anything else.</p>
+<h3>1. Tools</h3>
+<p>Offer this menu, grouped so that the dependency structure is visible in the question
+itself. Let them pick freely and add anything not listed.</p>
 <div class="table-scroll">
 <table>
 <thead>
 <tr>
-<th>Target</th>
-<th>Technique</th>
-<th>Why</th>
+<th>Group</th>
+<th>Options</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Static-site pipeline (11ty, Astro, Eleventy, Hugo, Jekyll)</td>
-<td>Build-pipeline transform: write the mapping once in a plugin/config that runs at build time</td>
-<td>Zero per-page token or editing cost after setup; scales to the whole site</td>
+<td>Editor</td>
+<td>VS Code, Zed, Cursor, Neovim</td>
 </tr>
 <tr>
-<td>Design-system component (Web Component, React, Vue)</td>
-<td>Template-level authoring: embed the <code>itemprop</code>/JSON-LD binding directly in the component’s template or render function</td>
-<td>One-time cost per component; every instance inherits it automatically</td>
+<td>Version control</td>
+<td>Git (+ GitHub CLI)</td>
 </tr>
 <tr>
-<td>Existing/bulk HTML files, no build pipeline</td>
-<td><code>scripts/inject_microdata.js</code> or <code>scripts/generate_json_ld.js</code>, driven by a selector-map config</td>
-<td>Claude never has to read/rewrite full file contents in-context — only the small config and a diff</td>
+<td>Programming languages</td>
+<td>Python (via <strong>uv</strong>, pyenv, or a direct installer), Go, Rust (rustup), C++ (platform compiler toolchain), Ruby (mise/rbenv), Java (SDKMAN/Temurin)</td>
 </tr>
 <tr>
-<td>A single one-off page</td>
-<td>Direct manual <code>str_replace</code> annotation</td>
-<td>Scripting overhead isn’t worth it for one file</td>
+<td>Web technologies</td>
+<td>Node.js (via <strong>nvm</strong>, fnm, Volta, or a direct installer), PHP (via Homebrew, <a href="http://windows.php.net">windows.php.net</a>, or a distro package)</td>
+</tr>
+<tr>
+<td>Containers</td>
+<td>Docker Desktop, Podman, OrbStack</td>
+</tr>
+<tr>
+<td>Databases</td>
+<td>PostgreSQL, MySQL, SQLite, Redis. These share a section in the catalog because the same three things go wrong with all of them</td>
+</tr>
+<tr>
+<td>Polyglot</td>
+<td>mise or asdf, to manage several runtimes at once</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p><strong>Web Component caveat:</strong> if the component’s structured data lives inside a shadow root, only put it there via <strong>Declarative Shadow DOM</strong> (<code>&lt;template shadowrootmode=&quot;open&quot;&gt;</code>, rendered server-side so the markup is present in the initial HTML response) — never a shadow root attached at runtime via <code>attachShadow()</code>, since that content doesn’t exist until client-side JS runs, and current guidance is that even where it might get picked up by a fully-rendering crawler, it shouldn’t be relied on across tools. For anything you actually want indexed reliably, prefer surfacing the structured data in the light DOM or a page-level <code>&lt;head&gt;</code> JSON-LD block rather than burying it in a shadow tree at all — this applies even to non-declarative Microdata inside a component template.</p>
-<p>Whichever technique you use, structured data is injected at <strong>build time or server-render time only</strong>. Never add it via a client-side script (<code>element.setAttribute('itemprop', ...)</code> after page load, or JS that writes the JSON-LD block into the DOM post-hydration). Search crawlers frequently index a page before JS execution completes, so client-injected structured data is unreliable and sometimes invisible to crawlers entirely. If the only markup you have access to is rendered client-side with no SSR/SSG path, say so and flag the limitation rather than injecting into the client bundle.</p>
-<h2>Step 2: Pick the format — Microdata vs JSON-LD</h2>
-<p>Don’t default to one. Read <code>references/format-decision.md</code> for the full decision guide with spec citations; the short version:</p>
+<p>Group the menu this way rather than by layer. A reader picking tools thinks in terms of
+“what am I building with”, not “what depends on what”. The dependency structure still
+decides the install order; it just does not have to decide the question’s shape.</p>
+<p><strong>Always mention the version manager alongside its runtime</strong>, and default to the bold
+one. “Install Node” and “install Node through nvm” are different documents, and the
+second one is the one that survives a reader needing a different Node version later.</p>
+<p><strong>nvm needs care on a cross-platform guide.</strong> On macOS and Linux it is <code>nvm-sh/nvm</code>. On
+Windows it is <code>coreybutler/nvm-windows</code>, a separate project: different command syntax,
+<code>nvm use</code> requires an administrator terminal, and any existing Node install has to be
+removed first or the version manager silently does nothing. Write the Windows column from
+that project’s documentation, not from nvm-sh’s.</p>
+<p>Databases are their own group for a reason: a version check proves the client exists, not
+that the server is running, so every database step needs two checks. <code>references/tool-catalog.md</code>
+has the shared guidance under <strong>Databases</strong> before the individual entries.</p>
+<p>Some selections imply others. <code>references/dependency-rules.md</code> has the full graph, but
+the shape of it is: a package manager comes before anything it installs, an editor comes
+before Git (Git’s Windows installer asks which editor to use), Git comes before anything
+that clones, and a version manager comes before the runtime it manages.</p>
+<h3>2. Environments</h3>
+<p>Default to <strong>macOS, Windows, and Linux</strong> unless told otherwise. Confirm rather than
+assume — a Windows-only shop does not want two thirds of the page taken up by columns
+they will never read.</p>
+<p>For Linux, ask which family (Debian/Ubuntu, Fedora/RHEL, Arch). Package names and
+commands differ enough that “Linux” alone produces instructions that fail.</p>
+<h3>3. Experience level</h3>
+<p>This decides vocabulary, how much gets explained, and how long the guide is.</p>
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Who</th>
+<th>What changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>first-time</code></td>
+<td>Never installed developer tools. Students, career changers.</td>
+<td>Define terminal, PATH, shell, command. Spell out every click. Explain what silence means. Include a glossary. Expect 12–16 pages for four tools.</td>
+</tr>
+<tr>
+<td><code>early-career</code></td>
+<td>Has installed things, has used a terminal, may not know why PATH breaks. <strong>Default for the web guide.</strong></td>
+<td>Assume terminal fluency. Still name the specific traps. Skip the glossary. 6–10 pages.</td>
+</tr>
+<tr>
+<td><code>experienced</code></td>
+<td>Sets up machines regularly, wants the specifics not the concepts.</td>
+<td>Commands and gotchas only. Tables over prose. Link out for anything standard. 3–5 pages.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>When unsure, ask. Writing a <code>first-time</code> guide for an <code>experienced</code> audience reads as
+condescending; the reverse strands people.</p>
+<h3>4. Where it is going</h3>
+<p>A printed handout, an internal wiki, a public page, a repo README. This affects whether
+you include contact details, a version stamp, and links that assume network access.</p>
+<h2>Version policy</h2>
+<p><strong>Write steps only for versions that are current or one major release behind.</strong> Those are
+the versions whose installers, screens, and error messages you can describe accurately.</p>
+<p>If someone asks for a version <strong>two or more major releases behind current</strong>, do not write
+install steps from memory. They will be subtly wrong in ways that waste hours. Instead:</p>
 <ul>
-<li><strong>Microdata</strong> (attributes on the visible elements) keeps structured data physically attached to what the user sees, so it can’t drift from the rendered content — good when you control the template tightly and want that guarantee (e.g., a design-system component where the visible price and the <code>itemprop=&quot;price&quot;</code> value are the literal same DOM node).</li>
-<li><strong>JSON-LD</strong> (a separate <code>&lt;script type=&quot;application/ld+json&quot;&gt;</code> block) decouples the data from the DOM, which is easier to maintain across template/CMS changes but can silently drift out of sync with what’s rendered if nobody keeps them aligned.</li>
+<li>Name the version and say plainly that it is old enough that the steps have drifted.</li>
+<li>Link to that version’s own official documentation or archived downloads page.</li>
+<li>Say what breaks going forward, in one line, if you know it.</li>
+<li>Offer the current-version steps alongside, in case the constraint is softer than stated.</li>
 </ul>
-<p>Both are valid, current schema.org-supported formats. Pick per task using that tradeoff — don’t ask the user to pick unless the reference’s guidance is genuinely ambiguous for their case.</p>
-<h2>Step 3: Load only the relevant schema type reference</h2>
-<p>Under <code>references/schema-types/</code>, one file per common <a href="http://schema.org">schema.org</a> type: <code>article.md</code>, <code>product.md</code>, <code>person.md</code>, <code>organization.md</code>, <code>recipe.md</code>, <code>event.md</code>. Read only the one(s) the task needs — don’t load all of them into context. Each file lists required vs. recommended properties and gives both a Microdata and a JSON-LD example.</p>
-<p>If the task needs a <a href="http://schema.org">schema.org</a> type not covered by one of these files, look it up directly at <code>https://schema.org/&lt;TypeName&gt;</code> rather than guessing at property names from memory — <a href="http://schema.org">schema.org</a>’s vocabulary is versioned and property sets do get revised.</p>
-<h2>Step 4: Run the script and produce a diff</h2>
-<p>Both <code>scripts/inject_microdata.js</code> and <code>scripts/generate_json_ld.js</code> take the same config format (<code>assets/selector-map-template.json</code> — copy and fill in per project) so switching formats later doesn’t mean re-authoring the mapping. Both scripts <strong>never overwrite files directly</strong> — they print a unified diff to stdout for review. Apply the diff yourself with <code>patch</code> (or by hand via <code>str_replace</code>) only after the user has looked at it. This keeps the person in the loop on exactly what’s being added to their markup, which matters more here than most edits since structured data is publicly visible to any bot that requests the page.</p>
-<p>First install the two runtime dependencies (<code>package.json</code> in this skill’s root lists them):</p>
-<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span>
+<p><code>references/version-policy.md</code> has the per-tool cadence and the archive URLs, because
+“two majors” means something different for Node (a year) than for Python (two years).</p>
+<h2>Building the PDF</h2>
+<p><code>scripts/build-guide.js</code> turns an HTML file into the PDF, applying <code>assets/guide.css</code>:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">node</span> scripts/build-guide.js input.html output.pdf <span class="token parameter variable">--title</span> <span class="token string">"Setup Guide"</span> <span class="token parameter variable">--accent</span> <span class="token string">"#1e40af"</span>
 </code></pre>
-<p>Then run whichever script the task needs:</p>
-<pre class="language-bash"><code class="language-bash"><span class="token function">node</span> scripts/inject_microdata.js <span class="token parameter variable">--config</span> assets/selector-map.json <span class="token parameter variable">--target</span> path/to/page.html
-<span class="token function">node</span> scripts/generate_json_ld.js <span class="token parameter variable">--config</span> assets/selector-map.json <span class="token parameter variable">--target</span> path/to/page.html
-</code></pre>
-<p><strong>Hand-authoring JSON-LD instead of generating it?</strong> When you’re writing a
-JSON-LD block by hand in a TypeScript project (a one-off page, or a component
-that emits its own <code>&lt;script&gt;</code>), type-check it against the <a href="http://schema.org">schema.org</a> vocabulary
-with Google’s <code>schema-dts</code> — it catches wrong property names and value shapes
-at compile time. See <code>references/typed-authoring.md</code>. This is authoring-time
-help only; generated output is still validated at runtime in Step 6.</p>
-<h2>Step 5: Preview what a parser extracts</h2>
-<p>Validation (Step 6) answers <em>“is the markup structurally correct?”</em> — but the more common failure is markup that’s valid yet says the <strong>wrong thing</strong>: a stale hidden <code>&lt;meta&gt;</code>, a currency symbol leaking into a price, or a JSON-LD block that drifted from the visible content. To eyeball the actual <strong>values</strong> a machine reads — and to catch Microdata/JSON-LD disagreement — run the extraction preview:</p>
-<p><strong>When to run it (don’t deliberate):</strong></p>
+<p>Write the HTML <strong>body content only</strong> using the classes documented in
+<code>references/house-style.md</code>. The script supplies the stylesheet, page furniture, and
+footer. Pass <code>--accent</code> to distinguish guides that will be held side by side.</p>
+<p>After building, the script prints a verification report. Read it. It checks the things
+that silently ruin a printed guide.</p>
+<p>Rendering is delegated to whatever is installed. Prefer <strong>WeasyPrint</strong>
+(<code>pipx install weasyprint</code>): the stylesheet uses CSS margin boxes for the running footer
+and page numbers, and headless Chrome — the fallback — drops them silently. If no
+renderer is present, pass <code>--html-only</code>: the assembled HTML and the full verification
+report still come out, and the reader can print from a browser.</p>
+<h2>The interactive web guide</h2>
+<p>When the target is a web page rather than print, build a single self-contained HTML file
+where the reader checks the tools they want and the page assembles the steps in dependency
+order. <code>references/web-guide.md</code> covers the structure, the data shape, and the ordering
+logic. Default that page to the <code>early-career</code> voice.</p>
+<h2>Verification checklist</h2>
+<p>Run through this before handing anything over. Each item exists because skipping it
+produced a broken guide at least once.</p>
+<ol>
+<li><strong>Every command extracts as one unbroken line.</strong> Long commands that wrap inside a
+narrow column become two broken commands when a reader copies them out of a PDF.
+<code>build-guide.js</code> checks this and names the offenders. Move them to full width or
+send the reader to the vendor’s page to copy from.</li>
+<li><strong>Every install step ends with a check.</strong> A “Done when:” line naming observable
+output. Not “it should work” — the actual string that appears.</li>
+<li><strong>Every troubleshooting entry is titled with the error text</strong>, not the topic. Readers
+search for what is on their screen.</li>
+<li><strong>No unresolved placeholders</strong> unless you flagged them explicitly in your handoff
+message.</li>
+<li><strong>Cross-references point at steps that exist.</strong> If two platform columns both number
+their substeps <code>4a</code>, say which platform every reference means.</li>
+<li><strong>Callouts hold under about 10% of the words.</strong> A page of colored boxes is a page
+nobody reads. Long content belongs under a heading, as ordinary prose.</li>
+<li><strong>Claims about install behavior are verified, not remembered.</strong> If you say a checkbox
+is unchecked by default or a package ships with a feature enabled, you checked. Say
+in your handoff what you verified and what you could not.</li>
+</ol>
+<h2>Reference files</h2>
 <ul>
-<li><strong>Run it automatically, without asking,</strong> whenever the page carries <strong>both</strong> Microdata and JSON-LD (the drift check is the whole point), or <strong>immediately after generating JSON-LD</strong> from existing markup.</li>
-<li><strong>Offer it</strong> (one line) for a single-format page the user hand-edited.</li>
-<li><strong>Skip it</strong> only when there’s no structured data to look at.</li>
+<li><code>references/tool-catalog.md</code> — per-tool, per-OS steps, verify commands, known traps.
+Read the entries for the selected tools only.</li>
+<li><code>references/dependency-rules.md</code> — the ordering graph and how to resolve it.</li>
+<li><code>references/house-style.md</code> — voice, structure, punctuation rules, HTML classes.</li>
+<li><code>references/version-policy.md</code> — how old is too old, and where to link instead.</li>
+<li><code>references/web-guide.md</code> — the interactive checkbox page.</li>
 </ul>
-<pre class="language-bash"><code class="language-bash"><span class="token function">node</span> scripts/preview_extraction.js <span class="token parameter variable">--target</span> path/to/page.html
-<span class="token function">node</span> scripts/preview_extraction.js <span class="token parameter variable">--target</span> path/to/page.html <span class="token parameter variable">--format</span> microdata<span class="token operator">|</span>json-ld<span class="token operator">|</span>both
-<span class="token function">node</span> scripts/preview_extraction.js <span class="token parameter variable">--target</span> path/to/page.html <span class="token parameter variable">--base</span> https://your.site/  <span class="token comment"># resolve relative URLs</span>
-<span class="token function">node</span> scripts/preview_extraction.js <span class="token parameter variable">--target</span> path/to/page.html <span class="token parameter variable">--json</span>                     <span class="token comment"># machine-readable</span>
-</code></pre>
-<p>It prints the extracted Microdata and JSON-LD items and, when a page carries both, a <strong>drift report</strong> flagging where they disagree — the exact risk <code>references/format-decision.md</code> warns about. This is a parser’s-eye view for the injection loop, <strong>not</strong> a crawler simulation: it doesn’t run JS, filter by rich-result requirements, or judge eligibility. Frame it that way to the user and keep deferring eligibility to Google’s Rich Results Test. Details and the parser-vs-crawler boundary are in <code>references/extraction-preview.md</code>. Reach for this especially after generating JSON-LD, or whenever a page mixes both formats.</p>
-<h2>Step 6: Validate</h2>
-<p>Run <code>scripts/validate_structured_data.js</code> against the result before considering the task done. It checks:</p>
+<h2>Scripts</h2>
 <ul>
-<li>Microdata: every <code>itemprop</code> resolves to an ancestor <code>itemscope</code> (or a valid <code>itemref</code>), no orphaned properties — this mirrors the tree-construction algorithm in the spec, not an approximation of it.</li>
-<li>JSON-LD: runs the block through the <strong><code>jsonld</code> reference processor</strong> (Digital Bazaar’s <code>jsonld.js</code> — the W3C JSON-LD spec authors’ implementation) to catch structural JSON-LD errors, offline; then checks that required properties are present for the declared <code>@type</code>. Note the required-property table is <strong>Google Search’s rich-results requirements, not <a href="http://schema.org">schema.org</a> vocabulary</strong> — <a href="http://schema.org">schema.org</a> has no “required” concept, and no npm package authoritatively publishes Google’s list (see the provenance note in <code>scripts/validate_structured_data.js</code>).</li>
+<li><code>scripts/order-tools.js</code> — resolve a selection into install order. <code>--list</code> prints the
+known tool keys.</li>
+<li><code>scripts/build-guide.js</code> — assemble the PDF and print the verification report.
+<code>--html-only</code> runs the checks with no renderer installed.</li>
 </ul>
-<p>This is a structural check, not a substitute for Google’s Rich Results Test — mention that tool to the user for final confirmation of search-result eligibility, since that also reflects current indexing requirements that shift independently of the <a href="http://schema.org">schema.org</a> vocabulary itself.</p>
-<h2>Step 7: Offer regression tests (component libraries &amp; 11ty projects only)</h2>
-<p>Step 6 validates the markup <em>once</em>. But structured data silently rots — a later template edit, a price refactor, or a component change can invalidate markup that passed, and nobody notices until a rich result quietly disappears. For the two targets where markup is <strong>regenerated on every build</strong> — design-system components and static-site pipelines (11ty, Astro, Hugo, etc.) — offer to wire validation into the project’s own test suite so every future build re-checks it.</p>
-<p>After the markup is added and Step 6 passes, <strong>ask the consumer</strong>: <em>“Want me to add structured-data validation tests to your test suite, so this stays valid on every build?”</em> Only prompt for component-library or static-site targets. Skip it for a single one-off page — nothing regenerates it, so there’s nothing to regress.</p>
-<p>If they say yes, run <code>scripts/scaffold_validation_test.js</code>, choosing <code>--type</code> from the target and <code>--runner</code> from the project’s existing test runner:</p>
-<pre class="language-bash"><code class="language-bash"><span class="token comment"># static-site pipeline: validate the built HTML output (run after the build)</span>
-<span class="token function">node</span> scripts/scaffold_validation_test.js <span class="token parameter variable">--type</span> eleventy <span class="token parameter variable">--runner</span> <span class="token function">node</span> <span class="token parameter variable">--out</span> tests --site-dir _site
-
-<span class="token comment"># component library: validate each component's rendered output</span>
-<span class="token function">node</span> scripts/scaffold_validation_test.js <span class="token parameter variable">--type</span> component <span class="token parameter variable">--runner</span> vitest <span class="token parameter variable">--out</span> tests --render-module <span class="token punctuation">..</span>/src/render.js
-</code></pre>
-<p>Like the other scripts, it <strong>writes nothing</strong> — it prints three files for review (a vendored validation core, a throwing assert helper, and a runner-appropriate test), which you then add to the project after the consumer looks them over. The generated tests depend only on <code>cheerio</code> and <code>jsonld</code> as devDependencies — no dependency on this skill staying installed. Full walkthrough, runner variants, and CI wiring are in <code>references/regression-tests.md</code>.</p>
-<h2>Spec references</h2>
-<ul>
-<li>WHATWG HTML Standard, §5 Microdata (the itemscope/itemprop/itemtype/itemid/itemref syntax): <a href="https://html.spec.whatwg.org/multipage/microdata.html">https://html.spec.whatwg.org/multipage/microdata.html</a></li>
-<li><a href="http://schema.org">schema.org</a> vocabulary root: <a href="https://schema.org/docs/full.html">https://schema.org/docs/full.html</a></li>
-<li>JSON-LD 1.1 syntax: <a href="https://www.w3.org/TR/json-ld11/">https://www.w3.org/TR/json-ld11/</a></li>
-</ul>
-<p>Note on browser support: no current browser implements the old Microdata <em>DOM API</em> (<code>document.getItems()</code>); only the attribute syntax itself is relevant here, and that’s fine since these scripts never rely on the DOM API.</p>
 
 				</div>
 			</section>
@@ -1273,15 +1346,15 @@ help only; generated output is still validated at runtime in Step 6.</p>
 				<div class="footer">
 					<p class="cta">Learn more</p>
 				</div>
-			</a><a class="card" href="/agent-skills/skills/install-guide-builder/">
+			</a><a class="card" href="/agent-skills/skills/structured-data/">
 				<div class="header">
-					<h3>install-guide-builder</h3>
+					<h3>structured-data</h3>
 					
-<p class="chips"><span class="chip">Documentation</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span><span class="chip"><span class="fa-solid fa-window-maximize" aria-hidden="true"></span> Live preview</span></p>
+<p class="chips"><span class="chip">SEO</span><span class="chip"><span class="fa-solid fa-cube" aria-hidden="true"></span> Implementation</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span></p>
 
 				</div>
 				<div class="body">
-					<p>Generate printable, platform-split developer environment setup guides — install steps side by side per OS, a verification check after every...</p>
+					<p>Inject or generate schema.org structured data (HTML Microdata or JSON-LD) into web markup, then validate it. Picks the right format per...</p>
 				</div>
 				<div class="footer">
 					<p class="cta">Learn more</p>
