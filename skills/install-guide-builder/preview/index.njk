@@ -74,6 +74,29 @@ tagline: "Pick your platform and your tools; the page assembles the steps in dep
 				</div>
 			</fieldset>
 
+			<div class="share">
+				<h3><label for="share-link">Share this configuration</label></h3>
+				<p class="hint">
+					The link carries the platforms, the tools and the platform on screen, so you can
+					send someone a guide already set up for them instead of instructions about which
+					boxes to tick.
+				</p>
+				<div class="share-row">
+					<input id="share-link" class="share-link" type="text" readonly spellcheck="false" />
+					<button id="share-copy" class="btn" type="button">
+						<span class="fa-regular fa-copy" aria-hidden="true"></span>
+						<span class="share-copy-label">Copy link</span>
+					</button>
+				</div>
+				<p class="hint params">
+					Parameters: <code>os</code> and <code>tools</code> take comma-separated lists,
+					<code>view</code> takes one platform. Unknown values are dropped, and a parameter
+					left naming nothing we recognise falls back to the default rather than showing an
+					empty page. The exception is <code>?tools=</code> with nothing after it, which
+					deliberately starts you from an empty selection.
+				</p>
+			</div>
+
 			<div class="resolved" aria-live="polite">
 				<h3>Install order</h3>
 				<ol id="resolved-order" class="resolved-list">
@@ -337,17 +360,34 @@ if (stored) {
 	if (ALL_OS.includes(stored.view)) state.view = stored.view;
 }
 
+// The URL is the configuration API: `?os=macos,windows&tools=git,node&view=windows`
+// sets up the picker before the reader touches it, so a link can be handed out
+// instead of instructions about which boxes to tick. It outranks whatever the
+// last visit stored, otherwise a shared link would show the recipient their own
+// old selection.
 if (params.has("os")) {
 	const wanted = params.get("os").split(",").filter((os) => ALL_OS.includes(os));
+	// An `os` naming nothing we recognise leaves the default alone rather than
+	// rendering a guide with no platforms in it.
 	if (wanted.length) {
 		state.platforms = wanted;
 		state.view = wanted[0];
 	}
 }
 if (params.has("tools")) {
-	state.tools = params.get("tools").split(",").filter((t) => CHOICE_IDS.includes(t));
+	const raw = params.get("tools");
+	const wanted = raw.split(",").filter((t) => CHOICE_IDS.includes(t));
+	// `?tools=` with nothing after it means "start from nothing and let me pick",
+	// so an empty list is honoured. But a list that named only things we do not
+	// have — a typo, or a link from an older version of this page — falls back to
+	// the default rather than rendering an empty guide that reads as broken.
+	if (raw === "" || wanted.length > 0) state.tools = wanted;
+}
+if (params.has("view") && ALL_OS.includes(params.get("view"))) {
+	state.view = params.get("view");
 }
 if (!state.platforms.length) state.platforms = [...ALL_OS];
+// Showing a platform that is not included would be a guide the reader cannot print.
 if (!state.platforms.includes(state.view)) state.view = state.platforms[0];
 
 /* ---------- render ---------- */
@@ -359,6 +399,8 @@ const viewControl = document.getElementById("os-view-control");
 const resolvedList = document.getElementById("resolved-order");
 const printNote = document.getElementById("print-note");
 const stepsRoot = document.getElementById("steps");
+const shareField = document.getElementById("share-link");
+const shareCopy = document.getElementById("share-copy");
 
 function render() {
 	const { ordered, added } = resolveOrder(state.tools, state.platforms);
@@ -451,10 +493,32 @@ function render() {
 			: "Printing includes the platform above.";
 
 	writeStore(STORE_KEY, state);
+
+	const url = shareUrl();
+	history.replaceState(null, "", url);
+	// Keep the shareable link in step with the picker, so whatever is on screen
+	// is what the recipient of the link will see.
+	shareField.value = url;
+}
+
+/**
+ * The current configuration, as a link someone else can open.
+ *
+ * @returns {string}
+ */
+function shareUrl() {
 	const url = new URL(location.href);
 	url.searchParams.set("os", state.platforms.join(","));
 	url.searchParams.set("tools", state.tools.join(","));
-	history.replaceState(null, "", url);
+	// Only worth carrying when there is more than one platform to choose between.
+	if (state.platforms.length > 1) {
+		url.searchParams.set("view", state.view);
+	} else {
+		url.searchParams.delete("view");
+	}
+	// URLSearchParams percent-encodes the separator, and `%2C` everywhere makes a
+	// link nobody can read or hand-edit. A bare comma is legal in a query value.
+	return url.href.replaceAll("%2C", ",");
 }
 
 /* ---------- events ---------- */
@@ -488,6 +552,35 @@ for (const box of toolBoxes) {
 		render();
 	});
 }
+
+/* ---------- sharing the configuration ---------- */
+
+// Selecting the field is the fallback path that always works, so do it either
+// way — a reader who cannot use the clipboard can still press their own copy key.
+shareField.addEventListener("focus", () => shareField.select());
+
+const shareLabel = shareCopy.querySelector(".share-copy-label");
+let shareResetTimer;
+
+shareCopy.addEventListener("click", async () => {
+	shareField.select();
+	let copied = false;
+	try {
+		// Unavailable outside a secure context, and refusable by permission.
+		await navigator.clipboard.writeText(shareField.value);
+		copied = true;
+	} catch {
+		copied = document.execCommand?.("copy") ?? false;
+	}
+
+	shareCopy.classList.toggle("copied", copied);
+	shareLabel.textContent = copied ? "Copied" : "Press to copy";
+	clearTimeout(shareResetTimer);
+	shareResetTimer = setTimeout(() => {
+		shareCopy.classList.remove("copied");
+		shareLabel.textContent = "Copy link";
+	}, 2000);
+});
 
 /* ---------- progress ticks, keyed per platform ---------- */
 
