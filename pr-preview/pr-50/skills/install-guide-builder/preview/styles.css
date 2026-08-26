@@ -10,6 +10,20 @@
 	display: none !important;
 }
 
+/* A command must never wrap — a wrapped command is two broken commands when
+   pasted, which is the failure this whole skill is built to prevent. So command
+   blocks scroll inside their own box and the page does not scroll with them. */
+pre {
+	max-inline-size: 100%;
+	overflow-x: auto;
+}
+
+/* Inline code in the prose is a different case: paths and flags mentioned mid
+   sentence are read, not copied, so they may break rather than widen the page. */
+:not(pre) > code {
+	overflow-wrap: anywhere;
+}
+
 .sr-only {
 	position: absolute;
 	inline-size: 1px;
@@ -54,6 +68,9 @@
 /* ---------- picker ---------- */
 
 .picker {
+	/* The site sets border-box on `.container` only, so a full-width box with
+	   padding of its own has to opt in or it overhangs a narrow screen. */
+	box-sizing: border-box;
 	inline-size: 100%;
 	padding: 1.25rem 1.4rem 1.4rem;
 	border: 1px solid var(--theme--ui--color--subtle);
@@ -144,6 +161,55 @@
 	flex-wrap: wrap;
 	gap: 0.45rem;
 	margin-block-start: 0.4rem;
+}
+
+.share {
+	padding-block: 0.5rem 1rem;
+	border-block-start: 1px solid var(--theme--ui--color--subtle);
+
+	label {
+		cursor: pointer;
+	}
+
+	.params {
+		margin-block-end: 0;
+	}
+}
+
+.share-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	align-items: center;
+}
+
+.share-link {
+	box-sizing: border-box;
+	flex: 1 1 22rem;
+	min-inline-size: 0;
+	padding: 0.55rem 0.7rem;
+	border: 1px solid var(--theme--ui--color--subtle);
+	border-radius: 0.4rem;
+	background: var(--theme--surface--color);
+	color: var(--theme--text--Color);
+	font-family: var(--theme--code--FontFamily);
+	font-size: 0.82rem;
+
+	&:focus-visible {
+		outline: 2px solid var(--base);
+		outline-offset: 1px;
+	}
+}
+
+#share-copy {
+	padding: 0.55rem 1rem;
+	font-size: 0.85rem;
+	white-space: nowrap;
+
+	&.copied {
+		border-color: light-dark(hsl(142 55% 38%), hsl(142 45% 45%));
+		color: light-dark(hsl(142 60% 28%), hsl(142 50% 65%));
+	}
 }
 
 .resolved {
