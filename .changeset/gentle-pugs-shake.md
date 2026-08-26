@@ -19,4 +19,10 @@ Two scripts do the work that shouldn't be left to judgment:
 
 There is also a hosted example of the output, so you can see what you get before installing anything: pick your platform and your tools, and the page assembles the steps in dependency order, tells you which prerequisites it added and why, and prints all your selected platforms at once.
 
+**If you teach, or you run IT for a team, this is aimed squarely at you.**
+
+Instructors get a handout that survives a class on whatever laptops turned up — the steps for every platform print side by side, so one document covers the whole room instead of three. It was extracted from guides written for two college courses, so the failure modes it pre-empts are the ones that actually generate a flood of "it doesn't work" emails the night before the first assignment: the PATH checkbox nobody ticks, the Vim screen with no visible exit, the database that installed but never started. Next semester, add a tool and rebuild rather than rewriting.
+
+IT and helpdesk teams get the same thing pointed at onboarding: one setup document per team, covering every platform you support, that a new hire can finish alone before their first ticket. Because troubleshooting is filed under the error text rather than the topic, people find their own answer instead of opening a ticket — and when they do open one, they can tell you which numbered step failed.
+
 Say anything like "write a setup guide", "new hires keep asking how to get set up", "install instructions for Python and Postgres, Mac and Windows", or "add Docker to the guide we made last month".
