@@ -1,0 +1,28 @@
+---
+"@allons-y/agent-skills": minor
+"@allons-y/skill-install-guide-builder": minor
+---
+
+New skill: **install-guide-builder**, for writing developer environment setup guides that someone can actually follow alone, at 11pm, without you.
+
+Give it a list of tools, the platforms you support, and who the guide is for, and it produces a print-ready PDF with each platform's steps side by side. Two properties make these guides work, and the skill holds onto both:
+
+- **Every install step ends with a check.** Not "it should work" — the actual string that appears on screen when it did.
+- **Troubleshooting is indexed by error text**, not by topic, because readers search for what is on their screen.
+
+It covers 23 tools — editors, Git, Node, Python, PHP, Go, Rust, Java, Docker, Postgres, MySQL, Redis, SQLite — and, crucially, their version managers. "Install Node" and "install Node through nvm" are different documents, and the skill defaults to the second one.
+
+Two scripts do the work that shouldn't be left to judgment:
+
+- `order-tools.js` resolves your selection into install order, adds the prerequisites you forgot, and warns about combinations that produce a contradictory guide (two version managers for one runtime, or nvm on Windows, which is a different project with different syntax).
+- `build-guide.js` renders the PDF and then verifies it, catching the failure modes that survive visual review — most importantly commands that wrap inside a narrow column and arrive broken when a reader copies them out.
+
+There is also a hosted example of the output, so you can see what you get before installing anything: pick your platform and your tools, and the page assembles the steps in dependency order, tells you which prerequisites it added and why, and prints all your selected platforms at once.
+
+**If you teach, or you run IT for a team, this is aimed squarely at you.**
+
+Instructors get a handout that survives a class on whatever laptops turned up — the steps for every platform print side by side, so one document covers the whole room instead of three. It was extracted from guides written for two college courses, so the failure modes it pre-empts are the ones that actually generate a flood of "it doesn't work" emails the night before the first assignment: the PATH checkbox nobody ticks, the Vim screen with no visible exit, the database that installed but never started. Next semester, add a tool and rebuild rather than rewriting.
+
+IT and helpdesk teams get the same thing pointed at onboarding: one setup document per team, covering every platform you support, that a new hire can finish alone before their first ticket. Because troubleshooting is filed under the error text rather than the topic, people find their own answer instead of opening a ticket — and when they do open one, they can tell you which numbered step failed.
+
+Say anything like "write a setup guide", "new hires keep asking how to get set up", "install instructions for Python and Postgres, Mac and Windows", or "add Docker to the guide we made last month".

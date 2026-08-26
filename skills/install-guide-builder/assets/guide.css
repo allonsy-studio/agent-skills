@@ -1,0 +1,202 @@
+
+  @page {
+    size: letter;
+    margin: 0.7in 0.65in 0.85in 0.65in;
+    @bottom-left {
+      content: "FOOTERTEXT";
+      font-family: "DejaVu Sans", "Helvetica", sans-serif;
+      font-size: 7.5pt;
+      color: #6b7280;
+    }
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+      font-family: "DejaVu Sans", "Helvetica", sans-serif;
+      font-size: 7.5pt;
+      color: #6b7280;
+    }
+  }
+  @page :first {
+    @bottom-left { content: ""; }
+    @bottom-right { content: ""; }
+  }
+
+  /* build-guide.js rewrites this declaration with the --accent it was given.
+     The default is a real color so the file is valid, lintable CSS on its own. */
+  :root { --accent: #1e40af; }
+
+  * { box-sizing: border-box; }
+
+  html {
+    font-family: "DejaVu Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 9.6pt;
+    line-height: 1.45;
+    color: #1a1d24;
+    background: #ffffff;
+  }
+  body { margin: 0; }
+
+  code, pre, .cmd {
+    font-family: "DejaVu Sans Mono", "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  /* ---------- cover ---------- */
+  .cover { page-break-after: always; padding-top: 0.75in; }
+  .cover .eyebrow {
+    font-size: 9pt; letter-spacing: .16em; text-transform: uppercase;
+    color: #6b7280; font-weight: 700; margin-bottom: .5rem;
+  }
+  .cover h1 {
+    font-size: 30pt; line-height: 1.12; margin: 0 0 .55rem;
+    font-weight: 700; letter-spacing: -.015em; color: #0f1115;
+  }
+  .cover .sub { font-size: 13pt; color: #3f4652; margin: 0 0 2.1rem; }
+  .cover .rule { height: 4px; width: 88px; background: var(--accent); margin: 0 0 2.1rem; }
+  .cover .meta {
+    font-size: 9.5pt; color: #4b5563; border-top: 1px solid #d8dce4;
+    padding-top: .8rem; line-height: 1.9;
+  }
+  .cover .meta b { color: #1a1d24; font-weight: 700; }
+
+  .cover .platforms { display: table; width: 100%; margin: 0 0 2.1rem; border-spacing: 10px 0; }
+  .cover .plat { display: table-cell; width: 50%; padding: .75rem .9rem; border-radius: 6px; vertical-align: top; }
+  .cover .plat.win { background: #eef2ff; border: 1px solid #c7d2fe; }
+  .cover .plat.mac { background: #f4f4f5; border: 1px solid #d4d4d8; }
+  .cover .plat h3 { margin: 0 0 .2rem; font-size: 10.5pt; }
+  .cover .plat.win h3 { color: var(--accent); }
+  .cover .plat.mac h3 { color: #3f3f46; }
+  .cover .plat p { margin: 0; font-size: 8.6pt; color: #4b5563; }
+
+  /* ---------- headings ---------- */
+  h2 {
+    font-size: 15pt; margin: 1.9rem 0 .2rem; padding-bottom: .3rem;
+    border-bottom: 2px solid var(--accent); color: #0f1115; font-weight: 700;
+    page-break-after: avoid; letter-spacing: -.01em;
+  }
+  h2 .num {
+    display: inline-block; background: var(--accent); color: #fff;
+    font-size: 9pt; padding: .1rem .45rem; border-radius: 4px;
+    margin-right: .5rem; vertical-align: .09em; font-weight: 700;
+  }
+  h2 .time { float: right; font-size: 8.5pt; color: #6b7280; font-weight: 400;
+    padding-top: .45rem; white-space: nowrap; max-width: 45%; text-align: right; }
+  h3 { font-size: 11pt; margin: 1.15rem 0 .35rem; color: #0f1115; page-break-after: avoid; }
+  h4 { font-size: 9.6pt; margin: .85rem 0 .3rem; color: #1f2937; page-break-after: avoid; }
+  p { margin: 0 0 .5rem; }
+
+  .lede { color: #3f4652; margin-bottom: .9rem; }
+
+  /* ---------- toc ---------- */
+  .toc { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: .9rem 1.1rem; }
+  .toc h3 { margin-top: 0; }
+  .toc ol { margin: 0; padding-left: 0; list-style: none; counter-reset: toc -1; }
+  .toc ol li { counter-increment: toc; padding-left: 1.35rem; text-indent: -1.35rem; }
+  .toc ol li::before { content: counter(toc) ".\00a0\00a0"; font-weight: 700; color: var(--accent); }
+  .toc { font-size: 9pt; }
+  .toc li { margin-bottom: .18rem; }
+  .toc .t { color: #6b7280; font-size: 8.5pt; }
+
+  /* ---------- split table ---------- */
+  table.split { width: 100%; border-collapse: collapse; margin: .35rem 0 .9rem; table-layout: fixed; }
+  table.split thead th {
+    font-size: 8.5pt; text-transform: uppercase; letter-spacing: .09em;
+    padding: .35rem .6rem; text-align: left; font-weight: 700;
+    border-bottom: 2px solid #cbd5e1;
+  }
+  table.split thead th.win { color: var(--accent); background: #eef2ff; border-bottom-color: #6366f1; }
+  table.split thead th.mac { color: #3f3f46; background: #f4f4f5; border-bottom-color: #a1a1aa; }
+  table.split td {
+    vertical-align: top; padding: .6rem .7rem; width: 50%;
+    border: 1px solid #e2e8f0; border-top: none; font-size: 9.1pt;
+  }
+  table.split td.win { background: #fcfdff; }
+  table.split td.mac { background: #fcfcfc; }
+  table.split ol, table.split ul { margin: 0; padding-left: 1.05rem; }
+  table.split li { margin-bottom: .3rem; }
+  table.split li:last-child { margin-bottom: 0; }
+  table.split p:last-child { margin-bottom: 0; }
+
+  /* ---------- reference table ---------- */
+  table.ref { width: 100%; border-collapse: collapse; margin: .5rem 0 .9rem; font-size: 8.9pt; }
+  table.ref th {
+    background: #f1f5f9; text-align: left; padding: .38rem .6rem;
+    border: 1px solid #e2e8f0; font-weight: 700; font-size: 8.4pt;
+    text-transform: uppercase; letter-spacing: .06em; color: #334155;
+  }
+  table.ref td { padding: .38rem .6rem; border: 1px solid #e2e8f0; vertical-align: top; }
+  table.ref tbody tr { page-break-inside: avoid; }
+  table.ref tbody tr:nth-child(even) td { background: #fafbfc; }
+
+  /* ---------- code ---------- */
+  pre {
+    background: #f6f8fa; border: 1px solid #e2e8f0; border-left: 3px solid #64748b;
+    border-radius: 4px; padding: .45rem .6rem; margin: .35rem 0 .5rem;
+    font-size: 8.5pt; line-height: 1.5; white-space: pre-wrap; word-break: break-word;
+    page-break-inside: avoid;
+  }
+  code {
+    background: #f1f5f9; padding: .04rem .22rem; border-radius: 3px;
+    font-size: .9em; word-break: break-word;
+  }
+  pre code { background: none; padding: 0; font-size: 1em; }
+
+  /* ---------- callouts ---------- */
+  .note, .warn, .stop, .ok {
+    border-radius: 5px; padding: .5rem .7rem; margin: .55rem 0;
+    font-size: 8.9pt; page-break-inside: avoid;
+  }
+  .note { background: #eff6ff; border: 1px solid #bfdbfe; border-left: 3px solid #2563eb; }
+  .warn { background: #fffbeb; border: 1px solid #fde68a; border-left: 3px solid #d97706; }
+  .stop { background: #fef2f2; border: 1px solid #fecaca; border-left: 3px solid #dc2626; }
+  .ok   { background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 3px solid #16a34a; }
+  .note p:last-child, .warn p:last-child, .stop p:last-child, .ok p:last-child { margin-bottom: 0; }
+  .note .lbl, .warn .lbl, .stop .lbl, .ok .lbl {
+    display: block; font-size: 8pt; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .08em; margin-bottom: .15rem;
+  }
+  .note .lbl { color: var(--accent); } .warn .lbl { color: #b45309; }
+  .stop .lbl { color: #b91c1c; } .ok .lbl { color: #15803d; }
+
+  .note.flow { page-break-inside: auto; }
+
+  .done {
+    background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px;
+    padding: .4rem .65rem; margin: .1rem 0 1rem; font-size: 8.9pt;
+    page-break-inside: avoid;
+  }
+  .done b { color: #15803d; }
+
+  /* ---------- badges ---------- */
+  .badge {
+    display: inline-block; font-size: 7.4pt; font-weight: 700; padding: .08rem .38rem;
+    border-radius: 3px; text-transform: uppercase; letter-spacing: .06em;
+    vertical-align: .1em; margin-right: .3rem;
+  }
+  .badge.win  { background: #e0e7ff; color: #3730a3; }
+  .badge.mac  { background: #e4e4e7; color: #3f3f46; }
+  .badge.both { background: #dcfce7; color: #166534; }
+
+  /* ---------- troubleshooting ---------- */
+  .tsq {
+    border: 1px solid #e2e8f0; border-radius: 5px; padding: .6rem .75rem;
+    margin: .5rem 0; page-break-inside: avoid; background: #fdfdfe;
+  }
+  .tsq .sym {
+    font-weight: 700; font-size: 9.2pt; margin-bottom: .3rem; color: #0f1115;
+  }
+  .tsq .sym code { background: #fee2e2; color: #991b1b; font-size: .88em; }
+  .tsq p:last-child, .tsq ol:last-child, .tsq ul:last-child { margin-bottom: 0; }
+  .tsq ol, .tsq ul { margin: .2rem 0 0; padding-left: 1.1rem; }
+  .tsq li { margin-bottom: .18rem; }
+
+  .keep { page-break-inside: avoid; }
+  hr.sec { border: none; border-top: 1px solid #e2e8f0; margin: 1.6rem 0 0; }
+  .footnote { font-size: 8.2pt; color: #6b7280; font-style: italic; }
+
+  /* ---------- additions ---------- */
+  .badge.linux { background: #fef3c7; color: #92400e; }
+  table.split thead th.linux { color: #92400e; background: #fffbeb; border-bottom-color: #d97706; }
+  table.split td.linux { background: #fffdf7; }
+  .cover .plat.linux { background: #fffbeb; border: 1px solid #fde68a; }
+  .cover .plat.linux h3 { color: #92400e; }
+  .cover .sub-tools { font-size: 10.5pt; color: #6b7280; }
+  .cover .platforms.three .plat { width: 33.33%; }

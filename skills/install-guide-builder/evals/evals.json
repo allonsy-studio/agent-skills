@@ -1,0 +1,73 @@
+{
+	"skill_name": "install-guide-builder",
+	"evals": [
+		{
+			"id": 1,
+			"name": "tools-plus-platforms-plus-audience",
+			"prompt": "I need install instructions for Python and Postgres, Mac and Windows, for people who have never used a terminal.",
+			"expected_output": "Triggers. All four inputs are present or near-present (tools, platforms, audience), so the next move is resolving install order: Postgres pulls in Homebrew on macOS but not on Windows, and Python selected without a version manager should surface the uv recommendation. Should not start writing prose before the order is settled.",
+			"files": [],
+			"assertions": []
+		},
+		{
+			"id": 2,
+			"name": "add-a-tool-to-an-existing-guide",
+			"prompt": "Add Docker to the setup guide we made last month for the CS-230 class. Same Mac and Windows split, same audience.",
+			"expected_output": "Triggers. This is the modify path, not the create path: the four inputs carry over from the existing guide, so it should re-resolve install order with Docker added and slot the new section in at the right layer rather than appending it to the end.",
+			"files": [],
+			"assertions": []
+		},
+		{
+			"id": 3,
+			"name": "onboarding-phrased-without-naming-a-guide",
+			"prompt": "New hires keep asking how to get set up. They need Git, Node, and Docker on macOS, they're all early-career, and it's going on our internal wiki.",
+			"expected_output": "Triggers even though the prompt never says \"setup guide\" or \"install instructions\". Should resolve install order (Git implies an editor, Node with no manager should surface the nvm recommendation) and note that a wiki target changes whether links assume network access.",
+			"files": [],
+			"assertions": []
+		},
+		{
+			"id": 4,
+			"name": "bare-tool-list-plus-os",
+			"prompt": "git, nvm, node, postgres, windows and mac, first-timers",
+			"expected_output": "Triggers on a bare list of tools plus operating systems, with no request phrased around it. Should resolve install order and surface the nvm-on-Windows warning: nvm-windows is a separate project with different syntax, `nvm use` needs an admin terminal, and any existing Node has to be uninstalled first.",
+			"files": [],
+			"assertions": []
+		},
+		{
+			"id": 5,
+			"name": "negative-install-it-for-me",
+			"prompt": "How do I install PostgreSQL on my Mac? I just need it running locally.",
+			"expected_output": "Does NOT trigger. The user wants to install Postgres themselves, right now, not to produce a document other people will follow. Answer directly. This is the closest false positive: same tool, same platform, opposite intent.",
+			"files": [],
+			"assertions": [],
+			"should_trigger": false
+		},
+		{
+			"id": 6,
+			"name": "negative-onboarding-doc-with-no-toolchain",
+			"prompt": "Can you write our onboarding doc for the code review process? How PRs get reviewed, who has to approve, and our merge policy.",
+			"expected_output": "Does NOT trigger. \"Onboarding doc\" is a trigger phrase, but there is no toolchain to install and no platform split. This is process documentation, and a platform-split PDF would be the wrong shape entirely.",
+			"files": [],
+			"assertions": [],
+			"should_trigger": false
+		},
+		{
+			"id": 7,
+			"name": "negative-debug-a-broken-environment",
+			"prompt": "Docker Desktop won't start after the last update and I keep getting 'connection refused'. What now?",
+			"expected_output": "Does NOT trigger. This is troubleshooting one broken machine, not writing the troubleshooting section of a guide. The skill's catalog of known traps may inform the answer, but building a document is not what was asked for.",
+			"files": [],
+			"assertions": [],
+			"should_trigger": false
+		},
+		{
+			"id": 8,
+			"name": "negative-dockerfile-not-a-document",
+			"prompt": "Write a Dockerfile that sets up the Python environment for this service, with the Postgres client libraries installed.",
+			"expected_output": "Does NOT trigger. \"Environment setup\" plus a tool list plus an OS, but the deliverable is executable configuration, not a document a human reads and follows. Write the Dockerfile.",
+			"files": [],
+			"assertions": [],
+			"should_trigger": false
+		}
+	]
+}

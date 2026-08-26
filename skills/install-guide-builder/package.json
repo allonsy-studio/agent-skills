@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "name": "@allons-y/skill-install-guide-builder",
+  "version": "1.3.0",
+  "description": "Generate printable, platform-split developer environment setup guides — install steps side by side per OS, a verification check after every step, and troubleshooting indexed by the error text on the reader's screen.",
+  "type": "module",
+  "skill": {
+    "category": "Documentation",
+    "runtime": "node",
+    "triggers": [
+      "write a setup guide for our dev environment",
+      "new hires keep asking how to get set up",
+      "install instructions for Python and Postgres, Mac and Windows",
+      "add Docker to the setup guide we made last month",
+      "onboarding doc / new machine checklist",
+      "a bare list of tools plus an operating system"
+    ]
+  },
+  "scripts": {
+    "ci:test": "yarn coverage",
+    "coverage": "c8 yarn test",
+    "format": "yarn package:format",
+    "lint": "yarn package:lint",
+    "order": "node scripts/order-tools.js",
+    "test": "node --test \"tests/**/*.test.js\""
+  },
+  "devDependencies": {
+    "c8": "^11.0.0"
+  },
+  "keywords": [
+    "onboarding",
+    "developer environment",
+    "setup guide",
+    "documentation",
+    "pdf"
+  ]
+}

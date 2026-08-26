@@ -249,6 +249,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@allons-y/skill-install-guide-builder@workspace:skills/install-guide-builder":
+  version: 0.0.0-use.local
+  resolution: "@allons-y/skill-install-guide-builder@workspace:skills/install-guide-builder"
+  dependencies:
+    c8: "npm:^11.0.0"
+  languageName: unknown
+  linkType: soft
+
 "@allons-y/skill-structured-data@workspace:skills/structured-data":
   version: 0.0.0-use.local
   resolution: "@allons-y/skill-structured-data@workspace:skills/structured-data"
