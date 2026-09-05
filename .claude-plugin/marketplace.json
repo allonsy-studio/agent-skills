@@ -33,6 +33,16 @@
       }
     },
     {
+      "id": "install-guide-builder",
+      "name": "install-guide-builder",
+      "description": "Generate a printable, platform-split developer environment setup guide as a PDF (and optionally an interactive HTML page) covering tools like Git, Node, Python, PHP, Docker, databases, and their version managers. Use this whenever someone asks for install instructions, onboarding docs, a setup guide, a \"getting started on a new laptop\" document, a dev environment doc, machine setup steps, or wants to document how to install a toolchain for students, new hires, workshop attendees, or a team. Also use it when someone asks to add a tool to an existing setup guide, or to rewrite install steps for a different skill level or a different operating system. Trigger on phrases like \"setup guide\", \"install instructions\", \"onboarding doc\", \"how do I document installing X\", \"environment setup\", \"new machine checklist\", \"get the team set up\", or a bare list of tools plus an operating system.",
+      "components": {
+        "skills": [
+          "install-guide-builder"
+        ]
+      }
+    },
+    {
       "id": "structured-data",
       "name": "structured-data",
       "description": "Inject or generate schema.org structured data (HTML Microdata attributes like itemscope/itemtype/itemprop, or JSON-LD script blocks) into web markup — raw HTML/templates, React/Vue/Web Components, or static-site pipelines (11ty, Astro, Eleventy, Hugo, etc.). Use whenever the user asks to add schema.org markup, structured data, rich snippets, SEO markup, itemprop/itemscope/itemtype attributes, or JSON-LD to a page, component, or site. Also trigger for requests to validate, audit, or fix existing structured data, or to decide between Microdata and JSON-LD for a project. Injection always runs through the pre-compile or server-side scripts bundled here — never via client-side JavaScript — since crawlers may index a page before hydration runs.",
