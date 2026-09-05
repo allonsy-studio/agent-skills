@@ -121,7 +121,7 @@ Each skill must include an `evals/evals.json` file that validates the skill trig
 **Running evals locally** requires an Anthropic API key. The runner sends each prompt to Claude with the skill's `SKILL.md` as a system prompt and the skill's scripts registered as callable tools, then asserts that the correct tool was (or wasn't) called:
 
 ```sh
-export ANTHROPIC_API_KEY=sk-ant-...
+export CLAUDE_CODE_OAUTH_TOKEN=sk-ant-...
 
 yarn evals                        # all skills
 yarn evals gh-notification-summary  # single skill
