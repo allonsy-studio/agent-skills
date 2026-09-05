@@ -193,9 +193,9 @@ async function runSkillEvals(skillName, client) {
 }
 
 async function main() {
-	if (!process.env.ANTHROPIC_API_KEY) {
+	if (!process.env.CLAUDE_CODE_OAUTH_TOKEN) {
 		console.error(
-			"Error: ANTHROPIC_API_KEY is not set. Export it before running evals."
+			"Error: CLAUDE_CODE_OAUTH_TOKEN is not set. Export it before running evals."
 		);
 		process.exit(1);
 	}
