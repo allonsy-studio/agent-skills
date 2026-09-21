@@ -6,7 +6,7 @@ A Yarn workspaces monorepo of agent skills. Each skill under `skills/` is a work
 
 ```sh
 package.json                    # Root workspace — workspaces: ["skills/*"]
-index.js                        # Node.js entry point — exports getSkills()
+index.js                        # Node.js entry point: exports getSkills()
 bin/install.js                  # npx installer CLI
 scripts/
   run-tests.js                  # Runs each skill's `yarn workspace … test` (node --test + c8)
@@ -53,18 +53,18 @@ yarn workspaces foreach -A run lint
 
 ## Designing a skill
 
-**[`docs/skill-architecture.md`](docs/skill-architecture.md) is the source of truth for how to architect a skill** — read it before creating or substantially changing one. It is the canonical reference for the decisions that determine whether a skill works; the index below is just a signpost, not a substitute:
+**[`docs/skill-architecture.md`](docs/skill-architecture.md) is the source of truth for how to architect a skill**. Read it before creating or substantially changing one. It is the canonical reference for the decisions that determine whether a skill works; the index below is just a signpost, not a substitute:
 
-- **The triggering `description`** — the highest-leverage field (what it does + when to use it).
-- **Progressive disclosure** — a lean `SKILL.md` body; depth in `references/`.
-- **Instructions vs. scripts** — degrees of freedom; deterministic work belongs in scripts.
-- **Discriminating evals** — positive triggers plus tempting negatives.
+- **The triggering `description`**: the highest-leverage field (what it does + when to use it).
+- **Progressive disclosure**: a lean `SKILL.md` body; depth in `references/`.
+- **Instructions vs. scripts**: degrees of freedom; deterministic work belongs in scripts.
+- **Discriminating evals**: positive triggers plus tempting negatives.
 
 The same criteria are encoded in the [New Skill Proposal issue template](.github/ISSUE_TEMPLATE/new_skill.yml) and the [pull request template](.github/pull_request_template.md), and gathered as a pre-PR checklist at the end of the guide.
 
 ## Adding a new skill
 
-The steps below are the mechanical setup — see [Designing a skill](#designing-a-skill) above for the design decisions.
+The steps below are the mechanical setup: see [Designing a skill](#designing-a-skill) above for the design decisions.
 
 1. Create a directory under `skills/<skill-name>/`.
 2. Add a `package.json` with `"private": true` and a `skill` block. The `skill.*` shape is validated against `schemas/skill.schema.json`:
@@ -97,7 +97,7 @@ The steps below are the mechanical setup — see [Designing a skill](#designing-
     ---
     ```
 4. Add implementation scripts under `scripts/` (Node.js, ESM). _Skip for reference-only skills (see below)._
-5. Write a full test suite under `tests/` using `node --test`. Tests must not require live credentials — mock all external API calls.
+5. Write a full test suite under `tests/` using `node --test`. Tests must not require live credentials: mock all external API calls.
 6. Run `yarn install` to register the new workspace, then `yarn test` to verify.
 7. Run `yarn constraints` and the contract tests (`yarn workspace @allons-y/docs test`) to validate the skill against the metadata contract (see below). `yarn constraints --fix` auto-corrects the package.json-field issues.
 
@@ -107,15 +107,15 @@ Two gates enforce it, split by what they can see. Both run in CI (wired into `ci
 
 **`yarn constraints`** (Yarn's workspace engine, `yarn.config.cjs`) owns package.json-field invariants across every skill workspace: `private: true` and the canonical `@allons-y/skill-<dir>` package name. `yarn constraints --fix` rewrites offending manifests in place, with correct key order.
 
-**The JSON Schema + contract tests** (`schemas/skill.schema.json`, exercised by `docs/tests/skill-contract.test.js`) own the semantic invariants that live inside `SKILL.md` / `skill.*` — things constraints structurally can't reach: a `skill.category` and `skill.runtime` from the controlled enums, at least one `skill.trigger`, a `SKILL.md` frontmatter `name` matching the directory, and `tests/` + `evals/` suites that back the site's "tested" and "eval-backed" claims.
+**The JSON Schema + contract tests** (`schemas/skill.schema.json`, exercised by `docs/tests/skill-contract.test.js`) own the semantic invariants that live inside `SKILL.md` / `skill.*`, the things constraints structurally can't reach: a `skill.category` and `skill.runtime` from the controlled enums, at least one `skill.trigger`, a `SKILL.md` frontmatter `name` matching the directory, and `tests/` + `evals/` suites that back the site's "tested" and "eval-backed" claims.
 
-- The allowed categories and runtimes are the `enum`s in `schemas/skill.schema.json`. Adding one is a deliberate one-line edit there — that's what stops `GitHub` / `Github` / `git` from forking.
+- The allowed categories and runtimes are the `enum`s in `schemas/skill.schema.json`. Adding one is a deliberate one-line edit there: that's what stops `GitHub` / `Github` / `git` from forking.
 - `additionalProperties: false` means an unrecognized `skill.*` key fails the schema, so typos surface immediately.
 
 ### Skill flavors
 
 - **Implementation skills** ship runnable Node.js under `scripts/` (optionally with `bin/`, `templates/`). Example: `gh-notification-summary`.
-- **Reference-only skills** are pure prompt + reference material — `SKILL.md` walks the agent through curated `references/*.md` files. No `scripts/` directory is required. Tests validate that SKILL.md frontmatter is well-formed and that linked references resolve. Example: `design-system`.
+- **Reference-only skills** are pure prompt + reference material: `SKILL.md` walks the agent through curated `references/*.md` files. No `scripts/` directory is required. Tests validate that SKILL.md frontmatter is well-formed and that linked references resolve. Example: `design-system`.
 
 ## Skill naming
 
@@ -123,7 +123,7 @@ Use lowercase hyphenated names that match the directory name (e.g., `gh-notifica
 
 ## Languages and tooling
 
-- **Node.js ≥ 24** (use `nvm use` — version pinned in `.nvmrc`)
+- **Node.js ≥ 24** (use `nvm use`: version pinned in `.nvmrc`)
 - **Yarn 4** (workspaces monorepo, version pinned in `packageManager` field)
 - **`node --test`** for skill test suites
 - **c8** for coverage
@@ -138,7 +138,7 @@ Two audiences, two files, and they keep getting conflated.
 
 **Changesets** (`.changeset/*.md`) generate the customer-facing changelog. Every change
 that affects the published package ships with one (`yarn changeset`). That text is what
-consumers read, so lead with what the skill does for them, then the mechanics — see the
+consumers read, so lead with what the skill does for them, then the mechanics: see the
 existing entries in `CHANGELOG.md` for the house style.
 
 **Commit messages** are for code archaeology, not for consumers. Conventional Commits,
@@ -165,16 +165,22 @@ changeset, not here.
 
 Releases are automated via [**changesets**](https://github.com/changesets/changesets). The flow is two-step:
 
-1. **Record** — every change that affects the published package lands with a changeset file (`yarn changeset`). All packages are versioned together (`fixed` versioning in `.changeset/config.json`), but only the root `@allons-y/agent-skills` is published to npm; the `skills/*` workspaces are `private` and ride along at the same version.
-2. **Release** — on merge to `main`, the `Release` workflow runs `changesets/action`. When unreleased changesets exist it opens (or updates) a **"Version Packages"** PR that bumps versions, rewrites `CHANGELOG.md`, and regenerates the `.claude-plugin/*` manifests. Merging that PR publishes to npm (`changeset publish`) and tags the release.
+1. **Record**: every change that affects the published package lands with a changeset file (`yarn changeset`). All packages are versioned together (`fixed` versioning in `.changeset/config.json`), but only the root `@allons-y/agent-skills` is published to npm; the `skills/*` workspaces are `private` and ride along at the same version.
+2. **Release**: on merge to `main`, the `Release` workflow runs `changesets/action`. When unreleased changesets exist it opens (or updates) a **"Version Packages"** PR that bumps versions, rewrites `CHANGELOG.md`, and regenerates the `.claude-plugin/*` manifests. Merging that PR publishes to npm (`changeset publish`) and tags the release.
 
-The workflow authenticates with the built-in `GITHUB_TOKEN` (plus `NPM_TOKEN` for publish) — no personal access token required.
+The workflow authenticates with the built-in `GITHUB_TOKEN` (plus `NPM_TOKEN` for publish): no personal access token required.
 
 Do not manually update `package.json` version or `CHANGELOG.md`; let the Version Packages PR do it.
 
 ## What NOT to do
 
-- Do not edit `.claude-plugin/marketplace.json` or `.claude-plugin/plugin.json` by hand — both are auto-generated (regenerated during the Version Packages step and committed by the release workflow).
-- Do not add secrets or real credentials to tests — mock all external API calls.
+- Do not edit `.claude-plugin/marketplace.json` or `.claude-plugin/plugin.json` by hand: both are auto-generated (regenerated during the Version Packages step and committed by the release workflow).
+- Do not add secrets or real credentials to tests: mock all external API calls.
 - Never add AI attribution to a commit or a PR: no `Co-Authored-By` trailer, no
   "Generated with …" footer, no session URLs.
+
+## Prose style
+
+Prose in this repo (README, commit bodies, PR descriptions) follows the
+[studio style guide](https://github.com/allonsy-studio/.github/blob/main/AGENTS.md#style-guide):
+sentence-case headings, `&` over "and", `:` over em dashes.
