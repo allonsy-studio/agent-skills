@@ -145,7 +145,37 @@ existing entries in `CHANGELOG.md` for the house style.
 enforced by commitlint. When a pull request has multiple commits, squash before merging
 into `main`.
 
-### Do
+### A changeset, done right
+
+This is the `gh-notification-summary` entry, and it is the bar. Written to the person
+deciding whether to upgrade, not to whoever reviewed the diff:
+
+```md
+Stop letting your GitHub notification inbox become a graveyard. This skill gives Claude
+the ability to fetch, display, and act on your unread GitHub notifications, all from a
+single prompt.
+
+What it does:
+
+- Opens an interactive local dashboard at http://localhost:8000 showing each unread
+  notification as a card, complete with labels, latest comments, and ready-to-paste
+  action commands
+- Unsubscribes you from noisy threads (`/unsub 4821`) without requiring you to navigate
+  GitHub
+- Marks individual notifications or your entire inbox as done in one shot
+- Works with any repo: pass one explicitly or set `GITHUB_REPO` as your default
+
+Say anything like "check my GitHub notifications", "what's in my GitHub inbox?", "get me
+off that thread", or "mark all done", and Claude will know what to do.
+
+Pairs well with a morning routine prompt: ask Claude to open your dashboard, summarize
+what needs attention, and clear the rest.
+```
+
+Note what it does not contain: file names, function names, test counts, or the word
+"refactor". Those belong in the commit.
+
+### A commit message, done right
 
 ```sh
 feat(gh-notification-summary): add the notification dashboard skill
