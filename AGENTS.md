@@ -64,7 +64,7 @@ The same criteria are encoded in the [New Skill Proposal issue template](.github
 
 ## Adding a new skill
 
-The steps below are the mechanical setup: see [Designing a skill](#designing-a-skill) above for the design decisions.
+The steps below are the mechanical setup. See [Designing a skill](#designing-a-skill) above for the design decisions.
 
 1. Create a directory under `skills/<skill-name>/`.
 2. Add a `package.json` with `"private": true` and a `skill` block. The `skill.*` shape is validated against `schemas/skill.schema.json`:
@@ -97,7 +97,7 @@ The steps below are the mechanical setup: see [Designing a skill](#designing-a-s
     ---
     ```
 4. Add implementation scripts under `scripts/` (Node.js, ESM). _Skip for reference-only skills (see below)._
-5. Write a full test suite under `tests/` using `node --test`. Tests must not require live credentials: mock all external API calls.
+5. Write a full test suite under `tests/` using `node --test`. Tests must not require live credentials; mock all external API calls.
 6. Run `yarn install` to register the new workspace, then `yarn test` to verify.
 7. Run `yarn constraints` and the contract tests (`yarn workspace @allons-y/docs test`) to validate the skill against the metadata contract (see below). `yarn constraints --fix` auto-corrects the package.json-field issues.
 
@@ -123,7 +123,7 @@ Use lowercase hyphenated names that match the directory name (e.g., `gh-notifica
 
 ## Languages and tooling
 
-- **Node.js ≥ 24** (use `nvm use`: version pinned in `.nvmrc`)
+- **Node.js ≥ 24** (use `nvm use`, version pinned in `.nvmrc`)
 - **Yarn 4** (workspaces monorepo, version pinned in `packageManager` field)
 - **`node --test`** for skill test suites
 - **c8** for coverage
@@ -138,7 +138,7 @@ Two audiences, two files, and they keep getting conflated.
 
 **Changesets** (`.changeset/*.md`) generate the customer-facing changelog. Every change
 that affects the published package ships with one (`yarn changeset`). That text is what
-consumers read, so lead with what the skill does for them, then the mechanics: see the
+consumers read, so lead with what the skill does for them, then the mechanics. See the
 existing entries in `CHANGELOG.md` for the house style.
 
 **Commit messages** are for code archaeology, not for consumers. Conventional Commits,
@@ -168,14 +168,14 @@ Releases are automated via [**changesets**](https://github.com/changesets/change
 1. **Record**: every change that affects the published package lands with a changeset file (`yarn changeset`). All packages are versioned together (`fixed` versioning in `.changeset/config.json`), but only the root `@allons-y/agent-skills` is published to npm; the `skills/*` workspaces are `private` and ride along at the same version.
 2. **Release**: on merge to `main`, the `Release` workflow runs `changesets/action`. When unreleased changesets exist it opens (or updates) a **"Version Packages"** PR that bumps versions, rewrites `CHANGELOG.md`, and regenerates the `.claude-plugin/*` manifests. Merging that PR publishes to npm (`changeset publish`) and tags the release.
 
-The workflow authenticates with the built-in `GITHUB_TOKEN` (plus `NPM_TOKEN` for publish): no personal access token required.
+The workflow authenticates with the built-in `GITHUB_TOKEN` (plus `NPM_TOKEN` for publish), so no personal access token is required.
 
 Do not manually update `package.json` version or `CHANGELOG.md`; let the Version Packages PR do it.
 
 ## What NOT to do
 
 - Do not edit `.claude-plugin/marketplace.json` or `.claude-plugin/plugin.json` by hand: both are auto-generated (regenerated during the Version Packages step and committed by the release workflow).
-- Do not add secrets or real credentials to tests: mock all external API calls.
+- Do not add secrets or real credentials to tests; mock all external API calls.
 - Never add AI attribution to a commit or a PR: no `Co-Authored-By` trailer, no
   "Generated with …" footer, no session URLs.
 
