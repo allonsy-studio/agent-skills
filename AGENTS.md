@@ -132,30 +132,30 @@ Use lowercase hyphenated names that match the directory name (e.g., `gh-notifica
 
 Each skill declares its runtime via `skill.runtime` in its `package.json`. Today only `"node"` is supported. Adding another runtime (e.g. `"bun"`, `"deno"`) requires extending the dispatch in `scripts/run-tests.js` and documenting the toolchain here.
 
-## Commits
+## Commits and changesets
 
-The customer-facing changelog is generated from **changeset** files (`.changeset/*.md`), not from commit messages — so every change that affects the published package should ship with a changeset (`yarn changeset`) whose description is clear, succinct, and customer-focused. Commit messages still follow Conventional Commits (enforced by commitlint) and, when a pull request has multiple commits, should be squashed before merging into `main` for a clean history.
+Two audiences, two files, and they keep getting conflated.
+
+**Changesets** (`.changeset/*.md`) generate the customer-facing changelog. Every change
+that affects the published package ships with one (`yarn changeset`). That text is what
+consumers read, so lead with what the skill does for them, then the mechanics — see the
+existing entries in `CHANGELOG.md` for the house style.
+
+**Commit messages** are for code archaeology, not for consumers. Conventional Commits,
+enforced by commitlint. When a pull request has multiple commits, squash before merging
+into `main`.
 
 ### Do
 
 ```sh
-feat(gh-notification-summary): creates a new skill for summarizing new notifications
+feat(gh-notification-summary): add the notification dashboard skill
 
-Stop letting your GitHub notification inbox become a graveyard. This skill gives Claude the ability to fetch, display, and act on your unread GitHub notifications — all from a single prompt.
-
-What it does:
-
-- Opens an interactive local dashboard at http://localhost:8000 showing each unread notification as a card, complete with labels, latest comments, and ready-to-paste action commands
-- Unsubscribes you from noisy threads (/unsub 4821) without requiring you to navigate GitHub
-- Marks individual notifications or your entire inbox as done in one shot
-Works with any repo — pass a repo explicitly or set GITHUB_REPO as your default
-
-Say anything like "check my GitHub notifications", "what's in my GitHub inbox?", "get me off that thread", or "mark all done" — Claude will know what to do.
-
-Pairs well with a morning routine prompt — ask Claude to open your dashboard, summarize what needs attention, and clear the rest.
+Fetches unread notifications, renders each as a card on a local dashboard, and
+exposes unsubscribe / mark-done actions. The pitch for consumers lives in the
+changeset, not here.
 ```
 
-## Don't
+### Don't
 
 - `wip`
 - `fix stuff`
@@ -176,3 +176,5 @@ Do not manually update `package.json` version or `CHANGELOG.md`; let the Version
 
 - Do not edit `.claude-plugin/marketplace.json` or `.claude-plugin/plugin.json` by hand — both are auto-generated (regenerated during the Version Packages step and committed by the release workflow).
 - Do not add secrets or real credentials to tests — mock all external API calls.
+- Never add AI attribution to a commit or a PR: no `Co-Authored-By` trailer, no
+  "Generated with …" footer, no session URLs.
