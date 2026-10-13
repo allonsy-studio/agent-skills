@@ -1,0 +1,138 @@
+name: Docs
+
+on:
+    push:
+        branches: [main]
+        paths: ["{{SITE_DIR}}/**", "package.json", "yarn.lock", ".github/workflows/pages.yml"]
+    pull_request:
+        # open, reopen, & update build and publish a preview; close tears it down.
+        types: [opened, reopened, synchronize, closed]
+        paths: ["{{SITE_DIR}}/**", "package.json", "yarn.lock", ".github/workflows/pages.yml"]
+    workflow_dispatch:
+
+# Deploys push to the shared gh-pages branch, so queue them instead of cancelling.
+concurrency:
+    group: gh-pages-deploy
+    cancel-in-progress: false
+
+permissions:
+    contents: write # push to the gh-pages branch
+    pull-requests: write # pr-preview-action comments the preview URL
+
+env:
+    # Path the site is served from. Previews nest under it.
+    SITE_BASE: "/{{REPO}}/"
+
+jobs:
+    production:
+        name: Deploy to gh-pages
+        if: github.event_name != 'pull_request'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out code
+              uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+              with:
+                  fetch-depth: 1
+                  persist-credentials: false
+
+            - name: Setup Node
+              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+              with:
+                  node-version-file: .nvmrc
+
+            # Corepack must be enabled after setup-node so the Yarn shim targets the pinned Node.
+            - name: Enable Corepack
+              run: corepack enable
+
+            - name: Restore Yarn cache
+              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: yarn
+
+            - name: Install dependencies
+              run: yarn install --immutable
+
+            - name: Build site
+              env:
+                  SITE_BASE: ${{ env.SITE_BASE }}
+              run: |
+                  yarn docs:build
+                  touch {{SITE_DIR}}/_site/.nojekyll
+
+            # The brand & accessibility baseline: a page that breaks it does not ship.
+            - name: Test site
+              env:
+                  SITE_BASE: ${{ env.SITE_BASE }}
+              run: yarn docs:test
+
+            - name: Deploy to gh-pages
+              uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4
+              with:
+                  branch: gh-pages
+                  folder: {{SITE_DIR}}/_site
+                  # Wipe stale files, but keep active PR previews and the
+                  # custom-domain CNAME (a no-op when neither is present).
+                  clean: true
+                  clean-exclude: |
+                      pr-preview/
+                      CNAME
+
+    # Preview: publish each pull request under /pr-preview/pr-N/
+    preview:
+        name: Deploy PR preview
+        if: github.event_name == 'pull_request'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out code
+              uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+              with:
+                  fetch-depth: 1
+                  persist-credentials: false
+
+            # A closed pull request only needs teardown, so skip the build entirely.
+            - name: Setup Node
+              if: github.event.action != 'closed'
+              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+              with:
+                  node-version-file: .nvmrc
+
+            - name: Enable Corepack
+              if: github.event.action != 'closed'
+              run: corepack enable
+
+            - name: Restore Yarn cache
+              if: github.event.action != 'closed'
+              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: yarn
+
+            - name: Install dependencies
+              if: github.event.action != 'closed'
+              run: yarn install --immutable
+
+            - name: Build preview site
+              if: github.event.action != 'closed'
+              env:
+                  SITE_BASE: ${{ format('{0}pr-preview/pr-{1}/', env.SITE_BASE, github.event.number) }}
+              run: yarn docs:build
+
+            - name: Test preview site
+              if: github.event.action != 'closed'
+              env:
+                  SITE_BASE: ${{ format('{0}pr-preview/pr-{1}/', env.SITE_BASE, github.event.number) }}
+              run: yarn docs:test
+
+            # Fork pull requests get a read-only token, so they build (to catch
+            # breakage) but cannot be published.
+            - name: Deploy preview
+              if: github.event.pull_request.head.repo.full_name == github.repository
+              uses: rossjrw/pr-preview-action@ffa7509e91a3ec8dfc2e5536c4d5c1acdf7a6de9 # v1
+              with:
+                  source-dir: {{SITE_DIR}}/_site
+                  preview-branch: gh-pages
+                  umbrella-dir: pr-preview
+                  action: auto
+                  # The org serves Pages from a custom domain; link to it directly.
+                  pages-base-url: projects.allons-y.studio/{{REPO}}

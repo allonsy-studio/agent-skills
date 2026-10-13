@@ -1,0 +1,24 @@
+{
+	"accent": "#2346d4",
+	"lede": "One command reads every file a glob matches & writes a single output, in a stable order.",
+	"install": "npm install --save-dev @allons-y/example-cli",
+	"usage": {
+		"language": "sh",
+		"caption": "Terminal",
+		"code": "$ example-cli \"src/**/*.css\" --out dist/site.css"
+	},
+	"features": [
+		{
+			"title": "Stable order",
+			"body": "Matches are sorted before joining, so the same inputs always produce the same output."
+		},
+		{
+			"title": "One action",
+			"body": "A single command with a few flags. Install & usage fit on this page."
+		},
+		{
+			"title": "Scriptable",
+			"body": "Exit codes & output paths are predictable, which keeps build scripts short."
+		}
+	]
+}

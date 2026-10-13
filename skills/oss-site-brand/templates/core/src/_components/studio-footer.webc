@@ -1,0 +1,22 @@
+<!-- Studio layer: locked. Prop: scheme = "auto" (default), "light", or "dark". -->
+<a class="studio-footer" :href="$data.studio.url">
+	<picture webc:if="!scheme || scheme === 'auto'">
+		<source
+			media="(prefers-color-scheme: dark)"
+			:srcset="$data.studio.footer.dark"
+		/>
+		<img
+			:src="$data.studio.footer.light"
+			:alt="$data.studio.footer.alt"
+			:width="$data.studio.footer.width"
+			:height="$data.studio.footer.height"
+		/>
+	</picture>
+	<img
+		webc:else
+		:src="scheme === 'dark' ? $data.studio.footer.dark : $data.studio.footer.light"
+		:alt="$data.studio.footer.alt"
+		:width="$data.studio.footer.width"
+		:height="$data.studio.footer.height"
+	/>
+</a>

@@ -1,0 +1,167 @@
+/* Shared components: button, card, feature grid, package index, code sample. */
+.button {
+	display: inline-block;
+	padding: 0.6rem 1.1rem;
+	border: 2px solid var(--accent-text);
+	border-radius: var(--radius);
+	background: var(--accent);
+	color: var(--on-accent);
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.button:is(:hover, :focus-visible) {
+	text-decoration: underline;
+}
+
+.button--secondary {
+	background: transparent;
+	color: var(--accent-text);
+}
+
+/* Cards */
+.feature-grid,
+.package-index {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+	gap: var(--space-m);
+}
+
+.card {
+	block-size: 100%;
+	padding: var(--space-m);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	background: var(--bg-elev);
+}
+
+.card__title {
+	margin-block-end: var(--space-xs);
+	font-size: 1.2rem;
+}
+
+.card__title--mono {
+	font-family: var(--font-mono);
+	font-size: 1rem;
+	font-weight: 700;
+}
+
+.card__body {
+	color: var(--fg-muted);
+}
+
+/* Code */
+code,
+pre {
+	font-family: var(--font-mono);
+}
+
+code {
+	padding: 0.1em 0.35em;
+	border-radius: 0.25rem;
+	background: var(--code-bg);
+	font-size: 0.9em;
+}
+
+pre {
+	overflow-x: auto;
+	padding: var(--space-m);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	background: var(--code-bg);
+	font-size: 0.9rem;
+	line-height: 1.5;
+}
+
+pre code {
+	padding: 0;
+	background: none;
+	font-size: inherit;
+}
+
+.code-sample__caption {
+	margin-block-end: var(--space-xs);
+	color: var(--fg-muted);
+	font-family: var(--font-mono);
+	font-size: 0.85rem;
+}
+
+.code-block {
+	position: relative;
+}
+
+.code-block pre {
+	padding-inline-end: 5.5rem;
+}
+
+.copy-button {
+	position: absolute;
+	inset-block-start: var(--space-xs);
+	inset-inline-end: var(--space-xs);
+	padding: 0.25rem 0.7rem;
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	background: var(--bg);
+	color: var(--fg);
+	font-size: 0.85rem;
+	cursor: pointer;
+}
+
+.copy-button:is(:hover, :focus-visible) {
+	border-color: var(--accent-text);
+}
+
+/* Syntax highlighting: Prism token classes mapped to the --tok-* tokens. */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: var(--tok-comment);
+}
+
+.token.string,
+.token.attr-value,
+.token.char,
+.token.inserted {
+	color: var(--tok-string);
+}
+
+.token.keyword,
+.token.atom,
+.token.important,
+.token.tag {
+	color: var(--tok-keyword);
+}
+
+.token.function,
+.token.class-name,
+.token.attr-name,
+.token.property,
+.token.selector {
+	color: var(--tok-function);
+}
+
+.token.number,
+.token.boolean,
+.token.constant,
+.token.symbol,
+.token.parameter {
+	color: var(--tok-number);
+}
+
+.token.punctuation,
+.token.operator {
+	color: var(--fg-muted);
+}
+
+/* Narrow screens: the copy button sits under the code, not over it. */
+@media (max-width: 40rem) {
+	.code-block pre {
+		padding-inline-end: var(--space-m);
+	}
+
+	.copy-button {
+		position: static;
+		margin-block-start: var(--space-xs);
+	}
+}

@@ -1,0 +1,11 @@
+<!-- Shared. Prop: packages, an array of { name, description, href }. -->
+<ul class="package-index">
+	<li webc:for="pkg of packages">
+		<project-card
+			:@mono="true"
+			:@title="pkg.name"
+			:@body="pkg.description"
+			:@href="pkg.href"
+		></project-card>
+	</li>
+</ul>

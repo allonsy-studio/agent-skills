@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta webc:is="site-head" webc:nokeep />
+	</head>
+	<body>
+		<a class="skip-link" href="#main">Skip to content</a>
+		<header class="site-top">
+			<studio-banner></studio-banner>
+			<site-header></site-header>
+		</header>
+		<main id="main" tabindex="-1">
+			<template webc:nokeep @html="content"></template>
+		</main>
+		<site-footer></site-footer>
+	</body>
+</html>

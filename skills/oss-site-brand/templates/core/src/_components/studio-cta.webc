@@ -1,0 +1,10 @@
+<!-- Studio layer: locked. Shown only inside the footer block. -->
+<div class="studio-cta">
+	<p class="studio-cta__title" @text="$data.studio.cta.title"></p>
+	<p class="studio-cta__body" @text="$data.studio.cta.body"></p>
+	<a
+		class="studio-cta__link"
+		:href="'mailto:' + $data.studio.contact"
+		@text="$data.studio.contact"
+	></a>
+</div>

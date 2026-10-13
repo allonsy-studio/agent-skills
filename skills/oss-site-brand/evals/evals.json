@@ -1,0 +1,69 @@
+{
+	"skill_name": "oss-site-brand",
+	"evals": [
+		{
+			"id": 1,
+			"name": "landing-site-for-single-command-tool",
+			"prompt": "Set up a project site for allonsy-studio/glob-concat-cli. It's one CLI command with a short README, and it should have the studio branding.",
+			"expected_output": "Runs scripts/suggest.js, suggests the landing flavor (one action, one page) and asks the maintainer to confirm instead of applying it, then scaffolds the core and landing flavor into docs/, fills project.json, resolves the logo and favicon (asks once for a concept, wordmark fallback), builds, runs the audit, and reports the flavor decision. Contact address is contact@allons-y.studio only in the footer call to action; the license is read from package.json, never typed into a template.",
+			"files": [],
+			"assertions": []
+		},
+		{
+			"id": 2,
+			"name": "which-flavor-fits",
+			"prompt": "Which site flavor fits the opx repo? It's TypeScript, has a packages/ folder with one package per lint plugin, and each plugin only has a README.",
+			"expected_output": "Suggests the docs flavor, not workspaces: the plugin pages are a table of contents for functions, not unique products. Also suggests typedoc because the source is TypeScript. Says nothing is applied until the maintainer confirms, and reports that the docs flavor is not yet built in phase 1 rather than substituting landing.",
+			"files": [],
+			"assertions": []
+		},
+		{
+			"id": 3,
+			"name": "favicon-for-package-without-assets",
+			"prompt": "markdown-it-anchor-sections has no logo or favicon. Can you make one for its site?",
+			"expected_output": "Runs scripts/mark.js inspect, asks once whether the project has any metaphors or visuals for a mark, offers three simple SVG sketches if so, and otherwise falls back to the wordmark: first letter on an accent-filled rounded square with a computed letter color for 4.5:1 or better. Writes favicon.svg, 32 px, 180 px, 192 px, 512 px icons and the 1200 by 630 social image, and says in the report when the wordmark fallback was used.",
+			"files": [],
+			"assertions": []
+		},
+		{
+			"id": 4,
+			"name": "audit-existing-site",
+			"prompt": "Audit the docs site in this repo against the studio brand: contrast, accessibility, and the studio banner.",
+			"expected_output": "Builds the site, runs scripts/audit.js, and reports each area with the final contrast hex values. Treats a modified studio file as a locked-file edit to restore, not to keep, and fixes failures without weakening a check.",
+			"files": [],
+			"assertions": []
+		},
+		{
+			"id": 5,
+			"name": "negative-generic-landing-page",
+			"prompt": "Design a landing page for my bakery with a warm color palette and a menu section.",
+			"expected_output": "Does NOT trigger. This is general web design for a business that is not an Allons-y Studio open source project.",
+			"files": [],
+			"should_trigger": false
+		},
+		{
+			"id": 6,
+			"name": "negative-other-docs-site",
+			"prompt": "Set up a Docusaurus docs site with a sidebar and Algolia search for our company's internal API.",
+			"expected_output": "Does NOT trigger. A docs site, but not an Allons-y Studio open source project, and not this skill's Eleventy core.",
+			"files": [],
+			"should_trigger": false
+		},
+		{
+			"id": 7,
+			"name": "negative-design-system-accessibility",
+			"prompt": "Review the ARIA pattern of our tabs component and check its color contrast against WCAG.",
+			"expected_output": "Does NOT trigger. Component accessibility review belongs to the design-system skill; this skill audits whole project sites against the studio baseline.",
+			"files": [],
+			"should_trigger": false
+		},
+		{
+			"id": 8,
+			"name": "negative-contact-address-in-readme",
+			"prompt": "Change the contact email in the README of my personal blog to my new address.",
+			"expected_output": "Does NOT trigger. A README edit on a personal project, unrelated to Allons-y Studio project sites.",
+			"files": [],
+			"should_trigger": false
+		}
+	]
+}

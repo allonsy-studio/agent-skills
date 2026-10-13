@@ -1,0 +1,5 @@
+<!-- Shared. Props: code, language, caption (optional). Highlighted at build time. -->
+<figure class="code-sample">
+	<figcaption webc:if="caption" class="code-sample__caption" @text="caption"></figcaption>
+	<pre tabindex="0" :class="'language-' + (language || 'text')"><code :class="'language-' + (language || 'text')" @html="highlight(code, language)"></code></pre>
+</figure>

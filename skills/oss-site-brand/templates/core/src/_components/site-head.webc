@@ -1,0 +1,34 @@
+<!-- Head partial: document metadata, Open Graph, icons, fonts, & styles. -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title @text="$data.title ? $data.title + ': ' + $data.site.name : $data.site.name + ': ' + $data.site.tagline"></title>
+<meta name="description" :content="$data.site.description" />
+<link rel="canonical" :href="$data.site.url" />
+<meta name="theme-color" :content="$data.theme.accent" />
+<meta name="color-scheme" content="light dark" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" :content="$data.site.name + ': ' + $data.site.tagline" />
+<meta property="og:description" :content="$data.site.description" />
+<meta property="og:url" :content="$data.site.url" />
+<meta property="og:image" :content="$data.site.url + 'assets/img/og-image.png'" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" :content="$data.site.name + ' project banner'" />
+
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+<link rel="manifest" href="/assets/img/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link webc:keep rel="stylesheet" :href="$data.theme.fontsUrl" />
+
+<link webc:keep rel="stylesheet" href="/assets/css/tokens.css" />
+<style webc:keep @raw="$data.theme.css"></style>
+<link webc:keep rel="stylesheet" href="/assets/css/reset.css" />
+<link webc:keep rel="stylesheet" href="/assets/css/layout.css" />
+<link webc:keep rel="stylesheet" href="/assets/css/components.css" />
+<link webc:keep rel="stylesheet" href="/assets/css/studio.css" />
+<script webc:keep type="module" src="/assets/js/copy-code.js"></script>

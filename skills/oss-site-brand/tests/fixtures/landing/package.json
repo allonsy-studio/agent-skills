@@ -1,0 +1,18 @@
+{
+  "name": "@allons-y/example-cli",
+  "version": "1.0.0",
+  "description": "Join glob matches into one file. Fast, deterministic, & scriptable.",
+  "license": "MPL-2.0",
+  "author": "Cassondra Roberts <castastrophe@users.noreply.github.com> (https://allons-y.studio)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allonsy-studio/example-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/allonsy-studio/example-cli/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  }
+}

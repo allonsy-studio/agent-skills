@@ -1,0 +1,46 @@
+---
+layout: layouts/base.webc
+---
+<section class="hero">
+	<h1 class="hero__title">
+		<span class="hero__name" @text="$data.site.name"></span>
+		<span class="hero__tagline" @text="$data.site.tagline"></span>
+	</h1>
+	<p class="hero__lede" @text="$data.project.lede || $data.site.description"></p>
+	<div class="hero__actions">
+		<a class="button" href="#install">Get started</a>
+		<a class="button button--secondary" :href="$data.site.repo">View on GitHub</a>
+	</div>
+	<ul class="hero__facts">
+		<li>Free & open source</li>
+		<li>License: <span data-license @text="$data.site.license"></span></li>
+		<li webc:if="$data.site.node">Node <span @text="$data.site.node"></span></li>
+	</ul>
+</section>
+
+<section id="install" class="section" aria-labelledby="install-title">
+	<h2 id="install-title">Install</h2>
+	<code-sample
+		language="sh"
+		:@code="$data.project.install || 'npm install ' + $data.site.packageName"
+	></code-sample>
+</section>
+
+<section webc:if="$data.project.usage" id="usage" class="section" aria-labelledby="usage-title">
+	<h2 id="usage-title">Usage</h2>
+	<code-sample
+		:@language="$data.project.usage.language"
+		:@code="$data.project.usage.code"
+		:@caption="$data.project.usage.caption"
+	></code-sample>
+</section>
+
+<section webc:if="$data.project.features && $data.project.features.length" id="features" class="section" aria-labelledby="features-title">
+	<h2 id="features-title">Features</h2>
+	<feature-grid :@features="$data.project.features"></feature-grid>
+</section>
+
+<section webc:if="$data.project.packages && $data.project.packages.length" id="packages" class="section" aria-labelledby="packages-title">
+	<h2 id="packages-title">Packages</h2>
+	<package-index :@packages="$data.project.packages"></package-index>
+</section>

@@ -1,0 +1,50 @@
+/*
+ * Studio layer styles: locked. These style the studio banner, call to action,
+ * & footer lockup, and read only the --studio-* tokens, so a project accent
+ * never changes how the studio appears. Do not edit in a project.
+ */
+.studio-banner {
+	display: block;
+	background: var(--studio-navy);
+}
+
+.studio-banner img {
+	margin-inline: auto;
+	inline-size: 100%;
+	max-inline-size: 1600px;
+	block-size: auto;
+}
+
+.studio-cta {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+	max-inline-size: 36rem;
+	padding: var(--space-m);
+	border-radius: var(--radius);
+	background: var(--studio-navy);
+	color: var(--studio-ink);
+}
+
+.site-footer .studio-cta__title {
+	color: var(--studio-ink);
+	font-weight: 700;
+}
+
+.studio-cta__link,
+.site-footer .studio-cta__link {
+	color: var(--studio-link);
+	font-weight: 700;
+}
+
+.site-footer .studio-cta__link:is(:hover, :focus-visible) {
+	color: var(--studio-link);
+}
+
+.studio-cta :focus-visible {
+	outline-color: var(--studio-link);
+}
+
+.studio-footer {
+	display: block;
+}

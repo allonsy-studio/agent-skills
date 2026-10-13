@@ -1,0 +1,8 @@
+<!-- Shared card. Props: title, body, href (optional), mono (optional). -->
+<div class="card">
+	<h3 class="card__title" :class="mono ? 'card__title--mono' : ''">
+		<a webc:if="href" class="card__link" :href="href" @text="title"></a>
+		<span webc:else @text="title"></span>
+	</h3>
+	<p class="card__body" @text="body"></p>
+</div>

@@ -1,0 +1,10 @@
+{
+	"src/_components/studio-banner.webc": "a6b84a10ec062a41a9e519e007881b446263e72c4a66f6342c9dbc47d6f807ab",
+	"src/_components/studio-cta.webc": "a12f29f80f39f68a121e14b52330dc17364a000f99143298de70d8c8f3e29800",
+	"src/_components/studio-footer.webc": "5115eeb6959a1874f322f9b39e7d69e87306e439f925eba77a51859c228fba72",
+	"src/_data/studio.js": "a9c33de6e63393d6f91baf91a8f1454faf8b0236e0c18b572fbc54b1b11dff48",
+	"src/assets/css/studio.css": "e22a6e3295a9ccb87152cb7cb102123b535881fdc86f2bab0b5bb60276756a30",
+	"src/assets/img/studio/oss-banner.svg": "8a77d9fdcec9338aedb9fd0a4939abdb48717090d0d9d3e7e94b05af377530ae",
+	"src/assets/img/studio/oss-footer-dark.svg": "76f02eda13d811be9b1a03499d5a29dc017f69c7620d4530e1adbbff9436ec86",
+	"src/assets/img/studio/oss-footer-light.svg": "0a63b191a310e8915bd0e7d13f7c86f04ff4a9ee1b692050034fb2ea2bba14f3"
+}

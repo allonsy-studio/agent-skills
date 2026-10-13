@@ -1,0 +1,22 @@
+<!-- Project header: brand link & primary navigation. -->
+<div class="site-header">
+	<a class="site-header__brand" href="/">
+		<img
+			webc:if="$data.project.logo"
+			:src="'/assets/img/' + $data.project.logo"
+			:alt="$data.site.name"
+			height="32"
+		/>
+		<template webc:else webc:nokeep>
+			<img src="/assets/img/favicon.svg" alt="" width="28" height="28" />
+			<span class="site-header__name" @text="$data.site.name"></span>
+		</template>
+	</a>
+	<nav class="site-header__nav" aria-label="Primary">
+		<a href="#install">Install</a>
+		<a webc:if="$data.project.usage" href="#usage">Usage</a>
+		<a webc:if="$data.project.features && $data.project.features.length" href="#features">Features</a>
+		<a :href="$data.site.repo">GitHub</a>
+		<a webc:if="$data.site.npm" :href="$data.site.npm">npm</a>
+	</nav>
+</div>

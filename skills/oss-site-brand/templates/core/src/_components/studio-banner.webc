@@ -1,0 +1,9 @@
+<!-- Studio layer: locked. Renders from site data; takes no props or slots. -->
+<a class="studio-banner" :href="$data.studio.url">
+	<img
+		:src="$data.studio.banner.src"
+		:alt="$data.studio.banner.alt"
+		:width="$data.studio.banner.width"
+		:height="$data.studio.banner.height"
+	/>
+</a>

@@ -1,0 +1,46 @@
+{
+  "private": true,
+  "name": "@allons-y/skill-oss-site-brand",
+  "version": "0.0.0",
+  "description": "Scaffold and audit single-page landing sites for Allons-y Studio open source projects: each project keeps its own accent, logo, and fonts, while a small locked studio layer stays identical everywhere.",
+  "type": "module",
+  "skill": {
+    "category": "Design",
+    "runtime": "node",
+    "triggers": [
+      "build a landing site for this open source project",
+      "scaffold a project site with the studio branding",
+      "audit this project site against the studio brand",
+      "make a favicon and wordmark for this package",
+      "set up GitHub Pages with PR previews for this project",
+      "which site flavor fits this project"
+    ]
+  },
+  "scripts": {
+    "ci:test": "yarn coverage",
+    "coverage": "c8 yarn test",
+    "format": "yarn package:format",
+    "lint": "yarn package:lint",
+    "lock": "node scripts/lock-studio.js",
+    "test": "node --test \"tests/**/*.test.js\""
+  },
+  "dependencies": {
+    "sharp": "^0.34.0"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.5",
+    "@11ty/eleventy-plugin-webc": "^0.11.2",
+    "axe-core": "^4.11.0",
+    "c8": "^11.0.0",
+    "jsdom": "^29.1.1",
+    "prismjs": "^1.30.0",
+    "yaml": "^2.8.2"
+  },
+  "keywords": [
+    "branding",
+    "eleventy",
+    "landing-page",
+    "open-source",
+    "webc"
+  ]
+}
