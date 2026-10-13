@@ -24,6 +24,8 @@ export default async function ( config ) {
 	config.ignores.add("skills/*/scripts/**");
 	config.ignores.add("skills/*/tests/**");
 	config.ignores.add("skills/*/references/**");
+	// Output scaffolds copied into other projects, not content for this site.
+	config.ignores.add("skills/oss-site-brand/templates/**");
 
 	config.addBundle("css");
 	config.addBundle("js");

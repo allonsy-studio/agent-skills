@@ -31,7 +31,7 @@ export default defineConfig([
 	{
 		// Browser-side scripts: skill dashboard templates and the client
 		// enhancements in `_includes/` that get bundled into each page.
-		files: ["**/templates/*.js", "_includes/**/*.js"],
+		files: ["**/templates/*.js", "_includes/**/*.js", "skills/oss-site-brand/templates/core/src/assets/js/*.js"],
 		plugins: { js },
 		extends: ["js/recommended"],
 		languageOptions: { globals: globals.browser },
