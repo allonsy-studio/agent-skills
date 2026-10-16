@@ -5,7 +5,7 @@
   "description": "Author and review WebC (@11ty/webc) components for Eleventy with a code-level model of how WebC compiles them: the host tag, the data cascade, slots, props, bundling, and the traps that only show up in rendered output.",
   "type": "module",
   "skill": {
-    "category": "Design",
+    "category": "Development",
     "runtime": "node",
     "triggers": [
       "write a WebC component",
