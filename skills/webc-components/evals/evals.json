@@ -1,0 +1,72 @@
+{
+  "skill_name": "webc-components",
+  "evals": [
+    {
+      "id": 1,
+      "name": "review-whitespace-slot-fallback",
+      "prompt": "Can you review this skip link component? It passed every test but an accessibility audit flagged an empty link on a couple of pages.\n\n```html\n<!-- skip-link.webc -->\n<a :href=\"href || '#main'\"><slot>Skip to content</slot></a>\n<style>\n\tskip-link a { position: absolute; inset-block-start: -5rem; }\n\tskip-link a:focus { inset-block-start: 0.5rem; }\n</style>\n```\n\nThe layout calls it like this:\n\n```html\n<skip-link>\n</skip-link>\n```",
+      "expected_output": "Triggers. Identifies that the newline inside <skip-link> is a text node assigned to the default slot, so the fallback never renders and the output is <a href=\"#main\"> </a>, an empty link. Recommends an @label prop with a default instead of a default-slot fallback, and a fixture test rendering the newline case. Also notes the HTML comment ships to every page and that skip-link sets no display on its tag.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 2,
+      "name": "review-container-selector-leak",
+      "prompt": "Our tag-list chips stack vertically with bullets when they appear inside rich-text, but look fine everywhere else. Both are .webc components.\n\n```css\n/* rich-text.webc */\nrich-text :is(ul, ol) { display: grid; padding-inline-start: 1.25rem; list-style: revert; }\n\n/* tag-list.webc */\ntag-list ul { display: flex; flex-wrap: wrap; padding: 0; list-style: none; }\n```\n\nWhat is going on?",
+      "expected_output": "Triggers. Explains that both selectors have equal specificity and WebC bundle order decides the winner, so the container rule leaks into the slotted component. Fix: wrap the container rule in :where() (rich-text :where(ul, ol)) or anchor it with a child combinator, and optionally make the component rule slightly more specific. Suggests a test that flags bare descendant selectors in slot-taking components.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 3,
+      "name": "boolean-prop-false-is-truthy",
+      "prompt": "In my WebC segmented control, `<segmented-control @icon-only=\"false\">` still hides the labels. The template has `<fieldset :data-icon-only=\"iconOnly ? '' : undefined\">`. Why?",
+      "expected_output": "Triggers. Explains that @icon-only=\"false\" passes the string \"false\", which is truthy; only :@icon-only=\"false\" passes a boolean. Recommends one truthiness expression for every boolean prop (x === true || x === '' || x === 'true'), documented once, and a table-driven fixture test.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 4,
+      "name": "style-undefined-crash",
+      "prompt": "Eleventy build fails with \"Cannot read properties of undefined (reading 'toString')\" after I added this to card.webc: `<div :style=\"accent ? `--accent: ${accent}` : undefined\">`. Other attributes with undefined work fine.",
+      "expected_output": "Triggers. Explains that WebC merges style and class with .toString(), so a dynamic style or class must never evaluate to undefined; return an empty string instead. Notes every other attribute may be undefined safely, which is why only this one fails.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 5,
+      "name": "author-component-oblique",
+      "prompt": "Build me a notice banner component for our Eleventy site. It has a title, body content, an optional dismiss button, and a variant (info, warning, error). We use .webc files for everything.",
+      "expected_output": "Triggers without the word WebC. Puts title and body in slots and variant/dismiss in props, sets display on the host tag (kept because the file has a <style>), normalizes the dismissible boolean with one truthiness expression, makes the dismiss label overridable by a prop, wraps the client script in a block and registers a guarded custom element, and suggests fixture tests for the whitespace and \"false\" cases.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 6,
+      "name": "negative-eleventy-config",
+      "prompt": "How do I set up passthrough copy for my images folder in eleventy.config.js and change the output directory to dist?",
+      "expected_output": "Does NOT trigger. This is Eleventy configuration with no WebC component involved.",
+      "files": [],
+      "assertions": [],
+      "should_trigger": false
+    },
+    {
+      "id": 7,
+      "name": "negative-lit-component-review",
+      "prompt": "Review my Lit web component: a <user-card> with a reactive `name` property, shadow DOM styles, and a slot for the avatar. Is the slot fallback a good idea?",
+      "expected_output": "Does NOT trigger. A Lit custom element with shadow DOM: slot assignment happens in the browser, not in the WebC compiler, so WebC rules do not apply. The design-system skill or a direct answer fits better.",
+      "files": [],
+      "assertions": [],
+      "should_trigger": false
+    },
+    {
+      "id": 8,
+      "name": "negative-nunjucks-macro",
+      "prompt": "My Nunjucks macro for a card component renders an empty heading when I forget the title argument. How do I give it a default?",
+      "expected_output": "Does NOT trigger. A Nunjucks macro, not a WebC component; answer with Nunjucks default arguments.",
+      "files": [],
+      "assertions": [],
+      "should_trigger": false
+    }
+  ]
+}
