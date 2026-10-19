@@ -118,3 +118,22 @@ test("an unknown @type is a warning, not an error", async () => {
 	assert.deepEqual(res.errors, []);
 	assert.ok(res.warnings.some((w) => /known-requirements table/.test(w)));
 });
+
+test("flags a duration that is not ISO 8601 and a string recipeIngredient", async () => {
+	const recipe = (extra) =>
+		`<script type="application/ld+json">${JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Recipe",
+			name: "Soup",
+			image: "/soup.jpg",
+			recipeInstructions: "Simmer.",
+			...extra,
+		})}</script>`;
+
+	const bad = await validate(recipe({ cookTime: "45 minutes", recipeIngredient: "1 onion, 2 carrots" }));
+	assert.ok(bad.errors.some((e) => e.includes('"cookTime" must be an ISO 8601 duration')));
+	assert.ok(bad.errors.some((e) => e.includes('"recipeIngredient" must be an array')));
+
+	const good = await validate(recipe({ cookTime: "PT45M", recipeIngredient: ["1 onion", "2 carrots"] }));
+	assert.deepEqual(good.errors, []);
+});

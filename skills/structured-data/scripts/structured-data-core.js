@@ -36,6 +36,11 @@ export const REQUIRED_PROPERTIES = {
 	Event: ["name", "startDate", "location"],
 };
 
+/** Properties whose value is an ISO 8601 duration. */
+export const DURATION_PROPERTIES = ["prepTime", "cookTime", "totalTime", "duration"];
+
+const ISO_DURATION = /^P(?!$)(\d+Y)?(\d+M)?(\d+W)?(\d+D)?(T(?=\d)(\d+H)?(\d+M)?(\d+(\.\d+)?S)?)?$/;
+
 // Offline JSON-LD document loader. schema.org's context is resolved to a
 // minimal { @vocab: https://schema.org/ } mapping -- which is how schema.org's
 // own context expands bare terms -- so jsonld.expand() runs the real
@@ -179,6 +184,15 @@ export async function validateJsonLd($) {
 			errors.push(
 				`@type "${typeName}" missing required propert${missing.length === 1 ? "y" : "ies"}: ${missing.join(", ")}`
 			);
+		}
+
+		for (const prop of DURATION_PROPERTIES) {
+			if (typeof data[prop] === "string" && !ISO_DURATION.test(data[prop])) {
+				errors.push(`"${prop}" must be an ISO 8601 duration such as PT45M, got "${data[prop]}"`);
+			}
+		}
+		if (typeName === "Recipe" && typeof data.recipeIngredient === "string") {
+			errors.push('"recipeIngredient" must be an array with one string per ingredient');
 		}
 	});
 
