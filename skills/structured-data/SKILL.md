@@ -33,6 +33,8 @@ Don't default to one. Read `references/format-decision.md` for the full decision
 - **Microdata** (attributes on the visible elements) keeps structured data physically attached to what the user sees, so it can't drift from the rendered content — good when you control the template tightly and want that guarantee (e.g., a design-system component where the visible price and the `itemprop="price"` value are the literal same DOM node).
 - **JSON-LD** (a separate `<script type="application/ld+json">` block) decouples the data from the DOM, which is easier to maintain across template/CMS changes but can silently drift out of sync with what's rendered if nobody keeps them aligned.
 
+- **Template engines and static-site pipelines** (Eleventy, Nunjucks, PHP templates, a CMS): JSON-LD generated at build or render time from the same data that renders the page. One source of truth closes the drift risk.
+
 Both are valid, current schema.org-supported formats. Pick per task using that tradeoff — don't ask the user to pick unless the reference's guidance is genuinely ambiguous for their case.
 
 ## Step 3: Load only the relevant schema type reference
@@ -43,7 +45,7 @@ If the task needs a schema.org type not covered by one of these files, look it u
 
 ## Step 4: Run the script and produce a diff
 
-Both `scripts/inject_microdata.js` and `scripts/generate_json_ld.js` take the same config format (`assets/selector-map-template.json` — copy and fill in per project) so switching formats later doesn't mean re-authoring the mapping. Both scripts **never overwrite files directly** — they print a unified diff to stdout for review. Apply the diff yourself with `patch` (or by hand via `str_replace`) only after the user has looked at it. This keeps the person in the loop on exactly what's being added to their markup, which matters more here than most edits since structured data is publicly visible to any bot that requests the page.
+Both `scripts/inject_microdata.js` and `scripts/generate_json_ld.js` take the same config format (`assets/selector-map-template.json` — copy and fill in per project) so switching formats later doesn't mean re-authoring the mapping. Both scripts **never overwrite files directly** — they print a unified diff to stdout for review. Apply the diff yourself with `patch` (or by hand via `str_replace`) only after the user has looked at it. When you edit a template or component by hand instead, show that change as a unified diff too, and say in one line why the chosen format fits the target. This keeps the person in the loop on exactly what's being added to their markup, which matters more here than most edits since structured data is publicly visible to any bot that requests the page.
 
 First install the two runtime dependencies (`package.json` in this skill's root lists them):
 
@@ -86,9 +88,9 @@ It prints the extracted Microdata and JSON-LD items and, when a page carries bot
 
 ## Step 6: Validate
 
-Run `scripts/validate_structured_data.js` against the result before considering the task done. It checks:
+Run `scripts/validate_structured_data.js` against the result before considering the task done, and before reporting on existing markup in an audit. When the markup was pasted into the chat rather than given as a file, write it to a temporary `.html` file and validate that. Report the script's errors as errors and its warnings as warnings; do not move a finding between the two. It checks:
 - Microdata: every `itemprop` resolves to an ancestor `itemscope` (or a valid `itemref`), no orphaned properties — this mirrors the tree-construction algorithm in the spec, not an approximation of it.
-- JSON-LD: runs the block through the **`jsonld` reference processor** (Digital Bazaar's `jsonld.js` — the W3C JSON-LD spec authors' implementation) to catch structural JSON-LD errors, offline; then checks that required properties are present for the declared `@type`. Note the required-property table is **Google Search's rich-results requirements, not schema.org vocabulary** — schema.org has no "required" concept, and no npm package authoritatively publishes Google's list (see the provenance note in `scripts/validate_structured_data.js`).
+- JSON-LD: runs the block through the **`jsonld` reference processor** (Digital Bazaar's `jsonld.js` — the W3C JSON-LD spec authors' implementation) to catch structural JSON-LD errors, offline; then checks that required properties are present for the declared `@type`, that durations (`cookTime`, `prepTime`, `totalTime`, `duration`) are ISO 8601, and that a Recipe's `recipeIngredient` is an array. Note the required-property table is **Google Search's rich-results requirements, not schema.org vocabulary** — schema.org has no "required" concept, and no npm package authoritatively publishes Google's list (see the provenance note in `scripts/validate_structured_data.js`).
 
 This is a structural check, not a substitute for Google's Rich Results Test — mention that tool to the user for final confirmation of search-result eligibility, since that also reflects current indexing requirements that shift independently of the schema.org vocabulary itself.
 
