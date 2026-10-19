@@ -6,7 +6,9 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 
-		<meta name="theme-color" content="#d22d6f">
+		
+		
+		<meta name="theme-color" content="#3a7d1e">
 		<meta name="color-scheme" content="light dark">
 
         
@@ -48,7 +50,8 @@
 		:root {
 			color-scheme: light dark;
 
-			--base: #d22d6f;
+			--base: #3a7d1e;
+			--base-dark: #8bc34a;
 			--theme--text--FontFamily: Roboto, Lato, Helvetica Neue, Helvetica, Arial, sans-serif;
 		}
 		
@@ -57,9 +60,11 @@
 	--theme--ui--color--subtle: light-dark(hsl(0, 0%, 90%), hsl(0, 0%, 30%));
 
 	--theme--text--Color: light-dark(hsl(40, 12%, 20%), #fff7e6);
+	/* `--base-dark` is an optional dark-mode accent a page can set. */
+	--theme--accent--dark: var(--base-dark, var(--base));
 	--theme--text--Color--accent: light-dark(
 		var(--base),
-		color-mix(in hsl, var(--base) 90%, white)
+		var(--base-dark, color-mix(in hsl, var(--base) 90%, white))
 	);
 	--theme--text--Color--subtle: light-dark(hsl(40, 10%, 30%), #fff7e6a6);
 	--theme--text--Color--invert: light-dark(hsl(0, 0%, 100%), hsl(40, 12%, 20%));
@@ -427,14 +432,14 @@ li {
 	}
 
 	&.primary {
-		background: var(--base);
+		background: light-dark(var(--base), var(--theme--accent--dark));
 		color: var(--theme--text--Color--invert);
-		border-color: var(--base);
+		border-color: light-dark(var(--base), var(--theme--accent--dark));
 		margin: 3px;
 
 		&:is(:hover, :focus-visible) {
 			color: var(--theme--text--Color--invert);
-			background: color-mix(in oklch, var(--base) 88%, black);
+			background: color-mix(in oklch, light-dark(var(--base), var(--theme--accent--dark)) 88%, black);
 		}
 	}
 }
@@ -1325,8 +1330,8 @@ options, and three presets.</li>
 				<p class="title">@allons-y/agent-skills</p>
 				<p class="lede">A collection of self-contained agent skills that streamline common developer workflows and reduce token usage. Install in Claude Code via the plugin marketplace, or vendor into any agent harness with npx.</p>
 				<p class="badges">
-					<a href="https://www.npmjs.com/package/@allons-y/agent-skills"><img alt="" src="https://img.shields.io/npm/v/@allons-y/agent-skills?logo=npm&labelColor=black&color=%23d22d6f"></a>
-					<a href="https://www.npmjs.com/package/@allons-y/agent-skills"><img alt="" src="https://img.shields.io/npm/dw/@allons-y/agent-skills?logo=npm&labelColor=black&color=%23d22d6f"></a>
+					<a href="https://www.npmjs.com/package/@allons-y/agent-skills"><img alt="" src="https://img.shields.io/npm/v/@allons-y/agent-skills?logo=npm&labelColor=black&color=%233a7d1e"></a>
+					<a href="https://www.npmjs.com/package/@allons-y/agent-skills"><img alt="" src="https://img.shields.io/npm/dw/@allons-y/agent-skills?logo=npm&labelColor=black&color=%233a7d1e"></a>
 				</p>
 				<p class="meta"><a href="https://github.com/allonsy-studio/agent-skills/blob/main/LICENSE">Licensed under MPL-2.0</a></p>
 			</div>
