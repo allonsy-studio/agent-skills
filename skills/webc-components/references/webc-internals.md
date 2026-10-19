@@ -27,7 +27,7 @@ releases, so search for the function name when they do not match.
   prepended), and the AST is cached **by content string, forever** (`astCache.js`): never
   evicted during a build. The same cache holds the AST of every string reprocessed
   through `@html`, so a docs site's whole Markdown output stays in memory until the
-  process ends.
+  process ends. In a server, that includes every per-request string (hosts §2).
 - `componentManager.parse` runs **once per file per build**, shared across pages. It
   decides `ignoreRootTag`: the host tag is **dropped** unless the file has a non-empty
   `<style>`, a `<script>` that is not `webc:setup`, a `<link rel=stylesheet>`,
@@ -118,8 +118,9 @@ From `attributeSerializer.js`:
 - **Verified:** 300 icon components with five dynamic attributes compile in 48 ms; the
   same as one `@raw` render expression in 25 ms. Matters only for heavily repeated
   components.
-- `webc:setup` runs once per file through `node-retrieve-globals`, with the global data
-  of **whichever page parsed the file first**. Only functions and constants belong
+- In Eleventy, `webc:setup` runs once per file through `node-retrieve-globals`, with the
+  global data of **whichever page parsed the file first**. Other hosts run it on every
+  compile (hosts §2). Only functions and constants belong
   there; compute per-page values in attribute expressions. It cannot import npm
   modules. Values cross a vm boundary: a `Set` or `Map` built there can lose prototype
   methods; prefer arrays and plain objects.

@@ -10,7 +10,10 @@ metadata:
 Most WebC bugs compile without errors and appear only in the rendered HTML: an empty
 link, a custom tag that appears in the output after an unrelated style change, a prop
 that resolves to an Eleventy filter. This skill documents how `@11ty/webc` 0.11.x compiles components, from
-its source code, so authors avoid these bugs and reviewers can find them.
+its source code, so authors avoid these bugs and reviewers can find them. WebC runs in
+Eleventy, in Express, Koa, Fastify, and Vite, or called directly from any Node server or
+build; the compiler rules are the same everywhere, and `references/hosts.md` covers what
+each host changes.
 
 **Keep WebC facts and style choices apart.** `references/webc-internals.md` and
 `references/review-checklist.md` describe how WebC behaves, for any project.
@@ -34,7 +37,10 @@ Match the user's symptom or error here first. Read only the cited section.
 | Slotted markup cannot read the outer component's prop | Slot content compiles with the receiving component's data | Pass the value as a prop | review-checklist §7 |
 | The custom tag appears or vanishes after a style change | The tag is kept only when the file has a `<style>` or one of the other conditions in Workflow 1, step 2 | Set `display` on a kept tag, or document a dropped one | review-checklist §10 |
 | Build error `Cannot redefine property: x___webc_privacy` | A prop and a public attribute share a name on one tag | Rename the prop | review-checklist §8 |
-| One page's value appears on every page | `webc:setup` runs once per file with the first page's data | Compute per-page values in attribute expressions | internals §5 |
+| One page's value appears on every page (Eleventy) | In Eleventy, `webc:setup` runs once per file with the first page's data | Compute per-page values in attribute expressions | internals §5 |
+| A component's script runs once per instance; `compile()` returns empty `css` and `js` | Bundler mode is off (Express, Fastify, Vite dev, standalone default) | Wrap the script in a block and guard `customElements.define`, or turn bundler mode on | hosts §2 |
+| Server memory grows with traffic | Every distinct string through `@html` stays in the AST cache | `@text` for text, `@raw` for trusted markup | hosts §2 |
+| Koa page renders in quirks mode, or bundled CSS or JS breaks | `koa-webc` bundle mode | Leave `bundle` off, or bundle with WebC directly | hosts §4 |
 | A nested component cannot see page front matter | Components see page data only through `$data` or props | Pass a prop, or read `$data` | internals §2 |
 | Ids or `name`s change on every build | `uid` is random per build | Derive them from props | internals §9 |
 
@@ -45,6 +51,7 @@ Match the user's symptom or error here first. Read only the cited section.
 | Predicting output, debugging a surprise, any "why does WebC…" | `references/webc-internals.md` |
 | Reviewing a component or a library | `references/review-checklist.md`, then internals for the cited sections |
 | Writing a component, or judging style in a review | `references/conventions.md`, filtered by the active profile |
+| Running WebC outside Eleventy (Express, Koa, Fastify, Vite, a custom server or build) | `references/hosts.md` |
 | Setting up or changing a profile | `references/conventions.md`, then `templates/profile.md` |
 
 Read the internals table of contents first; jump to the section a question needs.
@@ -92,7 +99,8 @@ To change a profile, read it, apply the change, and save it back to the same pla
 
 ## Workflow 1: author a component
 
-1. **Load the profile** (see Profiles above) and apply its choices.
+1. **Load the profile** (see Profiles above) and apply its choices. Outside Eleventy,
+   read `references/hosts.md` for what the host changes.
 2. **Decide whether the custom tag renders.** WebC removes the custom tag from the
    output unless the file has a non-empty `<style>`, a non-setup `<script>`, a
    stylesheet `<link>`, `webc:root`, or declarative shadow DOM.
@@ -104,8 +112,8 @@ To change a profile, read it, apply the change, and save it back to the same pla
 4. **Validate props.** Normalize booleans with one expression
    (`x === true || x === '' || x === 'true'`). Type-check any prop whose name matches a
    helper (`typeof url === 'string'`). For a required prop, define a check function in
-   `webc:setup` and call it from the attribute that needs the value; setup runs once per
-   file and cannot see props. Return `''`, never `undefined`, from a dynamic `style` or
+   `webc:setup` and call it from the attribute that needs the value; setup cannot see
+   props. Return `''`, never `undefined`, from a dynamic `style` or
    `class`.
 5. **Scope the CSS** with the profile's `style-scope` choice. A component that takes
    slotted content wraps bare-element descendant selectors in `:where()` or anchors them
@@ -170,6 +178,8 @@ visible. Delete the file afterwards.
   and the behaviours verified by compiling or rendering.
 - `references/review-checklist.md`: reusable review rules, each with a concrete
   example from a real component library.
+- `references/hosts.md`: what changes in Express, Koa, Fastify, Vite, and custom servers
+  or builds, and a render function that bundles correctly.
 - `references/conventions.md`: universal practices, decision points with their
   options, and three presets.
 - `templates/profile.md`: the profile format, filled in and saved during setup.

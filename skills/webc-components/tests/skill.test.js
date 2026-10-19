@@ -42,7 +42,7 @@ describe("SKILL.md", () => {
 		const rows = table.split("\n").filter((line) => line.startsWith("| ") && !/^\| (Symptom|---)/.test(line));
 		assert.ok(rows.length >= 10, "the symptom lookup needs a row per common trap");
 		for (const row of rows) {
-			assert.match(row, /\| (review-checklist|internals) §\d+ \|$/, `no section cited: ${row}`);
+			assert.match(row, /\| (review-checklist|internals|hosts) §\d+ \|$/, `no section cited: ${row}`);
 		}
 	});
 
@@ -57,8 +57,9 @@ describe("SKILL.md", () => {
 		const sections = {
 			"review-checklist": count("review-checklist.md"),
 			internals: count("webc-internals.md"),
+			hosts: count("hosts.md"),
 		};
-		for (const [, file, n] of skillMd.matchAll(/(review-checklist|internals) §(\d+)/g)) {
+		for (const [, file, n] of skillMd.matchAll(/(review-checklist|internals|hosts) §(\d+)/g)) {
 			assert.ok(Number(n) <= sections[file], `${file} §${n} does not exist`);
 		}
 	});
@@ -93,12 +94,21 @@ describe("reference files", () => {
 	});
 
 	test("cross-references between references point at real sections", () => {
-		const internals = [...read("references", "webc-internals.md").matchAll(/^## (\d+)\./gm)].length;
+		const count = (name) => [...read("references", name).matchAll(/^## (\d+)\./gm)].length;
+		const sections = { internals: count("webc-internals.md"), hosts: count("hosts.md") };
 		for (const file of references) {
-			for (const [, n] of read("references", file).matchAll(/internals §(\d+)/g)) {
-				assert.ok(Number(n) <= internals, `references/${file} cites internals §${n}`);
+			for (const [, ref, n] of read("references", file).matchAll(/(internals|hosts) §(\d+)/g)) {
+				assert.ok(Number(n) <= sections[ref], `references/${file} cites ${ref} §${n}`);
 			}
 		}
+	});
+
+	test("hosts.md names every published integration and its WebC version", () => {
+		const hosts = read("references", "hosts.md");
+		for (const name of ["express-webc", "koa-webc", "@jackdbd/fastify-webc", "vite-plugin-webc", "@11ty/eleventy-plugin-webc"]) {
+			assert.ok(hosts.includes(name), `hosts.md omits ${name}`);
+		}
+		assert.match(hosts, /runs on every compile/);
 	});
 
 	test("the internals keep their source citations and verified markers", () => {
@@ -222,7 +232,14 @@ describe("evals", () => {
 		);
 	});
 
-	test("covers a prompt that never says WebC", () => {
+	test("covers a host other than Eleventy", () => {
+		assert.ok(
+			evals.evals.some((e) => e.should_trigger !== false && /koa|express|fastify|vite/i.test(e.prompt)),
+			"need a positive prompt from a non-Eleventy host"
+		);
+	});
+
+		test("covers a prompt that never says WebC", () => {
 		assert.ok(
 			evals.evals.some((e) => e.should_trigger !== false && !/webc/i.test(e.prompt.replace(/\.webc/gi, ""))),
 			"need a positive prompt that only shows .webc files"

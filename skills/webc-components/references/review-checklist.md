@@ -118,8 +118,8 @@ dropped with no warning (internals §4). Error messages name the attribute, neve
 nameless radios: several can be checked at once.
 
 **Fix.** When a prop is required for correct output, define a guard function in
-`webc:setup` and call it from the attribute that needs the value. Setup runs once per
-file and cannot see props, and a top-level `throw` there fails every build that
+`webc:setup` and call it from the attribute that needs the value. Setup cannot see
+props, and a top-level `throw` there fails every build that
 registers the component (internals §9). Do not generate names from `uid`: it is random
 per build.
 
@@ -156,7 +156,8 @@ with no fallback.
 ## 6. Unpassed props resolve to helpers
 
 **Behaviour.** Helpers sit below props in the data cascade (internals §2). An unpassed
-prop named `url`, `slugify`, or any registered filter resolves to that function.
+prop named `url`, `slugify`, or any registered filter resolves to that function. Outside
+Eleventy the helpers are whatever the host registers (hosts §2).
 
 **Find it.** A prop named like a common filter, read without a type check.
 `href || '#'` returns the function when `href` is a helper name.

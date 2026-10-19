@@ -50,6 +50,14 @@
       "assertions": []
     },
     {
+      "id": 10,
+      "name": "koa-bundle-mode",
+      "prompt": "We render our .webc pages from Koa with koa-webc and turned on `bundle: true`. Now the page renders in quirks mode and only the first component's CSS applies. Other components' scripts never run either. What's going on?",
+      "expected_output": "Triggers. Explains that koa-webc's bundle mode writes the <style> before <!doctype html> (quirks mode), joins CSS from several components with commas so every rule after the first is dropped, and joins scripts with commas, a syntax error. Recommends leaving bundle off or compiling with @11ty/webc directly and placing css.join('\\n') in the head and js.join('\\n') before </body>. Notes that without bundler mode each instance ships its own style and script.",
+      "files": [],
+      "assertions": []
+    },
+    {
       "id": 7,
       "name": "negative-eleventy-config",
       "prompt": "How do I set up passthrough copy for my images folder in eleventy.config.js and change the output directory to dist?",
