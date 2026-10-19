@@ -8,8 +8,6 @@
 
 		
 		
-		
-		
 		<meta name="theme-color" content="#d22d6f">
 		<meta name="color-scheme" content="light dark">
 
@@ -62,7 +60,6 @@
 	--theme--ui--color--subtle: light-dark(hsl(0, 0%, 90%), hsl(0, 0%, 30%));
 
 	--theme--text--Color: light-dark(hsl(40, 12%, 20%), #fff7e6);
-	/* `--base-dark` is an optional dark-mode accent a page can set. */
 	--theme--accent--dark: var(--base-dark, var(--base));
 	--theme--text--Color--accent: light-dark(
 		var(--base),
@@ -441,7 +438,6 @@ li {
 
 		&:is(:hover, :focus-visible) {
 			color: var(--theme--text--Color--invert);
-			/* Hover moves away from the button text: darker in light mode, lighter in dark mode. */
 			background: color-mix(
 				in oklch,
 				light-dark(var(--base), var(--theme--accent--dark)) 88%,
