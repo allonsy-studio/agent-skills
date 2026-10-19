@@ -1075,6 +1075,7 @@ body > footer {
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">tests</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-test-js ext-js">skill.test.js</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">package.json</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">README.md</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">SKILL.md</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-css">theme.css</span></span></code></pre>
 			</section>
@@ -1098,6 +1099,100 @@ its source code, so authors avoid these bugs and reviewers can find them.</p>
 <code>references/conventions.md</code> holds universal practices plus decision points with several
 valid options. A saved <strong>profile</strong> records the option a user or project chose for each
 (see the Profiles section below).</p>
+<h2>Symptom lookup</h2>
+<p>Match the user’s symptom or error here first. Read only the cited section.</p>
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Cause</th>
+<th>Fix</th>
+<th>Read</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Slot fallback text never shows; an empty link or button</td>
+<td>Whitespace or a comment inside the host tag fills the default slot</td>
+<td>A prop with a default for short required text</td>
+<td>review-checklist §2</td>
+</tr>
+<tr>
+<td>A component looks wrong only inside another component</td>
+<td>The container’s bare descendant selector (<code>rich-text ul</code>) matches the slotted component; bundle order picks the winner</td>
+<td><code>:where()</code> or <code>&gt;</code> in the container’s selector</td>
+<td>review-checklist §1</td>
+</tr>
+<tr>
+<td><code>@x=&quot;false&quot;</code> still turns an option on</td>
+<td><code>&quot;false&quot;</code> is a non-empty string, so it is truthy</td>
+<td><code>x === true || x === '' || x === 'true'</code></td>
+<td>review-checklist §3</td>
+</tr>
+<tr>
+<td>A hyphenated prop is always <code>undefined</code></td>
+<td>Props are read camelCased: <code>@icon-only</code> is <code>iconOnly</code></td>
+<td>Read the camelCase name</td>
+<td>internals §4</td>
+</tr>
+<tr>
+<td>An unprefixed attribute does nothing</td>
+<td><code>live</code> is a public attribute; only <code>@live</code> sets the prop</td>
+<td>Prefix with <code>@</code> or <code>:@</code></td>
+<td>internals §4</td>
+</tr>
+<tr>
+<td>Build error <code>reading 'toString'</code></td>
+<td>A dynamic <code>style</code> or <code>class</code> returned <code>undefined</code></td>
+<td>Return <code>''</code></td>
+<td>review-checklist §5</td>
+</tr>
+<tr>
+<td>An unpassed prop holds a function, not <code>undefined</code></td>
+<td>It resolves to a same-named helper (<code>url</code>, <code>slugify</code>)</td>
+<td><code>typeof url === 'string'</code> check, or rename the prop</td>
+<td>review-checklist §6</td>
+</tr>
+<tr>
+<td>Slotted markup cannot read the outer component’s prop</td>
+<td>Slot content compiles with the receiving component’s data</td>
+<td>Pass the value as a prop</td>
+<td>review-checklist §7</td>
+</tr>
+<tr>
+<td>The custom tag appears or vanishes after a style change</td>
+<td>The tag is kept only when the file has a <code>&lt;style&gt;</code> or one of the other conditions in Workflow 1, step 2</td>
+<td>Set <code>display</code> on a kept tag, or document a dropped one</td>
+<td>review-checklist §10</td>
+</tr>
+<tr>
+<td>Build error <code>Cannot redefine property: x___webc_privacy</code></td>
+<td>A prop and a public attribute share a name on one tag</td>
+<td>Rename the prop</td>
+<td>review-checklist §8</td>
+</tr>
+<tr>
+<td>One page’s value appears on every page</td>
+<td><code>webc:setup</code> runs once per file with the first page’s data</td>
+<td>Compute per-page values in attribute expressions</td>
+<td>internals §5</td>
+</tr>
+<tr>
+<td>A nested component cannot see page front matter</td>
+<td>Components see page data only through <code>$data</code> or props</td>
+<td>Pass a prop, or read <code>$data</code></td>
+<td>internals §2</td>
+</tr>
+<tr>
+<td>Ids or <code>name</code>s change on every build</td>
+<td><code>uid</code> is random per build</td>
+<td>Derive them from props</td>
+<td>internals §9</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h2>When to read which reference</h2>
 <div class="table-scroll">
 <table>
@@ -1188,7 +1283,7 @@ slotted content wraps bare-element descendant selectors in <code>:where()</code>
 with a child combinator, so they never outrank the slotted component’s own rules.</li>
 <li><strong>Wrap client scripts in a block</strong> <code>{ … }</code>. The bundle joins every component’s
 scripts into one file, so top-level <code>const</code> names from two components conflict.</li>
-<li><strong>Render a fixture and read the HTML.</strong> Include the edge cases: a host with only a
+<li><strong>Render a fixture and read the HTML</strong> (see Rendering a fixture below). Include the edge cases: a host with only a
 newline inside, a boolean prop set to <code>&quot;false&quot;</code>, an unpassed optional prop, and the
 component slotted into its most likely container.</li>
 </ol>
@@ -1199,40 +1294,42 @@ component applying to another only show up when reviewing the whole library.</li
 <li>Go through <code>references/review-checklist.md</code> in order. The first sections are the bugs
 verified in rendered output; the later ones are cost and consistency.</li>
 <li>For each finding, cite the rule, the file and line, the concrete failing input, and
-the rendered result. Mark a finding <strong>verified</strong> only after compiling or rendering it.</li>
-<li>Report findings grouped by severity: broken output or accessibility failures first,
-then fragile code (correct today, broken by a likely change), then cost and
-consistency. Separate convention findings from WebC bugs, and judge conventions
-against the active profile. Without one, report only universal-practice gaps and
-places where the library mixes options on one decision point.</li>
+the rendered result. Render it (see Rendering a fixture below) and add <strong>verified</strong>.
+When code cannot be run, add <strong>not rendered</strong> instead; never guess the output.</li>
+<li>Give each finding one label and report them in this order:
+<ul>
+<li><code>broken</code>: wrong output, a build failure, or an accessibility failure today.</li>
+<li><code>fragile</code>: correct today; a likely change breaks it.</li>
+<li><code>cost</code>: build time, page weight, or inconsistency between components.</li>
+<li><code>convention</code>: differs from the active profile. Without a profile, report only
+universal-practice gaps and places where the library mixes options on one
+decision point.</li>
+</ul>
+</li>
 <li>Propose a regression test for each fixed bug.</li>
 </ol>
 <p>Per finding:</p>
-<pre class="language-markdown"><code class="language-markdown"><span class="token title important"><span class="token punctuation">###</span> [severity] Short claim</span>
+<pre class="language-markdown"><code class="language-markdown"><span class="token title important"><span class="token punctuation">###</span> [broken] Short claim</span>
 <span class="token list punctuation">-</span> Where: <span class="token code-snippet code keyword">`components/skip-link.webc:21`</span>
 <span class="token list punctuation">-</span> Input: <span class="token code-snippet code keyword">`&lt;skip-link>\n&lt;/skip-link>`</span>
-<span class="token list punctuation">-</span> Renders: <span class="token code-snippet code keyword">`&lt;a href="#main">`</span> + newline + <span class="token code-snippet code keyword">`&lt;/a>`</span> (an empty link)
+<span class="token list punctuation">-</span> Renders: <span class="token code-snippet code keyword">`&lt;a href="#main">`</span> + newline + <span class="token code-snippet code keyword">`&lt;/a>`</span> (an empty link), verified
 <span class="token list punctuation">-</span> Rule: review-checklist §2, internals §3
 <span class="token list punctuation">-</span> Fix: an <span class="token code-snippet code keyword">`@label`</span> prop defaulting to "Skip to content"
 <span class="token list punctuation">-</span> Test: fixture rendering the newline case
 </code></pre>
-<h2>The highest-impact rules</h2>
-<ol>
-<li>A default-slot fallback does not render when the host contains whitespace:
-<code>&lt;x&gt;\n&lt;/x&gt;</code> renders the newline, not the fallback.</li>
-<li>A container’s bare descendant selectors (<code>rich-text ul</code>) style slotted components; at
-equal specificity, bundle order decides which rule applies. Use <code>:where()</code> or <code>&gt;</code>.</li>
-<li><code>@x=&quot;false&quot;</code> passes the string <code>&quot;false&quot;</code>, which is truthy.</li>
-<li><code>:style=&quot;undefined&quot;</code> and <code>:class=&quot;undefined&quot;</code> crash the build. Return <code>''</code>.</li>
-<li>An unpassed prop resolves to a same-named helper (<code>url</code>, <code>slugify</code>), not <code>undefined</code>.</li>
-<li>Slot content sees the receiving component’s props, never its author’s.</li>
-<li>A template component’s custom tag renders only when the file has a <code>&lt;style&gt;</code> (or
-another condition listed in Workflow 1, step 2).</li>
-<li>A prop and a public attribute of the same name on one tag crash the build.</li>
-<li><code>webc:setup</code> runs once per file with the first page’s data. Per-page values belong in
-attribute expressions.</li>
-<li><code>uid</code> is random per build. Never derive ids or <code>name</code>s from it.</li>
-</ol>
+<h2>Rendering a fixture</h2>
+<p><code>@11ty/webc</code> is installed with <code>@11ty/eleventy-plugin-webc</code>. Save as <code>render.mjs</code> in the
+project root and run <code>node render.mjs</code>:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebC <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@11ty/webc"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> page <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebC</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+page<span class="token punctuation">.</span><span class="token function">defineComponents</span><span class="token punctuation">(</span><span class="token string">"_components/*.webc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+page<span class="token punctuation">.</span><span class="token function">setContent</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;skip-link>\n&lt;/skip-link></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> html <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">await</span> page<span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>html<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Change the glob to the project’s component folder. <code>JSON.stringify</code> makes whitespace
+visible. Delete the file afterwards.</p>
 <h2>Reference files</h2>
 <ul>
 <li><code>references/webc-internals.md</code>: how WebC compiles a component, with source citations
