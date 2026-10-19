@@ -1064,6 +1064,8 @@ body > footer {
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">conventions.md</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">review-checklist.md</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">webc-internals.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">templates</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">profile.md</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">tests</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-test-js ext-js">skill.test.js</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-json">package.json</span></span>
@@ -1084,11 +1086,11 @@ body > footer {
 that silently appears, a prop that resolves to an Eleventy filter. This skill carries a
 model of what the compiler actually does (<code>@11ty/webc</code> 0.11.x, read at source level) so
 components are written right the first time and reviews find the bugs that tests miss.</p>
-<p><strong>Keep WebC facts and house style apart.</strong> <code>references/webc-internals.md</code> and
+<p><strong>Keep WebC facts and style choices apart.</strong> <code>references/webc-internals.md</code> and
 <code>references/review-checklist.md</code> describe how WebC behaves, for any project.
-<code>references/conventions.md</code> is the Allons-y studio’s opinionated style. Apply it only to
-Allons-y repositories, or when the project’s own <code>AGENTS.md</code> adopts it; otherwise offer it
-as a suggestion, labelled as such.</p>
+<code>references/conventions.md</code> holds universal practices plus decision points with several
+sound options. A saved <strong>profile</strong> records which options a user or project picked (see
+<a href="#profiles">Profiles</a>).</p>
 <h2>When to read which reference</h2>
 <div class="table-scroll">
 <table>
@@ -1108,15 +1110,58 @@ as a suggestion, labelled as such.</p>
 <td><code>references/review-checklist.md</code>, then internals for the cited sections</td>
 </tr>
 <tr>
-<td>Writing a component for an Allons-y repo, or a repo that adopts its rules</td>
-<td><code>references/conventions.md</code></td>
+<td>Writing a component, or judging style in a review</td>
+<td><code>references/conventions.md</code>, filtered by the active profile</td>
+</tr>
+<tr>
+<td>Setting up or changing a profile</td>
+<td><code>references/conventions.md</code>, then <code>templates/profile.md</code></td>
 </tr>
 </tbody>
 </table>
 </div>
 <p>Read the internals table of contents first; jump to the section a question needs.</p>
-<h2>Workflow 1: author a component</h2>
+<h2>Profiles</h2>
+<p>A profile stores a user’s picks for the decision points in <code>references/conventions.md</code>,
+plus any house rules of their own.</p>
+<h3>Finding the active profile</h3>
+<p>Check in this order and use the first found:</p>
 <ol>
+<li><strong>Project instructions</strong> (<code>AGENTS.md</code>, <code>CLAUDE.md</code>, or similar) that state component
+conventions. These always win.</li>
+<li><strong>Memory</strong>: an entry titled <code>webc-components profile</code>.</li>
+<li><strong>File</strong>: <code>profile.md</code> in this skill’s own directory (next to this <code>SKILL.md</code>).</li>
+</ol>
+<p>With no profile, apply the universal practices only and follow the project’s existing
+code on each decision point.</p>
+<h3>Setting one up</h3>
+<p>Offer setup once, the first time a component is written or reviewed without a profile,
+and whenever the user asks (“set up my WebC conventions”, “we use <code>webc:scoped</code>”). Skip
+it for one-off questions.</p>
+<ol>
+<li>Offer the three presets from <code>references/conventions.md</code> (<code>site</code>, <code>library</code>,
+<code>framework-bridge</code>) plus <strong>custom</strong>. Use a structured question tool when the
+harness has one.</li>
+<li>For <strong>custom</strong>, walk the decision points a few at a time, showing each option’s
+one-line trade-off. A preset can be the starting point, with only the changed
+decisions asked.</li>
+<li>Ask for house rules no decision covers (naming, a required wrapper, a token prefix).
+Record them in the user’s words.</li>
+<li>Ask where to save:
+<ul>
+<li><strong>Memory</strong>, when the harness has persistent memory: follows the user across
+projects. Save the filled template as one entry titled <code>webc-components profile</code>.</li>
+<li><strong>File</strong> in this skill’s directory as <code>profile.md</code>: stays on this machine. A
+reinstall with the <code>npx</code> installer keeps it; a plugin update may replace the skill
+directory, so note that when saving.</li>
+</ul>
+</li>
+<li>Fill <code>templates/profile.md</code>, save it, and show the saved result.</li>
+</ol>
+<p>To change a profile, read it, apply the change, and save it back to the same place.</p>
+<h2>Workflow 1: author a component</h2>
+<ol start="0">
+<li><strong>Load the profile</strong> (see <a href="#profiles">Profiles</a>) and apply its picks.</li>
 <li><strong>Decide the host tag’s fate.</strong> WebC drops the custom tag unless the file has a
 <code>&lt;style&gt;</code>, a non-setup <code>&lt;script&gt;</code>, a stylesheet <code>&lt;link&gt;</code>, <code>webc:root</code>, or declarative
 shadow DOM. If the tag is kept, set <code>display</code> on it. If it is dropped, say so in the
@@ -1128,7 +1173,7 @@ that must never be empty is a prop with a default, not a default-slot fallback.<
 (<code>x === true || x === '' || x === 'true'</code>). Guard any prop whose name matches a helper
 (<code>typeof url === 'string'</code>). <code>throw</code> in <code>webc:setup</code> when a required prop is missing.
 Return <code>''</code>, never <code>undefined</code>, from a dynamic <code>style</code> or <code>class</code>.</li>
-<li><strong>Scope the CSS.</strong> Selectors start at the component’s tag. A component that takes
+<li><strong>Scope the CSS</strong> per the profile’s <code>style-scope</code> pick. A component that takes
 slotted content wraps bare-element descendant selectors in <code>:where()</code> or anchors them
 with a child combinator, so they never outrank the slotted component’s own rules.</li>
 <li><strong>Keep scripts collision-safe.</strong> Wrap each component’s client script in a block
@@ -1147,7 +1192,9 @@ verified in rendered output; the later ones are cost and consistency.</li>
 the rendered result. Mark a finding <strong>verified</strong> only after compiling or rendering it.</li>
 <li>Report findings grouped by severity: broken output or accessibility failures first,
 then latent bugs (correct today, wrong under a plausible change), then cost and
-consistency. Separate convention gaps (house style) from WebC bugs.</li>
+consistency. Separate convention findings from WebC bugs, and judge conventions
+against the active profile. Without one, report only universal-practice gaps and
+places where the library mixes options on one decision point.</li>
 <li>Propose a test that pins each fixed bug, so it cannot come back.</li>
 </ol>
 <p>Per finding:</p>
@@ -1181,7 +1228,9 @@ attribute expressions.</li>
 and the behaviours verified by compiling or rendering.</li>
 <li><code>references/review-checklist.md</code>: reusable review rules, each with a concrete
 example from a real component library.</li>
-<li><code>references/conventions.md</code>: the Allons-y studio’s opinionated component conventions.</li>
+<li><code>references/conventions.md</code>: universal practices, decision points with their
+options, and three presets.</li>
+<li><code>templates/profile.md</code>: the profile format, filled in and saved during setup.</li>
 </ul>
 
 				</div>
