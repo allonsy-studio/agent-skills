@@ -1082,15 +1082,15 @@ body > footer {
 				</header>
 				<div class="prose">
 					<h1>WebC components</h1>
-<p>Most WebC bugs compile cleanly and only show up in rendered HTML: an empty link, a tag
-that silently appears, a prop that resolves to an Eleventy filter. This skill carries a
-model of what the compiler actually does (<code>@11ty/webc</code> 0.11.x, read at source level) so
-components are written right the first time and reviews find the bugs that tests miss.</p>
+<p>Most WebC bugs compile without errors and appear only in the rendered HTML: an empty
+link, a custom tag that appears in the output after an unrelated style change, a prop
+that resolves to an Eleventy filter. This skill documents how <code>@11ty/webc</code> 0.11.x compiles components, from
+its source code, so authors avoid these bugs and reviewers can find them.</p>
 <p><strong>Keep WebC facts and style choices apart.</strong> <code>references/webc-internals.md</code> and
 <code>references/review-checklist.md</code> describe how WebC behaves, for any project.
 <code>references/conventions.md</code> holds universal practices plus decision points with several
-sound options. A saved <strong>profile</strong> records which options a user or project picked (see the
-Profiles section below).</p>
+valid options. A saved <strong>profile</strong> records the option a user or project chose for each
+(see the Profiles section below).</p>
 <h2>When to read which reference</h2>
 <div class="table-scroll">
 <table>
@@ -1122,13 +1122,13 @@ Profiles section below).</p>
 </div>
 <p>Read the internals table of contents first; jump to the section a question needs.</p>
 <h2>Profiles</h2>
-<p>A profile stores a user’s picks for the decision points in <code>references/conventions.md</code>,
+<p>A profile stores a user’s choices for the decision points in <code>references/conventions.md</code>,
 plus any house rules of their own.</p>
 <h3>Finding the active profile</h3>
 <p>Check in this order and use the first found:</p>
 <ol>
 <li><strong>Project instructions</strong> (<code>AGENTS.md</code>, <code>CLAUDE.md</code>, or similar) that state component
-conventions. These always win.</li>
+conventions. These take precedence.</li>
 <li><strong>Memory</strong>: an entry titled <code>webc-components profile</code>.</li>
 <li><strong>File</strong>: <code>profile.md</code> in this skill’s own directory (next to this <code>SKILL.md</code>).</li>
 </ol>
@@ -1140,11 +1140,11 @@ and whenever the user asks (“set up my WebC conventions”, “we use <code>we
 it for one-off questions.</p>
 <ol>
 <li>Offer the three presets from <code>references/conventions.md</code> (<code>site</code>, <code>library</code>,
-<code>framework-bridge</code>) plus <strong>custom</strong>. Use a structured question tool when the
+<code>class-based</code>) plus <strong>custom</strong>. Use a structured question tool when the
 harness has one.</li>
-<li>For <strong>custom</strong>, walk the decision points a few at a time, showing each option’s
-one-line trade-off. A preset can be the starting point, with only the changed
-decisions asked.</li>
+<li>For <strong>custom</strong>, ask about the decision points a few at a time, with each option’s
+one-line trade-off. To start from a preset, ask only about the decisions that
+differ.</li>
 <li>Ask for house rules no decision covers (naming, a required wrapper, a token prefix).
 Record them in the user’s words.</li>
 <li>Ask where to save:
@@ -1161,42 +1161,44 @@ directory, so note that when saving.</li>
 <p>To change a profile, read it, apply the change, and save it back to the same place.</p>
 <h2>Workflow 1: author a component</h2>
 <ol>
-<li><strong>Load the profile</strong> (see Profiles above) and apply its picks.</li>
-<li><strong>Decide the host tag’s fate.</strong> WebC drops the custom tag unless the file has a
-non-empty <code>&lt;style&gt;</code>, a non-setup <code>&lt;script&gt;</code>, a stylesheet <code>&lt;link&gt;</code>, <code>webc:root</code>
-(<code>webc:root=&quot;override&quot;</code> replaces the tag instead), or declarative shadow DOM. If the tag is kept, set <code>display</code> on it. If it is dropped, say so in the
-component’s docs.</li>
+<li><strong>Load the profile</strong> (see Profiles above) and apply its choices.</li>
+<li><strong>Decide whether the custom tag renders.</strong> WebC removes the custom tag from the
+output unless the file has a non-empty <code>&lt;style&gt;</code>, a non-setup <code>&lt;script&gt;</code>, a
+stylesheet <code>&lt;link&gt;</code>, <code>webc:root</code>, or declarative shadow DOM.
+<code>webc:root=&quot;override&quot;</code> replaces the tag with the element that carries it. If the tag
+renders, set <code>display</code> on it. If it does not, say so in the component’s docs.</li>
 <li><strong>Choose slots or props.</strong> Content (text, headings, links, lists) goes in slots.
 Settings and data the component computes from go in props. A short accessible name
 that must never be empty is a prop with a default, not a default-slot fallback.</li>
-<li><strong>Write the props defensively.</strong> Normalize booleans with one expression
-(<code>x === true || x === '' || x === 'true'</code>). Guard any prop whose name matches a helper
-(<code>typeof url === 'string'</code>). For a required prop, call a guard function defined in <code>webc:setup</code> from the attribute
-that needs it; setup runs once per file and cannot see props.
-Return <code>''</code>, never <code>undefined</code>, from a dynamic <code>style</code> or <code>class</code>.</li>
-<li><strong>Scope the CSS</strong> per the profile’s <code>style-scope</code> pick. A component that takes
+<li><strong>Validate props.</strong> Normalize booleans with one expression
+(<code>x === true || x === '' || x === 'true'</code>). Type-check any prop whose name matches a
+helper (<code>typeof url === 'string'</code>). For a required prop, define a check function in
+<code>webc:setup</code> and call it from the attribute that needs the value; setup runs once per
+file and cannot see props. Return <code>''</code>, never <code>undefined</code>, from a dynamic <code>style</code> or
+<code>class</code>.</li>
+<li><strong>Scope the CSS</strong> with the profile’s <code>style-scope</code> choice. A component that takes
 slotted content wraps bare-element descendant selectors in <code>:where()</code> or anchors them
 with a child combinator, so they never outrank the slotted component’s own rules.</li>
-<li><strong>Keep scripts collision-safe.</strong> Wrap each component’s client script in a block
-<code>{ … }</code>; bundles concatenate scripts from every component into one file.</li>
+<li><strong>Wrap client scripts in a block</strong> <code>{ … }</code>. The bundle joins every component’s
+scripts into one file, so top-level <code>const</code> names from two components conflict.</li>
 <li><strong>Render a fixture and read the HTML.</strong> Include the edge cases: a host with only a
 newline inside, a boolean prop set to <code>&quot;false&quot;</code>, an unpassed optional prop, and the
 component slotted into its most likely container.</li>
 </ol>
 <h2>Workflow 2: review a component or library</h2>
 <ol>
-<li>Ask for scope if unclear: one component, or the whole library (cross-component leaks
-only show up at library scope).</li>
-<li>Walk <code>references/review-checklist.md</code> in order. The first sections are the bugs
+<li>Ask for scope if unclear: one component, or the whole library. Styles from one
+component applying to another only show up when reviewing the whole library.</li>
+<li>Go through <code>references/review-checklist.md</code> in order. The first sections are the bugs
 verified in rendered output; the later ones are cost and consistency.</li>
 <li>For each finding, cite the rule, the file and line, the concrete failing input, and
 the rendered result. Mark a finding <strong>verified</strong> only after compiling or rendering it.</li>
 <li>Report findings grouped by severity: broken output or accessibility failures first,
-then latent bugs (correct today, wrong under a plausible change), then cost and
+then fragile code (correct today, broken by a likely change), then cost and
 consistency. Separate convention findings from WebC bugs, and judge conventions
 against the active profile. Without one, report only universal-practice gaps and
 places where the library mixes options on one decision point.</li>
-<li>Propose a test that pins each fixed bug, so it cannot come back.</li>
+<li>Propose a regression test for each fixed bug.</li>
 </ol>
 <p>Per finding:</p>
 <pre class="language-markdown"><code class="language-markdown"><span class="token title important"><span class="token punctuation">###</span> [severity] Short claim</span>
@@ -1205,19 +1207,20 @@ places where the library mixes options on one decision point.</li>
 <span class="token list punctuation">-</span> Renders: <span class="token code-snippet code keyword">`&lt;a href="#main">`</span> + newline + <span class="token code-snippet code keyword">`&lt;/a>`</span> (an empty link)
 <span class="token list punctuation">-</span> Rule: review-checklist §2, internals §3
 <span class="token list punctuation">-</span> Fix: an <span class="token code-snippet code keyword">`@label`</span> prop defaulting to "Skip to content"
-<span class="token list punctuation">-</span> Pin it: fixture test rendering the newline case
+<span class="token list punctuation">-</span> Test: fixture rendering the newline case
 </code></pre>
 <h2>The highest-impact rules</h2>
 <ol>
-<li>Whitespace defeats a default-slot fallback: <code>&lt;x&gt;\n&lt;/x&gt;</code> renders the newline, not the
-fallback.</li>
-<li>A container’s bare descendant selectors (<code>rich-text ul</code>) style slotted components;
-bundle order breaks the tie. Use <code>:where()</code> or <code>&gt;</code>.</li>
+<li>A default-slot fallback does not render when the host contains whitespace:
+<code>&lt;x&gt;\n&lt;/x&gt;</code> renders the newline, not the fallback.</li>
+<li>A container’s bare descendant selectors (<code>rich-text ul</code>) style slotted components; at
+equal specificity, bundle order decides which rule applies. Use <code>:where()</code> or <code>&gt;</code>.</li>
 <li><code>@x=&quot;false&quot;</code> passes the string <code>&quot;false&quot;</code>, which is truthy.</li>
 <li><code>:style=&quot;undefined&quot;</code> and <code>:class=&quot;undefined&quot;</code> crash the build. Return <code>''</code>.</li>
 <li>An unpassed prop resolves to a same-named helper (<code>url</code>, <code>slugify</code>), not <code>undefined</code>.</li>
 <li>Slot content sees the receiving component’s props, never its author’s.</li>
-<li>A template component’s host tag appears or vanishes with its <code>&lt;style&gt;</code>.</li>
+<li>A template component’s custom tag renders only when the file has a <code>&lt;style&gt;</code> (or
+another condition listed in Workflow 1, step 2).</li>
 <li>A prop and a public attribute of the same name on one tag crash the build.</li>
 <li><code>webc:setup</code> runs once per file with the first page’s data. Per-page values belong in
 attribute expressions.</li>
