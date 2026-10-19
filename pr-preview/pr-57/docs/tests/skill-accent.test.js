@@ -89,7 +89,6 @@ describe("skill accent: rendered pages", () => {
 	let pages = [];
 
 	before(() => {
-		// The CLI runs from the repo root, which Eleventy resolves every input path against.
 		const cli = path.join(root, "node_modules", "@11ty", "eleventy", "cmd.cjs");
 		assert.ok(fs.existsSync(cli), "run `yarn install` first: the Eleventy CLI is missing");
 		const json = execFileSync(process.execPath, [cli, "--to=json", "--quiet"], {
