@@ -28,6 +28,7 @@ Match the user's symptom or error here first. Read only the cited section.
 | A component looks wrong only inside another component | The container's bare descendant selector (`rich-text ul`) matches the slotted component and, at equal specificity, wins: the container's CSS is bundled last | `:where()` or `>` in the container's selector | review-checklist §1 |
 | `@x="false"` still turns an option on | `"false"` is a non-empty string, so it is truthy | `x === true \|\| x === '' \|\| x === 'true'` | review-checklist §3 |
 | A hyphenated prop is always `undefined` | Props are read camelCased: `@icon-only` is `iconOnly` | Read the camelCase name | internals §4 |
+| `{{ label }}` appears literally in the output | WebC has no `{{ }}` interpolation | `<span @text="label"></span>` for text, `:attr="label"` for attributes | internals §8 |
 | An unprefixed attribute does nothing | `live` is a public attribute; only `@live` sets the prop | Prefix with `@` or `:@` | internals §4 |
 | Build error `reading 'toString'` | A dynamic `style` or `class` returned `undefined` | Return `''` | review-checklist §5 |
 | An unpassed prop holds a function, not `undefined` | It resolves to a same-named helper (`url`, `slugify`) | `typeof url === 'string'` check, or rename the prop | review-checklist §6 |
@@ -121,7 +122,19 @@ To change a profile, read it, apply the change, and save it back to the same pla
 1. Ask for scope if unclear: one component, or the whole library. Styles from one
    component applying to another only show up when reviewing the whole library.
 2. Go through `references/review-checklist.md` in order. The first sections are the bugs
-   verified in rendered output; the later ones are cost and consistency.
+   verified in rendered output; the later ones are cost and consistency. A question about
+   one bug is still a review: after answering it, scan every file the user shared for:
+   - `<!--` comments that are not `<!---` (they ship to every page)
+   - a kept host tag with no `display` set
+   - a default `<slot>` with fallback text
+   - a container selector like `own-tag ul` with no `:where()` or `>`
+   - boolean props not using the one truthiness rule, all of them, not only the one asked about
+   - a dynamic `style` or `class` that can be `undefined`
+
+   End the reply with a **Scan** list: one line per item above, either the file and line
+   where it occurs or "clear". Quote the line you found; do not mark an item clear without
+   reading every line of the file. Then propose the checklist's regression test for each
+   rule that applies.
 3. For each finding, cite the rule, the file and line, the concrete failing input, and
    the rendered result. Render it (see Rendering a fixture below) and add **verified**.
    When code cannot be run, add **not rendered** instead; never guess the output.
