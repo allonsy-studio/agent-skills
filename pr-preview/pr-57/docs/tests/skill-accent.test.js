@@ -5,14 +5,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { before, describe, test } from "node:test";
 
-import Ajv2020 from "ajv/dist/2020.js";
-
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
-const schema = JSON.parse(fs.readFileSync(path.join(root, "schemas", "skill.schema.json"), "utf8"));
-const validate = new Ajv2020({ allErrors: true }).compile(schema);
 
-/** Site default accent, set in `_includes/foundation.njk`. */
-const SITE_ACCENT = "#d22d6f";
 /** Page backgrounds and the dark-mode button text, from `_includes/styles.css`. */
 const LIGHT_SURFACE = "#fafafa";
 const DARK_SURFACE = "#1a1a1a";
@@ -43,48 +37,43 @@ const contrast = (a, b) => {
 	return (hi + 0.05) / (lo + 0.05);
 };
 
-const skills = fs
+/**
+ * Reads a custom property's hex value from the first `:root` block of a stylesheet.
+ * @param {string} css
+ * @param {string} name
+ * @returns {string | undefined}
+ */
+const rootVar = (css, name) =>
+	css.match(/:root\s*\{([^}]*)\}/)?.[1].match(new RegExp(`${name}:\\s*(#[0-9a-fA-F]{6})\\s*;`))?.[1];
+
+const themes = fs
 	.readdirSync(path.join(root, "skills"), { withFileTypes: true })
-	.filter((entry) => entry.isDirectory() && fs.existsSync(path.join(root, "skills", entry.name, "package.json")))
-	.map((entry) => ({
-		name: entry.name,
-		skill: JSON.parse(fs.readFileSync(path.join(root, "skills", entry.name, "package.json"), "utf8")).skill ?? {},
-	}));
+	.filter((entry) => entry.isDirectory() && fs.existsSync(path.join(root, "skills", entry.name, "theme.css")))
+	.map((entry) => ({ name: entry.name, css: fs.readFileSync(path.join(root, "skills", entry.name, "theme.css"), "utf8") }));
 
-const base = { runtime: "node", category: "Design", triggers: ["x"] };
+describe("skill theme: contrast (WCAG 2.2 AA)", () => {
+	for (const { name, css } of themes) {
+		const light = rootVar(css, "--base");
+		const dark = rootVar(css, "--base-dark");
 
-describe("skill accent: schema", () => {
-	test("accepts a hex accent with its dark-mode partner", () => {
-		assert.ok(validate({ ...base, accent: "#3a7d1e", accentDark: "#8bc34a" }));
-	});
+		test(`${name}: sets --base and --base-dark on :root`, () => {
+			assert.ok(light, "theme.css needs --base as a 6-digit hex");
+			assert.ok(dark, "theme.css needs --base-dark as a 6-digit hex");
+		});
 
-	test("rejects anything but a 6-digit hex", () => {
-		for (const accent of ["green", "#3a7", "rgb(0,0,0)", "#3a7d1e; color: red"]) {
-			assert.ok(!validate({ ...base, accent, accentDark: "#8bc34a" }), `accepted ${accent}`);
-		}
-	});
-
-	test("requires both colors together", () => {
-		assert.ok(!validate({ ...base, accent: "#3a7d1e" }), "accent without accentDark");
-		assert.ok(!validate({ ...base, accentDark: "#8bc34a" }), "accentDark without accent");
-	});
-});
-
-describe("skill accent: contrast (WCAG 2.2 AA)", () => {
-	for (const { name, skill } of skills.filter((s) => s.skill.accent)) {
 		test(`${name}: light-mode accent is readable as text and under white button text`, () => {
-			assert.ok(contrast(skill.accent, LIGHT_SURFACE) >= AA, `${skill.accent} on ${LIGHT_SURFACE}`);
-			assert.ok(contrast("#ffffff", skill.accent) >= AA, `white on ${skill.accent}`);
+			assert.ok(contrast(light, LIGHT_SURFACE) >= AA, `${light} on ${LIGHT_SURFACE}`);
+			assert.ok(contrast("#ffffff", light) >= AA, `white on ${light}`);
 		});
 
 		test(`${name}: dark-mode accent is readable as text and under the dark button text`, () => {
-			assert.ok(contrast(skill.accentDark, DARK_SURFACE) >= AA, `${skill.accentDark} on ${DARK_SURFACE}`);
-			assert.ok(contrast(DARK_INVERT_TEXT, skill.accentDark) >= AA, `${DARK_INVERT_TEXT} on ${skill.accentDark}`);
+			assert.ok(contrast(dark, DARK_SURFACE) >= AA, `${dark} on ${DARK_SURFACE}`);
+			assert.ok(contrast(DARK_INVERT_TEXT, dark) >= AA, `${DARK_INVERT_TEXT} on ${dark}`);
 		});
 	}
 });
 
-describe("skill accent: rendered pages", () => {
+describe("skill theme: rendered pages", () => {
 	/** @type {Array<{ url: string, content: string }>} */
 	let pages = [];
 
@@ -100,17 +89,11 @@ describe("skill accent: rendered pages", () => {
 		pages = JSON.parse(json.slice(json.indexOf("["))).filter((page) => page.url.startsWith("/skills/"));
 	});
 
-	for (const { name, skill } of skills) {
-		test(`${name}: page uses ${skill.accent ? "its own accent" : "the site accent"}`, () => {
+	for (const { name, css } of themes) {
+		test(`${name}: page includes its theme.css`, () => {
 			const page = pages.find((p) => p.url === `/skills/${name}/`);
 			assert.ok(page, `no page for ${name}`);
-			assert.match(page.content, new RegExp(`--base: ${skill.accent ?? SITE_ACCENT};`));
-			assert.match(page.content, new RegExp(`name="theme-color" content="${skill.accent ?? SITE_ACCENT}"`));
-			if (skill.accentDark) {
-				assert.match(page.content, new RegExp(`--base-dark: ${skill.accentDark};`));
-			} else {
-				assert.doesNotMatch(page.content, /--base-dark:/);
-			}
+			assert.ok(page.content.includes(css.trim()), "theme.css is missing from the page");
 		});
 	}
 });
