@@ -1128,7 +1128,7 @@ valid options. A saved <strong>profile</strong> records the option a user or pro
 </tr>
 <tr>
 <td>A component looks wrong only inside another component</td>
-<td>The container’s bare descendant selector (<code>rich-text ul</code>) matches the slotted component; bundle order picks the winner</td>
+<td>The container’s bare descendant selector (<code>rich-text ul</code>) matches the slotted component and, at equal specificity, wins: the container’s CSS is bundled last</td>
 <td><code>:where()</code> or <code>&gt;</code> in the container’s selector</td>
 <td>review-checklist §1</td>
 </tr>
