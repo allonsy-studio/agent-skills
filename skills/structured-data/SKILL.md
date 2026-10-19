@@ -1,6 +1,8 @@
 ---
 name: structured-data
 description: Inject, generate, audit, or fix schema.org structured data (JSON-LD script blocks, or Microdata itemscope/itemtype/itemprop attributes) in HTML, templates, React/Vue/Web Components, or static-site pipelines (Eleventy, Astro, Hugo). Load this before answering any structured-data question: its bundled validator catches value errors (durations, ingredient lists, missing required properties) that reading the markup misses. Use whenever the user asks to add schema.org markup, structured data, rich snippets, or rich results; pastes a JSON-LD block or itemprop markup and asks whether it is valid, broken, or correct; asks to audit, validate, or fix structured data; or asks to choose between Microdata and JSON-LD. Injection runs through the build-time or server-side scripts bundled here, never client-side JavaScript, since crawlers may index a page before hydration runs. Do not trigger for Open Graph or Twitter card meta tags, JSON Schema, or SEO advice with no schema.org markup involved.
+metadata:
+  recommended-model: claude-haiku-5-5
 ---
 
 # Structured Data (Microdata + JSON-LD)

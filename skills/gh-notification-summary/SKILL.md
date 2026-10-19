@@ -1,6 +1,8 @@
 ---
 name: gh-notification-summary
 description: "Review, summarize, and manage GitHub notifications. Use this skill whenever the user mentions GitHub notifications, unread GitHub activity, open issues on their repos, or wants to catch up on project discussions — even if they don't use the word 'notifications'. Also trigger for /unsub <number>, 'mark all done', 'clear my GitHub inbox', or any request to triage, dismiss, or act on GitHub notifications."
+metadata:
+  recommended-model: claude-haiku-5-5
 ---
 
 # GitHub Notification Reviewer

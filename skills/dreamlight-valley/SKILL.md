@@ -1,6 +1,8 @@
 ---
 name: dreamlight-valley
 description: Identify a Disney Dreamlight Valley recipe from a name, photo, or screenshot and return its ingredients, recommend recipes from the ingredients on hand (optimizing energy or Star Coin profit), or build a gather list from a storage screenshot. Use this whenever the user shows a DDV recipe, cookbook, or storage screenshot, names a Dreamlight Valley dish, or asks "what ingredients do I need for <dish>", "what can I cook with <ingredients>", "what should I cook", "most profitable thing to cook", or "best recipe for energy", or mentions Dreamlight Valley cooking, meals, or selling food for coins. A bare "what should I cook?" about a stockpile of ingredients ("a ton of tomatoes", "some spice") is a Dreamlight Valley question: use this skill. Do not trigger for real-world meal planning ("what can I make for dinner tonight"), recipes the user wants invented, or other games. Covers base game, Eternity Isle, Storybook Vale, and Wishblossom Mountains.
+metadata:
+  recommended-model: claude-sonnet-5-5
 ---
 
 # Dreamlight Valley Cooking, Gathering, and Inventory Management

@@ -9,6 +9,7 @@ import {
 	skillGitHubBases,
 	skillTreeText,
 } from "./lib/skill-metadata.js";
+import { parseFrontmatter } from "../scripts/parse-skills.js";
 
 /**
  * Shared markdown renderer for skill `SKILL.md` bodies. Relative links and
@@ -97,6 +98,7 @@ export default async function (configData) {
 					hasTests,
 					hasEvals,
 					treeHtml,
+					recommendedModel: parseFrontmatter(skillMd).metadata?.["recommended-model"] ?? null,
 					overviewHtml: renderSkillOverview(md, skillMd, { blobBase, rawBase }),
 				};
 			})
