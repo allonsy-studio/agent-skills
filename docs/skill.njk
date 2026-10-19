@@ -9,9 +9,9 @@ pagination:
   alias: skill
 permalink: "skills/{{ skill.name }}/index.html"
 eleventyComputed:
-  title: "{{ skill.name }}"
-  tagline_short: "{{ skill.description | truncate(60, true) }}"
-  description: "{{ skill.description }}"
+  title: "{{ skill.name | safe }}"
+  tagline_short: "{{ skill.description | truncate(60, true) | safe }}"
+  description: "{{ skill.description | safe }}"
 ---
 
 {% css %}{% include "./skill.css" %}{% endcss %}
