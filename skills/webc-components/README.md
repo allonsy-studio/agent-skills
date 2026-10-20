@@ -1,9 +1,10 @@
 # @allons-y/skill-webc-components
 
-Author and review WebC (`@11ty/webc`) components. The skill explains how WebC 0.11.x
-compiles a component, from its source code, so an agent can predict the rendered HTML
-and find the bugs that compile without errors: empty slot fallbacks, props that
-resolve to the wrong value, and styles that leak between components.
+Author and review WebC (`@11ty/webc`) components, in Eleventy or any Node server or
+build. The skill explains how WebC 0.11.x compiles a component, from its source code, so
+an agent can predict the rendered HTML and find the bugs that compile without errors:
+empty slot fallbacks, props that resolve to the wrong value, and styles that leak
+between components.
 
 See [`SKILL.md`](./SKILL.md) for the instructions the agent reads.
 
@@ -14,6 +15,7 @@ See [`SKILL.md`](./SKILL.md) for the instructions the agent reads.
 | [`SKILL.md`](./SKILL.md) | A symptom lookup table, workflows for writing and reviewing components, profile setup, and a render recipe |
 | [`references/webc-internals.md`](./references/webc-internals.md) | How WebC compiles a component, with source citations |
 | [`references/review-checklist.md`](./references/review-checklist.md) | Review rules, each with the behaviour, how to find it, the fix, and a test |
+| [`references/hosts.md`](./references/hosts.md) | What changes in Express, Koa, Fastify, Vite, and custom servers or builds |
 | [`references/conventions.md`](./references/conventions.md) | Universal practices, decision points with options, and three presets |
 | [`templates/profile.md`](./templates/profile.md) | The format for a saved profile |
 

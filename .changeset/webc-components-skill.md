@@ -13,6 +13,7 @@ What it does:
 - Reviews a component or a whole library against a checklist of rules drawn from a real component library review, reporting each finding with the input that breaks it, the HTML it renders, the fix, and a regression test
 - Explains surprises: why a prop resolves to an Eleventy filter, why slotted content cannot see the outer component's props, why one component's styles override another's only on some pages
 - Keeps WebC facts and style choices apart: universal practices apply everywhere, while choices with more than one valid answer (how styles are scoped, where docs live, how behavior attaches) are yours to make
+- Works wherever WebC runs: Eleventy, Express, Koa, Fastify, Vite, or a custom Node server or build, with what each host changes (setup timing, data, helpers, bundling) and a render function that bundles correctly
 - Remembers how your team builds components: pick a preset (`site`, `library`, or `class-based`) or answer a few questions, add house rules of your own, and save the result to memory or as a file next to the skill, so every component and review follows it
 
 Say anything like "write a WebC component", "review this .webc file", "why is my slot fallback empty", "audit our WebC components", or "set up my WebC conventions", or paste a `.webc` file.
