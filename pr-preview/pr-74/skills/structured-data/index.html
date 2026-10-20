@@ -108,6 +108,20 @@ body {
 	-webkit-font-smoothing: subpixel-antialiased;
 }
 
+/* Accent glow behind every page, fixed to the viewport so it stays put while scrolling. */
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	background-image: radial-gradient(
+		75% 28rem at 20% 0%,
+		var(--theme--surface--color--accent),
+		transparent 70%
+	);
+}
+
 [id] {
 	scroll-margin-block-start: 1.5rlh;
 }
@@ -752,19 +766,6 @@ body > footer {
 
 		.skill-hero {
 	padding-block: 2.5rem 2.25rem;
-	border-block-end: 1px solid var(--theme--ui--color--subtle);
-
-	/* Soft glow that fades delicately outward, matching the home page header
-	   (docs/styles.css). Anchored toward the start edge so the glow sits behind
-	   this hero's left-aligned content. The hero is full-bleed (the container
-	   wraps only the content), so the glow's strong side meets the viewport edge
-	   and the fade completes in open space — painted on the 1200px container it
-	   was clipped mid-strength, leaving a hard vertical line on wide screens. */
-	background-image: radial-gradient(
-		75% 85% at 20% 0%,
-		var(--theme--surface--color--accent),
-		transparent 70%
-	);
 
 	.container > * + * {
 		margin-block-start: 1.25rem;
@@ -1116,7 +1117,7 @@ body > footer {
 				</header>
 				<div class="prose">
 					<h1>Structured Data (Microdata + JSON-LD)</h1>
-<p>Adds <a href="http://schema.org">schema.org</a> structured data to markup so search engines can extract rich results (product prices, ratings, recipes, events, etc.) from a page. Covers two output formats — HTML Microdata and JSON-LD — and picks between them based on how the target project is built, not by default preference.</p>
+<p>Adds <a href="http://schema.org">schema.org</a> structured data to markup so search engines can extract rich results (product prices, ratings, recipes, events, etc.) from a page. Covers two output formats, HTML Microdata and JSON-LD, and picks between them based on how the target project is built, not by default preference.</p>
 <p>Read this file fully before starting. It routes you to the right reference and script rather than repeating their contents here.</p>
 <p><strong>Flow at a glance:</strong> pick technique (Step 1) → pick format (2) → load the schema-type reference (3) → run the script, review the diff (4) → preview what a parser extracts (5) → validate (6) → offer regression tests for component/11ty targets (7). Steps 5–7 are diagnostics and follow-ups; 1–4 are the core injection path.</p>
 <h2>Step 1: Pick the injection technique</h2>
@@ -1144,7 +1145,7 @@ body > footer {
 <tr>
 <td>Existing/bulk HTML files, no build pipeline</td>
 <td><code>scripts/inject_microdata.js</code> or <code>scripts/generate_json_ld.js</code>, driven by a selector-map config</td>
-<td>Claude never has to read/rewrite full file contents in-context — only the small config and a diff</td>
+<td>Claude never has to read/rewrite full file contents in-context; only the small config and a diff is needed</td>
 </tr>
 <tr>
 <td>A single one-off page</td>
@@ -1154,13 +1155,13 @@ body > footer {
 </tbody>
 </table>
 </div>
-<p><strong>Web Component caveat:</strong> if the component’s structured data lives inside a shadow root, only put it there via <strong>Declarative Shadow DOM</strong> (<code>&lt;template shadowrootmode=&quot;open&quot;&gt;</code>, rendered server-side so the markup is present in the initial HTML response) — never a shadow root attached at runtime via <code>attachShadow()</code>, since that content doesn’t exist until client-side JS runs, and current guidance is that even where it might get picked up by a fully-rendering crawler, it shouldn’t be relied on across tools. For anything you actually want indexed reliably, prefer surfacing the structured data in the light DOM or a page-level <code>&lt;head&gt;</code> JSON-LD block rather than burying it in a shadow tree at all — this applies even to non-declarative Microdata inside a component template.</p>
+<p><strong>Web Component caveat:</strong> if the component’s structured data lives inside a shadow root, only put it there via <strong>Declarative Shadow DOM</strong> (<code>&lt;template shadowrootmode=&quot;open&quot;&gt;</code>, rendered server-side so the markup is present in the initial HTML response). Never a shadow root attached at runtime via <code>attachShadow()</code>, since that content doesn’t exist until client-side JS runs, and current guidance is that even where it might get picked up by a fully-rendering crawler, it shouldn’t be relied on across tools. For anything you actually want indexed reliably, prefer surfacing the structured data in the light DOM or a page-level <code>&lt;head&gt;</code> JSON-LD block rather than burying it in a shadow tree at all. This applies even to non-declarative Microdata inside a component template.</p>
 <p>Whichever technique you use, structured data is injected at <strong>build time or server-render time only</strong>. Never add it via a client-side script (<code>element.setAttribute('itemprop', ...)</code> after page load, or JS that writes the JSON-LD block into the DOM post-hydration). Search crawlers frequently index a page before JS execution completes, so client-injected structured data is unreliable and sometimes invisible to crawlers entirely. If the only markup you have access to is rendered client-side with no SSR/SSG path, say so and flag the limitation rather than injecting into the client bundle.</p>
-<h2>Step 2: Pick the format — Microdata vs JSON-LD</h2>
+<h2>Step 2: Pick the format (Microdata or JSON-LD)</h2>
 <p>Don’t default to one. Read <code>references/format-decision.md</code> for the full decision guide with spec citations; the short version:</p>
 <ul>
 <li>
-<p><strong>Microdata</strong> (attributes on the visible elements) keeps structured data physically attached to what the user sees, so it can’t drift from the rendered content — good when you control the template tightly and want that guarantee (e.g., a design-system component where the visible price and the <code>itemprop=&quot;price&quot;</code> value are the literal same DOM node).</p>
+<p><strong>Microdata</strong> (attributes on the visible elements) keeps structured data physically attached to what the user sees, so it can’t drift from the rendered content. It fits well when you control the template tightly and want that guarantee (e.g., a design-system component where the visible price and the <code>itemprop=&quot;price&quot;</code> value are the literal same DOM node).</p>
 </li>
 <li>
 <p><strong>JSON-LD</strong> (a separate <code>&lt;script type=&quot;application/ld+json&quot;&gt;</code> block) decouples the data from the DOM, which is easier to maintain across template/CMS changes but can silently drift out of sync with what’s rendered if nobody keeps them aligned.</p>
@@ -1169,12 +1170,12 @@ body > footer {
 <p><strong>Template engines and static-site pipelines</strong> (Eleventy, Nunjucks, PHP templates, a CMS): JSON-LD generated at build or render time from the same data that renders the page. One source of truth closes the drift risk.</p>
 </li>
 </ul>
-<p>Both are valid, current schema.org-supported formats. Pick per task using that tradeoff — don’t ask the user to pick unless the reference’s guidance is genuinely ambiguous for their case.</p>
+<p>Both are valid, current schema.org-supported formats. Pick per task using that tradeoff. Don’t ask the user to pick unless the reference’s guidance is genuinely ambiguous for their case.</p>
 <h2>Step 3: Load only the relevant schema type reference</h2>
-<p>Under <code>references/schema-types/</code>, one file per common <a href="http://schema.org">schema.org</a> type: <code>article.md</code>, <code>product.md</code>, <code>person.md</code>, <code>organization.md</code>, <code>recipe.md</code>, <code>event.md</code>. Read only the one(s) the task needs — don’t load all of them into context. Each file lists required vs. recommended properties and gives both a Microdata and a JSON-LD example.</p>
-<p>If the task needs a <a href="http://schema.org">schema.org</a> type not covered by one of these files, look it up directly at <code>https://schema.org/&lt;TypeName&gt;</code> rather than guessing at property names from memory — <a href="http://schema.org">schema.org</a>’s vocabulary is versioned and property sets do get revised.</p>
+<p>Under <code>references/schema-types/</code>, one file per common <a href="http://schema.org">schema.org</a> type: <code>article.md</code>, <code>product.md</code>, <code>person.md</code>, <code>organization.md</code>, <code>recipe.md</code>, <code>event.md</code>. Read only the one(s) the task needs. Don’t load all of them into context. Each file lists required vs. recommended properties and gives both a Microdata and a JSON-LD example.</p>
+<p>If the task needs a <a href="http://schema.org">schema.org</a> type not covered by one of these files, look it up directly at <code>https://schema.org/&lt;TypeName&gt;</code> rather than guessing at property names from memory; <a href="http://schema.org">schema.org</a>’s vocabulary is versioned and property sets do get revised.</p>
 <h2>Step 4: Run the script and produce a diff</h2>
-<p>Both <code>scripts/inject_microdata.js</code> and <code>scripts/generate_json_ld.js</code> take the same config format (<code>assets/selector-map-template.json</code> — copy and fill in per project) so switching formats later doesn’t mean re-authoring the mapping. Both scripts <strong>never overwrite files directly</strong> — they print a unified diff to stdout for review. Apply the diff yourself with <code>patch</code> (or by hand via <code>str_replace</code>) only after the user has looked at it. When you edit a template or component by hand instead, show that change as a unified diff too, and say in one line why the chosen format fits the target. This keeps the person in the loop on exactly what’s being added to their markup, which matters more here than most edits since structured data is publicly visible to any bot that requests the page.</p>
+<p>Both <code>scripts/inject_microdata.js</code> and <code>scripts/generate_json_ld.js</code> take the same config format (<code>assets/selector-map-template.json</code>: copy and fill in per project) so switching formats later doesn’t mean re-authoring the mapping. Both scripts <strong>never overwrite files directly</strong>. They print a unified diff to stdout for review. Apply the diff yourself with <code>patch</code> (or by hand via <code>str_replace</code>) only after the user has looked at it. When you edit a template or component by hand instead, show that change as a unified diff too, and say in one line why the chosen format fits the target. This keeps the person in the loop on exactly what’s being added to their markup, which matters more here than most edits since structured data is publicly visible to any bot that requests the page.</p>
 <p>First install the two runtime dependencies (<code>package.json</code> in this skill’s root lists them):</p>
 <pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span>
 </code></pre>
@@ -1185,11 +1186,11 @@ body > footer {
 <p><strong>Hand-authoring JSON-LD instead of generating it?</strong> When you’re writing a
 JSON-LD block by hand in a TypeScript project (a one-off page, or a component
 that emits its own <code>&lt;script&gt;</code>), type-check it against the <a href="http://schema.org">schema.org</a> vocabulary
-with Google’s <code>schema-dts</code> — it catches wrong property names and value shapes
+with Google’s <code>schema-dts</code>. It catches wrong property names and value shapes
 at compile time. See <code>references/typed-authoring.md</code>. This is authoring-time
 help only; generated output is still validated at runtime in Step 6.</p>
 <h2>Step 5: Preview what a parser extracts</h2>
-<p>Validation (Step 6) answers <em>“is the markup structurally correct?”</em> — but the more common failure is markup that’s valid yet says the <strong>wrong thing</strong>: a stale hidden <code>&lt;meta&gt;</code>, a currency symbol leaking into a price, or a JSON-LD block that drifted from the visible content. To eyeball the actual <strong>values</strong> a machine reads — and to catch Microdata/JSON-LD disagreement — run the extraction preview:</p>
+<p>Validation (Step 6) answers <em>“is the markup structurally correct?”</em> But the more common failure is markup that’s valid yet says the <strong>wrong thing</strong>: a stale hidden <code>&lt;meta&gt;</code>, a currency symbol leaking into a price, or a JSON-LD block that drifted from the visible content. To eyeball the actual <strong>values</strong> a machine reads, and to catch Microdata/JSON-LD disagreement, run the extraction preview:</p>
 <p><strong>When to run it (don’t deliberate):</strong></p>
 <ul>
 <li><strong>Run it automatically, without asking,</strong> whenever the page carries <strong>both</strong> Microdata and JSON-LD (the drift check is the whole point), or <strong>immediately after generating JSON-LD</strong> from existing markup.</li>
@@ -1201,17 +1202,17 @@ help only; generated output is still validated at runtime in Step 6.</p>
 <span class="token function">node</span> scripts/preview_extraction.js <span class="token parameter variable">--target</span> path/to/page.html <span class="token parameter variable">--base</span> https://your.site/  <span class="token comment"># resolve relative URLs</span>
 <span class="token function">node</span> scripts/preview_extraction.js <span class="token parameter variable">--target</span> path/to/page.html <span class="token parameter variable">--json</span>                     <span class="token comment"># machine-readable</span>
 </code></pre>
-<p>It prints the extracted Microdata and JSON-LD items and, when a page carries both, a <strong>drift report</strong> flagging where they disagree — the exact risk <code>references/format-decision.md</code> warns about. This is a parser’s-eye view for the injection loop, <strong>not</strong> a crawler simulation: it doesn’t run JS, filter by rich-result requirements, or judge eligibility. Frame it that way to the user and keep deferring eligibility to Google’s Rich Results Test. Details and the parser-vs-crawler boundary are in <code>references/extraction-preview.md</code>. Reach for this especially after generating JSON-LD, or whenever a page mixes both formats.</p>
+<p>It prints the extracted Microdata and JSON-LD items and, when a page carries both, a <strong>drift report</strong> flagging where they disagree, the exact risk <code>references/format-decision.md</code> warns about. This is a parser’s-eye view for the injection loop, <strong>not</strong> a crawler simulation: it doesn’t run JS, filter by rich-result requirements, or judge eligibility. Frame it that way to the user and keep deferring eligibility to Google’s Rich Results Test. Details and the parser-vs-crawler boundary are in <code>references/extraction-preview.md</code>. Reach for this especially after generating JSON-LD, or whenever a page mixes both formats.</p>
 <h2>Step 6: Validate</h2>
 <p>Run <code>scripts/validate_structured_data.js</code> against the result before considering the task done, and before reporting on existing markup in an audit. When the markup was pasted into the chat rather than given as a file, write it to a temporary <code>.html</code> file and validate that. Report the script’s errors as errors and its warnings as warnings; do not move a finding between the two. It checks:</p>
 <ul>
-<li>Microdata: every <code>itemprop</code> resolves to an ancestor <code>itemscope</code> (or a valid <code>itemref</code>), no orphaned properties — this mirrors the tree-construction algorithm in the spec, not an approximation of it.</li>
-<li>JSON-LD: runs the block through the <strong><code>jsonld</code> reference processor</strong> (Digital Bazaar’s <code>jsonld.js</code> — the W3C JSON-LD spec authors’ implementation) to catch structural JSON-LD errors, offline; then checks that required properties are present for the declared <code>@type</code>, that durations (<code>cookTime</code>, <code>prepTime</code>, <code>totalTime</code>, <code>duration</code>) are ISO 8601, and that a Recipe’s <code>recipeIngredient</code> is an array. Note the required-property table is <strong>Google Search’s rich-results requirements, not <a href="http://schema.org">schema.org</a> vocabulary</strong> — <a href="http://schema.org">schema.org</a> has no “required” concept, and no npm package authoritatively publishes Google’s list (see the provenance note in <code>scripts/validate_structured_data.js</code>).</li>
+<li>Microdata: every <code>itemprop</code> resolves to an ancestor <code>itemscope</code> (or a valid <code>itemref</code>), no orphaned properties. This mirrors the tree-construction algorithm in the spec, not an approximation of it.</li>
+<li>JSON-LD: runs the block through the <strong><code>jsonld</code> reference processor</strong> (Digital Bazaar’s <code>jsonld.js</code>, the W3C JSON-LD spec authors’ implementation) to catch structural JSON-LD errors, offline. Then checks that required properties are present for the declared <code>@type</code>, that durations (<code>cookTime</code>, <code>prepTime</code>, <code>totalTime</code>, <code>duration</code>) are ISO 8601, and that a Recipe’s <code>recipeIngredient</code> is an array. Note the required-property table is <strong>Google Search’s rich-results requirements, not <a href="http://schema.org">schema.org</a> vocabulary</strong>. <a href="http://Schema.org">Schema.org</a> has no “required” concept, and no npm package authoritatively publishes Google’s list (see the provenance note in <code>scripts/validate_structured_data.js</code>).</li>
 </ul>
-<p>This is a structural check, not a substitute for Google’s Rich Results Test — mention that tool to the user for final confirmation of search-result eligibility, since that also reflects current indexing requirements that shift independently of the <a href="http://schema.org">schema.org</a> vocabulary itself.</p>
+<p>This is a structural check, not a substitute for Google’s Rich Results Test. Mention that tool to the user for final confirmation of search-result eligibility, since that also reflects current indexing requirements that shift independently of the <a href="http://schema.org">schema.org</a> vocabulary itself.</p>
 <h2>Step 7: Offer regression tests (component libraries &amp; 11ty projects only)</h2>
-<p>Step 6 validates the markup <em>once</em>. But structured data silently rots — a later template edit, a price refactor, or a component change can invalidate markup that passed, and nobody notices until a rich result quietly disappears. For the two targets where markup is <strong>regenerated on every build</strong> — design-system components and static-site pipelines (11ty, Astro, Hugo, etc.) — offer to wire validation into the project’s own test suite so every future build re-checks it.</p>
-<p>After the markup is added and Step 6 passes, <strong>ask the consumer</strong>: <em>“Want me to add structured-data validation tests to your test suite, so this stays valid on every build?”</em> Only prompt for component-library or static-site targets. Skip it for a single one-off page — nothing regenerates it, so there’s nothing to regress.</p>
+<p>Step 6 validates the markup <em>once</em>. But structured data silently rots. A later template edit, a price refactor, or a component change can invalidate markup that passed, and nobody notices until a rich result quietly disappears. For the two targets where markup is <strong>regenerated on every build</strong>: design-system components and static-site pipelines (11ty, Astro, Hugo, etc.). Offer to wire validation into the project’s own test suite so every future build re-checks it.</p>
+<p>After the markup is added and Step 6 passes, <strong>ask the consumer</strong>: <em>“Want me to add structured-data validation tests to your test suite, so this stays valid on every build?”</em> Only prompt for component-library or static-site targets. Skip it for a single one-off page. Nothing regenerates it, so there’s nothing to regress.</p>
 <p>If they say yes, run <code>scripts/scaffold_validation_test.js</code>, choosing <code>--type</code> from the target and <code>--runner</code> from the project’s existing test runner:</p>
 <pre class="language-bash"><code class="language-bash"><span class="token comment"># static-site pipeline: validate the built HTML output (run after the build)</span>
 <span class="token function">node</span> scripts/scaffold_validation_test.js <span class="token parameter variable">--type</span> eleventy <span class="token parameter variable">--runner</span> <span class="token function">node</span> <span class="token parameter variable">--out</span> tests --site-dir _site
@@ -1219,7 +1220,7 @@ help only; generated output is still validated at runtime in Step 6.</p>
 <span class="token comment"># component library: validate each component's rendered output</span>
 <span class="token function">node</span> scripts/scaffold_validation_test.js <span class="token parameter variable">--type</span> component <span class="token parameter variable">--runner</span> vitest <span class="token parameter variable">--out</span> tests --render-module <span class="token punctuation">..</span>/src/render.js
 </code></pre>
-<p>Like the other scripts, it <strong>writes nothing</strong> — it prints three files for review (a vendored validation core, a throwing assert helper, and a runner-appropriate test), which you then add to the project after the consumer looks them over. The generated tests depend only on <code>cheerio</code> and <code>jsonld</code> as devDependencies — no dependency on this skill staying installed. Full walkthrough, runner variants, and CI wiring are in <code>references/regression-tests.md</code>.</p>
+<p>Like the other scripts, it <strong>writes nothing</strong>: it prints three files for review (a vendored validation core, a throwing assert helper, and a runner-appropriate test), which you then add to the project after the consumer looks them over. The generated tests depend only on <code>cheerio</code> and <code>jsonld</code> as devDependencies, with no dependency on this skill staying installed. Full walkthrough, runner variants, and CI wiring are in <code>references/regression-tests.md</code>.</p>
 <h2>Spec references</h2>
 <ul>
 <li>WHATWG HTML Standard, §5 Microdata (the itemscope/itemprop/itemtype/itemid/itemref syntax): <a href="https://html.spec.whatwg.org/multipage/microdata.html">https://html.spec.whatwg.org/multipage/microdata.html</a></li>

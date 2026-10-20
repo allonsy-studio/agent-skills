@@ -108,6 +108,20 @@ body {
 	-webkit-font-smoothing: subpixel-antialiased;
 }
 
+/* Accent glow behind every page, fixed to the viewport so it stays put while scrolling. */
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	background-image: radial-gradient(
+		75% 28rem at 20% 0%,
+		var(--theme--surface--color--accent),
+		transparent 70%
+	);
+}
+
 [id] {
 	scroll-margin-block-start: 1.5rlh;
 }
