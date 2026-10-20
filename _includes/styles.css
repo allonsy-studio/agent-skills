@@ -382,7 +382,11 @@ li {
 
 		&:is(:hover, :focus-visible) {
 			color: var(--theme--text--Color--invert);
-			background: color-mix(in oklch, light-dark(var(--base), var(--theme--accent--dark)) 88%, black);
+			background: color-mix(
+				in oklch,
+				light-dark(var(--base), var(--theme--accent--dark)) 88%,
+				light-dark(black, white)
+			);
 		}
 	}
 }
