@@ -4,9 +4,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, test } from "node:test";
 
-import { parseFrontmatter } from "../../scripts/parse-skills.js";
+import { parseFrontmatter } from "../scripts/parse-skills.js";
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const skillsDir = path.join(root, "skills");
 
 const skillNames = fs
