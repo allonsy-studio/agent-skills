@@ -1,3 +1,7 @@
+:root {
+	--base-dark: #f08fb2;
+}
+
 .skill-hero {
 	padding-block: 2.5rem 2.25rem;
 	border-block-end: 1px solid var(--theme--ui--color--subtle);

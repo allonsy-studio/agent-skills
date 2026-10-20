@@ -1,3 +1,7 @@
+:root {
+	--base-dark: #f08fb2;
+}
+
 body > header {
 	--justify-content: center;
 
