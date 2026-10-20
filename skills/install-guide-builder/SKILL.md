@@ -32,7 +32,7 @@ that property no matter what else you change.
 ## The four inputs
 
 Ask for all four. Use `AskUserQuestion` when the interface supports it. Never guess at
-the audience — it changes more of the document than anything else.
+the audience. It changes more of the document than anything else.
 
 ### 1. Tools
 
@@ -75,7 +75,7 @@ that clones, and a version manager comes before the runtime it manages.
 ### 2. Environments
 
 Default to **macOS, Windows, and Linux** unless told otherwise. Confirm rather than
-assume — a Windows-only shop does not want two thirds of the page taken up by columns
+assume. A Windows-only shop does not want two thirds of the page taken up by columns
 they will never read.
 
 For Linux, ask which family (Debian/Ubuntu, Fedora/RHEL, Arch). Package names and
@@ -132,7 +132,7 @@ that silently ruin a printed guide.
 
 Rendering is delegated to whatever is installed. Prefer **WeasyPrint**
 (`pipx install weasyprint`): the stylesheet uses CSS margin boxes for the running footer
-and page numbers, and headless Chrome — the fallback — drops them silently. If no
+and page numbers, and headless Chrome, the fallback, drops them silently. If no
 renderer is present, pass `--html-only`: the assembled HTML and the full verification
 report still come out, and the reader can print from a browser.
 
@@ -153,7 +153,7 @@ produced a broken guide at least once.
    `build-guide.js` checks this and names the offenders. Move them to full width or
    send the reader to the vendor's page to copy from.
 2. **Every install step ends with a check.** A "Done when:" line naming observable
-   output. Not "it should work" — the actual string that appears.
+   output. Not "it should work"; the actual string that appears.
 3. **Every troubleshooting entry is titled with the error text**, not the topic. Readers
    search for what is on their screen.
 4. **No unresolved placeholders** unless you flagged them explicitly in your handoff
@@ -168,16 +168,16 @@ produced a broken guide at least once.
 
 ## Reference files
 
-- `references/tool-catalog.md` — per-tool, per-OS steps, verify commands, known traps.
+- `references/tool-catalog.md`: per-tool, per-OS steps, verify commands, known traps.
   Read the entries for the selected tools only.
-- `references/dependency-rules.md` — the ordering graph and how to resolve it.
-- `references/house-style.md` — voice, structure, punctuation rules, HTML classes.
-- `references/version-policy.md` — how old is too old, and where to link instead.
-- `references/web-guide.md` — the interactive checkbox page.
+- `references/dependency-rules.md`: the ordering graph and how to resolve it.
+- `references/house-style.md`: voice, structure, punctuation rules, HTML classes.
+- `references/version-policy.md`: how old is too old, and where to link instead.
+- `references/web-guide.md`: the interactive checkbox page.
 
 ## Scripts
 
-- `scripts/order-tools.js` — resolve a selection into install order. `--list` prints the
+- `scripts/order-tools.js`: resolve a selection into install order. `--list` prints the
   known tool keys.
-- `scripts/build-guide.js` — assemble the PDF and print the verification report.
+- `scripts/build-guide.js`: assemble the PDF and print the verification report.
   `--html-only` runs the checks with no renderer installed.

@@ -34,27 +34,27 @@ Ask the user which applies if it's not obvious from their message.
 The user describes a component they want to create. Walk them through each
 layer in order:
 
-1. **Identify the pattern** — match their description to a known component
+1. **Identify the pattern**: match their description to a known component
    category (see [`references/component-taxonomy.md`](./references/component-taxonomy.md)).
    If it's a composite or novel pattern, identify which primitives it combines.
-2. **Name it** — propose a name following the conventions in
+2. **Name it**: propose a name following the conventions in
    [`references/naming-conventions.md`](./references/naming-conventions.md).
    Offer 2–3 candidates with trade-off notes.
-3. **Design the API** — define the component's public interface using the
+3. **Design the API**: define the component's public interface using the
    framework in [`references/api-design.md`](./references/api-design.md).
    Cover attributes/props, slots or content areas, events, CSS custom
    properties for theming, and design tokens.
-4. **Specify accessibility** — read
+4. **Specify accessibility**: read
    [`references/accessibility-patterns.md`](./references/accessibility-patterns.md)
    for the relevant ARIA pattern. Provide WCAG 2.2 AA requirements as
    baseline ("must"), AAA recommendations as stretch goals ("should
    consider"), and full keyboard interaction specs.
-5. **Consider typography, iconography, and i18n** — if the component
+5. **Consider typography, iconography, and i18n**: if the component
    contains text, icons, or will be used in multilingual contexts (assume
    it will), consult [`references/typography.md`](./references/typography.md),
    [`references/iconography.md`](./references/iconography.md), and
    [`references/i18n.md`](./references/i18n.md).
-6. **Write example code** — provide both a vanilla HTML/CSS/JS
+6. **Write example code**: provide both a vanilla HTML/CSS/JS
    implementation and a Web Component implementation showing the API in
    action. Code should be production-quality, not pseudocode.
 
@@ -66,8 +66,8 @@ or design-systems engineer responsible for defining and maintaining tokens
 (not just consuming them), ask whether they'd like guidance on token
 naming, tier structure, theming, governance, and lifecycle. If yes, read
 [`references/design-tokens.md`](./references/design-tokens.md). That
-reference covers the full scope of managing tokens at organizational scale
-— a different audience and decision set than component API design.
+reference covers the full scope of managing tokens at organizational scale.
+It serves a different audience and decision set than component API design.
 
 ### 2. Review an existing component or library
 
@@ -76,13 +76,13 @@ description of their library). Before diving in, ask:
 
 > What level of review would you like?
 >
-> - **Full audit** — naming, API surface, accessibility, keyboard
+> - **Full audit**: naming, API surface, accessibility, keyboard
 >   interaction, screen reader behavior, design tokens, and suggested
 >   refactors with code. I'll create a memory document to track the
 >   library's patterns and update it as we work.
-> - **Naming + API + accessibility** — the three core pillars, without
+> - **Naming + API + accessibility**: the three core pillars, without
 >   full refactored code examples.
-> - **Quick checklist** — pass/fail against best practices, easy to scan.
+> - **Quick checklist**: pass/fail against best practices, easy to scan.
 
 For a **full audit**, create a memory document at
 `{workspace}/component-library-audit.md` tracking:
@@ -173,6 +173,6 @@ Adapt your output to the user's context:
 - If they're **reviewing existing work**, lead with findings and
   prioritized recommendations.
 
-Always include code examples — both vanilla HTML/CSS/JS and Web Component
-versions — when specifying a component. Real code grounds the discussion
+Always include code examples, both vanilla HTML/CSS/JS and Web Component
+versions, when specifying a component. Real code grounds the discussion
 and catches gaps that prose misses.
