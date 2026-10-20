@@ -72,6 +72,7 @@ export default async function (configData) {
 				// then tokenized with Prism's `treeview` grammar so the vendored
 				// `prism-treeview.css` renders branch lines and file-type icons.
 				const treeHtml = highlightTree(await skillTreeText(skillDir, dir.name));
+				const themeCss = await fs.readFile(path.join(skillDir, "theme.css"), "utf8").catch(() => "");
 
 				return {
 					name: dir?.name,
@@ -97,6 +98,7 @@ export default async function (configData) {
 					hasTests,
 					hasEvals,
 					treeHtml,
+					themeCss,
 					overviewHtml: renderSkillOverview(md, skillMd, { blobBase, rawBase }),
 				};
 			})
