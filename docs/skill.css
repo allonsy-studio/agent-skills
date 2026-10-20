@@ -1,18 +1,5 @@
 .skill-hero {
 	padding-block: 2.5rem 2.25rem;
-	border-block-end: 1px solid var(--theme--ui--color--subtle);
-
-	/* Soft glow that fades delicately outward, matching the home page header
-	   (docs/styles.css). Anchored toward the start edge so the glow sits behind
-	   this hero's left-aligned content. The hero is full-bleed (the container
-	   wraps only the content), so the glow's strong side meets the viewport edge
-	   and the fade completes in open space — painted on the 1200px container it
-	   was clipped mid-strength, leaving a hard vertical line on wide screens. */
-	background-image: radial-gradient(
-		75% 85% at 20% 0%,
-		var(--theme--surface--color--accent),
-		transparent 70%
-	);
 
 	.container > * + * {
 		margin-block-start: 1.25rem;
