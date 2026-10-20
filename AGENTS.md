@@ -15,7 +15,7 @@ scripts/
 skills/                         # Yarn workspace members
   <skill-name>/
     package.json                # private: true — skill-level scripts (test, lint, etc.); declares `skill.runtime`
-    SKILL.md                    # YAML frontmatter (name, description) + usage docs
+    SKILL.md                    # YAML frontmatter (name, description, metadata) + usage docs
     scripts/                    # Implementation (Node.js)
     tests/                      # `node --test` suite
     evals/                      # Eval prompts (evals.json)
@@ -94,8 +94,11 @@ The steps below are the mechanical setup. See [Designing a skill](#designing-a-s
     ---
     name: skill-name
     description: "One-sentence description. Include trigger phrases here."
+    metadata:
+      recommended-model: claude-haiku-5-5
     ---
     ```
+    `metadata.recommended-model` is the smallest model that handles every workflow in the skill as written. It is shown on the skill's marketplace page. `metadata` is the Agent Skills spec's field for client-defined values: a map of string keys to string values that harnesses do not act on.
 4. Add implementation scripts under `scripts/` (Node.js, ESM). _Skip for reference-only skills (see below)._
 5. Write a full test suite under `tests/` using `node --test`. Tests must not require live credentials; mock all external API calls.
 6. Run `yarn install` to register the new workspace, then `yarn test` to verify.
@@ -107,7 +110,7 @@ Two gates enforce it, split by what they can see. Both run in CI (wired into `ci
 
 **`yarn constraints`** (Yarn's workspace engine, `yarn.config.cjs`) owns package.json-field invariants across every skill workspace: `private: true` and the canonical `@allons-y/skill-<dir>` package name. `yarn constraints --fix` rewrites offending manifests in place, with correct key order.
 
-**The JSON Schema + contract tests** (`schemas/skill.schema.json`, exercised by `docs/tests/skill-contract.test.js`) own the semantic invariants that live inside `SKILL.md` / `skill.*`, the things constraints structurally can't reach: a `skill.category` and `skill.runtime` from the controlled enums, at least one `skill.trigger`, a `SKILL.md` frontmatter `name` matching the directory, and `tests/` + `evals/` suites that back the site's "tested" and "eval-backed" claims.
+**The JSON Schema + contract tests** (`schemas/skill.schema.json`, exercised by `docs/tests/skill-contract.test.js`) own the semantic invariants that live inside `SKILL.md` / `skill.*`, the things constraints structurally can't reach: a `skill.category` and `skill.runtime` from the controlled enums, at least one `skill.trigger`, a `SKILL.md` frontmatter `name` matching the directory, a `metadata.recommended-model`, and `tests/` + `evals/` suites that back the site's "tested" and "eval-backed" claims.
 
 - The allowed categories and runtimes are the `enum`s in `schemas/skill.schema.json`. Adding one is a deliberate one-line edit there: that's what stops `GitHub` / `Github` / `git` from forking.
 - `additionalProperties: false` means an unrecognized `skill.*` key fails the schema, so typos surface immediately.
