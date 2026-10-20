@@ -57,9 +57,10 @@
 	--theme--ui--color--subtle: light-dark(hsl(0, 0%, 90%), hsl(0, 0%, 30%));
 
 	--theme--text--Color: light-dark(hsl(40, 12%, 20%), #fff7e6);
+	--theme--accent--dark: var(--base-dark, var(--base));
 	--theme--text--Color--accent: light-dark(
 		var(--base),
-		color-mix(in hsl, var(--base) 90%, white)
+		var(--base-dark, color-mix(in hsl, var(--base) 90%, white))
 	);
 	--theme--text--Color--subtle: light-dark(hsl(40, 10%, 30%), #fff7e6a6);
 	--theme--text--Color--invert: light-dark(hsl(0, 0%, 100%), hsl(40, 12%, 20%));
@@ -441,14 +442,18 @@ li {
 	}
 
 	&.primary {
-		background: var(--base);
+		background: light-dark(var(--base), var(--theme--accent--dark));
 		color: var(--theme--text--Color--invert);
-		border-color: var(--base);
+		border-color: light-dark(var(--base), var(--theme--accent--dark));
 		margin: 3px;
 
 		&:is(:hover, :focus-visible) {
 			color: var(--theme--text--Color--invert);
-			background: color-mix(in oklch, var(--base) 88%, black);
+			background: color-mix(
+				in oklch,
+				light-dark(var(--base), var(--theme--accent--dark)) 88%,
+				light-dark(black, white)
+			);
 		}
 	}
 }
@@ -764,7 +769,11 @@ body > footer {
 	}
 }
 
-		.skill-hero {
+		:root {
+	--base-dark: #f08fb2;
+}
+
+.skill-hero {
 	padding-block: 2.5rem 2.25rem;
 
 	.container > * + * {
@@ -1000,6 +1009,7 @@ body > footer {
 
 
 
+
 <header class="skill-hero">
 	<div class="container">
 		<p class="breadcrumb"><a href="/agent-skills/">@allons-y/agent-skills</a> <span aria-hidden="true">/</span> <a href="/agent-skills/#skills">skills</a></p>
@@ -1041,6 +1051,10 @@ body > footer {
 					</h2>
 					<p>Once installed, this skill activates automatically when your prompt matches one of its triggers.</p>
 				</header>
+				<div class="content">
+					<h3>Recommended model</h3>
+					<p><code>claude-sonnet-5-5</code> is the smallest model that handles every workflow in this skill as written. Larger models work too.</p>
+				</div>
 				
 				<div class="content">
 					<h3>Try saying</h3>
@@ -1352,6 +1366,19 @@ and catches gaps that prose misses.</p>
 				</div>
 				<div class="body">
 					<p>Inject or generate schema.org structured data (HTML Microdata or JSON-LD) into web markup, then validate it. Picks the right format per...</p>
+				</div>
+				<div class="footer">
+					<p class="cta">Learn more</p>
+				</div>
+			</a><a class="card" href="/agent-skills/skills/webc-components/">
+				<div class="header">
+					<h3>webc-components</h3>
+					
+<p class="chips"><span class="chip">Development</span><span class="chip"><span class="fa-solid fa-book-open" aria-hidden="true"></span> Reference</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span></p>
+
+				</div>
+				<div class="body">
+					<p>Author and review WebC (@11ty/webc) components, in Eleventy or any Node server or build, with a code-level model of how WebC compiles them:...</p>
 				</div>
 				<div class="footer">
 					<p class="cta">Learn more</p>
