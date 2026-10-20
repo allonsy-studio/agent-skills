@@ -46,7 +46,7 @@ the user knows the game; don't explain what they already understand.
 **Format rules (these are deliberate; do not re-add removed elements):**
 
 1. **Title, then a table-of-contents** linking to each category section. Use
-   Markdown anchor links: `- [Shiny gems](#shiny-gems)` etc. The TOC goes at
+   Markdown anchor links: `- [Edge cases](#edge-cases)` etc. The TOC goes at
    the very top so a long list is navigable.
 2. **One section per category**, each an `## Heading` the TOC links to.
    Group by `references/gatherables.json` structure: cooking subcategories collapsed

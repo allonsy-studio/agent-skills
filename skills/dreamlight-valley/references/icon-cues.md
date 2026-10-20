@@ -4,6 +4,13 @@ This file helps **read storage screenshots accurately**. It is NOT shown to the
 user and never embedded in the checklist — the checklist is plain text. Use this
 to turn a blurry thumbnail into a confident name, and to know when to stop and ask.
 
+## Contents
+
+- [How to read a storage grid](#how-to-read-a-storage-grid)
+- [Sprite sheets — your primary identification tool](#sprite-sheets--your-primary-identification-tool)
+- [Confirmed tile identifications (verified by user against wiki)](#confirmed-tile-identifications-verified-by-user-against-wiki)
+- [Event & digging collectibles (not all are gatherables)](#event--digging-collectibles-not-all-are-gatherables)
+
 ## How to read a storage grid
 
 The inventory is a grid of item tiles; each tile shows the item's icon and a

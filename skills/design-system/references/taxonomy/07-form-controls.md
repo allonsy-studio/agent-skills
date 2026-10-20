@@ -1,5 +1,18 @@
 # Form Controls
 
+## Contents
+
+- [Textarea](#textarea)
+- [Select](#select)
+- [Combobox](#combobox)
+- [Checkbox](#checkbox)
+- [Radio Button](#radio-button)
+- [Toggle / Switch](#toggle--switch)
+- [Slider / Range](#slider--range)
+- [Datepicker](#datepicker)
+- [File Upload](#file-upload)
+- [Stepper / Number Input](#stepper--number-input)
+
 ## Text Input / Text Field
 **What it is:** A single-line text entry field.
 **Variants:** With prefix/suffix, with clear button, with character count, masked (password).

@@ -1,5 +1,14 @@
 # Data Display
 
+## Contents
+
+- [List](#list)
+- [Tree / Tree View](#tree--tree-view)
+- [Tag / Chip](#tag--chip)
+- [Chart / Data Visualization](#chart--data-visualization)
+- [Avatar](#avatar)
+- [A note on icons and empty states](#a-note-on-icons-and-empty-states)
+
 ## Table
 **What it is:** Rows and columns of structured data.
 **Variants:** Basic, sortable, filterable, with row selection, with expandable rows.

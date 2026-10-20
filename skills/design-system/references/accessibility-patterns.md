@@ -8,7 +8,7 @@ and represent stretch goals that meaningfully improve the experience.
 
 ---
 
-## Table of contents
+## Contents
 
 1. [Foundational ARIA Rules](#foundational-aria-rules)
 2. [Keyboard Interaction Patterns](#keyboard-interaction-patterns)

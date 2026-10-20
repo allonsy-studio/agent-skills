@@ -1,5 +1,14 @@
 # Feedback & Status
 
+## Contents
+
+- [Toast](#toast)
+- [Banner](#banner)
+- [Progress Bar](#progress-bar)
+- [Spinner / Loading](#spinner--loading)
+- [Skeleton](#skeleton)
+- [Badge](#badge)
+
 ## Alert / Notification
 **What it is:** A prominent message informing the user of something important.
 **Variants:** Inline (in the page flow), banner (full-width at top), toast (floating, auto-dismissing).

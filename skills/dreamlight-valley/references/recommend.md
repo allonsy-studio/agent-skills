@@ -6,6 +6,15 @@ cook with…", "most profitable recipe", "best recipe for energy", etc.
 The user tells you what ingredients they have. You find recipes they can cook
 and rank them by their chosen objective.
 
+## Contents
+
+- [Step 1 — Gather inputs](#step-1--gather-inputs)
+- [Step 2 — Apply the inventory floor](#step-2--apply-the-inventory-floor)
+- [Step 3 — Find cookable recipes](#step-3--find-cookable-recipes)
+- [Step 4 — Rank by objective (efficiency first)](#step-4--rank-by-objective-efficiency-first)
+- [Step 5 — Present the top results](#step-5--present-the-top-results)
+- [Edge cases](#edge-cases)
+
 ## Step 1 — Gather inputs
 
 You need three things. Ask for any that are missing (one short batched
