@@ -1,16 +1,12 @@
+:root {
+	--base-dark: #f08fb2;
+}
+
 body > header {
 	--justify-content: center;
 
 	text-align: center;
 	padding-block: 3.5rem 3rem;
-
-	/* Bold gradient backdrop derived from the theme color. */
-	background-image: radial-gradient(
-		70% 80% at 50% 0%,
-		var(--theme--surface--color--accent),
-		transparent 70%
-	);
-	border-block-end: 1px solid var(--theme--ui--color--subtle);
 
 	> * {
 		margin-inline: auto;

@@ -10,8 +10,8 @@
 		<meta name="color-scheme" content="light dark">
 
         
-		<title>webc-components | Author and review WebC (@11ty/webc) components for Eleventy ...</title>
-		<meta name="description" content="Author and review WebC (@11ty/webc) components for Eleventy with a code-level model of how WebC compiles them: the host tag, the data cascade, slots, props, bundling, and the traps that only show up in rendered output. Remembers the conventions each team picks as a saved profile.">
+		<title>webc-components | Author and review WebC (@11ty/webc) components, in Eleventy ...</title>
+		<meta name="description" content="Author and review WebC (@11ty/webc) components, in Eleventy or any Node server or build, with a code-level model of how WebC compiles them: the host tag, the data cascade, slots, props, bundling, and the traps that only show up in rendered output. Remembers the conventions each team picks as a saved profile.">
 		<meta name="keywords" content="">
 		<meta name="author" content="">
 
@@ -23,7 +23,7 @@
 		<meta property="og:locale" content="en-US">
 		<meta property="og:title" content="webc-components">
 		<meta property="og:url" content="https://github.com/allonsy-studio/agent-skills#readme">
-		<meta property="og:description" content="Author and review WebC (@11ty/webc) components for Eleventy with a code-level model of how WebC compiles them: the host tag, the data cascade, slots, props, bundling, and the traps that only show up in rendered output. Remembers the conventions each team picks as a saved profile.">
+		<meta property="og:description" content="Author and review WebC (@11ty/webc) components, in Eleventy or any Node server or build, with a code-level model of how WebC compiles them: the host tag, the data cascade, slots, props, bundling, and the traps that only show up in rendered output. Remembers the conventions each team picks as a saved profile.">
 		<meta property="og:site_name" content="webc-components">
 		<meta name="fediverse:creator" content="@castastrophe@front-end.social">
 
@@ -107,6 +107,20 @@ body {
 	line-height: 1.4;
 	font-optical-sizing: auto;
 	-webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Accent glow behind every page, fixed to the viewport so it stays put while scrolling. */
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	background-image: radial-gradient(
+		75% 28rem at 20% 0%,
+		var(--theme--surface--color--accent),
+		transparent 70%
+	);
 }
 
 [id] {
@@ -435,7 +449,11 @@ li {
 
 		&:is(:hover, :focus-visible) {
 			color: var(--theme--text--Color--invert);
-			background: color-mix(in oklch, light-dark(var(--base), var(--theme--accent--dark)) 88%, black);
+			background: color-mix(
+				in oklch,
+				light-dark(var(--base), var(--theme--accent--dark)) 88%,
+				light-dark(black, white)
+			);
 		}
 	}
 }
@@ -751,21 +769,12 @@ body > footer {
 	}
 }
 
-		.skill-hero {
-	padding-block: 2.5rem 2.25rem;
-	border-block-end: 1px solid var(--theme--ui--color--subtle);
+		:root {
+	--base-dark: #f08fb2;
+}
 
-	/* Soft glow that fades delicately outward, matching the home page header
-	   (docs/styles.css). Anchored toward the start edge so the glow sits behind
-	   this hero's left-aligned content. The hero is full-bleed (the container
-	   wraps only the content), so the glow's strong side meets the viewport edge
-	   and the fade completes in open space — painted on the 1200px container it
-	   was clipped mid-strength, leaving a hard vertical line on wide screens. */
-	background-image: radial-gradient(
-		75% 85% at 20% 0%,
-		var(--theme--surface--color--accent),
-		transparent 70%
-	);
+.skill-hero {
+	padding-block: 2.5rem 2.25rem;
 
 	.container > * + * {
 		margin-block-start: 1.25rem;
@@ -1009,7 +1018,7 @@ body > footer {
 	<div class="container">
 		<p class="breadcrumb"><a href="/agent-skills/pr-preview/pr-57/">@allons-y/agent-skills</a> <span aria-hidden="true">/</span> <a href="/agent-skills/pr-preview/pr-57/#skills">skills</a></p>
 		<h1>webc-components</h1>
-		<p class="lede">Author and review WebC (@11ty/webc) components for Eleventy with a code-level model of how WebC compiles them: the host tag, the data cascade, slots, props, bundling, and the traps that only show up in rendered output. Remembers the conventions each team picks as a saved profile.</p>
+		<p class="lede">Author and review WebC (@11ty/webc) components, in Eleventy or any Node server or build, with a code-level model of how WebC compiles them: the host tag, the data cascade, slots, props, bundling, and the traps that only show up in rendered output. Remembers the conventions each team picks as a saved profile.</p>
 		
 <p class="chips"><span class="chip">Development</span><span class="chip"><span class="fa-solid fa-book-open" aria-hidden="true"></span> Reference</span><span class="chip"><span class="fa-solid fa-vial-circle-check" aria-hidden="true"></span> Tested</span></p>
 
@@ -1050,7 +1059,7 @@ body > footer {
 				<div class="content">
 					<h3>Try saying</h3>
 					<ul class="snippet-list">
-						<li><code>write a WebC component</code></li><li><code>review this .webc file</code></li><li><code>why is my slot fallback empty</code></li><li><code>audit our WebC component library</code></li><li><code>my WebC prop is always undefined</code></li><li><code>set up my WebC conventions</code></li>
+						<li><code>write a WebC component</code></li><li><code>review this .webc file</code></li><li><code>why is my slot fallback empty</code></li><li><code>audit our WebC component library</code></li><li><code>my WebC prop is always undefined</code></li><li><code>render WebC components in Express</code></li><li><code>set up my WebC conventions</code></li>
 					</ul>
 				</div>
 			</section>
@@ -1068,6 +1077,7 @@ body > footer {
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-json">evals.json</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">references</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">conventions.md</span></span>
+<span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">hosts.md</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-h">|-- </span><span class="token entry-name ext-md">review-checklist.md</span></span>
 <span class="token treeview-part"><span class="token entry-line line-v">|   </span><span class="token entry-line line-v-last">`-- </span><span class="token entry-name ext-md">webc-internals.md</span></span>
 <span class="token treeview-part"><span class="token entry-line line-h">|-- </span><span class="token entry-name dir">templates</span></span>
@@ -1093,7 +1103,10 @@ body > footer {
 <p>Most WebC bugs compile without errors and appear only in the rendered HTML: an empty
 link, a custom tag that appears in the output after an unrelated style change, a prop
 that resolves to an Eleventy filter. This skill documents how <code>@11ty/webc</code> 0.11.x compiles components, from
-its source code, so authors avoid these bugs and reviewers can find them.</p>
+its source code, so authors avoid these bugs and reviewers can find them. WebC runs in
+Eleventy, in Express, Koa, Fastify, and Vite, or called directly from any Node server or
+build; the compiler rules are the same everywhere, and <code>references/hosts.md</code> covers what
+each host changes.</p>
 <p><strong>Keep WebC facts and style choices apart.</strong> <code>references/webc-internals.md</code> and
 <code>references/review-checklist.md</code> describe how WebC behaves, for any project.
 <code>references/conventions.md</code> holds universal practices plus decision points with several
@@ -1137,6 +1150,12 @@ valid options. A saved <strong>profile</strong> records the option a user or pro
 <td>internals §4</td>
 </tr>
 <tr>
+<td><code>{{ label }}</code> appears literally in the output</td>
+<td>WebC has no <code>{{ }}</code> interpolation</td>
+<td><code>&lt;span @text=&quot;label&quot;&gt;&lt;/span&gt;</code> for text, <code>:attr=&quot;label&quot;</code> for attributes</td>
+<td>internals §8</td>
+</tr>
+<tr>
 <td>An unprefixed attribute does nothing</td>
 <td><code>live</code> is a public attribute; only <code>@live</code> sets the prop</td>
 <td>Prefix with <code>@</code> or <code>:@</code></td>
@@ -1173,10 +1192,28 @@ valid options. A saved <strong>profile</strong> records the option a user or pro
 <td>review-checklist §8</td>
 </tr>
 <tr>
-<td>One page’s value appears on every page</td>
-<td><code>webc:setup</code> runs once per file with the first page’s data</td>
+<td>One page’s value appears on every page (Eleventy)</td>
+<td>In Eleventy, <code>webc:setup</code> runs once per file with the first page’s data</td>
 <td>Compute per-page values in attribute expressions</td>
 <td>internals §5</td>
+</tr>
+<tr>
+<td>A component’s script runs once per instance; <code>compile()</code> returns empty <code>css</code> and <code>js</code></td>
+<td>Bundler mode is off (Express, Fastify, Vite dev, standalone default)</td>
+<td>Wrap the script in a block and guard <code>customElements.define</code>, or turn bundler mode on</td>
+<td>hosts §2</td>
+</tr>
+<tr>
+<td>Server memory grows with traffic</td>
+<td>Every distinct string through <code>@html</code> stays in the AST cache</td>
+<td><code>@text</code> for text, <code>@raw</code> for trusted markup</td>
+<td>hosts §2</td>
+</tr>
+<tr>
+<td>Koa page renders in quirks mode, or bundled CSS or JS breaks</td>
+<td><code>koa-webc</code> bundle mode</td>
+<td>Leave <code>bundle</code> off, or bundle with WebC directly</td>
+<td>hosts §4</td>
 </tr>
 <tr>
 <td>A nested component cannot see page front matter</td>
@@ -1214,6 +1251,10 @@ valid options. A saved <strong>profile</strong> records the option a user or pro
 <tr>
 <td>Writing a component, or judging style in a review</td>
 <td><code>references/conventions.md</code>, filtered by the active profile</td>
+</tr>
+<tr>
+<td>Running WebC outside Eleventy (Express, Koa, Fastify, Vite, a custom server or build)</td>
+<td><code>references/hosts.md</code></td>
 </tr>
 <tr>
 <td>Setting up or changing a profile</td>
@@ -1263,7 +1304,8 @@ directory, so note that when saving.</li>
 <p>To change a profile, read it, apply the change, and save it back to the same place.</p>
 <h2>Workflow 1: author a component</h2>
 <ol>
-<li><strong>Load the profile</strong> (see Profiles above) and apply its choices.</li>
+<li><strong>Load the profile</strong> (see Profiles above) and apply its choices. Outside Eleventy,
+read <code>references/hosts.md</code> for what the host changes.</li>
 <li><strong>Decide whether the custom tag renders.</strong> WebC removes the custom tag from the
 output unless the file has a non-empty <code>&lt;style&gt;</code>, a non-setup <code>&lt;script&gt;</code>, a
 stylesheet <code>&lt;link&gt;</code>, <code>webc:root</code>, or declarative shadow DOM.
@@ -1275,8 +1317,8 @@ that must never be empty is a prop with a default, not a default-slot fallback.<
 <li><strong>Validate props.</strong> Normalize booleans with one expression
 (<code>x === true || x === '' || x === 'true'</code>). Type-check any prop whose name matches a
 helper (<code>typeof url === 'string'</code>). For a required prop, define a check function in
-<code>webc:setup</code> and call it from the attribute that needs the value; setup runs once per
-file and cannot see props. Return <code>''</code>, never <code>undefined</code>, from a dynamic <code>style</code> or
+<code>webc:setup</code> and call it from the attribute that needs the value; setup cannot see
+props. Return <code>''</code>, never <code>undefined</code>, from a dynamic <code>style</code> or
 <code>class</code>.</li>
 <li><strong>Scope the CSS</strong> with the profile’s <code>style-scope</code> choice. A component that takes
 slotted content wraps bare-element descendant selectors in <code>:where()</code> or anchors them
@@ -1289,14 +1331,34 @@ component slotted into its most likely container.</li>
 </ol>
 <h2>Workflow 2: review a component or library</h2>
 <ol>
-<li>Ask for scope if unclear: one component, or the whole library. Styles from one
-component applying to another only show up when reviewing the whole library.</li>
-<li>Go through <code>references/review-checklist.md</code> in order. The first sections are the bugs
-verified in rendered output; the later ones are cost and consistency.</li>
-<li>For each finding, cite the rule, the file and line, the concrete failing input, and
+<li>
+<p>Ask for scope if unclear: one component, or the whole library. Styles from one
+component applying to another only show up when reviewing the whole library.</p>
+</li>
+<li>
+<p>Go through <code>references/review-checklist.md</code> in order. The first sections are the bugs
+verified in rendered output; the later ones are cost and consistency. A question about
+one bug is still a review: after answering it, scan every file the user shared for:</p>
+<ul>
+<li><code>&lt;!--</code> comments that are not <code>&lt;!---</code> (they ship to every page)</li>
+<li>a kept host tag with no <code>display</code> set</li>
+<li>a default <code>&lt;slot&gt;</code> with fallback text</li>
+<li>a container selector like <code>own-tag ul</code> with no <code>:where()</code> or <code>&gt;</code></li>
+<li>boolean props not using the one truthiness rule, all of them, not only the one asked about</li>
+<li>a dynamic <code>style</code> or <code>class</code> that can be <code>undefined</code></li>
+</ul>
+<p>End the reply with a <strong>Scan</strong> list: one line per item above, either the file and line
+where it occurs or “clear”. Quote the line you found; do not mark an item clear without
+reading every line of the file. Then propose the checklist’s regression test for each
+rule that applies.</p>
+</li>
+<li>
+<p>For each finding, cite the rule, the file and line, the concrete failing input, and
 the rendered result. Render it (see Rendering a fixture below) and add <strong>verified</strong>.
-When code cannot be run, add <strong>not rendered</strong> instead; never guess the output.</li>
-<li>Give each finding one label and report them in this order:
+When code cannot be run, add <strong>not rendered</strong> instead; never guess the output.</p>
+</li>
+<li>
+<p>Give each finding one label and report them in this order:</p>
 <ul>
 <li><code>broken</code>: wrong output, a build failure, or an accessibility failure today.</li>
 <li><code>fragile</code>: correct today; a likely change breaks it.</li>
@@ -1306,7 +1368,9 @@ universal-practice gaps and places where the library mixes options on one
 decision point.</li>
 </ul>
 </li>
-<li>Propose a regression test for each fixed bug.</li>
+<li>
+<p>Propose a regression test for each fixed bug.</p>
+</li>
 </ol>
 <p>Per finding:</p>
 <pre class="language-markdown"><code class="language-markdown"><span class="token title important"><span class="token punctuation">###</span> [broken] Short claim</span>
@@ -1336,6 +1400,8 @@ visible. Delete the file afterwards.</p>
 and the behaviours verified by compiling or rendering.</li>
 <li><code>references/review-checklist.md</code>: reusable review rules, each with a concrete
 example from a real component library.</li>
+<li><code>references/hosts.md</code>: what changes in Express, Koa, Fastify, Vite, and custom servers
+or builds, and a render function that bundles correctly.</li>
 <li><code>references/conventions.md</code>: universal practices, decision points with their
 options, and three presets.</li>
 <li><code>templates/profile.md</code>: the profile format, filled in and saved during setup.</li>
