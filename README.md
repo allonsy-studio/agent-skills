@@ -61,6 +61,7 @@ For Node-runtime skills with dependencies, run `npm install` in the installed di
 | [`gh-notification-summary`](skills/gh-notification-summary/SKILL.md) | Review, summarize, and manage GitHub notifications via an interactive local dashboard                                        | "check my GitHub notifications", `/unsub <number>`, "mark all done"                      |
 | [`design-system`](skills/design-system/SKILL.md)                     | Build, name, document, and audit UI components with expert ARIA, accessibility, design token, typography, and i18n guidance  | "design system", "component library", "ARIA pattern", "what should I call this component", "review my component library" |
 | [`dreamlight-valley`](skills/dreamlight-valley/SKILL.md)             | Navigate, search, and browse the Dreamlight Valley catalog of items, recipes, and gatherables                           | "Dreamlight Valley", "Dreamlight Valley catalog", "Dreamlight Valley recipes", "Dreamlight Valley gatherables" |
+| [`webc-components`](skills/webc-components/SKILL.md)               | Author and review WebC components for Eleventy with a code-level model of how WebC compiles them                             | "write a WebC component", "review this .webc file", "why is my slot fallback empty"      |
 
 ## Programmatic Usage
 

@@ -1,0 +1,41 @@
+{
+  "private": true,
+  "name": "@allons-y/skill-webc-components",
+  "version": "1.4.0",
+  "description": "Author and review WebC (@11ty/webc) components, in Eleventy or any Node server or build, with a code-level model of how WebC compiles them: the host tag, the data cascade, slots, props, bundling, and the traps that only show up in rendered output. Remembers the conventions each team picks as a saved profile.",
+  "type": "module",
+  "skill": {
+    "category": "Development",
+    "runtime": "node",
+    "triggers": [
+      "write a WebC component",
+      "review this .webc file",
+      "why is my slot fallback empty",
+      "audit our WebC component library",
+      "my WebC prop is always undefined",
+      "render WebC components in Express",
+      "set up my WebC conventions"
+    ]
+  },
+  "scripts": {
+    "ci:test": "yarn coverage",
+    "coverage": "c8 yarn test",
+    "format": "yarn package:format",
+    "lint": "yarn package:lint",
+    "test": "node --test \"tests/**/*.test.js\""
+  },
+  "devDependencies": {
+    "c8": "^11.0.0"
+  },
+  "keywords": [
+    "webc",
+    "eleventy",
+    "11ty",
+    "web components",
+    "code review",
+    "express",
+    "koa",
+    "fastify",
+    "vite"
+  ]
+}

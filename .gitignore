@@ -80,3 +80,6 @@ skills/dreamlight-valley/references/images
 
 # Test results
 junit
+
+# A saved skill profile, never shipped
+skills/*/profile.md

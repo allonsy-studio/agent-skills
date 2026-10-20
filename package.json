@@ -39,7 +39,7 @@
     "build": "yarn workspaces foreach -A run build",
     "changeset": "changeset",
     "ci": "cross-env ELEVENTY_ENV=production yarn build && eleventy",
-    "ci:test": "yarn constraints && yarn workspaces foreach -A run ci:test",
+    "ci:test": "yarn constraints && yarn validate && yarn workspaces foreach -A run ci:test",
     "clean": "rimraf _site",
     "coverage": "node scripts/run-tests.js --coverage-only",
     "evals": "node scripts/run-evals.js",
@@ -57,6 +57,7 @@
     "serve": "eleventy --serve",
     "test": "node scripts/run-tests.js",
     "ts:check": "tsc --noEmit",
+    "validate": "node --test \"tests/**/*.test.js\"",
     "version:packages": "changeset version && node scripts/clean-skill-changelogs.js && yarn generate:marketplace"
   },
   "workspaces": [

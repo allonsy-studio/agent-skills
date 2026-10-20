@@ -15,6 +15,7 @@ eleventyComputed:
 ---
 
 {% css %}{% include "./skill.css" %}{% endcss %}
+{% if skill.themeCss %}{% css %}{{ skill.themeCss | safe }}{% endcss %}{% endif %}
 {% from "skill-chips.njk" import skillChips %}
 
 {# The hero is full-bleed so its glow fades out in open space instead of being

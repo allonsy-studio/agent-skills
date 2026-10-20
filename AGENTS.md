@@ -114,6 +114,8 @@ Two gates enforce it, split by what they can see. Both run in CI (wired into `ci
 
 - The allowed categories and runtimes are the `enum`s in `schemas/skill.schema.json`. Adding one is a deliberate one-line edit there: that's what stops `GitHub` / `Github` / `git` from forking.
 - `additionalProperties: false` means an unrecognized `skill.*` key fails the schema, so typos surface immediately.
+- `tests/skill-standards.test.js` (run by `yarn validate`, which `yarn ci:test` includes) runs the cross-skill writing and structure rules (body length, ordered lists, local links, reference reachability, eval ids) against every skill. A skill's own `tests/` covers only what is specific to that skill.
+- An optional `theme.css` in a skill's directory is added to its marketplace page. Setting `--base` (light mode) and `--base-dark` (dark mode) on `:root` gives the page its own accent; media queries such as `prefers-contrast` work as usual.
 
 ### Skill flavors
 
