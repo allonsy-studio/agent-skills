@@ -57,9 +57,10 @@
 	--theme--ui--color--subtle: light-dark(hsl(0, 0%, 90%), hsl(0, 0%, 30%));
 
 	--theme--text--Color: light-dark(hsl(40, 12%, 20%), #fff7e6);
+	--theme--accent--dark: var(--base-dark, var(--base));
 	--theme--text--Color--accent: light-dark(
 		var(--base),
-		color-mix(in hsl, var(--base) 90%, white)
+		var(--base-dark, color-mix(in hsl, var(--base) 90%, white))
 	);
 	--theme--text--Color--subtle: light-dark(hsl(40, 10%, 30%), #fff7e6a6);
 	--theme--text--Color--invert: light-dark(hsl(0, 0%, 100%), hsl(40, 12%, 20%));
@@ -441,14 +442,18 @@ li {
 	}
 
 	&.primary {
-		background: var(--base);
+		background: light-dark(var(--base), var(--theme--accent--dark));
 		color: var(--theme--text--Color--invert);
-		border-color: var(--base);
+		border-color: light-dark(var(--base), var(--theme--accent--dark));
 		margin: 3px;
 
 		&:is(:hover, :focus-visible) {
 			color: var(--theme--text--Color--invert);
-			background: color-mix(in oklch, var(--base) 88%, black);
+			background: color-mix(
+				in oklch,
+				light-dark(var(--base), var(--theme--accent--dark)) 88%,
+				light-dark(black, white)
+			);
 		}
 	}
 }
