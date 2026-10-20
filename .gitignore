@@ -81,5 +81,5 @@ skills/dreamlight-valley/references/images
 # Test results
 junit
 
-# webc-components: a user's saved profile, never shipped
-skills/webc-components/profile.md
+# A saved skill profile, never shipped
+skills/*/profile.md
