@@ -1123,7 +1123,7 @@ it catches the failure modes that make a guide actively harmful.</li>
 </ol>
 <h2>The four inputs</h2>
 <p>Ask for all four. Use <code>AskUserQuestion</code> when the interface supports it. Never guess at
-the audience — it changes more of the document than anything else.</p>
+the audience. It changes more of the document than anything else.</p>
 <h3>1. Tools</h3>
 <p>Offer this menu, grouped so that the dependency structure is visible in the question
 itself. Let them pick freely and add anything not listed.</p>
@@ -1187,7 +1187,7 @@ before Git (Git’s Windows installer asks which editor to use), Git comes befor
 that clones, and a version manager comes before the runtime it manages.</p>
 <h3>2. Environments</h3>
 <p>Default to <strong>macOS, Windows, and Linux</strong> unless told otherwise. Confirm rather than
-assume — a Windows-only shop does not want two thirds of the page taken up by columns
+assume. A Windows-only shop does not want two thirds of the page taken up by columns
 they will never read.</p>
 <p>For Linux, ask which family (Debian/Ubuntu, Fedora/RHEL, Arch). Package names and
 commands differ enough that “Linux” alone produces instructions that fail.</p>
@@ -1250,7 +1250,7 @@ footer. Pass <code>--accent</code> to distinguish guides that will be held side 
 that silently ruin a printed guide.</p>
 <p>Rendering is delegated to whatever is installed. Prefer <strong>WeasyPrint</strong>
 (<code>pipx install weasyprint</code>): the stylesheet uses CSS margin boxes for the running footer
-and page numbers, and headless Chrome — the fallback — drops them silently. If no
+and page numbers, and headless Chrome, the fallback, drops them silently. If no
 renderer is present, pass <code>--html-only</code>: the assembled HTML and the full verification
 report still come out, and the reader can print from a browser.</p>
 <h2>The interactive web guide</h2>
@@ -1267,7 +1267,7 @@ narrow column become two broken commands when a reader copies them out of a PDF.
 <code>build-guide.js</code> checks this and names the offenders. Move them to full width or
 send the reader to the vendor’s page to copy from.</li>
 <li><strong>Every install step ends with a check.</strong> A “Done when:” line naming observable
-output. Not “it should work” — the actual string that appears.</li>
+output. Not “it should work”; the actual string that appears.</li>
 <li><strong>Every troubleshooting entry is titled with the error text</strong>, not the topic. Readers
 search for what is on their screen.</li>
 <li><strong>No unresolved placeholders</strong> unless you flagged them explicitly in your handoff
@@ -1282,18 +1282,18 @@ in your handoff what you verified and what you could not.</li>
 </ol>
 <h2>Reference files</h2>
 <ul>
-<li><code>references/tool-catalog.md</code> — per-tool, per-OS steps, verify commands, known traps.
+<li><code>references/tool-catalog.md</code>: per-tool, per-OS steps, verify commands, known traps.
 Read the entries for the selected tools only.</li>
-<li><code>references/dependency-rules.md</code> — the ordering graph and how to resolve it.</li>
-<li><code>references/house-style.md</code> — voice, structure, punctuation rules, HTML classes.</li>
-<li><code>references/version-policy.md</code> — how old is too old, and where to link instead.</li>
-<li><code>references/web-guide.md</code> — the interactive checkbox page.</li>
+<li><code>references/dependency-rules.md</code>: the ordering graph and how to resolve it.</li>
+<li><code>references/house-style.md</code>: voice, structure, punctuation rules, HTML classes.</li>
+<li><code>references/version-policy.md</code>: how old is too old, and where to link instead.</li>
+<li><code>references/web-guide.md</code>: the interactive checkbox page.</li>
 </ul>
 <h2>Scripts</h2>
 <ul>
-<li><code>scripts/order-tools.js</code> — resolve a selection into install order. <code>--list</code> prints the
+<li><code>scripts/order-tools.js</code>: resolve a selection into install order. <code>--list</code> prints the
 known tool keys.</li>
-<li><code>scripts/build-guide.js</code> — assemble the PDF and print the verification report.
+<li><code>scripts/build-guide.js</code>: assemble the PDF and print the verification report.
 <code>--html-only</code> runs the checks with no renderer installed.</li>
 </ul>
 
