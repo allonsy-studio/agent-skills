@@ -1114,27 +1114,27 @@ Those eight principles inform every decision below.</p>
 <p>The user describes a component they want to create. Walk them through each
 layer in order:</p>
 <ol>
-<li><strong>Identify the pattern</strong> — match their description to a known component
+<li><strong>Identify the pattern</strong>: match their description to a known component
 category (see <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/component-taxonomy.md"><code>references/component-taxonomy.md</code></a>).
 If it’s a composite or novel pattern, identify which primitives it combines.</li>
-<li><strong>Name it</strong> — propose a name following the conventions in
+<li><strong>Name it</strong>: propose a name following the conventions in
 <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/naming-conventions.md"><code>references/naming-conventions.md</code></a>.
 Offer 2–3 candidates with trade-off notes.</li>
-<li><strong>Design the API</strong> — define the component’s public interface using the
+<li><strong>Design the API</strong>: define the component’s public interface using the
 framework in <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/api-design.md"><code>references/api-design.md</code></a>.
 Cover attributes/props, slots or content areas, events, CSS custom
 properties for theming, and design tokens.</li>
-<li><strong>Specify accessibility</strong> — read
+<li><strong>Specify accessibility</strong>: read
 <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/accessibility-patterns.md"><code>references/accessibility-patterns.md</code></a>
 for the relevant ARIA pattern. Provide WCAG 2.2 AA requirements as
 baseline (“must”), AAA recommendations as stretch goals (“should
 consider”), and full keyboard interaction specs.</li>
-<li><strong>Consider typography, iconography, and i18n</strong> — if the component
+<li><strong>Consider typography, iconography, and i18n</strong>: if the component
 contains text, icons, or will be used in multilingual contexts (assume
 it will), consult <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/typography.md"><code>references/typography.md</code></a>,
 <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/iconography.md"><code>references/iconography.md</code></a>, and
 <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/i18n.md"><code>references/i18n.md</code></a>.</li>
-<li><strong>Write example code</strong> — provide both a vanilla HTML/CSS/JS
+<li><strong>Write example code</strong>: provide both a vanilla HTML/CSS/JS
 implementation and a Web Component implementation showing the API in
 action. Code should be production-quality, not pseudocode.</li>
 </ol>
@@ -1145,21 +1145,21 @@ or design-systems engineer responsible for defining and maintaining tokens
 (not just consuming them), ask whether they’d like guidance on token
 naming, tier structure, theming, governance, and lifecycle. If yes, read
 <a href="https://github.com/allonsy-studio/agent-skills/blob/main/skills/design-system/references/design-tokens.md"><code>references/design-tokens.md</code></a>. That
-reference covers the full scope of managing tokens at organizational scale
-— a different audience and decision set than component API design.</p>
+reference covers the full scope of managing tokens at organizational scale.
+It serves a different audience and decision set than component API design.</p>
 <h3>2. Review an existing component or library</h3>
 <p>The user points you at existing code (pasted markup, a URL, a file, or a
 description of their library). Before diving in, ask:</p>
 <blockquote>
 <p>What level of review would you like?</p>
 <ul>
-<li><strong>Full audit</strong> — naming, API surface, accessibility, keyboard
+<li><strong>Full audit</strong>: naming, API surface, accessibility, keyboard
 interaction, screen reader behavior, design tokens, and suggested
 refactors with code. I’ll create a memory document to track the
 library’s patterns and update it as we work.</li>
-<li><strong>Naming + API + accessibility</strong> — the three core pillars, without
+<li><strong>Naming + API + accessibility</strong>: the three core pillars, without
 full refactored code examples.</li>
-<li><strong>Quick checklist</strong> — pass/fail against best practices, easy to scan.</li>
+<li><strong>Quick checklist</strong>: pass/fail against best practices, easy to scan.</li>
 </ul>
 </blockquote>
 <p>For a <strong>full audit</strong>, create a memory document at
@@ -1286,8 +1286,8 @@ getting into API details.</li>
 <li>If they’re <strong>reviewing existing work</strong>, lead with findings and
 prioritized recommendations.</li>
 </ul>
-<p>Always include code examples — both vanilla HTML/CSS/JS and Web Component
-versions — when specifying a component. Real code grounds the discussion
+<p>Always include code examples, both vanilla HTML/CSS/JS and Web Component
+versions, when specifying a component. Real code grounds the discussion
 and catches gaps that prose misses.</p>
 
 				</div>
