@@ -24,6 +24,24 @@
 			"expected_output": "Should validate the JSON-LD with the reference processor and flag the concrete problems: recipeIngredient should be a list of strings (not a single string), cookTime must be an ISO 8601 duration (\"PT45M\", not \"45 minutes\"), and note missing recommended Recipe properties for rich results (e.g. image, recipeInstructions). Should distinguish hard errors from warnings and offer a corrected version rather than only listing issues.",
 			"files": [],
 			"assertions": []
+		},
+		{
+			"id": 4,
+			"name": "negative-open-graph",
+			"prompt": "Add Open Graph and Twitter card meta tags to my blog post template so links look good when shared on social media.",
+			"expected_output": "Does NOT trigger. Open Graph and Twitter card meta tags are social sharing markup, not schema.org structured data, so the skill should not load.",
+			"files": [],
+			"assertions": [],
+			"should_trigger": false
+		},
+		{
+			"id": 5,
+			"name": "negative-json-schema",
+			"prompt": "Write a JSON Schema that validates my app's config.json: it needs a required port number and an optional list of allowed origins.",
+			"expected_output": "Does NOT trigger. JSON Schema validates an app's own config files and is not schema.org structured data, so the skill should not load.",
+			"files": [],
+			"assertions": [],
+			"should_trigger": false
 		}
 	]
 }

@@ -24,6 +24,24 @@
       "expected_output": "Should identify this as a composite pattern (dialog + combobox + grouped listbox), explain why both dialog and combobox roles are needed, provide the full ARIA markup pattern, specify keyboard interaction for all keys mentioned plus Home/End/typeahead, address focus management (trap in dialog, activedescendant in combobox), provide Web Component code with logical CSS properties for RTL, externalized strings for i18n, and CSS custom properties for theming. Should mention grouping options with role=group and aria-label per group.",
       "files": [],
       "assertions": []
+    },
+    {
+      "id": 4,
+      "name": "negative-css-layout",
+      "prompt": "How do I center a div both horizontally and vertically with CSS flexbox? Just the CSS, please.",
+      "expected_output": "Does NOT trigger. This is a general CSS layout question with no design-system, component-library, or ARIA pattern involved.",
+      "files": [],
+      "assertions": [],
+      "should_trigger": false
+    },
+    {
+      "id": 5,
+      "name": "negative-unit-test",
+      "prompt": "Write a Jest unit test for a function that formats a date as 'Oct 19, 2026'.",
+      "expected_output": "Does NOT trigger. This is a unit testing request with no design-system, component-library, or ARIA pattern involved.",
+      "files": [],
+      "assertions": [],
+      "should_trigger": false
     }
   ]
 }
