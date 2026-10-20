@@ -56,8 +56,8 @@
     "security": "yarn workspaces foreach -A run security",
     "serve": "eleventy --serve",
     "test": "node scripts/run-tests.js",
-    "validate": "node --test \"tests/**/*.test.js\"",
     "ts:check": "tsc --noEmit",
+    "validate": "node --test \"tests/**/*.test.js\"",
     "version:packages": "changeset version && node scripts/clean-skill-changelogs.js && yarn generate:marketplace"
   },
   "workspaces": [

@@ -11,6 +11,8 @@ description: >
   my component library". Trigger on shared markup when the user clearly
   wants design-system feedback on a reusable UI pattern. Do not trigger on
   general HTML/CSS questions unrelated to design-system patterns.
+metadata:
+  recommended-model: claude-sonnet-5-5
 ---
 
 # Design System Patterns

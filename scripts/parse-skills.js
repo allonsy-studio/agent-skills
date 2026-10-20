@@ -11,10 +11,11 @@ const skillsDir = path.join(root, "skills");
 /**
  * Parse the YAML frontmatter from a SKILL.md file.
  *
- * Supports simple `key: value` pairs plus block scalars (`>` folded and `|`
- * literal). For block scalars, all subsequent lines indented deeper than the
- * key are collected; folded scalars join with spaces, literal scalars join
- * with newlines.
+ * Supports simple `key: value` pairs, block scalars (`>` folded and `|`
+ * literal), and one level of nested `key: value` map (for `metadata`). For
+ * block scalars, all subsequent lines indented deeper than the key are
+ * collected; folded scalars join with spaces, literal scalars join with
+ * newlines.
  *
  * Returns an object with the frontmatter key/value pairs.
  */
@@ -57,6 +58,16 @@ export function parseFrontmatter(content) {
 			result[key] = folded
 				? trimmed.join(" ").replace(/\s+/g, " ").trim()
 				: trimmed.join("\n");
+		} else if (inlineValue.trim() === "" && /^\s+[A-Za-z_][\w-]*\s*:/.test(lines[i + 1] ?? "")) {
+			const map = {};
+			let j = i + 1;
+			for (; j < lines.length; j++) {
+				const entry = lines[j].match(/^\s+([A-Za-z_][\w-]*)\s*:\s*(.*)$/);
+				if (!entry) break;
+				map[entry[1]] = entry[2].trim().replace(/^["']|["']$/g, "");
+			}
+			i = j - 1;
+			result[key] = map;
 		} else {
 			result[key] = inlineValue.trim().replace(/^["']|["']$/g, "");
 		}

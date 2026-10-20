@@ -57,6 +57,11 @@ describe("skill contract", () => {
 				assert.ok(front.description, "SKILL.md frontmatter is missing a description");
 			});
 
+			test("recommends a model in SKILL.md frontmatter metadata", () => {
+				const model = parseFrontmatter(read(skill, "SKILL.md")).metadata?.["recommended-model"];
+				assert.match(model ?? "", /^[a-z0-9][a-z0-9.-]*$/, "set `metadata.recommended-model` to a model id");
+			});
+
 			test('backs the "every skill tested" claim with a test suite', () => {
 				assert.ok(exists(skill, "tests"), "missing tests/ directory");
 				const hasTestFile = fs
