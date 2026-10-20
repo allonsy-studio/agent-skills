@@ -15,7 +15,7 @@
     {
       "id": "dreamlight-valley",
       "name": "dreamlight-valley",
-      "description": "Identify a Disney Dreamlight Valley recipe from a photo or screenshot and return its required ingredients, OR recommend recipes to cook based on the ingredients the user has on hand — optimizing for energy restored or Star Coin profit. Use this skill whenever the user shows or uploads an image of a DDV recipe/dish, names a Dreamlight Valley dish and asks what's in it, asks \"what ingredients do I need for <dish>\", asks \"what can I cook with <ingredients>\", \"what's the most profitable thing to cook\", \"best recipe for energy\", or mentions Dreamlight Valley cooking, recipes, meals, or selling food for coins. Also triggers on phrases like \"what's in this recipe\", \"how do I make <dish> in Dreamlight\", \"what should I cook\", or any screenshot of the in-game cooking/cookbook/inventory screen. Covers base game, Eternity Isle (A Rift in Time), Storybook Vale, and Wishblossom Mountains expansions.",
+      "description": "Identify a Disney Dreamlight Valley recipe from a name, photo, or screenshot and return its ingredients, recommend recipes from the ingredients on hand (optimizing energy or Star Coin profit), or build a gather list from a storage screenshot. Use this whenever the user shows a DDV recipe, cookbook, or storage screenshot, names a Dreamlight Valley dish, or asks \"what ingredients do I need for <dish>\", \"what can I cook with <ingredients>\", \"what should I cook\", \"most profitable thing to cook\", or \"best recipe for energy\", or mentions Dreamlight Valley cooking, meals, or selling food for coins. A bare \"what should I cook?\" about a stockpile of ingredients (\"a ton of tomatoes\", \"some spice\") is a Dreamlight Valley question: use this skill. Do not trigger for real-world meal planning (\"what can I make for dinner tonight\"), recipes the user wants invented, or other games. Covers base game, Eternity Isle, Storybook Vale, and Wishblossom Mountains.",
       "components": {
         "skills": [
           "dreamlight-valley"
@@ -45,10 +45,20 @@
     {
       "id": "structured-data",
       "name": "structured-data",
-      "description": "Inject or generate schema.org structured data (HTML Microdata attributes like itemscope/itemtype/itemprop, or JSON-LD script blocks) into web markup — raw HTML/templates, React/Vue/Web Components, or static-site pipelines (11ty, Astro, Eleventy, Hugo, etc.). Use whenever the user asks to add schema.org markup, structured data, rich snippets, SEO markup, itemprop/itemscope/itemtype attributes, or JSON-LD to a page, component, or site. Also trigger for requests to validate, audit, or fix existing structured data, or to decide between Microdata and JSON-LD for a project. Injection always runs through the pre-compile or server-side scripts bundled here — never via client-side JavaScript — since crawlers may index a page before hydration runs.",
+      "description": "Inject, generate, audit, or fix schema.org structured data (JSON-LD script blocks, or Microdata itemscope/itemtype/itemprop attributes) in HTML, templates, React/Vue/Web Components, or static-site pipelines (Eleventy, Astro, Hugo). Load this before answering any structured-data question: its bundled validator catches value errors (durations, ingredient lists, missing required properties) that reading the markup misses. Use whenever the user asks to add schema.org markup, structured data, rich snippets, or rich results; pastes a JSON-LD block or itemprop markup and asks whether it is valid, broken, or correct; asks to audit, validate, or fix structured data; or asks to choose between Microdata and JSON-LD. Injection runs through the build-time or server-side scripts bundled here, never client-side JavaScript, since crawlers may index a page before hydration runs. Do not trigger for Open Graph or Twitter card meta tags, JSON Schema, or SEO advice with no schema.org markup involved.",
       "components": {
         "skills": [
           "structured-data"
+        ]
+      }
+    },
+    {
+      "id": "webc-components",
+      "name": "webc-components",
+      "description": "Author, debug, and review WebC (@11ty/webc) components with source-verified answers about how WebC compiles them. WebC's prop, slot, and bundling rules often differ from what general knowledge predicts, so load this before answering any WebC question. Use this whenever a message mentions WebC, a `.webc` file, WebC syntax (`@prop`, `:@prop`, `webc:setup`, `webc:if`, `webc:for`, `@html`, `@raw`, `@text`), or `@11ty/eleventy-plugin-webc`, including symptom questions with no file attached: a prop set to \"false\" that still acts true, a prop that is undefined, a slot fallback that never renders, a custom tag that appears or vanishes, one component's styles leaking into another, or a build error after editing a component. Trigger on phrases like \"write a WebC component\", \"review this .webc\", \"set up my WebC conventions\". Do not trigger for Eleventy configuration (`eleventy.config.js`, passthrough copy), Nunjucks or Liquid templates, Lit or other component libraries, or ARIA questions with no WebC involved.",
+      "components": {
+        "skills": [
+          "webc-components"
         ]
       }
     }
