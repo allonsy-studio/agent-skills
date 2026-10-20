@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@allons-y/skill-webc-components",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Author and review WebC (@11ty/webc) components, in Eleventy or any Node server or build, with a code-level model of how WebC compiles them: the host tag, the data cascade, slots, props, bundling, and the traps that only show up in rendered output. Remembers the conventions each team picks as a saved profile.",
   "type": "module",
   "skill": {
