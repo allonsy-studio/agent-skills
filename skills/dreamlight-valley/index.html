@@ -1126,7 +1126,7 @@ body > footer {
 				<div class="prose">
 					<h1>Dreamlight Valley Cooking, Gathering, and Inventory Management</h1>
 <p>This skill has several modes. Pick the matching mode, then <strong>read its reference
-file for the full procedure</strong> — don’t execute from memory.</p>
+file for the full procedure</strong>. Don’t execute from memory.</p>
 <div class="table-scroll">
 <table>
 <thead>
@@ -1148,7 +1148,7 @@ file for the full procedure</strong> — don’t execute from memory.</p>
 <td><code>references/recommend.md</code></td>
 </tr>
 <tr>
-<td><strong>Stock-check</strong> — gather list from storage</td>
+<td><strong>Stock-check</strong>: gather list from storage</td>
 <td><code>/restock &lt;flags&gt;</code> (flags: <code>--floor N</code> / <code>--category name</code>) with a storage screenshot, “what should I gather”, “restock”</td>
 <td><code>references/stock-check.md</code></td>
 </tr>
@@ -1159,35 +1159,35 @@ file for the full procedure</strong> — don’t execute from memory.</p>
 than guessing.</p>
 <h2>Bundled data</h2>
 <ul>
-<li><code>references/recipes.json</code> — 472 recipes. Each: <code>name</code>, <code>course</code>
+<li><code>references/recipes.json</code>: 472 recipes. Each: <code>name</code>, <code>course</code>
 (<code>appetizer</code>/<code>entree</code>/<code>dessert</code>), <code>star_rating</code>, <code>energy</code>, <code>sale_price</code>,
 <code>ingredients</code>. An ingredient slot is either fixed (<code>{&quot;name&quot;: &quot;...&quot;}</code>) or a
 <strong>category slot</strong> (<code>{&quot;name&quot;: &quot;spice&quot;, &quot;category&quot;: true}</code>) accepting any
 ingredient of that category. Category slots are the single most important
 nuance in DDV cooking.</li>
-<li><code>references/gatherables.json</code> — master catalog under <code>categories</code>:
+<li><code>references/gatherables.json</code>, a master catalog under <code>categories</code>:
 <ul>
-<li><code>ingredients</code> (188) — <code>name</code>, <code>category</code> (vegetable, fruit, grain, spice,
+<li><code>ingredients</code> (188): <code>name</code>, <code>category</code> (vegetable, fruit, grain, spice,
 sweets, seafood, dairy, meat, ice, fish), <code>method</code>
 (gardening/foraging/fishing/purchase), <code>energy</code>, <code>sale_price</code>,
-<code>locations</code>. <strong>Fish live here</strong> with <code>category: &quot;fish&quot;</code> — recipes with
+<code>locations</code>. <strong>Fish live here</strong> with <code>category: &quot;fish&quot;</code>. Recipes with
 a <code>fish</code> category slot resolve to these.</li>
-<li><code>flowers</code> (86) — <code>name</code>, <code>sale_price</code>, <code>locations</code>, optional
+<li><code>flowers</code> (86): <code>name</code>, <code>sale_price</code>, <code>locations</code>, optional
 <code>availability</code> (abundant/average/rare/ultra-rare; event/seasonal flowers
 intentionally omit it).</li>
-<li><code>collectables</code> (62) — <code>name</code>, <code>method</code> (string or array, e.g. Bones is
+<li><code>collectables</code> (62): <code>name</code>, <code>method</code> (string or array, e.g. Bones is
 <code>[&quot;digging&quot;,&quot;fishing&quot;]</code>), <code>locations</code>, optional <code>event</code>.</li>
-<li><code>gems</code> (50) — <code>name</code>, <code>locations</code>, optional <code>sale_price</code>.
+<li><code>gems</code> (50): <code>name</code>, <code>locations</code>, optional <code>sale_price</code>.
 Locations include biome + sub-area (e.g. <code>&quot;Glittering Dunes (The Wastes)&quot;</code>).
 <code>&quot;All Biomes&quot;</code> is valid (Stone, Coal Ore). Shop-source values like
 <code>&quot;Kristoff's Stall&quot;</code> mean the item is purchasable there.</li>
 </ul>
 </li>
-<li><code>references/categories.md</code> — what each cooking category slot accepts.</li>
-<li><code>references/icon-cues.md</code> — reading storage screenshots and disambiguating
+<li><code>references/categories.md</code>: what each cooking category slot accepts.</li>
+<li><code>references/icon-cues.md</code>: reading storage screenshots and disambiguating
 icons (two-pass read, 99-skip, gem regular/shiny, color-family pitfalls,
 event-item floor convention, crafted-not-gathered exclusions).</li>
-<li><code>references/sprites/*.png</code> — labeled canonical art:
+<li><code>references/sprites/*.png</code> holds labeled canonical art:
 <ul>
 <li>13 per-category gatherable sheets (<code>gems.png</code>, <code>flowers.png</code>,
 <code>collectables.png</code>, plus one <code>ingredients-&lt;category&gt;.png</code> per cooking
@@ -1197,13 +1197,13 @@ All use the same 8-column alphabetical grid with captions. Open the
 matching sheet to confirm a thumbnail by eye.</li>
 </ul>
 </li>
-<li><code>references/sprite-coords.json</code> — companion index mapping every
+<li><code>references/sprite-coords.json</code>, a companion index mapping every
 gatherable item AND every recipe to its <code>(sheet, row, col, x, y, w, h)</code>
 plus the shared grid layout. Use it to jump straight to a known
 item/recipe’s icon without scanning the whole sheet, and to verify
 whether a name exists in the catalog. Regenerated by <code>yarn workspace @allons-y/skill-dreamlight-valley build:sprites</code>.</li>
 </ul>
-<p><strong>Do not recite this data from memory — read the files.</strong> The bundled data is
+<p><strong>Do not recite this data from memory; read the files.</strong> The bundled data is
 authoritative; your memory isn’t.</p>
 <h2>Configuration</h2>
 <p>This skill is for a single player’s saved game, so the config is a small
@@ -1214,7 +1214,7 @@ the <strong>first one that exists</strong>:</p>
 <li><code>~/.config/dreamlight-valley.md</code></li>
 </ol>
 <p><code>config.example.md</code> (next to this <a href="http://SKILL.md">SKILL.md</a>) is the starter. Read the file at
-the start of each mode and <strong>interpret it generously</strong> — it’s prose, not
+the start of each mode and <strong>interpret it generously</strong>. It’s prose, not
 JSON. Users can express: floor (single or per-category), <code>/cook</code> objective,
 top-N recipe count, secondary-payout callout, extra fields shown by
 <code>/recipe</code>, and <code>/restock</code> toggles. Command-line flags from the user always
@@ -1226,9 +1226,9 @@ win over the config. No config file present → use built-in defaults silently
 user wants an expansion-specific list, fall back to filtering by
 ingredient origin where reasonable, or say it’s unsupported.</li>
 <li>Account for the “Well Fed” bonus, seasonal modifiers, or Goofy’s-stall
-price fluctuations — <code>sale_price</code> is the standard base sell value.</li>
+price fluctuations; <code>sale_price</code> is the standard base sell value.</li>
 <li>Guess item locations. A handful of fish/seafood ingredients and event critters have
-empty <code>locations</code> arrays — say so rather than fabricating one.</li>
+empty <code>locations</code> arrays. Say so rather than fabricating one.</li>
 </ul>
 
 				</div>
