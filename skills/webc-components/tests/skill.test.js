@@ -183,7 +183,7 @@ describe("profiles", () => {
 
 	test("a saved profile file is never committed", () => {
 		const gitignore = readFileSync(join(skillRoot, "..", "..", ".gitignore"), "utf8");
-		assert.match(gitignore, /^skills\/webc-components\/profile\.md$/m);
+		assert.match(gitignore, /^skills\/\*\/profile\.md$/m);
 	});
 });
 
