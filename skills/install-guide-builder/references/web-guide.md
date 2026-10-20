@@ -6,6 +6,16 @@ they want; the page assembles the steps in dependency order and hides everything
 Default voice: **early-career**. Someone who has used a terminal and installed things
 before, but does not necessarily know why PATH breaks.
 
+## Contents
+
+- [Why a filter and not a static page](#why-a-filter-and-not-a-static-page)
+- [Structure](#structure)
+- [Data shape](#data-shape)
+- [Platforms: many for print, one on screen](#platforms-many-for-print-one-on-screen)
+- [Ordering](#ordering)
+- [Behavior worth having](#behavior-worth-having)
+- [What not to do](#what-not-to-do)
+
 ## Why a filter and not a static page
 
 A static page covering ten tools makes every reader scroll past nine sections that do not

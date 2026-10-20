@@ -1,5 +1,17 @@
 # House style
 
+## Contents
+
+- [Voice](#voice)
+- [Structure](#structure)
+- [Time estimates](#time-estimates)
+- [The two-column pattern](#the-two-column-pattern)
+- [Verification](#verification)
+- [Troubleshooting](#troubleshooting)
+- [Callouts](#callouts)
+- [HTML classes](#html-classes)
+- [Commands must survive copy and paste](#commands-must-survive-copy-and-paste)
+
 ## Voice
 
 Plain, direct, warm. Second person. Contractions. American spellings.

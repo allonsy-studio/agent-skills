@@ -7,7 +7,7 @@ and team conversations. Get it right and everything downstream gets easier.
 
 ---
 
-## Table of contents
+## Contents
 
 1. [Core principles](#core-principles)
 2. [Naming hierarchy: element → variant → state](#naming-hierarchy)

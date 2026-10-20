@@ -16,6 +16,14 @@ This applies to the two targets where markup is **regenerated on every build**:
 A single hand-edited page doesn't need this: nothing regenerates it, so there's
 nothing to regress. `SKILL.md` Step 7 only prompts for the two cases above.
 
+## Contents
+
+- [What the scaffold generates](#what-the-scaffold-generates)
+- [Runner support](#runner-support)
+- [11ty / static-site pipelines](#11ty--static-site-pipelines)
+- [Component libraries](#component-libraries)
+- [What this does and doesn't catch](#what-this-does-and-doesnt-catch)
+
 ## What the scaffold generates
 
 `scripts/scaffold_validation_test.js` prints three files (it never writes them —

@@ -16,7 +16,7 @@ how the structure maps to common tooling.
 
 ---
 
-## Table of contents
+## Contents
 
 1. [What tokens are (and aren't)](#what-tokens-are-and-arent)
 2. [Token tiers](#token-tiers)

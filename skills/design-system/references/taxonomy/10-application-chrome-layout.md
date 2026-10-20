@@ -4,6 +4,14 @@ These patterns form the structural shell of single-page applications, dashboards
 and tool UIs. They're assembled from primitives in the sections above but have
 their own distinct keyboard contracts, resize behaviors, and landmark requirements.
 
+## Contents
+
+- [Split Pane / Resizable Panels](#split-pane--resizable-panels)
+- [Sticky Header / Sticky Region](#sticky-header--sticky-region)
+- [Command Bar / Toolbar](#command-bar--toolbar)
+- [Status Bar](#status-bar)
+- [Notification Center](#notification-center)
+
 ## App Shell
 **What it is:** The outermost layout frame of a single-page application — typically a fixed header, a collapsible sidebar, and a main content area.
 **Variants:** Sidebar + header, top-nav only, rail (icon-only sidebar) + header, stacked (header + sub-header).

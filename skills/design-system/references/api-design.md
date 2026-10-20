@@ -10,7 +10,7 @@ properties).
 
 ---
 
-## Table of contents
+## Contents
 
 1. [Native-First Philosophy](#native-first-philosophy)
 2. [Global Attribute Collision Checklist](#global-attribute-collision-checklist)

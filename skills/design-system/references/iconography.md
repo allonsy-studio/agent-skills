@@ -14,7 +14,7 @@ needs to be hard to misuse.
 
 ---
 
-## Table of contents
+## Contents
 
 1. [Icon format decisions](#icon-format-decisions)
 2. [Icon API design](#icon-api-design)

@@ -1,5 +1,14 @@
 # Navigation & Wayfinding
 
+## Contents
+
+- [Breadcrumbs](#breadcrumbs)
+- [Pagination](#pagination)
+- [Tabs](#tabs)
+- [Sidebar](#sidebar)
+- [Segmented Control](#segmented-control)
+- [Table of Contents](#table-of-contents)
+
 ## Navigation / Nav
 **What it is:** A container for navigation links — site-wide, local, or in-page.
 **Variants:** Top bar, sidebar, hamburger/mobile, mega menu.

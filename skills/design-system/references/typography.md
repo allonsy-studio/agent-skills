@@ -11,7 +11,7 @@ to ship, and the traps that won't show up until production.
 
 ---
 
-## Table of contents
+## Contents
 
 1. [Type scale architecture](#type-scale-architecture)
 2. [Font stack strategy](#font-stack-strategy)
