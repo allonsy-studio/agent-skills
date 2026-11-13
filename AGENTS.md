@@ -32,7 +32,7 @@ yarn test <skill-name>          # Run tests for a single skill
 yarn evals                      # Run LLM evals for all skills
 yarn generate:marketplace       # Regenerate .claude-plugin/marketplace.json and plugin.json
 yarn changeset                  # Record a change for the next release (writes .changeset/*.md)
-yarn changeset status           # Preview the next version bump
+yarn opx release status        # Preview the next version bump
 ```
 
 ## Workspace commands
@@ -201,7 +201,7 @@ changeset, not here.
 Releases are automated via [**changesets**](https://github.com/changesets/changesets). The flow is two-step:
 
 1. **Record**: every change that affects the published package lands with a changeset file (`yarn changeset`). All packages are versioned together (`fixed` versioning in `.changeset/config.json`), but only the root `@allons-y/agent-skills` is published to npm; the `skills/*` workspaces are `private` and ride along at the same version.
-2. **Release**: on merge to `main`, the `Release` workflow runs `changesets/action`. When unreleased changesets exist it opens (or updates) a **"Version Packages"** PR that bumps versions, rewrites `CHANGELOG.md`, and regenerates the `.claude-plugin/*` manifests. Merging that PR publishes to npm (`changeset publish`) and tags the release.
+2. **Release**: on merge to `main`, the `Release` workflow runs `changesets/action` with the `opx release` scripts. When unreleased changesets exist it opens (or updates) a **"Version Packages"** PR that bumps versions, rewrites `CHANGELOG.md`, and regenerates the `.claude-plugin/*` manifests. Merging that PR publishes to npm (`opx release publish`) and tags the release.
 
 The workflow authenticates with the built-in `GITHUB_TOKEN` (plus `NPM_TOKEN` for publish), so no personal access token is required.
 

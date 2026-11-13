@@ -60,6 +60,7 @@ jobs:
           commit: "chore(release): version packages"
           title: "chore(release): version packages"
           commitMode: github-api
+          createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
