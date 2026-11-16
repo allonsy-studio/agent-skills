@@ -1,0 +1,33 @@
+{
+  "_comment": "Copy this file per-project (e.g. assets/selector-map.json), fill in real selectors, delete this comment key. One config drives both inject_microdata.js and generate_json_ld.js.",
+  "_property_fields": {
+    "selector": "CSS selector, scoped within the parent item's element, pointing at the node whose text/attribute IS the value",
+    "source": "'text' (textContent) or 'attribute' (needs 'attribute' field naming which one, e.g. 'src' or 'href')",
+    "value_pattern": "optional regex; if the selected text contains extra formatting (e.g. a currency symbol) that isn't part of the actual value, this extracts just the matching portion. generate_json_ld.js applies it directly to the emitted value. inject_microdata.js cannot silently 'clean' visible DOM text a crawler will read verbatim -- if the full selected text doesn't equal the pattern match, it leaves the visible element untouched and adds a sibling <meta itemprop=...> with the cleaned value instead.",
+    "constant": "a fixed value not derived from any visible element (e.g. priceCurrency, availability) -- always emitted as a meta/link child rather than tagging visible text",
+    "nestedItem": "name of another entry in 'items' to recurse into for a nested schema.org type (e.g. Product.offers -> Offer)"
+  },
+  "items": [
+    {
+      "name": "root",
+      "itemtype": "https://schema.org/Product",
+      "selector": ".product-card",
+      "properties": [
+        { "itemprop": "name", "selector": "h1.product-title", "source": "text" },
+        { "itemprop": "image", "selector": "img.product-hero", "source": "attribute", "attribute": "src" },
+        { "itemprop": "description", "selector": ".product-description", "source": "text" },
+        { "itemprop": "offers", "nestedItem": "offer" }
+      ]
+    },
+    {
+      "name": "offer",
+      "itemtype": "https://schema.org/Offer",
+      "selector": ".price-block",
+      "properties": [
+        { "itemprop": "price", "selector": ".price", "source": "text", "value_pattern": "[0-9]+(\\.[0-9]+)?" },
+        { "itemprop": "priceCurrency", "constant": "USD" },
+        { "itemprop": "availability", "constant": "https://schema.org/InStock" }
+      ]
+    }
+  ]
+}
