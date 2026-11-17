@@ -148,7 +148,7 @@ existing entries in `CHANGELOG.md` for the house style.
 
 **Commit messages** are for code archaeology, not for consumers. Conventional Commits,
 enforced by commitlint. When a pull request has multiple commits, squash before merging
-into `main`.
+into `main`. Pull requests are squash-merged: the PR title becomes the commit subject & the commit messages its body, so the title must be a valid Conventional Commits subject.
 
 ### A changeset, done right
 
